@@ -37,7 +37,6 @@ body{background:var(--deep);color:var(--cream);font-family:var(--f-body);directi
 .wm .k{position:relative;display:block}
 .wm .g{position:absolute;inset:.23em 0 0;color:#3d0d12;z-index:-1;transform:translate(.3vw,.12vw);animation:reg 1.8s cubic-bezier(.2,.8,.2,1) backwards}
 @keyframes reg{from{transform:translate(2.8vw,1.3vw)}}
-.n4{position:absolute;right:6%;top:-.02em;font:700 .24em/1 var(--f-disp);transform:rotate(-8deg)}
 .sub{text-align:center;margin-top:12px;font:600 clamp(16px,2vw,26px)/1.4 var(--f-body);position:relative;z-index:2}
 .hint{position:absolute;left:max(16px,env(safe-area-inset-left,0px));bottom:16px;z-index:1;font:600 13px/1 var(--f-body)}
 

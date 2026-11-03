@@ -37,8 +37,6 @@
 .mini.on-dark .fb--line .fb-b{background:#6c171e;color:#f4dabf}
 /* bigger nav button; red call-to-action button */
 .links .fb--line .fb-f,.links .fb--line .fb-b,.mini .fb--line .fb-f,.mini .fb--line .fb-b{padding:18px 34px;font-size:19px;gap:12px}
-.hnd .htxt .fb-f{background:#6c171e;color:#f4dabf}
-.hnd .htxt .fb-b{background:#17120f;color:#f4dabf}
 /* rounder flip buttons */
 .flipbtn,.htxt a.flipbtn,.links a.cta.flipbtn,.mini a.cta.flipbtn,.fb-f,.fb-b{border-radius:14px}
 /* flip button: two cards peek out from behind on hover */
@@ -55,7 +53,7 @@
 .flipbtn:hover::after,.flipbtn:focus-visible::after{opacity:1;transition:transform .26s cubic-bezier(.2,1.2,.4,1) .25s,opacity 0s linear .25s}
 @media (prefers-reduced-motion:reduce){.flipbtn::before,.flipbtn::after{transition:none}}
 /* flipped face stays wine red; the card behind it is green */
-.fb-b,.fb--cream .fb-b,.hnd .htxt .fb-b,.links .fb--line .fb-b,.mini .fb--line .fb-b,.mini.on-dark .fb--line .fb-b,.ctf .fb-b{background:#6c171e;color:#f4dabf}
+.fb-b,.fb--cream .fb-b,.links .fb--line .fb-b,.mini .fb--line .fb-b,.mini.on-dark .fb--line .fb-b,.ctf .fb-b{background:#6c171e;color:#f4dabf}
 .flipbtn,.ctf .flipbtn,.links .flipbtn,.mini.on-dark .flipbtn{--c1:#0d3d3a}
 .links .fb--line .fb-f,.links .fb--line .fb-b,.mini .fb--line .fb-f,.mini .fb--line .fb-b{padding:15px 28px;font-size:17px;gap:10px}
 .work .wk-deck{margin-top:clamp(120px,24vh,280px)}
@@ -63,7 +61,7 @@
 .pr{min-height:100vh;min-height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center}
 .pr .pr-in{width:100%}
 /* card backs: keep the inset border, drop the hatch pattern, logo in the middle */
-.slot::after,.hcard .b,.cc .b{background:url("../../assets/img/logo.png") center/58% auto no-repeat,#3d0d12}
+.slot::after,.hcard .b{background:url("../../assets/img/logo.png") center/58% auto no-repeat,#3d0d12}
 /* support text: fixed measure, every line the same width (filled with kashida) */
 .sec2 p,.dk-head p,.pl-head p,.wk-head p,.htxt p,.ctf-t p,.ft p{max-width:20em;width:100%}
 .dk-head p{width:60%;max-width:none}

@@ -8,7 +8,6 @@
 @media (max-width:640px){.mini nav{gap:20px;font-size:13px}.mini b{font-size:20px}.mini .cta{padding:7px 12px}}
 @media (prefers-reduced-motion:reduce){.mini{transition:none}}
 .pnl{background:#efe8d9;border:1px solid #17120f;border-radius:14px;box-shadow:none}
-.pnl .ghost{display:none}
 .pnl{--fr:#6c171e;--in:40px;--gap:26px}
 .deck .stack .pnl{padding:calc(var(--in) + 88px) calc(var(--in) + 80px)}
 /* corner-suit frame: one red line along the top and one down the right side, each stopping short of the suit that sits at their corner */
@@ -22,31 +21,24 @@
 @media (max-width:640px){.pnl{--in:20px;--gap:22px}.pnl .sx{font-size:22px}.deck .stack .pnl{padding:calc(var(--in) + 52px) calc(var(--in) + 34px)}}
 .pnl .dl{border-top:1px solid rgba(23,18,15,.5)}
 .pnl .big{color:rgba(23,18,15,.05)}
-.dback,.dfront{border-width:1px}
-.ft-b,.ft-b:hover{box-shadow:none}
-.ft-b:hover{transform:none;background:#fff}
 
 /* one ground: every section sits on the same burgundy; light text on it, cards keep their own paper */
 :root{--ground:#3d0d12;--on:#f4dabf;--beige:#6c171e}
 body{background:var(--ground)}
 .h{background-color:var(--ground)}
-body::before,.story .after::before,.dstage::before,.deck::before,.work::before,.bk::before,.rl::before,.stt::before,.ft::before{display:none}
-.story .after,.dstage,.deck,.play,.work,.hstage,.rl,.stt,.pr,.ft,.fq,.bk,.next2,.nstage{background:var(--ground);background-image:none;color:var(--on)}
-.pr-p{background:none;border-color:rgba(244,218,191,.28)}
+body::before,.story .after::before,.deck::before,.work::before,.stt::before,.ft::before{display:none}
+.story .after,.deck,.play,.work,.stt,.pr,.ft,.fq,.next2,.nstage{background:var(--ground);background-image:none;color:var(--on)}
 .mini{color:var(--on);mix-blend-mode:normal}
 /* cards on the ground keep dark ink */
-.dc{color:#17120f}
-.pnl,.rl-c,.pr-c,.wc{color:#17120f}
+.pnl,.rl-c,.wc{color:#17120f}
 .wc{color:var(--fg)}
-.pr-c{color:#2b0a10}
 /* rules and borders that were dark ink on paper now follow the text colour */
-.rail,.rk,.rk span,.tab{border-color:currentColor;color:var(--on)}
+.tab{border-color:currentColor;color:var(--on)}
 .tab:hover{background:rgba(244,218,191,.1)}
 .tab.on{background:#3d0d12;color:#f4dabf}
-.rk{background:var(--ground)}
 .wk-ctl button{border-color:var(--on);color:var(--on)}
 .wk-ctl button:hover{background:var(--on);color:var(--ground)}
-.rl-h,.fq-l,.fq details,.stt-t,.stt-i{border-color:currentColor}
+.fq-l,.fq details,.stt-t,.stt-i{border-color:currentColor}
 .fq details:nth-child(even) summary i{color:#f4dabf}
 .stt-i b{color:var(--on)}
 .after .e,.wk-head .e{color:#f4dabf}

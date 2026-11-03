@@ -4,9 +4,6 @@
 .xp h2 em{font-style:normal}
 .xp p{margin:0;font:600 clamp(18px,1.8vw,26px)/1.8 var(--f-body);opacity:.8;max-width:30em}
 .xp{content-visibility:auto;contain-intrinsic-size:auto 100vh}
-.xp-tag{position:absolute;top:18px;inset-inline-start:max(20px,5vw);font:700 12px/1 var(--f-body);letter-spacing:.08em;padding:7px 12px;border:1px solid currentColor;border-radius:99px;opacity:.55}
-.xp-btn{display:inline-flex;align-items:center;gap:12px;padding:20px 40px;border-radius:14px;font:700 clamp(17px,1.4vw,21px)/1 var(--f-body);text-decoration:none;background:#6c171e;color:#f4dabf;transition:transform .25s cubic-bezier(.2,1.4,.4,1),box-shadow .25s}
-.xp-btn:hover{transform:translateY(-4px) rotate(-2deg);box-shadow:0 14px 0 -6px #0d3d3a}
 
 /* 9: bold draw. Fat ink outlines and hard offset shadows; click or drag the top card of the deck up and it flies out, flips and lands on the deck. */
 .xp9{background:#6c171e;color:#f4dabf;padding-block:clamp(96px,14vh,130px) clamp(30px,5vh,60px);gap:clamp(6px,1.4vh,14px);min-height:100vh;min-height:100dvh;align-content:start}

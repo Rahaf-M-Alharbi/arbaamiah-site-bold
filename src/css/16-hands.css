@@ -1,8 +1,4 @@
 /* hands: two stippled red hands pass one card; scroll drives the whole move */
-.hnd{position:relative;height:340vh;z-index:1;direction:rtl}
-.hstage{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;background:radial-gradient(ellipse 70% 60% at 62% 50%,#1b0b0b,#070303 70%)}
-.hh{position:absolute;left:0;top:0;width:var(--hw);height:calc(var(--hw)*.96);will-change:transform;pointer-events:none}
-.hh svg{display:block;width:100%;height:100%;overflow:visible}
 .hcard{position:absolute;left:0;top:0;width:var(--cw);aspect-ratio:5/7;transform-style:preserve-3d;will-change:transform;perspective:none}
 .hcard .f,.hcard .b{position:absolute;inset:0;border-radius:6%;backface-visibility:hidden;-webkit-backface-visibility:hidden;container-type:inline-size}
 .hcard .f{background:linear-gradient(160deg,#7a2a31,#3d0d12 60%,#2a080b);box-shadow:none;color:#f4dabf;direction:ltr}

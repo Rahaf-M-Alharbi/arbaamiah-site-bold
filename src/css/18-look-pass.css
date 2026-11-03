@@ -1,6 +1,6 @@
 /* look pass: flat colour grounds with a fine grain, one hairline weight, no hard offset shadows */
 body::before{background-image:url(../../assets/img/texture-4.svg)!important;background-size:200px 200px!important;opacity:.28!important}
-.story .after::before,.dstage::before,.deck::before,.work::before,.bk::before{display:none}
+.story .after::before,.deck::before,.work::before{display:none}
 .deck{background:#e6decd}
 .h{isolation:isolate}
 .nav-rule span{height:0;border-block:0;border-top:1px solid currentColor;opacity:.4}
@@ -9,13 +9,11 @@ body::before{background-image:url(../../assets/img/texture-4.svg)!important;back
 .stt-i b{text-shadow:none}
 /* paper texture on the service cards, no shadow for now */
 :root{--paper:url(../../assets/img/paper.jpg)}
-.card,.card.swapped,.fb,.bigcard.on{background-color:#fbf9f4;background-image:linear-gradient(rgba(255,255,255,.4),rgba(255,255,255,.4)),var(--paper);background-size:auto,cover;background-position:center;box-shadow:none}
+.card,.card.swapped,.bigcard.on{background-color:#fbf9f4;background-image:linear-gradient(rgba(255,255,255,.4),rgba(255,255,255,.4)),var(--paper);background-size:auto,cover;background-position:center;box-shadow:none}
 .card:hover,.card:focus-visible{box-shadow:none}
-.card,.card.swapped,.fb{border:1px solid rgba(70,35,28,.38)}
+.card,.card.swapped{border:1px solid rgba(70,35,28,.38)}
 .card .med{display:none}
 .card .body{top:36%}
 /* revealed card: empty, only the corner index stays */
-.bc-title,.bc-p,.bc-pip{display:none}
 /* index sits 8.5% in from the card's own left edge, like the small cards; if the screen crops the card, it keeps 24px clear of the cropped part */
-.bc-ix{left:max(8.5cqw,calc(var(--crop,0px) + 24px));right:auto}
 @media (min-width:760px){.sec2{right:max(96px,8vw);top:clamp(110px,16vh,160px);bottom:auto;align-content:start}}

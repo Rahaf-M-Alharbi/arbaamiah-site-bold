@@ -1,16 +1,1 @@
 /* dealt-card buttons: a red fill sweeps in, the label rolls to a copy of itself, the suit spins and the button tilts like a card being picked up */
-.bt{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:14px;cursor:pointer;transition:transform .45s cubic-bezier(.2,.8,.2,1),color .3s}
-.bt::before{content:"";position:absolute;inset:0;z-index:-1;background:#3d0d12;transform:scaleX(0);transform-origin:right center;transition:transform .55s cubic-bezier(.2,.8,.2,1)}
-.bt-w{display:grid;overflow:hidden;line-height:1.3;padding-block:.1em}
-.bt-w>span{grid-area:1/1;display:block;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-.bt-w>span+span{transform:translateY(120%)}
-.bt-s{font-style:normal;font-size:1.15em;line-height:1;display:inline-block;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
-.bt:hover,.bt:focus-visible{transform:translateY(-4px) rotate(-1.5deg);color:#f4dabf}
-.bt:hover::before,.bt:focus-visible::before{transform:scaleX(1)}
-.bt:hover .bt-w>span:first-child,.bt:focus-visible .bt-w>span:first-child{transform:translateY(-120%)}
-.bt:hover .bt-w>span+span,.bt:focus-visible .bt-w>span+span{transform:translateY(0)}
-.bt:hover .bt-s,.bt:focus-visible .bt-s{transform:rotate(360deg) scale(1.15)}
-.bt:active{transform:translateY(-1px) rotate(0deg)}
-.ctf-b.bt .bt-s{color:#6c171e}
-.ctf-b.bt:hover .bt-s,.ctf-b.bt:focus-visible .bt-s{color:#f4dabf}
-@media (prefers-reduced-motion:reduce){.bt,.bt::before,.bt-w>span,.bt-s{transition:none}.bt:hover,.bt:focus-visible{transform:none}}

@@ -23,7 +23,6 @@
 .ctf-c input:checked+span i.r{color:#6c171e}
 .ctf-c input:focus-visible+span{outline:2px solid var(--on);outline-offset:3px}
 .ctf-a{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:8px}
-.ctf-b{padding:clamp(18px,2vw,24px) clamp(40px,4vw,64px);border:0;border-radius:99px;background:#f4dabf;color:#2b0a10;font:700 clamp(16px,1.4vw,19px)/1 var(--f-body);cursor:pointer;transition:background .25s,transform .25s}
 .ctf-m{font:600 15px/1.7 var(--f-body);opacity:.9}
 @media (max-width:900px){.ctf-in{grid-template-columns:minmax(0,1fr)}.ctf-t{position:static}}
 @media (max-width:560px){.ctf-f{grid-template-columns:minmax(0,1fr)}}
