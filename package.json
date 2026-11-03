@@ -1,2 +1,12 @@
-{ "name": "arbaamiah-site-bold", "private": true, "type": "module",
-  "scripts": { "build": "node scripts/build.mjs", "dev": "node scripts/build.mjs && python3 -m http.server 8080 -d dist" } }
+{
+  "name": "arbaamiah-site",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs dist 8082",
+    "dev": "node scripts/serve.mjs . 8082 --no-cache"
+  },
+  "devDependencies": { "esbuild": "0.28.2" }
+}

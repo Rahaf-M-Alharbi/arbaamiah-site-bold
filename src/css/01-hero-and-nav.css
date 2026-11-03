@@ -6,6 +6,8 @@
   --w:clamp(140px,19vw,260px);
   color-scheme:dark;
 }
+/* same velvet photo as AVIF (half the bytes); browsers without AVIF in image-set() keep the JPEG above */
+@supports (background-image:image-set(url(x.avif) type("image/avif"))){:root{--tex:image-set(url(../../assets/img/velvet.avif) type("image/avif"),url(../../assets/img/velvet.jpg) type("image/jpeg"))}}
 *{box-sizing:border-box}
 html,body{margin:0}
 body{background:var(--deep);color:var(--cream);font-family:var(--f-body);direction:rtl}

@@ -54,6 +54,10 @@
   }
   addEventListener('resize',function(){ size(); if(still) frame(performance.now()); });
   addEventListener('pointermove',function(e){ mx=e.clientX/innerWidth; my=1-e.clientY/innerHeight; },{passive:true});
-  document.addEventListener('visibilitychange',function(){ if(document.hidden){ cancelAnimationFrame(raf); raf=0; } else if(!raf&&!still) raf=requestAnimationFrame(frame); });
+  /* draw only while the canvas is on screen and the tab is visible: once the hero has scrolled away the shader stops costing GPU time */
+  var onScreen=true;
+  function sync(){ if(document.hidden||!onScreen){ cancelAnimationFrame(raf); raf=0; } else if(!raf&&!still) raf=requestAnimationFrame(frame); }
+  document.addEventListener('visibilitychange',sync);
+  if('IntersectionObserver' in window) new IntersectionObserver(function(en){ onScreen=en[en.length-1].isIntersecting; sync(); }).observe(cv);
   size(); raf=requestAnimationFrame(frame);
 })();

@@ -1,16 +1,16 @@
 /* Thmanyah type collection, served from ./fonts */
-@font-face{font-family:'Thmanyah Sans';font-weight:300;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahsans-Light.woff2) format('woff2'),url(../../assets/fonts/thmanyahsans-Light.otf) format('opentype')}
-@font-face{font-family:'Thmanyah Sans';font-weight:400;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahsans-Regular.woff2) format('woff2'),url(../../assets/fonts/thmanyahsans-Regular.otf) format('opentype')}
-@font-face{font-family:'Thmanyah Sans';font-weight:500;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahsans-Medium.woff2) format('woff2'),url(../../assets/fonts/thmanyahsans-Medium.otf) format('opentype')}
-@font-face{font-family:'Thmanyah Sans';font-weight:700;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahsans-Bold.woff2) format('woff2'),url(../../assets/fonts/thmanyahsans-Bold.otf) format('opentype')}
-@font-face{font-family:'Thmanyah Sans';font-weight:900;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahsans-Black.woff2) format('woff2'),url(../../assets/fonts/thmanyahsans-Black.otf) format('opentype')}
-@font-face{font-family:'Thmanyah Serif Display';font-weight:300;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahserifdisplay-Light.woff2) format('woff2'),url(../../assets/fonts/thmanyahserifdisplay-Light.otf) format('opentype')}
-@font-face{font-family:'Thmanyah Serif Display';font-weight:400;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahserifdisplay-Regular.woff2) format('woff2'),url(../../assets/fonts/thmanyahserifdisplay-Regular.otf) format('opentype')}
-@font-face{font-family:'Thmanyah Serif Display';font-weight:500;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahserifdisplay-Medium.woff2) format('woff2'),url(../../assets/fonts/thmanyahserifdisplay-Medium.otf) format('opentype')}
-@font-face{font-family:'Thmanyah Serif Display';font-weight:700;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahserifdisplay-Bold.woff2) format('woff2'),url(../../assets/fonts/thmanyahserifdisplay-Bold.otf) format('opentype')}
-@font-face{font-family:'Thmanyah Serif Display';font-weight:900;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahserifdisplay-Black.woff2) format('woff2'),url(../../assets/fonts/thmanyahserifdisplay-Black.otf) format('opentype')}
-@font-face{font-family:'Thmanyah Serif Text';font-weight:300;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahseriftext-Light.woff2) format('woff2'),url(../../assets/fonts/thmanyahseriftext-Light.otf) format('opentype')}
-@font-face{font-family:'Thmanyah Serif Text';font-weight:400;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahseriftext-Regular.woff2) format('woff2'),url(../../assets/fonts/thmanyahseriftext-Regular.otf) format('opentype')}
-@font-face{font-family:'Thmanyah Serif Text';font-weight:500;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahseriftext-Medium.woff2) format('woff2'),url(../../assets/fonts/thmanyahseriftext-Medium.otf) format('opentype')}
-@font-face{font-family:'Thmanyah Serif Text';font-weight:700;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahseriftext-Bold.woff2) format('woff2'),url(../../assets/fonts/thmanyahseriftext-Bold.otf) format('opentype')}
-@font-face{font-family:'Thmanyah Serif Text';font-weight:900;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahseriftext-Black.woff2) format('woff2'),url(../../assets/fonts/thmanyahseriftext-Black.otf) format('opentype')}
+@font-face{font-family:'Thmanyah Sans';font-weight:300;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahsans-Light.woff2) format('woff2')}
+@font-face{font-family:'Thmanyah Sans';font-weight:400;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahsans-Regular.woff2) format('woff2')}
+@font-face{font-family:'Thmanyah Sans';font-weight:500;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahsans-Medium.woff2) format('woff2')}
+@font-face{font-family:'Thmanyah Sans';font-weight:700;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahsans-Bold.woff2) format('woff2')}
+@font-face{font-family:'Thmanyah Sans';font-weight:900;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahsans-Black.woff2) format('woff2')}
+@font-face{font-family:'Thmanyah Serif Display';font-weight:300;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahserifdisplay-Light.woff2) format('woff2')}
+@font-face{font-family:'Thmanyah Serif Display';font-weight:400;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahserifdisplay-Regular.woff2) format('woff2')}
+@font-face{font-family:'Thmanyah Serif Display';font-weight:500;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahserifdisplay-Medium.woff2) format('woff2')}
+@font-face{font-family:'Thmanyah Serif Display';font-weight:700;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahserifdisplay-Bold.woff2) format('woff2')}
+@font-face{font-family:'Thmanyah Serif Display';font-weight:900;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahserifdisplay-Black.woff2) format('woff2')}
+@font-face{font-family:'Thmanyah Serif Text';font-weight:300;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahseriftext-Light.woff2) format('woff2')}
+@font-face{font-family:'Thmanyah Serif Text';font-weight:400;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahseriftext-Regular.woff2) format('woff2')}
+@font-face{font-family:'Thmanyah Serif Text';font-weight:500;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahseriftext-Medium.woff2) format('woff2')}
+@font-face{font-family:'Thmanyah Serif Text';font-weight:700;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahseriftext-Bold.woff2) format('woff2')}
+@font-face{font-family:'Thmanyah Serif Text';font-weight:900;font-style:normal;font-display:swap;src:url(../../assets/fonts/thmanyahseriftext-Black.woff2) format('woff2')}
