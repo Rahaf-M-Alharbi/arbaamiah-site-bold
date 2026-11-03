@@ -3,7 +3,7 @@
 html.cur{--c-spade:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M16 3C13 9 5 13 5 20a5.5 5.5 0 0 0 9.5 3.6C14.3 26.5 13.5 28 11.5 29H20.5C18.5 28 17.7 26.5 17.5 23.6A5.5 5.5 0 0 0 27 20C27 13 19 9 16 3Z' fill='%23f4dabf' stroke='%2317120f' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E");
   --c-diamond:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M16 3L28 16L16 29L4 16Z' fill='%236c171e' stroke='%2317120f' stroke-width='2.4' stroke-linejoin='round'/%3E%3Cpath d='M16 9L22 16L16 23L10 16Z' fill='none' stroke='%23f4dabf' stroke-width='1.6'/%3E%3C/svg%3E")}
 html.cur,html.cur *{cursor:var(--c-spade) 16 4,auto}
-html.cur a,html.cur button:not(:disabled),html.cur summary,html.cur label,html.cur [role=button],html.cur .hcard,html.cur .pcard,html.cur .slot3.f,html.cur .xp9-top,html.cur .wk-deck,html.cur .wk-rail,html.cur .tab{cursor:var(--c-diamond) 16 16,pointer}
+html.cur a,html.cur button:not(:disabled),html.cur summary,html.cur label,html.cur [role=button],html.cur .xp9-top,html.cur .wk-deck{cursor:var(--c-diamond) 16 16,pointer}
 html.cur input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]),html.cur textarea,html.cur select,html.cur [contenteditable]{cursor:text}
 html.cur button:disabled{cursor:wait}
 /* card and heart areas hide the native pointer; the follower is the pointer there */

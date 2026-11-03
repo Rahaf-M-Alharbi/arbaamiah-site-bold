@@ -11,9 +11,6 @@
 .wk-ctl button{width:46px;height:46px;border-radius:50%;border:1px solid #2a211b;background:transparent;color:#2a211b;font:700 20px/1 var(--f-body);cursor:pointer;transition:background .2s,color .2s}
 .wk-ctl button:hover{background:#2a211b;color:#ece2d0}
 .wk-ctl button:focus-visible{outline:3px solid #6c171e;outline-offset:2px}
-.wk-rail{--cw:min(360px,74vw);position:relative;display:flex;gap:clamp(14px,2vw,28px);align-items:center;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;padding:6vh calc(50% - var(--cw)/2) 8vh;cursor:grab;-webkit-overflow-scrolling:touch;user-select:none}
-.wk-rail::-webkit-scrollbar{display:none}
-.wk-rail.drag{cursor:grabbing;scroll-snap-type:none}
 .wc{--bg:#efe6d4;--fg:#4a1a1d;--ac:#b3382a;position:relative;flex:none;width:var(--cw);aspect-ratio:5/7;scroll-snap-align:center;border-radius:7%;background:var(--bg);color:var(--fg);container-type:inline-size;
   box-shadow:none;transform:translateY(var(--y,0px)) rotate(var(--r,0deg)) scale(var(--s,1));transition:box-shadow .3s;direction:rtl;outline:none}
 .wc:focus-visible{box-shadow:0 0 0 3px #b3382a}

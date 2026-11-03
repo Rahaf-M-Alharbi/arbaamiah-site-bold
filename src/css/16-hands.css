@@ -1,18 +1,3 @@
 /* hands: two stippled red hands pass one card; scroll drives the whole move */
-.hcard{position:absolute;left:0;top:0;width:var(--cw);aspect-ratio:5/7;transform-style:preserve-3d;will-change:transform;perspective:none}
-.hcard .f,.hcard .b{position:absolute;inset:0;border-radius:6%;backface-visibility:hidden;-webkit-backface-visibility:hidden;container-type:inline-size}
-.hcard .f{background:linear-gradient(160deg,#7a2a31,#3d0d12 60%,#2a080b);box-shadow:none;color:#f4dabf;direction:ltr}
-.hcard .f .ix{position:absolute;top:5%;left:9%;font:700 13cqw/1 var(--f-disp);text-align:center}
-.hcard .f .ix i{display:block;font-style:normal;font-size:.8em}
-.hcard .f .ix.b{top:auto;left:auto;bottom:5%;right:9%;transform:rotate(180deg)}
-.hcard .f svg{position:absolute;left:50%;top:50%;width:52%;transform:translate(-50%,-50%);fill:none;stroke:#f4dabf;stroke-width:.5}
-.hcard .b{transform:rotateY(180deg);background:repeating-linear-gradient(45deg,transparent 0 7px,rgba(244,218,191,.3) 7px 8px),repeating-linear-gradient(-45deg,transparent 0 7px,rgba(244,218,191,.3) 7px 8px),linear-gradient(165deg,#3d0d12,#3d0d12);
-  box-shadow:inset 0 0 0 4cqw #3d0d12, inset 0 0 0 4.6cqw rgba(244,218,191,.75)}
-.htxt{position:absolute;left:max(24px,5vw);top:50%;width:min(34vw,440px);transform:translateY(-50%);display:grid;gap:16px;opacity:0;direction:rtl;text-align:right}
-.htxt .e{font:700 14px/1 var(--f-body);color:#f4dabf}
-.htxt h2{margin:0;font:700 clamp(34px,4.6vw,68px)/1.2 var(--f-disp);text-wrap:balance}
-.htxt p{margin:0;font:600 clamp(15px,1.3vw,18px)/1.9 var(--f-body);opacity:.8}
-.htxt a{justify-self:start;padding:14px 26px;border-radius:99px;background:#f4dabf;color:#1a0605;font:700 15px/1 var(--f-body);text-decoration:none}
-@media (max-width:760px){.htxt{left:16px;right:16px;width:auto;top:auto;bottom:6vh;transform:none}}
 
 .mini{color:#fff;mix-blend-mode:difference}

@@ -2,9 +2,6 @@
 
 /* the beige screen waits underneath the velvet stage; the stage is cut away along the card stream to uncover it */
 .stage{z-index:2}
-.story .after{position:sticky;top:0;height:100vh;height:100dvh;margin-top:-100vh;margin-top:-100dvh;z-index:1;display:grid;align-content:center;padding-block:0;background:var(--beige)}
-.story .after::before{content:"";position:absolute;inset:0;background-image:var(--linen);background-size:480px 752px;mix-blend-mode:multiply;opacity:.5;pointer-events:none}
-.story .after .in{position:relative;width:100%}
 
 /* normal scroll: the velvet ends like a rug (woven band and fringe); one hero card grows into the big card that holds the next section */
 .story{height:480vh}

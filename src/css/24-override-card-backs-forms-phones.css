@@ -1,13 +1,12 @@
 /* brand colour tokens */
 :root{--wine-900:#2a080b;--wine-800:#3d0d12;--wine-700:#4f1117;--wine-600:#6c171e;--wine-400:#a63a43;--wine-200:#d9a0a4;--wine-100:#f0d4d6;--cream-50:#fbeedd;--paper-50:#fbf9f4;--ground-light:#e6decd;--gray-900:#2b2826;--gray-700:#4a4642;--gray-500:#7a746d;--gray-300:#b4b1ab;--gray-200:#d8d5d0;--gray-100:#edebe3;--ink-900:#17120f;--black:#0a0807}
 /* card backs: dark green */
-.slot::after,.hcard .b{background:url("../../assets/img/logo.png") center/58% auto no-repeat,#0d3d3a}
+.slot::after{background:url("../../assets/img/logo.png") center/58% auto no-repeat,#0d3d3a}
 .slot::after{box-shadow:inset 0 0 0 calc(var(--w)*.045) #0d3d3a, inset 0 0 0 calc(var(--w)*.052) rgba(244,218,191,.75)}
-.hcard .b{box-shadow:inset 0 0 0 4cqw #0d3d3a, inset 0 0 0 4.6cqw rgba(244,218,191,.75)}
 /* card backs: modern, asymmetric (wine circle, outline, triangle) with the logo on top */
-.slot::after,.hcard .b{background:url("../../assets/img/logo.png") 50% 13%/46% auto no-repeat,url(../../assets/img/texture-5.svg) center/100% 100% no-repeat,#0d3d3a;box-shadow:none}
+.slot::after{background:url("../../assets/img/logo.png") 50% 13%/46% auto no-repeat,url(../../assets/img/texture-5.svg) center/100% 100% no-repeat,#0d3d3a;box-shadow:none}
 /* card backs: logo centred between two hairlines, the four suits underneath */
-.slot::after,.hcard .b{background:url("../../assets/img/logo-top.svg") 50% 48%/60% auto no-repeat,url(../../assets/img/texture-6.svg) center/100% 100% no-repeat,#0d3d3a;box-shadow:none}
+.slot::after{background:url("../../assets/img/logo-top.svg") 50% 48%/60% auto no-repeat,url(../../assets/img/texture-6.svg) center/100% 100% no-repeat,#0d3d3a;box-shadow:none}
 /* form polish: optional hints, inline errors, trap field, thank-you state */
 .ctf-l span em{font-style:normal;font-weight:400;opacity:.7;margin-inline-start:6px}
 .ctf-err{min-height:1.2em;font:400 14px/1.4 var(--f-body);color:#f4dabf;opacity:.9}
@@ -54,4 +53,4 @@
 /* phone: keep the second-section text inside the two frame lines */
 @media (max-width:760px){.h .frame{--fi:24px}.sec2{left:46px;right:46px}.sec2 h2{font-size:clamp(22px,6.4vw,32px)}.sec2 p{font-size:clamp(16px,4.6vw,20px)}}
 /* card backs: the thin rounded border is drawn in texture-6.svg (rect rx), so its corner radius is independent of the card's */
-.slot::after,.hcard .b{box-shadow:none}
+.slot::after{box-shadow:none}

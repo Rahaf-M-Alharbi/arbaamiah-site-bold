@@ -15,8 +15,8 @@
 .pnl .dl small{display:block;margin-top:6px;font:500 clamp(14px,1.2vw,16px)/1.8 var(--f-body);opacity:.72}
 @media (max-width:860px){.pnl{grid-template-columns:minmax(0,1fr)}}
 /* section support text ~3x, links regular weight, big numbers regular weight */
-.sec2 p,.dk-head p,.pl-head p,.wk-head p,.htxt p,.ctf-t p,.ft p{font-size:clamp(26px,3.4vw,54px);line-height:1.5;font-weight:400;max-width:none;width:100%}
-a,.htxt a,.links a{font-weight:400}
+.sec2 p,.dk-head p,.wk-head p,.ctf-t p,.ft p{font-size:clamp(26px,3.4vw,54px);line-height:1.5;font-weight:400;max-width:none;width:100%}
+a,.links a{font-weight:400}
 .stt-i .stt-ix b{font-weight:400}
 .wk-head .t{max-width:none;flex:1 1 640px}
 .dk-head p{width:60%}
@@ -25,8 +25,6 @@ a,.htxt a,.links a{font-weight:400}
 .dk-head{gap:clamp(36px,4.4vw,68px);margin-bottom:clamp(140px,28vh,300px)}
 .wk-head .t{gap:clamp(36px,4.4vw,68px)}
 .wk-head{row-gap:clamp(56px,7vw,100px)}
-.htxt{gap:clamp(36px,4.4vw,68px)}
-.htxt a{margin-top:clamp(12px,2vw,28px)}
 .ctf-t{gap:clamp(40px,5vw,72px)}
 .ft-in{gap:clamp(44px,8vh,80px)}
 .fq .a p{font-size:clamp(20px,2.2vw,30px);line-height:1.8;max-width:42em}

@@ -1,6 +1,6 @@
 /* look pass: flat colour grounds with a fine grain, one hairline weight, no hard offset shadows */
 body::before{background-image:url(../../assets/img/texture-4.svg)!important;background-size:200px 200px!important;opacity:.28!important}
-.story .after::before,.deck::before,.work::before{display:none}
+.deck::before,.work::before{display:none}
 .deck{background:#e6decd}
 .h{isolation:isolate}
 .nav-rule span{height:0;border-block:0;border-top:1px solid currentColor;opacity:.4}

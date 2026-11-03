@@ -26,19 +26,16 @@
 :root{--ground:#3d0d12;--on:#f4dabf;--beige:#6c171e}
 body{background:var(--ground)}
 .h{background-color:var(--ground)}
-body::before,.story .after::before,.deck::before,.work::before,.stt::before,.ft::before{display:none}
-.story .after,.deck,.play,.work,.stt,.pr,.ft,.fq,.next2,.nstage{background:var(--ground);background-image:none;color:var(--on)}
+body::before,.deck::before,.work::before,.stt::before,.ft::before{display:none}
+.deck,.work,.stt,.pr,.ft,.fq,.next2,.nstage{background:var(--ground);background-image:none;color:var(--on)}
 .mini{color:var(--on);mix-blend-mode:normal}
 /* cards on the ground keep dark ink */
-.pnl,.rl-c,.wc{color:#17120f}
+.pnl,.wc{color:#17120f}
 .wc{color:var(--fg)}
 /* rules and borders that were dark ink on paper now follow the text colour */
-.tab{border-color:currentColor;color:var(--on)}
-.tab:hover{background:rgba(244,218,191,.1)}
-.tab.on{background:#3d0d12;color:#f4dabf}
 .wk-ctl button{border-color:var(--on);color:var(--on)}
 .wk-ctl button:hover{background:var(--on);color:var(--ground)}
 .fq-l,.fq details,.stt-t,.stt-i{border-color:currentColor}
 .fq details:nth-child(even) summary i{color:#f4dabf}
 .stt-i b{color:var(--on)}
-.after .e,.wk-head .e{color:#f4dabf}
+.wk-head .e{color:#f4dabf}

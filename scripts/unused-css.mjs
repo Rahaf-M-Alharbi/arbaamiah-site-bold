@@ -3,12 +3,15 @@
 // anywhere in index.html, pricing.html or src/js (also inside strings), so only truly orphaned rules are reported.
 // Usage: node scripts/unused-css.mjs          report only
 //        node scripts/unused-css.mjs --fix    also remove them from src/css (check the result with a visual comparison)
+//        --gone=a,b   also treat these class names as unused: names that still appear as plain words in a script
+//                     (e.g. only inside a querySelector) but that no element in the page has; check each by hand first
 import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const fix = process.argv.includes("--fix");
+const gone = new Set((process.argv.find((a) => a.startsWith("--gone=")) || "--gone=").slice(7).split(",").filter(Boolean));
 const list = (dir, ext) => readdirSync(join(root, dir), { recursive: true }).filter((f) => f.endsWith(ext)).map((f) => join(dir, f));
 
 /* every word in the markup and scripts; class and id names must be among them */
@@ -69,8 +72,8 @@ function missing(sel) {
   let s = sel.replace(/"[^"]*"|'[^']*'/g, "").replace(/\[[^\]]*\]/g, "");
   let prev;
   do { prev = s; s = s.replace(/:not\([^()]*\)/g, ""); } while (s !== prev);
-  const names = [...s.matchAll(/[.#](-?[A-Za-z_][\w-]*)/g)].map((m) => m[1]);
-  return names.filter((n) => !words.has(n));
+  const names = [...s.matchAll(/([.#])(-?[A-Za-z_][\w-]*)/g)];
+  return names.filter(([, kind, n]) => !words.has(n) || (kind === "." && gone.has(n))).map((m) => m[2]);
 }
 
 const report = [];

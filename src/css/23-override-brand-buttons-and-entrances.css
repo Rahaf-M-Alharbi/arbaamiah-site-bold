@@ -1,7 +1,6 @@
 /* dark flip buttons; red backgrounds turned green */
 .fb-f,.fb--cream .fb-f,.links .fb--line .fb-f,.mini .fb--line .fb-f{background:#17120f;color:#f4dabf;box-shadow:none}
 .fb-b,.fb--cream .fb-b,.links .fb--line .fb-b,.mini .fb--line .fb-b{background:#f4dabf;color:#17120f}
-.hcard .f{background:linear-gradient(160deg,#7a2a31,#3d0d12 60%,#2a080b)}
 /* buttons: brand colours only */
 .fb-f,.fb--cream .fb-f,.links .fb--line .fb-f,.mini .fb--line .fb-f{background:#3d0d12;color:#f4dabf}
 .fb-b,.fb--cream .fb-b,.links .fb--line .fb-b,.mini .fb--line .fb-b{background:#f4dabf;color:#6c171e}
@@ -14,7 +13,6 @@
 .wm .g{color:#6c171e}
 /* final tweaks: flat solid button faces, wine card, darker nav button */
 .fb-f,.fb-b,.fb--line .fb-f,.fb--line .fb-b{box-shadow:none;background-image:none}
-.hcard .f{background:#6c171e}
 .links .fb--line .fb-f,.mini .fb--line .fb-f{background:#6c171e;color:#f4dabf}
 .links .fb--line .fb-b,.mini .fb--line .fb-b{background:#f4dabf;color:#6c171e}
 /* hero: original red velvet; nav gets a solid bar so it stays readable */
@@ -38,7 +36,7 @@
 /* bigger nav button; red call-to-action button */
 .links .fb--line .fb-f,.links .fb--line .fb-b,.mini .fb--line .fb-f,.mini .fb--line .fb-b{padding:18px 34px;font-size:19px;gap:12px}
 /* rounder flip buttons */
-.flipbtn,.htxt a.flipbtn,.links a.cta.flipbtn,.mini a.cta.flipbtn,.fb-f,.fb-b{border-radius:14px}
+.flipbtn,.links a.cta.flipbtn,.mini a.cta.flipbtn,.fb-f,.fb-b{border-radius:14px}
 /* flip button: two cards peek out from behind on hover */
 .flipbtn{position:relative;isolation:isolate;--c1:#0d3d3a;--c2:#fbeedd;--cb:rgba(23,18,15,.18)}
 .ctf .flipbtn,.links .flipbtn,.mini.on-dark .flipbtn{--c1:#0d3d3a;--c2:#fbeedd;--cb:rgba(244,218,191,.3)}
@@ -61,9 +59,9 @@
 .pr{min-height:100vh;min-height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center}
 .pr .pr-in{width:100%}
 /* card backs: keep the inset border, drop the hatch pattern, logo in the middle */
-.slot::after,.hcard .b{background:url("../../assets/img/logo.png") center/58% auto no-repeat,#3d0d12}
+.slot::after{background:url("../../assets/img/logo.png") center/58% auto no-repeat,#3d0d12}
 /* support text: fixed measure, every line the same width (filled with kashida) */
-.sec2 p,.dk-head p,.pl-head p,.wk-head p,.htxt p,.ctf-t p,.ft p{max-width:20em;width:100%}
+.sec2 p,.dk-head p,.wk-head p,.ctf-t p,.ft p{max-width:20em;width:100%}
 .dk-head p{width:60%;max-width:none}
 .ft p{margin-inline:auto}
 .kj-l{display:block;white-space:nowrap;text-align:justify;text-align-last:justify}

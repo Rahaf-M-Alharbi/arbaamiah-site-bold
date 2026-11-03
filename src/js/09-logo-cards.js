@@ -1,6 +1,5 @@
 (function(){
   var n2=document.getElementById('next2'),big=document.getElementById('bigcard'),lgl=document.getElementById('lgl'),grid=document.getElementById('lgg');
-  var lh=lgl&&lgl.querySelector('.lgh');
   if(!n2||!big||!lgl)return;
   var SU=['s','h','c','d'],R=['A','K','Q','J','10','9','8','7'];
   /* put the company logo in as <img src> by replacing a name here, e.g. {n:'اسم الشركة',src:'logo.svg'} */

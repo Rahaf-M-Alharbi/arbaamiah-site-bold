@@ -37,7 +37,4 @@
 .bigcard{display:none!important}
 .lgl{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0}
 .lgl.on{pointer-events:auto}
-.lgh{position:absolute;top:max(84px,11vh);right:0;left:0;text-align:center;color:var(--on,#f4dabf)}
-.lgh .e{display:block;font:700 13px/1 var(--f-body);letter-spacing:.2em;opacity:.7}
-.lgh h2{margin:12px 0 0;font:700 clamp(26px,4vw,52px)/1.2 var(--f-disp)}
 .lgg{position:absolute;inset:0}

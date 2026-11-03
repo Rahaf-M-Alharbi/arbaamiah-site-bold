@@ -7,7 +7,7 @@
     {ic:'growth',t:'نمو',p:'حصة سوقية تُكسب بخطوة مدروسة بعد خطوة.',r:'A',s:'c'}
   ];
   var story=document.getElementById('story'),stage=story.querySelector('.stage'),layer=document.getElementById('hand'),
-      sec=document.getElementById('sec2'),fade=stage.querySelectorAll('.wm,.sub,.hint');
+      sec=document.getElementById('sec2'),fade=stage.querySelectorAll('.wm,.sub');
   var slots=D.map(function(d,i){
     var s=document.createElement('div'),b=document.createElement('button'),ix=d.r+'<i>'+S[d.s]+'</i>';
     s.className='slot';s.style.zIndex=i+1;

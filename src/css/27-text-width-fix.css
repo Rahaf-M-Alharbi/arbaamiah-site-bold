@@ -2,4 +2,4 @@
    In an auto-sized grid track those lines set the track's minimum width, so after the window got narrower the
    paragraph (and the title above it) stayed at the old width, spilled over the cards and was never re-measured.
    Capping the track at the container width lets the paragraph follow its box, which makes the script re-fit it. */
-.sec2,.dk-head,.wk-head .t,.htxt,.ctf-t,.ft-in{grid-template-columns:minmax(0,1fr)}
+.sec2,.dk-head,.wk-head .t,.ctf-t,.ft-in{grid-template-columns:minmax(0,1fr)}

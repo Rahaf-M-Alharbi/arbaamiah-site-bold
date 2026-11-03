@@ -1,2 +1,0 @@
-/* final CTA (desktop): the support text takes exactly the width of the title, so both blocks share the same right and left edges.
-   The paragraph contributes no width of its own (width:0 + min-width:100%); the title decides. */

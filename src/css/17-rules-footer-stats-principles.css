@@ -1,15 +1,5 @@
 /* redesign: big card in the same red hairline language */
 /* rules: quiet cream section, three flat rule cards */
-.rl-c{position:relative;aspect-ratio:5/7;min-width:0;background:#f7f0e2;border:1px solid #1f1814;border-radius:10px;padding:clamp(14px,2vw,26px);display:flex;flex-direction:column;justify-content:flex-end;gap:10px;
-  opacity:0;transform:translateY(40px) rotate(var(--r));transition:opacity .7s ease,transform .8s cubic-bezier(.2,.8,.2,1) var(--d),box-shadow .4s}
-.rl-c.on{opacity:1;transform:rotate(var(--r))}
-.rl-c.on:hover{transform:translateY(-10px) rotate(0deg);box-shadow:none}
-.rl-c b{position:absolute;top:clamp(12px,1.6vw,20px);right:clamp(12px,1.6vw,20px);font:700 clamp(22px,3vw,40px)/1 var(--f-disp);text-align:center;color:#1f1814}
-.rl-c b i{display:block;font-style:normal;font-size:.8em}
-.rl-c.red b{color:#6c171e}
-.rl-c h3{margin:0;font:700 clamp(26px,3.6vw,48px)/1.1 var(--f-disp)}
-.rl-c p{margin:0;font:500 clamp(13px,1.2vw,16px)/1.8 var(--f-body);opacity:.75}
-@media (prefers-reduced-motion:reduce){.rl-c{opacity:1;transform:rotate(var(--r));transition:none}}
 /* footer: deep wine close, giant numeral, one CTA */
 .ft{position:relative;background:#3d0d12;color:#f4dabf;padding:clamp(80px,14vh,150px) max(16px,env(safe-area-inset-left,0px)) 28px max(16px,env(safe-area-inset-right,0px));overflow:hidden;text-align:center}
 .ft::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 50% 38%,rgba(108,23,30,.28),transparent 70%);pointer-events:none}

@@ -1,5 +1,5 @@
 /* flip button: one component, rectangular, icon first; .fb--line is the outlined nav variant */
-.flipbtn,.htxt a.flipbtn,.links a.cta.flipbtn,.mini a.cta.flipbtn{padding:0;border:0;background:none;box-shadow:none;border-radius:6px;perspective:800px;display:inline-block;justify-self:start;text-decoration:none}
+.flipbtn,.links a.cta.flipbtn,.mini a.cta.flipbtn{padding:0;border:0;background:none;box-shadow:none;border-radius:6px;perspective:800px;display:inline-block;justify-self:start;text-decoration:none}
 .fb-in{display:grid;transform-style:preserve-3d;transition:transform .3s cubic-bezier(.4,.1,.25,1)}
 .fb-f,.fb-b{grid-area:1/1;display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:18px 40px;border-radius:6px;font:400 16px/1 var(--f-body);white-space:nowrap;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .fb-f i,.fb-b i{font-style:normal;font-size:1.1em}
@@ -30,5 +30,4 @@ button.flipbtn{font:inherit;cursor:pointer;color:inherit}
 .deck .stack{position:relative}
 .deck .stack .pnl{position:sticky;top:calc(var(--i)*clamp(18px,3vh,32px));margin:0;box-shadow:none;border:1px solid rgba(23,18,15,.14);min-height:min(78vh,720px);transform-origin:center top}
 /* final CTA: shorter scroll, card on the left, text on the right */
-@media (min-width:761px){.htxt{left:auto;right:max(24px,5vw);text-align:right}}
 /* final CTA design */

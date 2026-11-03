@@ -2,8 +2,8 @@
 (function(){
   if(!matchMedia('(pointer:fine)').matches||!matchMedia('(hover:hover)').matches) return;
   var still=matchMedia('(prefers-reduced-motion:reduce)').matches,
-      BTN='a,button:not(:disabled),summary,label,[role=button],.tab',
-      CARD='.hcard,.pcard,.slot3.f,.xp9-top,.wk-deck,.wk-rail',
+      BTN='a,button:not(:disabled),summary,label,[role=button]',
+      CARD='.xp9-top,.wk-deck',
       TXT='input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]),textarea,select,[contenteditable]';
   function mk(cls,html){var d=document.createElement('div');d.className='cu '+cls;d.setAttribute('aria-hidden','true');d.innerHTML=html;document.body.appendChild(d);return d}
   var card={el:mk('cu-c','<span class="t"><i class="b">♦&#xFE0E;</i><i class="f">♠&#xFE0E;</i></span>'),x:-100,y:-100,k:still?1:.38},

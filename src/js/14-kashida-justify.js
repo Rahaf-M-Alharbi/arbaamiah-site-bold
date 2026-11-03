@@ -1,5 +1,5 @@
 (function(){
-var SEL='.sec2 p,.dk-head p,.pl-head p,.wk-head p,.htxt p,.ctf-t p,.ft p';
+var SEL='.sec2 p,.dk-head p,.wk-head p,.ctf-t p,.ft p';
 var DUAL='بتثجحخسشصضطظعغفقكلمنهيئ',AR=/[\u0621-\u064A]/,TW='\u0640';
 var cv=document.createElement('canvas').getContext('2d');
 function slots(w){var o=[];for(var i=1;i<w.length-1;i++){var a=w[i-1],b=w[i];if(DUAL.indexOf(a)>-1&&AR.test(b)&&!(a==='ل'&&'اأإآ'.indexOf(b)>-1))o.push(i)}
