@@ -5,7 +5,7 @@
 .cst-h b{font-size:14px}
 .cst-q{box-sizing:border-box;width:min(1040px,86vw);padding:clamp(56px,7vw,96px) clamp(24px,5vw,80px) clamp(28px,4vw,48px);background:#f4dabf;color:#17120f;border:4px solid #17120f;border-radius:14px;box-shadow:10px 10px 0 #17120f}
 .cst-q p{font-size:clamp(26px,3.7vw,56px);line-height:1.5}
-.cst-q .qm{color:#6c171e;font-size:clamp(80px,9vw,140px);line-height:.7}
+.cst-q .qm{color:#6c171e;line-height:.7}
 .cst-q .qm.o{top:clamp(24px,3vw,40px);right:clamp(20px,3vw,40px)}
 .cst-q .qm.c{bottom:clamp(8px,1.4vw,18px);left:clamp(20px,3vw,40px)}
 .cst-by{gap:14px;padding-top:clamp(20px,3vh,32px);border-top:3px solid #17120f}

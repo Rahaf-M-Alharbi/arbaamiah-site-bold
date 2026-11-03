@@ -2,30 +2,26 @@
 .bigcard:not(.on)>*{visibility:hidden}
 
 /* the flyer card turns over twice about a diagonal axis in the centre of the screen; its new content is swapped in while the face is turned away, so the final face is the same side it started on */
-.card.swapped{container-type:inline-size;overflow:hidden;color:#1b1b19;background:#fbf9f4;box-shadow:none}
+.card.swapped{container-type:inline-size;overflow:hidden;color:#1b1b19;background:#fbf9f4}
 .card.swapped *{pointer-events:none}
 
 /* the next section is a beige runway: the card waits until it is reached, then moves to the centre, flips twice, grows into the pinned big card */
-.next2{height:260vh;padding:0}
-.nstage{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;display:grid;place-items:center}
-.bigcard{--bw:min(calc(100vw - 32px),86vh)}
+.next2{padding:0}
+.nstage{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;place-items:center}
 
 /* final placement: the big card sits in the lower left, its lower half off-screen; the top and the right half stay empty */
 .nstage{display:block}
-.bigcard{--bw:min(48vw,86vh);position:absolute;left:max(16px,3vw);top:38vh;margin:0}
-@media (max-width:760px){.bigcard{--bw:min(86vw,64vh);left:7vw;top:32vh}}
+.bigcard{position:absolute;margin:0}
+@media (max-width:760px){}
 
 /* 30% larger, pushed past the left edge so part of it is cropped by the screen */
-.bigcard{--bw:min(62.4vw,112vh);left:-6vw}
-@media (max-width:760px){.bigcard{--bw:min(112vw,83vh);left:-8vw}}
+@media (max-width:760px){}
 
 /* much larger card; the content is re-laid out so the title, paragraph and the tip of the pip sit inside the visible top part */
-.bigcard{--bw:min(80vw,124vh);left:-8vw;top:22vh}
-@media (max-width:760px){.bigcard{--bw:min(150vw,90vh);left:-24vw;top:28vh}}
+@media (max-width:760px){}
 
 /* larger again and growing to the left: the right edge stays at 72% of the screen width while the card extends further past the left edge; content is anchored from the right edge so it stays visible */
-.bigcard{--bw:min(100vw,150vh);left:calc(72vw - var(--bw));top:16vh}
-@media (max-width:760px){.bigcard{--bw:min(130vw,88vh);left:calc(94vw - var(--bw));top:24vh}}
+@media (max-width:760px){}
 
 /* latest direction: bigger and growing to the right; the left edge keeps its crop while the right edge moves out to about 86% of the screen width */
 .bigcard{--bw:min(100vw,150vh);left:-8vw;top:16vh}

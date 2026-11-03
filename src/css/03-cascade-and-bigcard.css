@@ -7,7 +7,7 @@
 .story{height:480vh}
 .flyer{position:fixed;inset:0;z-index:10;pointer-events:none;perspective:1500px}
 .slot::after{border-radius:var(--rad,calc(var(--w)*.07))}
-.next2{position:relative;z-index:1;direction:rtl;padding:10vh max(16px,env(safe-area-inset-right,0px)) 14vh max(16px,env(safe-area-inset-left,0px))}
+.next2{position:relative;z-index:1;direction:rtl}
 /* the big card keeps the exact 5:7 shape and corner radius of the hero card; its design bleeds off the edges like a printed card */
-.bigcard{--bw:min(1180px,calc(100vw - 32px));position:relative;width:var(--bw);aspect-ratio:5/7;margin:0 auto;border-radius:calc(var(--bw)*.07);overflow:hidden;container-type:inline-size;color:#1b1b19}
+.bigcard{width:var(--bw);aspect-ratio:5/7;border-radius:calc(var(--bw)*.07);overflow:hidden;container-type:inline-size;color:#1b1b19}
 .bigcard.on{background:#fbf9f4;box-shadow:none}

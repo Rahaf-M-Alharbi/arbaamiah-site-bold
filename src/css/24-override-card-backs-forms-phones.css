@@ -1,12 +1,9 @@
 /* brand colour tokens */
 :root{--wine-900:#2a080b;--wine-800:#3d0d12;--wine-700:#4f1117;--wine-600:#6c171e;--wine-400:#a63a43;--wine-200:#d9a0a4;--wine-100:#f0d4d6;--cream-50:#fbeedd;--paper-50:#fbf9f4;--ground-light:#e6decd;--gray-900:#2b2826;--gray-700:#4a4642;--gray-500:#7a746d;--gray-300:#b4b1ab;--gray-200:#d8d5d0;--gray-100:#edebe3;--ink-900:#17120f;--black:#0a0807}
 /* card backs: dark green */
-.slot::after{background:url("../../assets/img/logo.png") center/58% auto no-repeat,#0d3d3a}
-.slot::after{box-shadow:inset 0 0 0 calc(var(--w)*.045) #0d3d3a, inset 0 0 0 calc(var(--w)*.052) rgba(244,218,191,.75)}
 /* card backs: modern, asymmetric (wine circle, outline, triangle) with the logo on top */
-.slot::after{background:url("../../assets/img/logo.png") 50% 13%/46% auto no-repeat,url(../../assets/img/texture-5.svg) center/100% 100% no-repeat,#0d3d3a;box-shadow:none}
 /* card backs: logo centred between two hairlines, the four suits underneath */
-.slot::after{background:url("../../assets/img/logo-top.svg") 50% 48%/60% auto no-repeat,url(../../assets/img/texture-6.svg) center/100% 100% no-repeat,#0d3d3a;box-shadow:none}
+.slot::after{background:url("../../assets/img/logo-top.svg") 50% 48%/60% auto no-repeat,url(../../assets/img/texture-6.svg) center/100% 100% no-repeat,#0d3d3a}
 /* form polish: optional hints, inline errors, trap field, thank-you state */
 .ctf-l span em{font-style:normal;font-weight:400;opacity:.7;margin-inline-start:6px}
 .ctf-err{min-height:1.2em;font:400 14px/1.4 var(--f-body);color:#f4dabf;opacity:.9}
@@ -18,8 +15,7 @@
 @keyframes ctfIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .ctf-f button:disabled{opacity:.6;cursor:wait}
 /* contact form: light card on the dark section */
-.ctf-f{background:#fbeedd;color:#2b0a10;border-radius:20px;padding:clamp(24px,3.4vw,48px)}
-.ctf-f .ctf-l span,.ctf-f .ctf-c legend{opacity:.75}
+.ctf-f{background:#fbeedd;color:#2b0a10}
 .ctf-f .ctf-l input,.ctf-f .ctf-l textarea{border-bottom-color:rgba(43,10,16,.35)}
 .ctf-f .ctf-l input:focus,.ctf-f .ctf-l textarea:focus{border-bottom-color:#6c171e}
 .ctf-f .ctf-l input[aria-invalid="true"]{border-bottom-color:#6c171e}

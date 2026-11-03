@@ -17,13 +17,12 @@
 .xp9-k,.xp9-top,.xp9-card .f,.xp9-card .b{border:4px solid #17120f;border-radius:6%;box-sizing:border-box;box-shadow:10px 10px 0 #17120f}
 .xp9-k{position:absolute;inset:0;background:#f4dabf;transform:translate(calc(var(--n)*-7px),calc(var(--n)*7px));box-shadow:none}
 .xp9-k:nth-child(odd){background:#d9b88f}
-.xp9-top,.xp9-card .b{background:radial-gradient(circle at 50% 50%,transparent 0 22%,rgba(244,218,191,.2) 22.5% 24%,transparent 24.5%) 0 0/30px 30px,#17120f;box-shadow:inset 0 0 0 7px #17120f,inset 0 0 0 10px #f4dabf,10px 10px 0 #17120f}
 .xp9-top{all:unset;box-sizing:border-box;position:absolute;inset:0;border-radius:6%;cursor:grab;touch-action:none;display:block;border:4px solid #17120f;background:radial-gradient(circle at 50% 50%,transparent 0 22%,rgba(244,218,191,.2) 22.5% 24%,transparent 24.5%) 0 0/30px 30px,#17120f;box-shadow:inset 0 0 0 7px #17120f,inset 0 0 0 10px #f4dabf,10px 10px 0 #17120f}
 .xp9-top:not(.drag){transition:transform .2s}
 .xp9-top:hover:not(.drag){transform:translateY(-8px)}
 .xp9-top:focus-visible{outline:3px solid #f4dabf;outline-offset:6px}
 .xp9-top.drag{cursor:grabbing}
-.xp9-bk{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:2cqw;container-type:inline-size;color:#f4dabf}
+.xp9-bk{position:absolute;inset:0;place-content:center;justify-items:center;gap:2cqw;container-type:inline-size;color:#f4dabf}
 .xp9-bk b{font:700 26cqw/1 var(--f-disp)}
 .xp9-bk i{font-style:normal;font:700 30cqw/1 var(--f-body)}
 .xp9 h2,.xp9 #xp9m{transition:opacity .35s,visibility 0s}

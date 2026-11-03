@@ -1,9 +1,7 @@
 /* dark flip buttons; red backgrounds turned green */
-.fb-f,.fb--cream .fb-f,.links .fb--line .fb-f,.mini .fb--line .fb-f{background:#17120f;color:#f4dabf;box-shadow:none}
-.fb-b,.fb--cream .fb-b,.links .fb--line .fb-b,.mini .fb--line .fb-b{background:#f4dabf;color:#17120f}
+.fb-f,.fb--cream .fb-f,.links .fb--line .fb-f,.mini .fb--line .fb-f{box-shadow:none}
 /* buttons: brand colours only */
 .fb-f,.fb--cream .fb-f,.links .fb--line .fb-f,.mini .fb--line .fb-f{background:#3d0d12;color:#f4dabf}
-.fb-b,.fb--cream .fb-b,.links .fb--line .fb-b,.mini .fb--line .fb-b{background:#f4dabf;color:#6c171e}
 .fb-f,.fb-b{box-shadow:inset 0 0 0 1px rgba(244,218,191,.35)}
 .fb-b{box-shadow:none}
 /* button contrast: green face on light ground, cream face on green ground */
@@ -19,7 +17,7 @@
 .h{background-color:#6c171e;background-blend-mode:normal}
 /* hero: calmer velvet, a flat wine wash softens the pile so only a faint texture shows */
 .h{background-image:radial-gradient(ellipse 85% 75% at 50% 40%,transparent 55%,rgba(15,0,4,.35)),linear-gradient(rgba(108,23,30,.62),rgba(108,23,30,.62)),var(--tex);background-size:auto,auto,cover}
-.mini{background:transparent;-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);border-radius:0;color:#6c171e;border-bottom:0}
+.mini{-webkit-backdrop-filter:blur(16px) saturate(1.2);border-bottom:0}
 .mini .fb--line .fb-f{background:#6c171e;color:#f4dabf}
 .mini .fb--line .fb-b{background:#17120f;color:#f4dabf}
 /* solutions intro: one full screen with generous padding */
@@ -34,7 +32,6 @@
 .mini.on-dark .fb--line .fb-f{background:#f4dabf;color:#6c171e}
 .mini.on-dark .fb--line .fb-b{background:#6c171e;color:#f4dabf}
 /* bigger nav button; red call-to-action button */
-.links .fb--line .fb-f,.links .fb--line .fb-b,.mini .fb--line .fb-f,.mini .fb--line .fb-b{padding:18px 34px;font-size:19px;gap:12px}
 /* rounder flip buttons */
 .flipbtn,.links a.cta.flipbtn,.mini a.cta.flipbtn,.fb-f,.fb-b{border-radius:14px}
 /* flip button: two cards peek out from behind on hover */
@@ -54,12 +51,10 @@
 .fb-b,.fb--cream .fb-b,.links .fb--line .fb-b,.mini .fb--line .fb-b,.mini.on-dark .fb--line .fb-b,.ctf .fb-b{background:#6c171e;color:#f4dabf}
 .flipbtn,.ctf .flipbtn,.links .flipbtn,.mini.on-dark .flipbtn{--c1:#0d3d3a}
 .links .fb--line .fb-f,.links .fb--line .fb-b,.mini .fb--line .fb-f,.mini .fb--line .fb-b{padding:15px 28px;font-size:17px;gap:10px}
-.work .wk-deck{margin-top:clamp(120px,24vh,280px)}
 /* how we work: one full screen, content centred */
 .pr{min-height:100vh;min-height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center}
 .pr .pr-in{width:100%}
 /* card backs: keep the inset border, drop the hatch pattern, logo in the middle */
-.slot::after{background:url("../../assets/img/logo.png") center/58% auto no-repeat,#3d0d12}
 /* support text: fixed measure, every line the same width (filled with kashida) */
 .sec2 p,.dk-head p,.wk-head p,.ctf-t p,.ft p{max-width:20em;width:100%}
 .dk-head p{width:60%;max-width:none}

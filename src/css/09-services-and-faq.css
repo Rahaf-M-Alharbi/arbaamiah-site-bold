@@ -1,7 +1,6 @@
 /* services panels: full-bleed, edge to edge, stacked with no gaps */
 .deck{padding-bottom:0}
 .deck .dk-wrap{max-width:none;width:100%;padding:0;gap:0}
-.deck .stack .pnl{margin:0;border:0;border-radius:0;box-shadow:none}
 /* FAQ: open list, no frame; thin dividers between rows, large questions with a plus toggle, generous spacing */
 .fq .fq-in{max-width:1180px}
 .fq .fq-t{display:grid;gap:14px}

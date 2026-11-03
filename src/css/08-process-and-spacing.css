@@ -19,8 +19,6 @@
   .pr .hw-s::before{left:0!important;right:0!important}
 }
 /* breathing space between each section title and its content (site-wide) */
-.deck .dk-head{margin-bottom:clamp(72px,16vh,180px)}
-.work .wk-deck{margin-top:clamp(56px,12vh,140px)}
 .stt .stt-in{gap:clamp(64px,13vh,150px)}
 .pr .pr-in{gap:clamp(72px,16vh,180px)}
 .fq .fq-in{gap:clamp(64px,13vh,150px)}

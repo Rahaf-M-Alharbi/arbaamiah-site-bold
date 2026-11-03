@@ -6,7 +6,7 @@
 .pnl .pm{display:grid;justify-items:start;text-align:start;gap:14px;padding:0}
 .pnl h3{font-size:clamp(40px,5.2vw,76px)}
 .pnl .cap{font:600 clamp(15px,1.4vw,18px)/1.8 var(--f-body);opacity:.75;max-width:26em}
-.pnl .big{left:auto;right:auto;top:auto;bottom:-8%;left:-2%;transform:none;font-size:min(30vw,300px);color:rgba(23,18,15,.05)}
+.pnl .big{right:auto;top:auto;bottom:-8%;left:-2%;transform:none;font-size:min(30vw,300px);color:rgba(23,18,15,.05)}
 .pnl .dl{position:relative;z-index:1;margin:0;padding:0;border-top:0;display:grid;grid-template-columns:minmax(0,1fr);gap:0;list-style:none}
 .pnl .dl li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(14px,2vw,28px);align-items:start;padding:clamp(16px,2vw,26px) 0;border-top:1px solid rgba(23,18,15,.28)}
 .pnl .dl li:first-child{border-top:0;padding-top:0}
@@ -15,11 +15,10 @@
 .pnl .dl small{display:block;margin-top:6px;font:500 clamp(14px,1.2vw,16px)/1.8 var(--f-body);opacity:.72}
 @media (max-width:860px){.pnl{grid-template-columns:minmax(0,1fr)}}
 /* section support text ~3x, links regular weight, big numbers regular weight */
-.sec2 p,.dk-head p,.wk-head p,.ctf-t p,.ft p{font-size:clamp(26px,3.4vw,54px);line-height:1.5;font-weight:400;max-width:none;width:100%}
+.sec2 p,.dk-head p,.wk-head p,.ctf-t p,.ft p{font-size:clamp(26px,3.4vw,54px);line-height:1.5;font-weight:400}
 a,.links a{font-weight:400}
 .stt-i .stt-ix b{font-weight:400}
 .wk-head .t{max-width:none;flex:1 1 640px}
-.dk-head p{width:60%}
 /* spacing re-tuned for the larger support text */
 .sec2{gap:clamp(30px,4vw,60px)}
 .dk-head{gap:clamp(36px,4.4vw,68px);margin-bottom:clamp(140px,28vh,300px)}
