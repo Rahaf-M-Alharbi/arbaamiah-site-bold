@@ -1,0 +1,3 @@
+/* footer spacing resets (first written for the old final call to action, which the footer replaced) */
+.ft{padding-top:0}
+.ft::before{display:none}

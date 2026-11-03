@@ -31,7 +31,6 @@
 .mini.on-dark b,.mini.on-dark nav a:not(.flipbtn){color:#f4dabf}
 .mini.on-dark .fb--line .fb-f{background:#f4dabf;color:#6c171e}
 .mini.on-dark .fb--line .fb-b{background:#6c171e;color:#f4dabf}
-/* bigger nav button; red call-to-action button */
 /* rounder flip buttons */
 .flipbtn,.links a.cta.flipbtn,.mini a.cta.flipbtn,.fb-f,.fb-b{border-radius:14px}
 /* flip button: two cards peek out from behind on hover */
@@ -54,7 +53,6 @@
 /* how we work: one full screen, content centred */
 .pr{min-height:100vh;min-height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center}
 .pr .pr-in{width:100%}
-/* card backs: keep the inset border, drop the hatch pattern, logo in the middle */
 /* support text: fixed measure, every line the same width (filled with kashida) */
 .sec2 p,.dk-head p,.wk-head p,.ctf-t p,.ft p{max-width:20em;width:100%}
 .dk-head p{width:60%;max-width:none}

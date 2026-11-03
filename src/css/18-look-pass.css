@@ -13,6 +13,5 @@ body::before{background-image:url(../../assets/img/texture-4.svg)!important;back
 .card,.card.swapped{border:1px solid rgba(70,35,28,.38)}
 .card .med{display:none}
 .card .body{top:36%}
-/* revealed card: empty, only the corner index stays */
 /* index sits 8.5% in from the card's own left edge, like the small cards; if the screen crops the card, it keeps 24px clear of the cropped part */
 @media (min-width:760px){.sec2{right:max(96px,8vw);top:clamp(110px,16vh,160px);bottom:auto;align-content:start}}

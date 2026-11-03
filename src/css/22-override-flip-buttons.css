@@ -26,5 +26,3 @@ button.flipbtn{font:inherit;cursor:pointer;color:inherit}
 /* solutions: panels slide down over one another as you scroll into the section */
 .deck .stack{position:relative}
 .deck .stack .pnl{position:sticky;top:calc(var(--i)*clamp(18px,3vh,32px));margin:0;min-height:min(78vh,720px);transform-origin:center top}
-/* final CTA: shorter scroll, card on the left, text on the right */
-/* final CTA design */

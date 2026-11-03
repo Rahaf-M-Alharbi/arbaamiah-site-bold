@@ -1,5 +1,4 @@
-/* cascade: a river of flipping cards sweeps left to right along a curve; the velvet is cut away behind it, revealing beige */
-
+/* hero stage stacking, the flyer layer that carries the travelling card, and the big card it turns into */
 /* the beige screen waits underneath the velvet stage; the stage is cut away along the card stream to uncover it */
 .stage{z-index:2}
 

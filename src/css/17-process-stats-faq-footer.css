@@ -1,5 +1,3 @@
-/* redesign: big card in the same red hairline language */
-/* rules: quiet cream section, three flat rule cards */
 /* footer: deep wine close, giant numeral, one CTA */
 .ft{position:relative;background:#3d0d12;color:#f4dabf;overflow:hidden}
 .ft::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 50% 38%,rgba(108,23,30,.28),transparent 70%);pointer-events:none}
