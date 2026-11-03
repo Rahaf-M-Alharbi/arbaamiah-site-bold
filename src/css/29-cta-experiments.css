@@ -1,0 +1,76 @@
+/* CTA experiments: closing section experiments under the real final CTA. Delete a section from index.html to drop it. The other experiments (1-8, 10-12) are saved in drafts/. */
+.xp{position:relative;z-index:1;direction:rtl;padding:clamp(72px,12vh,140px) max(20px,5vw);overflow:hidden;text-align:center;display:grid;justify-items:center;gap:clamp(20px,3vh,36px)}
+.xp h2{margin:0;font:700 clamp(48px,8vw,128px)/1.08 var(--f-disp)}
+.xp h2 em{font-style:normal}
+.xp p{margin:0;font:600 clamp(18px,1.8vw,26px)/1.8 var(--f-body);opacity:.8;max-width:30em}
+.xp{content-visibility:auto;contain-intrinsic-size:auto 100vh}
+.xp-tag{position:absolute;top:18px;inset-inline-start:max(20px,5vw);font:700 12px/1 var(--f-body);letter-spacing:.08em;padding:7px 12px;border:1px solid currentColor;border-radius:99px;opacity:.55}
+.xp-btn{display:inline-flex;align-items:center;gap:12px;padding:20px 40px;border-radius:14px;font:700 clamp(17px,1.4vw,21px)/1 var(--f-body);text-decoration:none;background:#6c171e;color:#f4dabf;transition:transform .25s cubic-bezier(.2,1.4,.4,1),box-shadow .25s}
+.xp-btn:hover{transform:translateY(-4px) rotate(-2deg);box-shadow:0 14px 0 -6px #0d3d3a}
+
+/* 9: bold draw. Fat ink outlines and hard offset shadows; click or drag the top card of the deck up and it flies out, flips and lands on the deck. */
+.xp9{background:#6c171e;color:#f4dabf;padding-block:clamp(96px,14vh,130px) clamp(30px,5vh,60px);gap:clamp(6px,1.4vh,14px);min-height:100vh;min-height:100dvh;align-content:start}
+.xp9 h2{font-size:clamp(42px,5.6vw,92px);position:relative}
+.xp9 h2 em{color:#17120f;background:#f4dabf;padding:0 .18em;border-radius:.12em;box-shadow:.06em .06em 0 #17120f}
+.xp9 #xp9m{position:relative;font-size:clamp(16px,1.5vw,22px);opacity:.9;max-width:none}
+.xp9-stage{--cw:clamp(150px,min(26vw,34dvh),340px);position:relative;width:100%;height:clamp(400px,calc(100dvh - 340px),700px)}
+.xp9-deck,.xp9-card{position:absolute;width:var(--cw);aspect-ratio:5/7;left:50%;top:50%;margin:calc(var(--cw)*-.7) 0 0 calc(var(--cw)/-2)}
+.xp9-deck{transition:left .7s cubic-bezier(.3,1.1,.4,1),top .7s cubic-bezier(.3,1.1,.4,1)}
+.xp9-card{visibility:hidden;transform:rotate(-4deg);z-index:2}
+.xp9-k,.xp9-top,.xp9-card .f,.xp9-card .b{border:4px solid #17120f;border-radius:6%;box-sizing:border-box;box-shadow:10px 10px 0 #17120f}
+.xp9-k{position:absolute;inset:0;background:#f4dabf;transform:translate(calc(var(--n)*-7px),calc(var(--n)*7px));box-shadow:none}
+.xp9-k:nth-child(odd){background:#d9b88f}
+.xp9-top,.xp9-card .b{background:radial-gradient(circle at 50% 50%,transparent 0 22%,rgba(244,218,191,.2) 22.5% 24%,transparent 24.5%) 0 0/30px 30px,#17120f;box-shadow:inset 0 0 0 7px #17120f,inset 0 0 0 10px #f4dabf,10px 10px 0 #17120f}
+.xp9-top{all:unset;box-sizing:border-box;position:absolute;inset:0;border-radius:6%;cursor:grab;touch-action:none;display:block;border:4px solid #17120f;background:radial-gradient(circle at 50% 50%,transparent 0 22%,rgba(244,218,191,.2) 22.5% 24%,transparent 24.5%) 0 0/30px 30px,#17120f;box-shadow:inset 0 0 0 7px #17120f,inset 0 0 0 10px #f4dabf,10px 10px 0 #17120f}
+.xp9-top:not(.drag){transition:transform .2s}
+.xp9-top:hover:not(.drag){transform:translateY(-8px)}
+.xp9-top:focus-visible{outline:3px solid #f4dabf;outline-offset:6px}
+.xp9-top.drag{cursor:grabbing}
+.xp9-bk{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:2cqw;container-type:inline-size;color:#f4dabf}
+.xp9-bk b{font:700 26cqw/1 var(--f-disp)}
+.xp9-bk i{font-style:normal;font:700 30cqw/1 var(--f-body)}
+.xp9 h2,.xp9 #xp9m{transition:opacity .35s,visibility 0s}
+.xp9.xp9-done h2,.xp9.xp9-done #xp9m{opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s .35s}
+.xp9-bk u{position:absolute;text-decoration:none;font:700 13cqw/1 var(--f-body);opacity:.85}
+.xp9-bk u:nth-of-type(1){top:9cqw;left:10cqw}.xp9-bk u:nth-of-type(2){top:9cqw;right:10cqw}.xp9-bk u:nth-of-type(3){bottom:9cqw;left:10cqw}.xp9-bk u:nth-of-type(4){bottom:9cqw;right:10cqw}
+.xp9-top{animation:xp9b 1.6s ease-in-out infinite}
+.xp9-top.drag{animation:none}
+.xp9:not(.in) .xp9-top{animation-play-state:paused}
+@keyframes xp9b{50%{translate:0 -8px}}
+.xp9-card .in{position:absolute;inset:0;transform-style:preserve-3d}
+.xp9-card .f,.xp9-card .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.xp9-card .b{transform:rotateY(180deg)}
+.xp9-card .f{box-shadow:inset 0 0 0 7px #f4dabf,inset 0 0 0 10px #17120f,10px 10px 0 #17120f;background:#f4dabf;color:#17120f;container-type:inline-size;overflow:hidden}
+.xp9-card .f.r{color:#6c171e}
+.xp9-card .f b{position:absolute;top:6cqw;left:9cqw;font:700 34cqw/.95 var(--f-disp);text-align:center;direction:ltr}
+.xp9-card .f b i{display:block;font-style:normal;font-size:.55em;margin-top:2cqw}
+.xp9-card .f .p{position:absolute;right:13cqw;bottom:13cqw;font-size:52cqw;line-height:1;opacity:.95}
+.xp9-out{position:absolute;left:5%;top:50%;width:min(52%,760px);transform:translateY(-50%);text-align:start;display:grid;gap:clamp(12px,2vh,22px);justify-items:start;visibility:hidden;opacity:0;translate:36px 0;transition:translate .6s cubic-bezier(.3,1.1,.4,1),opacity .5s,visibility 0s .6s}
+.xp9 .xp9-h{margin:0;font:700 clamp(46px,7vw,124px)/1.02 var(--f-disp);color:#f4dabf;text-shadow:.04em .04em 0 #17120f}
+.xp9 .xp9-p{margin:0;font:600 clamp(18px,1.9vw,28px)/1.6 var(--f-body);opacity:.92;max-width:22em}
+.xp9-btns{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:clamp(4px,1.4vh,14px)}
+.xp9-stage.drawn .xp9-deck,.xp9-card.on{left:calc(100% - 8% - var(--cw)/2)}
+.xp9-card.on{visibility:visible}
+.xp9-stage.drawn .xp9-top{visibility:hidden}
+.xp9-stage.drawn .xp9-out{visibility:visible;opacity:1;translate:0 0;transition-delay:.4s,.4s,0s}
+@media (max-width:760px){
+  .xp9-stage{height:clamp(560px,calc(100dvh - 200px),760px);--cw:clamp(130px,min(46vw,28dvh),240px)}
+  .xp9-stage.drawn .xp9-deck,.xp9-card.on{left:50%;top:27%}
+  .xp9-out{left:5%;right:5%;width:auto;top:auto;bottom:0;transform:none;text-align:center;justify-items:center}
+  .xp9-btns{justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){.xp9-top,.xp9-bk{animation:none}.xp9-deck,.xp9-out{transition:none}}
+/* draw card = the site's card back (same as .slot::after / .hcard .b / .cc .b): green, logo in the middle, texture-6 frame and suits; the button keeps its aria-label, so the "اسحب ↑" text is no longer drawn on it */
+.xp9-top,.xp9-card .b{background:url("../../assets/img/logo-top.svg") 50% 48%/60% auto no-repeat,url(../../assets/img/texture-6.svg) center/100% 100% no-repeat,#0d3d3a;box-shadow:10px 10px 0 #17120f}
+.xp9-bk{display:none}
+/* phone: the two buttons stack; the fanned cards behind a tapped button tilt down about 33px at their far end, so leave room for them above the next button */
+@media (max-width:760px){.xp9-btns{row-gap:40px}}
+/* drawn state, wider screens: the card and its text sit side by side as one group centred in the section (card on the right, text right-aligned against it, fixed gap between them), and the stage rises into the space the faded heading leaves, so the group sits in the middle of the screen instead of low and pushed apart */
+@media (min-width:761px){
+  .xp9-stage{--tw:min(44vw,520px);--gap:clamp(40px,5vw,88px);--grp:calc(var(--cw) + var(--gap) + var(--tw));translate:0 0;transition:translate .7s cubic-bezier(.3,1.1,.4,1)}
+  .xp9.xp9-done .xp9-stage{translate:0 -9vh}
+  .xp9-stage.drawn .xp9-deck,.xp9-card.on{left:calc(50% + var(--grp)/2 - var(--cw)/2)}
+  .xp9-out{left:calc(50% - var(--grp)/2);width:var(--tw)}
+  .xp9-btns{row-gap:18px}
+}
+@media (min-width:761px) and (prefers-reduced-motion:reduce){.xp9-stage{transition:none}}

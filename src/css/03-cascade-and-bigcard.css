@@ -1,0 +1,39 @@
+/* cascade: a river of flipping cards sweeps left to right along a curve; the velvet is cut away behind it, revealing beige */
+.cascade{position:fixed;inset:0;z-index:15;pointer-events:none;display:none;perspective:1400px;overflow:hidden}
+.cc{position:absolute;left:0;top:0;width:var(--cw);height:calc(var(--cw)*1.4);transform-style:preserve-3d;will-change:transform}
+.cc .f,.cc .b{position:absolute;inset:0;border-radius:7%;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:none}
+.cc .f{background:#fbf9f4;color:#6c171e;font:700 calc(var(--cw)*.2)/1 var(--f-disp);direction:ltr}
+.cc .f.red{color:#6c171e}
+.cc .f span{position:absolute;top:7%;left:10%;text-align:center}
+.cc .f span i{display:block;font-style:normal;font-size:.85em}
+.cc .f b{position:absolute;inset:0;display:grid;place-items:center;font-size:calc(var(--cw)*.5);font-weight:400}
+.cc .b{transform:rotateY(180deg);background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(244,218,191,.32) 6px 7px),repeating-linear-gradient(-45deg,transparent 0 6px,rgba(244,218,191,.32) 6px 7px),linear-gradient(165deg,#3d0d12,#3d0d12);
+  box-shadow:inset 0 0 0 calc(var(--cw)*.045) #3d0d12, inset 0 0 0 calc(var(--cw)*.052) rgba(244,218,191,.75)}
+
+/* the beige screen waits underneath the velvet stage; the stage is cut away along the card stream to uncover it */
+.stage{z-index:2}
+.story .after{position:sticky;top:0;height:100vh;height:100dvh;margin-top:-100vh;margin-top:-100dvh;z-index:1;display:grid;align-content:center;padding-block:0;background:var(--beige)}
+.story .after::before{content:"";position:absolute;inset:0;background-image:var(--linen);background-size:480px 752px;mix-blend-mode:multiply;opacity:.5;pointer-events:none}
+.story .after .in{position:relative;width:100%}
+
+/* normal scroll: the velvet ends like a rug (woven band and fringe); one hero card grows into the big card that holds the next section */
+.story{height:480vh}
+.flyer{position:fixed;inset:0;z-index:10;pointer-events:none;perspective:1500px}
+.slot::after{border-radius:var(--rad,calc(var(--w)*.07))}
+.carpet-end{position:relative;z-index:3;margin-top:-1px}
+.carpet-end .band{height:42px;background:linear-gradient(to bottom,rgba(0,0,0,.4),transparent 35%),repeating-linear-gradient(90deg,transparent 0 14px,rgba(244,218,191,.5) 14px 16px),var(--tex) center/cover;
+  box-shadow:none}
+.carpet-end .fringe{height:52px;background:repeating-linear-gradient(90deg,#f4dabf 0 2px,transparent 2px 6px);-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent);filter:none}
+.next2{position:relative;z-index:1;direction:rtl;padding:10vh max(16px,env(safe-area-inset-right,0px)) 14vh max(16px,env(safe-area-inset-left,0px))}
+/* the big card keeps the exact 5:7 shape and corner radius of the hero card; its design bleeds off the edges like a printed card */
+.bigcard{--bw:min(1180px,calc(100vw - 32px));position:relative;width:var(--bw);aspect-ratio:5/7;margin:0 auto;border-radius:calc(var(--bw)*.07);overflow:hidden;container-type:inline-size;color:#1b1b19}
+.bigcard.on{background:#fbf9f4;box-shadow:none}
+.bc-ix{position:absolute;top:6%;left:11%;font:700 15cqw/1 var(--f-disp);text-align:center;color:#6c171e;direction:ltr;opacity:0}
+.bc-ix i{display:block;font-style:normal;font-size:.85em}
+.bc-ix.b{top:auto;left:auto;bottom:6%;right:11%;transform:rotate(180deg)}
+.bigcard.on .bc-ix{opacity:1}
+.bc-pip{position:absolute;left:-16cqw;bottom:-15cqw;width:84cqw;height:84cqw;fill:#6c171e;opacity:0;transform:translateY(8cqw);transition:opacity .7s .1s,transform .9s .1s cubic-bezier(.2,.8,.2,1)}
+.bc-title{position:absolute;right:8cqw;top:25cqw;margin:0;writing-mode:vertical-rl;font:700 24cqw/1 var(--f-disp);color:#1b1b19;opacity:0;transition:opacity .6s .25s}
+.bc-p{position:absolute;left:8cqw;top:30cqw;width:46cqw;margin:0;font:600 max(14px,2.3cqw)/1.9 var(--f-body);color:#3a2a22;direction:rtl;text-align:right;opacity:0;transition:opacity .6s .4s}
+.bigcard.on .bc-pip{opacity:1;transform:none}
+.bigcard.on .bc-title,.bigcard.on .bc-p{opacity:1}

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>حاسبة الأسعار | أربعمية</title>
+<!-- css:start -->
+<link rel="stylesheet" href="src/css/00-fonts.css">
+<link rel="stylesheet" href="src/css/pricing/pricing.css">
+<!-- css:end -->
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow"><i>♠︎</i><i>♥︎</i><i>♦︎</i><i>♣︎</i><span>حاسبة الأسعار</span></div>
+  <h1>احسب تكلفة مشروعك</h1>
+  <p class="lead">اختر الخدمات التي تحتاجها وعدّل الكميات، وسترى تقديراً أولياً فورياً. السعر النهائي نؤكده معك بعد جلسة التعارف.</p>
+
+  <div class="layout">
+    <main>
+      <h2 class="step"><b>1</b>اختر خدماتك</h2>
+      <div id="services"></div>
+
+      <h2 class="step" style="margin-top:32px"><b>2</b>خصّص الخطة</h2>
+      <div class="opts">
+        <div class="opt">
+          <div class="l">مدة العمل الشهري<small>تنطبق على البنود المحسوبة بالشهر فقط</small></div>
+          <div class="seg" id="months" role="radiogroup" aria-label="مدة العمل الشهري"></div>
+        </div>
+        <div class="opt">
+          <div class="l">تسليم مستعجل<small>أولوية في الجدولة (+<span id="rushPct"></span>٪)</small></div>
+          <input type="checkbox" class="switch" id="rush" role="switch" aria-label="تسليم مستعجل">
+        </div>
+      </div>
+    </main>
+
+    <aside class="sum" id="sum" aria-live="polite">
+      <button type="button" class="sum-bar" id="sumToggle" aria-expanded="false">
+        <span class="lbl">التقدير</span><strong id="barTotal">0</strong><span class="chev">▲</span>
+      </button>
+      <div class="sum-body">
+        <div class="sum-top"><h3>ملخص التقدير</h3><button type="button" class="clear" id="clear" hidden>مسح الكل</button></div>
+        <div class="lines" id="lines"></div>
+        <div class="calc" id="calc"></div>
+        <div class="nudge" id="nudge" hidden></div>
+        <div class="total">
+          <small>التقدير الإجمالي</small>
+          <strong><span id="total">0</span><i id="cur"></i></strong>
+        </div>
+        <a class="cta" id="cta" href="#contact">ابدأ اللعب</a>
+        <p class="note">تقدير أولي غير ملزم، وقد يتغيّر حسب حجم العمل الفعلي.</p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- js:start -->
+<script src="src/js/pricing/pricing.js" defer></script>
+<!-- js:end -->
+</body>
+</html>

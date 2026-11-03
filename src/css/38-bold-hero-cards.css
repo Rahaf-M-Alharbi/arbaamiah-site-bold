@@ -1,0 +1,8 @@
+/* Hero cards in the "draw a card" style: plain brand cream face (var(--cream)), thin inner frame, large rank + suit top-left in wine, a solid suit pip bottom-right. The title and text stay. The inverted bottom index is dropped. */
+.card.pk{background:var(--cream);background-image:none}
+.card.pk::before{content:"";position:absolute;inset:3.4cqw;border:3px solid #17120f;border-radius:4%;pointer-events:none;z-index:0}
+.card.pk::after{content:attr(data-suit);position:absolute;right:9cqw;bottom:7cqw;font:700 34cqw/1 var(--f-body);color:var(--wine);pointer-events:none;z-index:0}
+.card.pk .pk-ix{top:8cqw;left:11cqw;font:700 21cqw/.95 var(--f-disp);color:var(--wine)}
+.card.pk .pk-ix i{font-size:.55em;margin-top:1.5cqw}
+.card.pk .pk-ix.b{display:none}
+.card.pk .body{z-index:1}

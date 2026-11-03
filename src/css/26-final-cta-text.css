@@ -1,0 +1,6 @@
+/* final CTA (desktop): the support text takes exactly the width of the title, so both blocks share the same right and left edges.
+   The paragraph contributes no width of its own (width:0 + min-width:100%); the title decides. */
+@media (min-width:761px){
+  .hnd .htxt{width:fit-content;max-width:min(56vw,820px)}
+  .hnd .htxt p{width:0;min-width:100%;max-width:none}
+}

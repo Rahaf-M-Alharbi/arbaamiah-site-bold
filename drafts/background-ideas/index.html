@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>أفكار الخلفيات</title>
+<style>
+/* Background ideas: soft, still textures in the brand colours, one per section ground.
+   Part 1 shows each ground on its own with the same sample content; part 2 is a test page that mixes them down a page in site order.
+   Every ground is a single class (.bg-*) so it can be copied into src/css as-is. No motion, no scripts. */
+@font-face{font-family:'Thmanyah Serif Display';font-weight:700;font-display:swap;src:url(../../assets/fonts/thmanyahserifdisplay-Bold.woff2) format('woff2')}
+@font-face{font-family:'Thmanyah Sans';font-weight:700;font-display:swap;src:url(../../assets/fonts/thmanyahsans-Bold.woff2) format('woff2')}
+@font-face{font-family:'Thmanyah Sans';font-weight:500;font-display:swap;src:url(../../assets/fonts/thmanyahsans-Medium.woff2) format('woff2')}
+:root{--deep:#3d0d12;--wine:#6c171e;--cream:#f4dabf;--green:#0d3d3a;--ink:#17120f;--f-disp:'Thmanyah Serif Display',serif;--f-body:'Thmanyah Sans',system-ui,sans-serif;
+  --grain:url(../../assets/img/texture-4.svg);
+  --suits:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cg fill='%23f4dabf' font-family='serif' font-size='22'%3E%3Ctext x='14' y='34'%3E%E2%99%A0%3C/text%3E%3Ctext x='74' y='34'%3E%E2%99%A5%3C/text%3E%3Ctext x='44' y='94'%3E%E2%99%A3%3C/text%3E%3Ctext x='104' y='94'%3E%E2%99%A6%3C/text%3E%3C/g%3E%3C/svg%3E")}
+*{box-sizing:border-box}
+body{margin:0;background:#1d0709;color:var(--cream);font-family:var(--f-body)}
+.intro{padding:40px 16px 16px;text-align:center}
+.intro h1{margin:0;font:700 clamp(30px,5vw,52px)/1.2 var(--f-disp)}
+.intro p{margin:10px auto 0;max-width:40em;opacity:.8;line-height:1.7}
+.part{margin:56px 0 0;padding:0 16px 18px;text-align:center;font:700 clamp(22px,3vw,30px)/1.3 var(--f-disp)}
+.label{position:absolute;top:16px;right:16px;z-index:2;padding:6px 14px;border-radius:99px;background:var(--ink);color:var(--cream);font:700 13px/1 var(--f-body)}
+
+/* ===== grounds ===== */
+/* 1 soft velvet: the hero photo under a flat wine wash (what the hero uses now) */
+.bg-velvet{background:linear-gradient(rgba(108,23,30,.62),rgba(108,23,30,.62)),url(../../assets/img/velvet.jpg) center/cover,var(--wine);color:var(--cream)}
+/* 2 felt: flat wine with a fine grain, almost solid */
+.bg-felt{background:var(--grain) 0 0/200px 200px,var(--wine);background-blend-mode:soft-light,normal;color:var(--cream)}
+/* 3 card table: deep green felt, fine grain and a soft darker edge */
+.bg-table{background:radial-gradient(ellipse 90% 80% at 50% 45%,transparent 55%,rgba(0,0,0,.28)),var(--grain) 0 0/200px 200px,var(--green);background-blend-mode:normal,soft-light,normal;color:var(--cream)}
+/* 4 linen: cream with a faint woven crosshatch */
+.bg-linen{background:repeating-linear-gradient(0deg,rgba(108,23,30,.035) 0 1px,transparent 1px 4px),repeating-linear-gradient(90deg,rgba(108,23,30,.035) 0 1px,transparent 1px 4px),var(--cream);color:var(--wine)}
+/* 5 suits: deep wine with the four suits repeated very faintly */
+.bg-suits{position:relative;isolation:isolate;background:var(--deep);color:var(--cream)}
+.bg-suits::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--suits) 0 0/120px 120px;opacity:.06;pointer-events:none}
+/* 6 paper: cream with the site's paper photo multiplied in lightly */
+.bg-paper{background:url(../../assets/img/paper.jpg) center/cover,var(--cream);background-blend-mode:multiply;color:var(--ink)}
+/* 7 pinstripe: green with thin diagonal lines, like a card back */
+.bg-stripe{background:repeating-linear-gradient(45deg,rgba(244,218,191,.05) 0 1px,transparent 1px 14px),var(--green);color:var(--cream)}
+
+/* ===== sample content ===== */
+.sec{position:relative;padding:clamp(64px,10vh,110px) 16px}
+.sec__in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,5vw,64px);align-items:center}
+.tag{display:inline-block;margin-bottom:22px;padding:8px 16px;border:1px solid currentColor;border-radius:99px;font:700 13px/1 var(--f-body)}
+.sec h2{margin:0 0 16px;font:700 clamp(34px,5.5vw,72px)/1.1 var(--f-disp)}
+.sec p{margin:0;max-width:30em;font:500 clamp(16px,1.6vw,19px)/1.8 var(--f-body);opacity:.85}
+.btn{display:inline-block;margin-top:26px;padding:13px 30px;border:4px solid var(--ink);background:var(--cream);color:var(--wine);box-shadow:7px 7px 0 var(--ink);font:700 17px/1 var(--f-body);text-decoration:none}
+.bg-linen .btn,.bg-paper .btn{background:var(--wine);color:var(--cream)}
+.card{justify-self:center;width:min(240px,60vw);aspect-ratio:5/7;padding:18px;border:4px solid var(--ink);border-radius:16px;background:var(--cream);color:var(--wine);box-shadow:10px 10px 0 var(--ink);display:grid;align-content:space-between}
+.card b{font:700 44px/1 var(--f-disp)}
+.card span{justify-self:end;font-size:44px;line-height:1}
+.card h3{margin:0;font:700 26px/1.2 var(--f-disp);text-align:center}
+@media (max-width:720px){.sec__in{grid-template-columns:1fr}.card{width:min(200px,60vw)}}
+
+/* ===== test page ===== */
+.page{max-width:1280px;margin:0 auto;border:4px solid var(--ink);box-shadow:0 0 0 1px rgba(244,218,191,.2)}
+.page .hero{padding:clamp(80px,14vh,150px) 16px;text-align:center}
+.page .hero h2{margin:0;font:700 clamp(80px,16vw,200px)/.95 var(--f-disp);text-shadow:.04em .04em 0 var(--ink)}
+.page .hero p{margin:18px auto 0;max-width:34em;font:500 clamp(16px,2vw,22px)/1.6 var(--f-body)}
+.page .row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:30px auto 0}
+.page .row div{padding:24px;border:4px solid var(--ink);background:var(--cream);color:var(--wine);box-shadow:7px 7px 0 var(--ink);font:700 20px/1.4 var(--f-disp)}
+.page .row small{display:block;margin-top:8px;font:500 15px/1.6 var(--f-body);color:#4a2a2a}
+@media (max-width:720px){.page .row{grid-template-columns:1fr}}
+.page footer{padding:40px 16px;text-align:center;font:500 14px/1.6 var(--f-body)}
+</style>
+</head>
+<body>
+
+<header class="intro">
+  <h1>أفكار الخلفيات</h1>
+  <p>سبع خلفيات هادئة وثابتة بألوان الهوية، تصلح للتنويع بين الأقسام. تحت كل واحدة منفردة، ثم صفحة تجريبية تمزجها بترتيب أقسام الموقع.</p>
+</header>
+
+<h2 class="part">الجزء الأول: كل خلفية وحدها</h2>
+
+<section class="sec bg-velvet"><span class="label">1 · مخمل هادئ</span><div class="sec__in"><div><span class="tag">01 · فلسفتنا</span><h2>نلعب أوراقنا صح</h2><p>مكتب إبداعي يجمع المحتوى والتصميم والإعلانات والنمو في فريق واحد.</p><a class="btn" href="#">ابدأ اللعب ♠&#xFE0E;</a></div><div class="card"><b>A</b><h3>محتوى</h3><span>♠&#xFE0E;</span></div></div></section>
+
+<section class="sec bg-felt"><span class="label">2 · لبّاد خمري</span><div class="sec__in"><div><span class="tag">01 · فلسفتنا</span><h2>نلعب أوراقنا صح</h2><p>مكتب إبداعي يجمع المحتوى والتصميم والإعلانات والنمو في فريق واحد.</p><a class="btn" href="#">ابدأ اللعب ♠&#xFE0E;</a></div><div class="card"><b>K</b><h3>تصميم</h3><span>♥&#xFE0E;</span></div></div></section>
+
+<section class="sec bg-table"><span class="label">3 · طاولة اللعب</span><div class="sec__in"><div><span class="tag">01 · فلسفتنا</span><h2>نلعب أوراقنا صح</h2><p>مكتب إبداعي يجمع المحتوى والتصميم والإعلانات والنمو في فريق واحد.</p><a class="btn" href="#">ابدأ اللعب ♠&#xFE0E;</a></div><div class="card"><b>Q</b><h3>إعلانات</h3><span>♦&#xFE0E;</span></div></div></section>
+
+<section class="sec bg-linen"><span class="label">4 · كتّان</span><div class="sec__in"><div><span class="tag">01 · فلسفتنا</span><h2>نلعب أوراقنا صح</h2><p>مكتب إبداعي يجمع المحتوى والتصميم والإعلانات والنمو في فريق واحد.</p><a class="btn" href="#">ابدأ اللعب ♠&#xFE0E;</a></div><div class="card"><b>A</b><h3>نمو</h3><span>♣&#xFE0E;</span></div></div></section>
+
+<section class="sec bg-suits"><span class="label">5 · نقش الأشكال</span><div class="sec__in"><div><span class="tag">01 · فلسفتنا</span><h2>نلعب أوراقنا صح</h2><p>مكتب إبداعي يجمع المحتوى والتصميم والإعلانات والنمو في فريق واحد.</p><a class="btn" href="#">ابدأ اللعب ♠&#xFE0E;</a></div><div class="card"><b>A</b><h3>محتوى</h3><span>♠&#xFE0E;</span></div></div></section>
+
+<section class="sec bg-paper"><span class="label">6 · ورق</span><div class="sec__in"><div><span class="tag">01 · فلسفتنا</span><h2>نلعب أوراقنا صح</h2><p>مكتب إبداعي يجمع المحتوى والتصميم والإعلانات والنمو في فريق واحد.</p><a class="btn" href="#">ابدأ اللعب ♠&#xFE0E;</a></div><div class="card"><b>K</b><h3>تصميم</h3><span>♥&#xFE0E;</span></div></div></section>
+
+<section class="sec bg-stripe"><span class="label">7 · خطوط ظهر الورقة</span><div class="sec__in"><div><span class="tag">01 · فلسفتنا</span><h2>نلعب أوراقنا صح</h2><p>مكتب إبداعي يجمع المحتوى والتصميم والإعلانات والنمو في فريق واحد.</p><a class="btn" href="#">ابدأ اللعب ♠&#xFE0E;</a></div><div class="card"><b>Q</b><h3>إعلانات</h3><span>♦&#xFE0E;</span></div></div></section>
+
+<h2 class="part">الجزء الثاني: صفحة تجريبية تمزجها</h2>
+
+<div class="page">
+  <section class="sec hero bg-velvet"><span class="label">الواجهة · 1</span><h2>أربعمية</h2><p>مكتب إبداعي يجمع المحتوى والتصميم والإعلانات والنمو في فريق واحد.</p><a class="btn" href="#">ابدأ اللعب ♠&#xFE0E;</a></section>
+  <section class="sec bg-linen"><span class="label">خدماتنا · 4</span><div class="sec__in"><div><span class="tag">02 · خدماتنا</span><h2>أربع أوراق، فريق واحد</h2><p>كل ورقة خدمة، ونلعبها معًا حسب ما تحتاجه علامتك.</p></div><div class="card"><b>A</b><h3>محتوى</h3><span>♠&#xFE0E;</span></div></div></section>
+  <section class="sec bg-table"><span class="label">أعمالنا · 3</span><div class="sec__in"><div><span class="tag">03 · أعمالنا</span><h2>أوراق ربحناها</h2><p>نماذج من مشاريع اشتغلنا عليها مع عملائنا.</p><a class="btn" href="#">شاهد أعمالنا ♦&#xFE0E;</a></div><div class="card"><b>K</b><h3>تصميم</h3><span>♥&#xFE0E;</span></div></div></section>
+  <section class="sec bg-suits"><span class="label">بالأرقام · 5</span><div style="max-width:1100px;margin:0 auto;text-align:center"><span class="tag">04 · بالأرقام</span><h2>أرقام نفخر بها</h2><div class="row"><div>+120<small>مشروع منجز</small></div><div>+40<small>عميل</small></div><div>4<small>خدمات في فريق واحد</small></div></div></div></section>
+  <section class="sec bg-paper"><span class="label">كيف نعمل · 6</span><div class="sec__in"><div><span class="tag">05 · كيف نعمل</span><h2>نوزّع، نلعب، نربح</h2><p>نفهم السوق، نرسم الخطة، ثم ننفّذ ونقيس.</p></div><div class="card"><b>Q</b><h3>إعلانات</h3><span>♦&#xFE0E;</span></div></div></section>
+  <section class="sec bg-felt"><span class="label">تواصل · 2</span><div style="max-width:1100px;margin:0 auto;text-align:center"><span class="tag">06 · تواصل معنا</span><h2>اسحب ورقتك</h2><p style="margin-inline:auto">احجز استشارة مجانية ونبدأ اللعب.</p><a class="btn" href="#">ابدأ اللعب ♠&#xFE0E;</a></div></section>
+  <footer class="bg-stripe">خطوط ظهر الورقة · 7</footer>
+</div>
+<div style="height:60px"></div>
+</body>
+</html>

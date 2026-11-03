@@ -1,0 +1,24 @@
+/* client stories: a single large quote on beige paper, page-style header and footer */
+.cst{position:relative;z-index:1;min-height:100vh;min-height:100dvh;background:#d3cdc1;color:#17120f;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;padding:clamp(20px,3vw,40px) max(16px,3vw);direction:rtl}
+.cst::before{content:"";position:absolute;inset:0;background-image:var(--linen);background-size:480px 752px;mix-blend-mode:multiply;opacity:.55;pointer-events:none}
+.cst>*{position:relative}
+.cst-h{display:grid;gap:6px;padding-bottom:clamp(14px,2vw,22px);border-bottom:1px solid rgba(23,18,15,.28)}
+.cst-h b{font:700 13px/1 var(--f-body);letter-spacing:.14em}
+.cst-h i{font:italic 500 13px/1 var(--f-body);opacity:.6}
+.cst-b{display:grid;place-items:center;padding:clamp(40px,8vh,90px) 0}
+.cst-q{position:relative;max-width:min(1040px,86vw);text-align:center;transition:opacity .5s,transform .5s}
+.cst-q.out{opacity:0;transform:translateY(10px)}
+.cst-q p{margin:0;font:700 clamp(30px,4.8vw,72px)/1.45 var(--f-disp);text-wrap:balance}
+.cst-q .qm{position:absolute;font:700 clamp(90px,14vw,200px)/1 var(--f-disp);color:rgba(23,18,15,.14);pointer-events:none}
+.cst-q .qm.o{top:-.1em;right:-.12em}
+.cst-q .qm.c{bottom:-.55em;left:-.12em}
+.cst-by{margin-top:clamp(28px,5vh,52px);display:flex;align-items:center;justify-content:center;gap:16px;text-align:start}
+.cst-by i{display:block;width:clamp(36px,5vw,64px);height:1px;background:#17120f}
+.cst-by b{display:block;font:700 15px/1.4 var(--f-body)}
+.cst-by span{display:block;font:600 12px/1.6 var(--f-body);opacity:.6}
+.cst-f{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:clamp(14px,2vw,22px);border-top:1px solid rgba(23,18,15,.28);font:600 11px/1.7 var(--f-body);letter-spacing:.12em}
+.cst-f>span:not(.cst-ctl){opacity:.7}
+.cst-ctl{display:flex;gap:10px;direction:ltr}
+.cst-ctl button{width:34px;height:34px;border-radius:50%;border:1px solid rgba(23,18,15,.5);background:transparent;color:inherit;font:700 14px/1 var(--f-disp);cursor:pointer}
+.cst-ctl button:hover{background:#17120f;color:#d3cdc1}
+@media (max-width:640px){.cst-f{flex-direction:column;align-items:flex-start}}

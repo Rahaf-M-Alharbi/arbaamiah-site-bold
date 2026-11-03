@@ -1,0 +1,412 @@
+<!-- Deliberately no doctype: the design was built and tuned in quirks mode, and standards mode shifts some heights by a few px. -->
+<html lang="ar">
+<head>
+<title>بروفة أربعمية المخمل</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preload" href="assets/img/velvet.jpg" as="image">
+<!-- css:start (order matters: later files override earlier ones; build concatenates them) -->
+<link rel="stylesheet" href="src/css/00-fonts.css">
+<link rel="stylesheet" href="src/css/01-hero-and-nav.css">
+<link rel="stylesheet" href="src/css/02-scroll-story.css">
+<link rel="stylesheet" href="src/css/03-cascade-and-bigcard.css">
+<link rel="stylesheet" href="src/css/04-deal.css">
+<link rel="stylesheet" href="src/css/05-flyer-flip-and-logos.css">
+<link rel="stylesheet" href="src/css/06-playing-card.css">
+<link rel="stylesheet" href="src/css/07-client-stories.css">
+<link rel="stylesheet" href="src/css/08-process-and-spacing.css">
+<link rel="stylesheet" href="src/css/09-services-and-faq.css">
+<link rel="stylesheet" href="src/css/10-final-cta.css">
+<link rel="stylesheet" href="src/css/11-contact-form.css">
+<link rel="stylesheet" href="src/css/12-dealt-buttons.css">
+<link rel="stylesheet" href="src/css/13-services-deck.css">
+<link rel="stylesheet" href="src/css/14-play.css">
+<link rel="stylesheet" href="src/css/15-work.css">
+<link rel="stylesheet" href="src/css/16-hands.css">
+<link rel="stylesheet" href="src/css/17-rules-footer-stats-principles.css">
+<link rel="stylesheet" href="src/css/18-look-pass.css">
+<link rel="stylesheet" href="src/css/19-components.css">
+<link rel="stylesheet" href="src/css/20-override-nav-frame-ground.css">
+<link rel="stylesheet" href="src/css/21-override-services-and-text.css">
+<link rel="stylesheet" href="src/css/22-override-flip-buttons.css">
+<link rel="stylesheet" href="src/css/23-override-brand-buttons-and-entrances.css">
+<link rel="stylesheet" href="src/css/24-override-card-backs-forms-phones.css">
+<link rel="stylesheet" href="src/css/25-hero-extras.css">
+<link rel="stylesheet" href="src/css/26-final-cta-text.css">
+<link rel="stylesheet" href="src/css/27-text-width-fix.css">
+<link rel="stylesheet" href="src/css/28-work-snatch.css">
+<link rel="stylesheet" href="src/css/29-cta-experiments.css">
+<link rel="stylesheet" href="src/css/30-loader.css">
+<link rel="stylesheet" href="src/css/31-bold-cards.css">
+<!-- css:end -->
+<!-- js:start (run in this order; build concatenates them) -->
+<script src="src/js/01-reveal-observers.js" defer></script>
+<script src="src/js/02-stat-counters.js" defer></script>
+<script src="src/js/03-playing-card.js" defer></script>
+<script src="src/js/04-hero-story.js" defer></script>
+<script src="src/js/05-services-panels.js" defer></script>
+<script src="src/js/06-work-deck.js" defer></script>
+<script src="src/js/07-final-hand.js" defer></script>
+<script src="src/js/08-bigcard-crop.js" defer></script>
+<script src="src/js/09-logo-cards.js" defer></script>
+<script src="src/js/10-client-stories.js" defer></script>
+<script src="src/js/11-contact-form.js" defer></script>
+<script src="src/js/12-faq-hover.js" defer></script>
+<script src="src/js/13-nav-contrast.js" defer></script>
+<script src="src/js/14-kashida-justify.js" defer></script>
+<script src="src/js/15-cta-experiments.js" defer></script>
+<script src="src/js/16-loader.js" defer></script>
+<script src="src/js/17-glow-shader.js" defer></script>
+<!-- js:end -->
+</head>
+<body>
+<div class="ldr" id="ldr" lang="ar" dir="rtl" aria-hidden="true"><b class="ldr-b">أربعمية</b><div class="ldr-s"><i>♠︎</i><i>♥︎</i><i>♦︎</i><i>♣︎</i></div><div class="ldr-l"></div></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-content" viewBox="0 0 32 32"><path id="p-s" d="M16 3C13 8 5 12 5 19a5.5 5.5 0 0 0 9.5 3.8C14.3 25.5 13.5 27 11.5 29h9c-2-2-2.8-3.5-3-6.2A5.5 5.5 0 0 0 27 19C27 12 19 8 16 3z"/><use href="#p-s" transform="translate(16 17) scale(.74) translate(-16 -17)"/></symbol>
+  <symbol id="i-design" viewBox="0 0 32 32"><path id="p-h" d="M16 28.5C9 22.5 4 18 4 12.5A6.5 6.5 0 0 1 16 9a6.5 6.5 0 0 1 12 3.5C28 18 23 22.5 16 28.5z"/><use href="#p-h" transform="translate(16 17) scale(.74) translate(-16 -17)"/></symbol>
+  <symbol id="i-ads" viewBox="0 0 32 32"><path id="p-d" d="M16 3L26.5 16 16 29 5.5 16z"/><use href="#p-d" transform="translate(16 16) scale(.74) translate(-16 -16)"/></symbol>
+  <symbol id="i-growth" viewBox="0 0 32 32"><path id="p-c" d="M16 3.5a5 5 0 0 0-3.500 8.600A5.500 5.500 0 1 0 14.800 21c-.3 3-1 5.500-3.300 8h9c-2.300-2.500-3-5-3.300-8a5.500 5.500 0 1 0 2.300-8.900A5 5 0 0 0 16 3.500z"/><use href="#p-c" transform="translate(16 17) scale(.74) translate(-16 -17)"/></symbol>
+</svg>
+
+<div class="flyer" id="flyer"></div>
+<header class="mini" id="mini" lang="ar" dir="rtl"><b>أربعمية</b><nav><a href="#">أعمالنا</a><a href="#">فلسفتنا</a><a class="cta flipbtn fb--line" href="#contact"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♣︎</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♣︎</i></span></span></a></nav></header>
+<main class="story" id="story" lang="ar" dir="rtl">
+  <div class="h stage">
+  <canvas class="glow" id="glow" aria-hidden="true"></canvas>
+  <div class="frame" aria-hidden="true"><s class="ln l"></s><s class="ln r"></s><i class="tl">♠︎</i><i class="tr">♥︎</i><i class="bl">♣︎</i><i class="br">♦︎</i></div>
+  <header class="nav">
+    <div class="brand"><b>أربعمية</b><small>مكتب الإبداع · العدد 01 من 400</small></div>
+    <nav class="links"><a href="#"><i>♠︎</i>أعمالنا</a><a href="#"><i>♥︎</i>فلسفتنا</a><a class="cta flipbtn fb--line" href="#contact"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♣︎</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♣︎</i></span></span></a></nav>
+  </header>
+  <div class="nav-rule" aria-hidden="true"><span></span><i>♦︎</i><span></span></div>
+  <h1 class="wm"><span class="k">أربعمية</span><span class="g" aria-hidden="true">أربعمية</span></h1>
+  <div class="sub hero-meta">
+    <p class="hm-line">مكتب إبداعي يجمع المحتوى والتصميم والإعلانات والنمو في فريق واحد.</p>
+    <ul class="hm-proof">
+      <li>خطة واضحة خلال أسبوع</li>
+      <li>عقود قصيرة قابلة للتجديد</li>
+      <li>تقرير شهري بالنتائج</li>
+    </ul>
+  </div>
+  
+    <section class="sec2" id="sec2" aria-label="أوراقنا">
+    <div class="e eb">♠︎ أوراقنا</div>
+    <h2>أربع أوراق، وكل ورقة تلعب لصالحك</h2>
+    <p>نوزّعها بحسب ما تحتاجه شركتك، من الحكاية الأولى إلى النتيجة.</p>
+  </section>
+  <div class="sub hero-cta">
+      <a class="flipbtn fb--cream" href="#contact"><span class="fb-in"><span class="fb-f">ابدأ اللعب<i>♠︎</i></span><span class="fb-b" aria-hidden="true">ابدأ اللعب<i>♠︎</i></span></span></a>
+      <a class="flipbtn fb--line" href="#work"><span class="fb-in"><span class="fb-f">شاهد أعمالنا<i>♦︎</i></span><span class="fb-b" aria-hidden="true">شاهد أعمالنا<i>♦︎</i></span></span></a>
+    </div>
+  <div class="cards" id="hand"></div>
+  </div>
+</main>
+<section class="next2" id="next2" lang="ar" dir="rtl">
+  <div class="nstage"><div class="bigcard" id="bigcard"></div>
+  <div class="lgl" id="lgl" aria-label="شركاؤنا"><div class="lgg" id="lgg"></div></div></div>
+</section>
+<section class="deck" id="deck" lang="ar" dir="rtl" aria-label="خدماتنا بالتفصيل">
+  <div class="dk-head">
+    <div class="stt-t"><span class="eb">خدماتنا</span><span>♠︎ ♥︎ ♦︎ ♣︎</span></div>
+    <h2>حلولنا</h2>
+    <p>المحتوى والتصميم والإعلانات والنمو في فريق واحد، ليعمل كل جزء لخدمة هدف علامتك.</p>
+  </div>
+  <div class="dk-wrap">
+    <div class="stack" id="stack"></div>
+  </div>
+</section>
+<section class="work" id="work" lang="ar" dir="rtl" aria-label="نماذج من أعمالنا">
+  <div class="wk-head">
+    <div class="t">
+      <div class="e eb">♦︎ أعمالنا</div>
+      <h2>جولات لعبناها بحساب</h2>
+      <p>نماذج توضيحية لأنواع المشاريع التي نلعبها. ثلاث أوراق ظاهرة بالكامل وباقيها مجموع في رزمة على كل جانب. اسحب يميناً أو يساراً لتنتقل الأوراق بين الرزمتين.</p>
+    </div>
+    <div class="wk-ctl"><button type="button" id="wkPrev" aria-label="السابق">&#8592;</button><span class="n" id="wkNum">1 / 5</span><button type="button" id="wkNext" aria-label="التالي">&#8594;</button></div>
+  </div>
+  <div class="wk-deck" id="wkDeck" tabindex="0" aria-label="الأعمال: اسحب البطاقة العليا أو استعمل الأسهم"></div>
+</section>
+<section class="stt" id="stt" lang="ar" dir="rtl" aria-label="بالأرقام">
+  <div class="stt-in">
+    <p class="stt-t"><span class="eb">بالأرقام</span><span>♠︎ ♥︎ ♦︎ ♣︎</span></p>
+    <div class="stt-g">
+      <div class="stt-i"><div class="stt-ix"><b data-n="120" data-s="+">0</b></div><span>مشروع مُسلَّم</span></div>
+      <div class="stt-i"><div class="stt-ix"><b data-n="45" data-s="">0</b></div><span>عميل يلعب معنا</span></div>
+      <div class="stt-i"><div class="stt-ix"><b data-n="8" data-s="">0</b></div><span>سنوات خبرة</span></div>
+      <div class="stt-i"><div class="stt-ix"><b data-n="3" data-s="×">0</b></div><span>متوسط نمو العملاء</span></div>
+    </div>
+  </div>
+</section>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="hgA" gradientUnits="userSpaceOnUse" x1="0" y1="-20" x2="0" y2="330">
+      <stop offset="0" stop-color="#f4dabf" stop-opacity=".92"/><stop offset=".5" stop-color="#f4dabf" stop-opacity=".8"/><stop offset="1" stop-color="#f4dabf" stop-opacity=".18"/>
+    </linearGradient>
+    <linearGradient id="hgB" gradientUnits="userSpaceOnUse" x1="0" y1="60" x2="0" y2="330">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".45" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#fff" stop-opacity=".95"/>
+    </linearGradient>
+    <filter id="hStip" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="a"/>
+      <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="1" seed="3" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 0 0 0 0" result="nz"/>
+      <feComposite in="a" in2="nz" operator="arithmetic" k1="0" k2="1.35" k3="1" k4="-.62" result="sum"/>
+      <feComponentTransfer in="sum" result="dots"><feFuncA type="discrete" tableValues="0 1"/></feComponentTransfer>
+      <feFlood flood-color="#f4dabf"/>
+      <feComposite in2="dots" operator="in"/>
+    </filter>
+    <filter id="hStipL" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="a"/>
+      <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="1" seed="9" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 0 0 0 0" result="nz"/>
+      <feComposite in="a" in2="nz" operator="arithmetic" k1="0" k2="1.25" k3="1" k4="-.9" result="sum"/>
+      <feComponentTransfer in="sum" result="dots"><feFuncA type="discrete" tableValues="0 1"/></feComponentTransfer>
+      <feFlood flood-color="#f4dabf"/>
+      <feComposite in2="dots" operator="in"/>
+    </filter>
+    <g id="hndHandB">
+      <g fill="none" stroke="url(#hgB)" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="200" cy="90" rx="58" ry="70" fill="url(#hgB)" stroke="none"/>
+        <path d="M172 140 C158 195 152 245 158 305" stroke-width="28"/>
+        <path d="M200 150 C200 215 200 270 208 330" stroke-width="29"/>
+        <path d="M228 146 C240 200 248 250 243 300" stroke-width="27"/>
+        <path d="M248 128 C272 165 288 200 292 245" stroke-width="24"/>
+        <path d="M142 98 C104 112 78 142 80 188" stroke-width="27"/>
+      </g>
+    </g>
+    <g id="hndHand">
+      <g fill="none" stroke="url(#hgA)" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M200 -120 L200 20" stroke-width="78"/>
+        <ellipse cx="200" cy="90" rx="58" ry="70" fill="url(#hgA)" stroke="none"/>
+        <path d="M172 140 C158 195 152 245 158 305" stroke-width="28"/>
+        <path d="M200 150 C200 215 200 270 208 330" stroke-width="29"/>
+        <path d="M228 146 C240 200 248 250 243 300" stroke-width="27"/>
+        <path d="M248 128 C272 165 288 200 292 245" stroke-width="24"/>
+        <path d="M142 98 C104 112 78 142 80 188" stroke-width="27"/>
+      </g>
+    </g>
+  </defs>
+</svg>
+<section class="cst" id="cst" lang="ar" dir="rtl" aria-label="قصص العملاء">
+  <header class="cst-h"><b class="eb">05 — قصص العملاء</b></header>
+  <div class="cst-b"><figure class="cst-q" id="cstQ" style="margin:0">
+    <span class="qm o" aria-hidden="true">&ldquo;</span><span class="qm c" aria-hidden="true">&rdquo;</span>
+    <p id="cstP"></p>
+    <figcaption class="cst-by"><i></i><div><b id="cstN"></b><span id="cstR"></span></div></figcaption>
+  </figure></div>
+  <footer class="cst-f"><span class="eb">أربعمية</span><span class="cst-ctl"><button type="button" id="cstPrev" aria-label="السابق">&larr;</button><button type="button" id="cstNext" aria-label="التالي">&rarr;</button></span><span id="cstPg"></span></footer>
+</section>
+
+<section class="pr" id="pr" lang="ar" dir="rtl" aria-label="كيف نعمل">
+  <div class="pr-in">
+    <h2 class="pr-h">كيف نعمل</h2>
+    <ol class="hw">
+      <li class="hw-s"><i class="hw-m" aria-hidden="true">♠︎</i><span class="hw-k">المرحلة 01</span><h3>نقرأ الطاولة</h3><p>نبدأ بالاستماع: نفهم شركتك وسوقها وجمهورها وأهدافك قبل أن نقترح أي خطوة.</p></li>
+      <li class="hw-s"><i class="hw-m r" aria-hidden="true">♥︎</i><span class="hw-k">المرحلة 02</span><h3>نرسم الخطة</h3><p>نحوّل ما فهمناه إلى خطة واضحة بأولويات وأرقام مستهدفة وجدول زمني متفق عليه.</p></li>
+      <li class="hw-s"><i class="hw-m r" aria-hidden="true">♦︎</i><span class="hw-k">المرحلة 03</span><h3>ننفّذ بإتقان</h3><p>فريق واحد يكتب ويصمّم ويشغّل الحملات، ونطلعك على التقدّم أولاً بأول.</p></li>
+      <li class="hw-s"><i class="hw-m" aria-hidden="true">♣︎</i><span class="hw-k">المرحلة 04</span><h3>نقيس ونطوّر</h3><p>نراجع الأرقام معك كل شهر، ونكرر ما نجح ونعدّل ما لم ينجح حتى تكسب الجولة.</p></li>
+    </ol>
+  </div>
+</section>
+<section class="fq" id="fq" lang="ar" dir="rtl" aria-label="أسئلة شائعة">
+  <div class="fq-in">
+    <div class="fq-t"><span class="fq-e eb">08 — الأسئلة الشائعة</span><h2>أسئلة قبل أن نبدأ</h2></div>
+    <div class="fq-l">
+      <details open><summary>كم تستغرق أول جولة؟</summary><div class="a"><div><p>نبدأ بجلسة تعارف، ثم نسلّمك خطة واضحة خلال أسبوع. التنفيذ يبدأ بعد اعتمادها.</p></div></div></details>
+      <details open><summary>هل نلتزم بعقد طويل؟</summary><div class="a"><div><p>لا. نعمل بعقود قصيرة قابلة للتجديد، لأننا نفضّل أن يستمر العميل لأن النتائج جيدة.</p></div></div></details>
+      <details open><summary>هل نخدم قطاعات معيّنة فقط؟</summary><div class="a"><div><p>نعمل مع شركات من قطاعات متعددة. المهم أن يكون عندك منتج تفخر به وهدف نستطيع قياسه.</p></div></div></details>
+      <details open><summary>كيف نتابع النتائج؟</summary><div class="a"><div><p>تقرير شهري بسيط يوضّح ما نجح وما سنغيّره، مع اجتماع قصير لمراجعته معك.</p></div></div></details>
+    </div>
+  </div>
+</section>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="l-content" viewBox="0 0 48 48"><rect x="6" y="5" width="30" height="38" rx="5" fill="currentColor" stroke="none"/><path d="M12 15h18M12 23h18M12 31h10" fill="none" stroke="#fbf9f4" stroke-width="3" stroke-linecap="round"/><path d="M27 41l2.5-9 11-11 6.5 6.500-11 11z" fill="currentColor" stroke="#fbf9f4" stroke-width="2.600" stroke-linejoin="round"/></symbol>
+  <symbol id="l-design" viewBox="0 0 48 48"><circle cx="18" cy="18" r="13" fill="currentColor" stroke="none"/><rect x="20" y="20" width="23" height="23" rx="4" fill="currentColor" stroke="#fbf9f4" stroke-width="2.600"/></symbol>
+  <symbol id="l-ads" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="currentColor" stroke="none"/><circle cx="24" cy="24" r="13" fill="none" stroke="#fbf9f4" stroke-width="3"/><circle cx="24" cy="24" r="5.500" fill="currentColor" stroke="none"/><path d="M24 24L45 3" fill="none" stroke="#fbf9f4" stroke-width="3" stroke-linecap="round"/></symbol>
+  <symbol id="l-growth" viewBox="0 0 48 48"><path d="M5 43V31a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v12zM19 43V19a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v24zM31 43V9a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v34z" fill="currentColor" stroke="none"/><path d="M9 38l8-7 6 4 15-17M31 18h7v7" fill="none" stroke="#fbf9f4" stroke-width="2.600" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+<section class="hnd" id="hnd" lang="ar" dir="rtl" aria-label="نمرّر لك الورقة">
+  <div class="hstage" id="hst">
+    <div class="hcard" id="hCard">
+      <div class="f"><span class="ix">A<i>♠︎</i></span><span class="ix b">A<i>♠︎</i></span>
+        <img class="hlogo" src="assets/img/logo-cream.svg" alt="أربعمية"></div>
+      <div class="b"></div>
+    </div>
+    <div class="htxt" id="hTxt"><p>نقرأ الطاولة معك أولاً، ثم نضع في يدك الورقة التي تغيّر الجولة.</p><h2>نمرّر لك <em>الورقة</em> الرابحة</h2><div class="hrow"><a class="flipbtn" href="#contact"><span class="fb-in"><span class="fb-f">ابدأ اللعب<i>♠︎</i></span><span class="fb-b" aria-hidden="true">ابدأ اللعب<i>♠︎</i></span></span></a><span class="hnote"><i>♦︎</i>خطة واضحة خلال أسبوع</span></div></div>
+    <div class="hbar eb" aria-hidden="true"><span>خطوتك التالية</span><span>♠︎ ♥︎ ♦︎ ♣︎</span></div>
+    <div class="hwm" aria-hidden="true">♠︎</div>
+  </div>
+</section>
+<!-- CTA experiments (temporary, under the real final CTA) -->
+<section class="xp xp1" lang="ar" dir="rtl" aria-label="تجربة ١: اختر ورقة">
+  <span class="xp-tag">تجربة ١</span>
+  <h2>اختر <em>ورقة</em></h2>
+  <p>ثلاث أوراق مقلوبة. اقلب واحدة وشوف وش ينتظرك.</p>
+  <div class="xp1-row">
+    <button class="xp1-c" type="button"><span class="xp1-in"><span class="xp1-b"><i>♠︎</i></span><span class="xp1-f"><b>خطة خلال أسبوع</b><small>نبدأ بقراءة طاولتك ثم نحدد الخطوة الأولى.</small><i>♥︎</i></span></span></button>
+    <button class="xp1-c" type="button"><span class="xp1-in"><span class="xp1-b"><i>♦︎</i></span><span class="xp1-f"><b>ردّ خلال يوم</b><small>فريق صغير، رد سريع، بلا وسطاء.</small><i>♦︎</i></span></span></button>
+    <button class="xp1-c" type="button"><span class="xp1-in"><span class="xp1-b"><i>♣︎</i></span><span class="xp1-f"><b>بلا التزام</b><small>الجلسة الأولى علينا، والقرار قرارك.</small><i>♣︎</i></span></span></button>
+  </div>
+  <a class="xp-btn" href="#contact">ابدأ اللعب <i>♠︎</i></a>
+</section>
+
+<section class="xp xp2" lang="ar" dir="rtl" aria-label="تجربة ٢: اليد الكاملة">
+  <span class="xp-tag">تجربة ٢</span>
+  <h2>يدك <em>الكاملة</em></h2>
+  <div class="xp2-hand">
+    <a class="xp2-c" href="#contact" style="--r:-22deg;--x:-2"><b>K</b><i>♣︎</i><span>المحتوى</span></a>
+    <a class="xp2-c" href="#contact" style="--r:-11deg;--x:-1"><b>Q</b><i>♥︎</i><span>التصميم</span></a>
+    <a class="xp2-c xp2-ace" href="#contact" style="--r:0deg;--x:0"><b>A</b><i>♠︎</i><span>ابدأ الآن</span></a>
+    <a class="xp2-c" href="#contact" style="--r:11deg;--x:1"><b>J</b><i>♦︎</i><span>الإعلانات</span></a>
+    <a class="xp2-c" href="#contact" style="--r:22deg;--x:2"><b>10</b><i>♣︎</i><span>النمو</span></a>
+  </div>
+</section>
+
+<section class="xp xp3" lang="ar" dir="rtl" aria-label="تجربة ٣: التذكرة">
+  <span class="xp-tag">تجربة ٣</span>
+  <div class="xp3-t">
+    <div class="xp3-main">
+      <small>تذكرة دخول · طاولة ٠٤٠٠</small>
+      <h2>مقعدك <em>محجوز</em></h2>
+      <p>خطة واضحة خلال أسبوع. باقي عليك تتقدم.</p>
+      <a class="xp-btn" href="#contact">احجز مقعدك <i>♦︎</i></a>
+    </div>
+    <div class="xp3-stub"><span class="xp3-stamp">أربعمية<br>٢٠٢٦</span><i class="xp3-bar"></i><b>♠︎</b></div>
+  </div>
+</section>
+
+<section class="xp xp4" lang="ar" dir="rtl" aria-label="تجربة ٤: الشريط">
+  <span class="xp-tag">تجربة ٤</span>
+  <div class="xp4-row"><div><span>ابدأ اللعب ♠︎ ابدأ اللعب ♥︎ ابدأ اللعب ♦︎ ابدأ اللعب ♣︎ </span><span aria-hidden="true">ابدأ اللعب ♠︎ ابدأ اللعب ♥︎ ابدأ اللعب ♦︎ ابدأ اللعب ♣︎ </span></div></div>
+  <a class="xp4-seal" href="#contact" aria-label="تواصل معنا">
+    <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="xp4c" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0"/></defs><text><textPath href="#xp4c">تواصل معنا ♠︎ تواصل معنا ♥︎ تواصل معنا ♦︎ تواصل معنا ♣︎ </textPath></text></svg>
+    <b>♠︎</b>
+  </a>
+  <div class="xp4-row r"><div><span>ورقتك الرابحة ♣︎ ورقتك الرابحة ♦︎ ورقتك الرابحة ♥︎ ورقتك الرابحة ♠︎ </span><span aria-hidden="true">ورقتك الرابحة ♣︎ ورقتك الرابحة ♦︎ ورقتك الرابحة ♥︎ ورقتك الرابحة ♠︎ </span></div></div>
+</section>
+<section class="xp xp5" lang="ar" dir="rtl" aria-label="تجربة ٥: كشّاف">
+  <span class="xp-tag">تجربة ٥</span>
+  <div class="xp5-l xp5-base" aria-hidden="true"><span>ابدأ</span><span>اللعب</span></div>
+  <div class="xp5-l xp5-lit" aria-hidden="true"><span>ابدأ</span><span>اللعب</span></div>
+  <h2 class="sr-only" style="position:absolute;left:-9999px">ابدأ اللعب</h2>
+  <a class="xp-btn xp5-btn" href="#contact">تواصل معنا <i>♠︎</i></a>
+</section>
+
+<section class="xp xp6" lang="ar" dir="rtl" aria-label="تجربة ٦: زر مغناطيسي">
+  <span class="xp-tag">تجربة ٦</span>
+  <div class="xp6-wm" aria-hidden="true">جاهز؟</div>
+  <h2>جاهز؟ <em>ورّق</em></h2>
+  <button class="xp6-b" type="button"><span class="xp6-s" aria-hidden="true">♠︎</span><b>اضغط</b></button>
+  <canvas class="xp6-cv" aria-hidden="true"></canvas>
+</section>
+
+<section class="xp xp7" lang="ar" dir="rtl" aria-label="تجربة ٧: نص يمتلئ">
+  <span class="xp-tag">تجربة ٧</span>
+  <div class="xp7-s">
+    <div class="xp7-bg" aria-hidden="true"><i style="--d:-.9;--x:8%;--y:12%;--z:30vh">♠︎</i><i style="--d:.6;--x:78%;--y:6%;--z:22vh">♥︎</i><i style="--d:-.4;--x:62%;--y:62%;--z:40vh">♦︎</i><i style="--d:.8;--x:12%;--y:58%;--z:26vh">♣︎</i></div>
+    <p class="xp7-t" id="xp7t">نقرأ الطاولة معك أولاً، ثم نضع في يدك الورقة التي تغيّر الجولة. <em>فلا تنتظر الجولة القادمة، ابدأ اللعب معنا اليوم.</em></p>
+    <a class="xp-btn xp7-btn" href="#contact">ابدأ اللعب <i>♠︎</i></a>
+  </div>
+</section>
+
+<section class="xp xp8" lang="ar" dir="rtl" aria-label="تجربة ٨: اتبع الآص">
+  <span class="xp-tag">تجربة ٨</span>
+  <h2>اتبع <em>الآص</em></h2>
+  <p id="xp8m">ثلاث أوراق وآص واحد. اضغط ابدأ وتابعه بعينك.</p>
+  <div class="xp8-stage" id="xp8t"><button class="xp8-c" type="button" disabled aria-label="ورقة 1"><span class="in"><span class="f r"><b>K<i>♥︎</i></b><b class="e">K<i>♥︎</i></b><span class="k">K</span><span class="p s">♥︎</span></span><span class="b"></span></span></button><button class="xp8-c" type="button" disabled aria-label="ورقة 2"><span class="in"><span class="f"><b>A<i>♠︎</i></b><b class="e">A<i>♠︎</i></b><span class="p">♠︎</span></span><span class="b"></span></span></button><button class="xp8-c" type="button" disabled aria-label="ورقة 3"><span class="in"><span class="f r"><b>Q<i>♦︎</i></b><b class="e">Q<i>♦︎</i></b><span class="k">Q</span><span class="p s">♦︎</span></span><span class="b"></span></span></button></div>
+  <div class="xp8-ctl">
+    <button class="xp8-go" id="xp8s" type="button">ابدأ الخلط <i>♠︎</i></button>
+    <a class="xp8-go xp8-cta" href="#contact" hidden>ابدأ اللعب <i>♠︎</i></a>
+    <button class="xp8-r" id="xp8r" type="button" hidden>جرّب مرة ثانية ↺</button>
+  </div>
+</section>
+<section class="xp xp9" lang="ar" dir="rtl" aria-label="تجربة ٩: اسحب ورقتك">
+  <span class="xp-tag">تجربة ٩</span>
+  <div class="xp9-bg" aria-hidden="true">٤٠٠</div>
+  <h2>اسحب <em>ورقتك</em></h2>
+  <p id="xp9m">اضغط على الرزمة، أو اسحب الورقة العلوية للأعلى.</p>
+  <div class="xp9-stage" id="xp9t">
+    <div class="xp9-deck">
+      <i class="xp9-k" style="--n:4"></i><i class="xp9-k" style="--n:3"></i><i class="xp9-k" style="--n:2"></i><i class="xp9-k" style="--n:1"></i>
+      <button class="xp9-top" id="xp9top" type="button" aria-label="اسحب ورقة من الرزمة"><span class="xp9-bk"><b>اسحب</b><i>↑</i></span></button>
+    </div>
+    <div class="xp9-card" id="xp9c" aria-hidden="true"><div class="in"><div class="f"></div><div class="b"></div></div></div>
+    <div class="xp9-out" id="xp9o">
+      <h3 class="xp9-h" id="xp9h"></h3><p class="xp9-p" id="xp9p"></p>
+      <div class="xp9-btns"><a class="xp9-cta" href="#contact">ابدأ اللعب <i>♠︎</i></a><button class="xp9-again" id="xp9a" type="button">اسحب ورقة أخرى ↺</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="xp xp10" lang="ar" dir="rtl" aria-label="تجربة ١٠: ورّق يدك">
+  <span class="xp-tag">تجربة ١٠</span>
+  <h2 id="xp10h">ورّق <em>يدك</em></h2>
+  <p id="xp10m">اضغط على الأوراق التي تريد الاحتفاظ بها، ثم اضغط ورّق.</p>
+  <div class="xp10-row" id="xp10t"></div>
+  <div class="xp10-ctl">
+    <button class="xp9-cta" id="xp10d" type="button">ورّق <i>♠︎</i></button>
+    <a class="xp9-cta" href="#contact" hidden>ابدأ اللعب <i>♠︎</i></a>
+    <button class="xp9-again" id="xp10r" type="button" hidden>من جديد ↺</button>
+  </div>
+</section>
+
+<section class="xp xp11" lang="ar" dir="rtl" aria-label="تجربة ١١: جرّب حظك">
+  <span class="xp-tag">تجربة ١١</span>
+  <h2>جرّب <em>حظك</em></h2>
+  <p id="xp11m">اسحب الذراع وشوف وين تقف البكرات.</p>
+  <div class="xp11-m" id="xp11t">
+    <div class="xp11-w"><div class="xp11-s"></div></div><div class="xp11-w"><div class="xp11-s"></div></div><div class="xp11-w"><div class="xp11-s"></div></div>
+    <button class="xp11-lv" id="xp11l" type="button" aria-label="اسحب الذراع"></button>
+  </div>
+  <div class="xp10-ctl">
+    <button class="xp9-cta" id="xp11d" type="button">اسحب الذراع <i>♠︎</i></button>
+    <a class="xp9-cta" href="#contact" hidden>ابدأ اللعب <i>♠︎</i></a>
+    <button class="xp9-again" id="xp11r" type="button" hidden>لفّة ثانية ↺</button>
+  </div>
+</section>
+
+<section class="xp xp12" lang="ar" dir="rtl" aria-label="تجربة ١٢: اكشط ورقتك">
+  <span class="xp-tag">تجربة ١٢</span>
+  <h2>اكشط <em>ورقتك</em></h2>
+  <p id="xp12m">امسح الرقاقة بإصبعك أو بالماوس.</p>
+  <div class="xp12-card" id="xp12t"><div class="xp12-f" id="xp12f"></div><canvas class="xp12-cv" id="xp12c"></canvas></div>
+  <div class="xp10-ctl">
+    <a class="xp9-cta" href="#contact" hidden>ابدأ اللعب <i>♠︎</i></a>
+    <button class="xp9-again" id="xp12k" type="button">اكشف مباشرة</button>
+    <button class="xp9-again" id="xp12r" type="button" hidden>ورقة أخرى ↺</button>
+  </div>
+</section>
+
+<section class="ctf" id="contact" lang="ar" dir="rtl" aria-label="تواصل معنا">
+  <div class="ctf-in">
+    <div class="ctf-t">
+      <span class="ctf-e eb">10 — تواصل معنا</span>
+      <h2>أخبرنا عن شركتك</h2>
+      <p>نقرأ طلبك بعناية، ونعود إليك بخطوة أولى واضحة.</p>
+    </div>
+    <form class="ctf-f" id="ctfForm" novalidate>
+      <label class="ctf-l"><span>الاسم</span><input type="text" name="name" autocomplete="name" required><small class="ctf-err" data-for="name"></small></label>
+      <label class="ctf-l"><span>الشركة <em>اختياري</em></span><input type="text" name="company" autocomplete="organization"></label>
+      <label class="ctf-l"><span>البريد الإلكتروني</span><input type="email" name="email" autocomplete="email" dir="ltr" required><small class="ctf-err" data-for="email"></small></label>
+      <label class="ctf-l"><span>الجوال <em>اختياري</em></span><input type="tel" name="phone" autocomplete="tel" dir="ltr"></label>
+      <fieldset class="ctf-c">
+        <legend>ما الذي تحتاجه؟</legend>
+        <label><input type="checkbox" name="svc" value="content"><span><i>♠︎</i>المحتوى</span></label>
+        <label><input type="checkbox" name="svc" value="design"><span><i class="r">♥︎</i>التصميم</span></label>
+        <label><input type="checkbox" name="svc" value="ads"><span><i class="r">♦︎</i>الإعلانات</span></label>
+        <label><input type="checkbox" name="svc" value="growth"><span><i>♣︎</i>النمو</span></label>
+      </fieldset>
+      <label class="ctf-l ctf-w"><span>حدّثنا عن هدفك</span><textarea name="msg" rows="4"></textarea></label>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="ctf-hp">
+      <div class="ctf-a"><button type="submit" class="flipbtn fb--cream"><span class="fb-in"><span class="fb-f">أرسل طلبك<i>♦︎</i></span><span class="fb-b" aria-hidden="true">أرسل طلبك<i>♦︎</i></span></span></button><span class="ctf-m" id="ctfMsg" role="status" aria-live="polite"></span></div>
+    </form>
+  </div>
+</section>
+<footer class="ft" id="ft" lang="ar" dir="rtl">
+  <div class="ft-in ft-r"><span>© أربعمية · جميع الحقوق محفوظة</span><span class="ft-s" aria-hidden="true"><i>♠︎</i><i class="r">♥︎</i><i class="r">♦︎</i><i>♣︎</i></span></div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,8 @@
+/* phone work deck: quick flick of the leaving card (see snatch() in 06-work-deck.js); the tuck-in afterwards uses the normal .5s transition */
+.wk-deck .wc.snatch{transition:transform .22s cubic-bezier(.3,.7,.4,1),opacity .22s,box-shadow .3s;transition-delay:0ms}
+
+/* the cards are plain HTML. Until the script has laid them out they stay invisible (no flash of a stacked pile); if the script never starts, the head script drops the "js" class and the cards show as a simple wrapped list */
+.js .wk-deck:not(.ready) .wc{opacity:0}
+html:not(.js) .wk-deck:not(.ready){height:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:28px;padding:0 16px 40px;touch-action:auto;cursor:auto}
+html:not(.js) .wk-deck:not(.ready) .wc{position:relative;left:auto;top:auto;transform:none;opacity:1;max-width:100%}
+html:not(.js) .work>.wk-ctl{display:none}

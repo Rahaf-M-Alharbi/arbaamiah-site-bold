@@ -1,0 +1,30 @@
+/* how we work: four stages on one thin line, each marked with a mini playing card */
+.pr .hw{--g:clamp(20px,3vw,48px);list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(36px,5vh,56px) var(--g)}
+.pr .hw-s{position:relative;padding-top:74px;min-width:0}
+.pr .hw-s::before{content:"";position:absolute;top:17px;left:calc(var(--g) / -2);right:calc(var(--g) / -2);height:1px;background:rgba(244,218,191,.28)}
+.pr .hw-s:first-child::before{right:0}
+.pr .hw-s:last-child::before{left:0}
+.pr .hw-m{position:absolute;top:2px;right:0;width:22px;height:31px;display:grid;place-items:center;border:0;border-radius:4px;background:var(--ground);font:400 14px/1 serif;font-style:normal;color:var(--on)}
+.pr .hw-m.r{color:#f4dabf}
+.pr .hw-k{display:block;font:700 13px/1 var(--f-body);opacity:.85}
+.pr .hw-s h3{margin:14px 0 0;font:700 clamp(26px,2.6vw,36px)/1.25 var(--f-disp)}
+.pr .hw-s p{margin:14px 0 0;font:500 clamp(14px,1.15vw,16px)/1.95 var(--f-body);opacity:.78;max-width:30ch}
+@media (max-width:900px){
+  .pr .hw{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pr .hw-s:nth-child(odd)::before,.pr .hw-s:first-child::before{right:0;left:calc(var(--g) / -2)}
+  .pr .hw-s:nth-child(even)::before,.pr .hw-s:last-child::before{left:0;right:calc(var(--g) / -2)}
+}
+@media (max-width:560px){
+  .pr .hw{grid-template-columns:minmax(0,1fr)}
+  .pr .hw-s::before{left:0!important;right:0!important}
+}
+/* breathing space between each section title and its content (site-wide) */
+.deck .dk-head{margin-bottom:clamp(72px,16vh,180px)}
+.work .wk-deck{margin-top:clamp(56px,12vh,140px)}
+.stt .stt-in{gap:clamp(64px,13vh,150px)}
+.pr .pr-in{gap:clamp(72px,16vh,180px)}
+.fq .fq-in{gap:clamp(64px,13vh,150px)}
+.cst .cst-b{padding:clamp(72px,14vh,160px) 0}
+/* paper texture overlay: soft, low-contrast grain plus a very gentle paper tone, laid over the whole page without catching clicks */
+html::after{content:"";position:fixed;inset:0;z-index:2147483000;pointer-events:none;background-image:url(../../assets/img/texture-1.svg),url(../../assets/img/texture-2.svg);background-size:400px 400px,800px 800px;mix-blend-mode:multiply;opacity:.3}
+@media print{html::after{display:none}}

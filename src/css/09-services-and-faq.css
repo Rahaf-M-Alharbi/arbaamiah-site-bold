@@ -1,0 +1,14 @@
+/* services panels: full-bleed, edge to edge, stacked with no gaps */
+.deck{padding-bottom:0}
+.deck .dk-wrap{max-width:none;width:100%;padding:0;gap:0}
+.deck .stack .pnl{margin:0;border:0;border-radius:0;box-shadow:none}
+/* FAQ: open list, no frame; thin dividers between rows, large questions with a plus toggle, generous spacing */
+.fq .fq-in{max-width:1180px}
+.fq .fq-t{display:grid;gap:14px}
+.fq .fq-e{font:700 13px/1 var(--f-body);opacity:.7}
+.fq .fq-l{border:0}
+.fq .fq-l details{border:0;border-top:1px solid rgba(244,218,191,.3)}
+.fq .fq-l details:first-child{border-top:0}
+.fq .fq-l summary{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:0 clamp(16px,3vw,48px);padding:clamp(40px,7.5vh,76px) 0;font:700 clamp(22px,3vw,40px)/1.4 var(--f-disp)}
+.fq .fq-l summary::after{font-size:32px}
+.fq .fq-l .a p{padding:0 0 clamp(40px,7vh,72px) 0;max-width:62ch}

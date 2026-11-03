@@ -1,0 +1,60 @@
+/* CTA experiments. Each one starts only when its section is near the viewport and sleeps while it is off-screen,
+   so nothing here costs anything until you scroll down to it. */
+(function(){
+  var RM=matchMedia('(prefers-reduced-motion:reduce)').matches,all=document.querySelectorAll('.xp');
+  if(!all.length||!('IntersectionObserver' in window))return;
+
+  /* .in marks sections on screen: CSS pauses marquee/seal animations without it */
+  var vis=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('in',e.isIntersecting)})});
+  all.forEach(function(s){vis.observe(s)});
+
+  /* run init(section) once, shortly before the section is reached */
+  var boot=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;boot.unobserve(e.target);INIT[e.target.dataset.xp](e.target)})},{rootMargin:'400px 0px'});
+  function lazy(cls,n){var s=document.querySelector('.'+cls);if(s){s.dataset.xp=n;boot.observe(s)}}
+  /* run fn on each animation frame (at most once per frame) while the section is on screen */
+  function whileOn(sec,start,stop){new IntersectionObserver(function(es){(es[0].isIntersecting?start:stop)()}).observe(sec)}
+
+  var INIT={
+
+    /* 9: bold draw. Click or drag the top card up: it flies out of the deck, flips and lands on it. */
+    p9:function(st){
+      var top=document.getElementById('xp9top'),card=document.getElementById('xp9c'),face=card.querySelector('.f'),h=document.getElementById('xp9h'),p=document.getElementById('xp9p'),again=document.getElementById('xp9a'),
+          O=[['A','ابدأ اليوم.','احكِ لنا عن شركتك، ونكمل من هناك.'],['K','ردّ خلال يوم.','فريق صغير، ورد سريع، بلا وسطاء.'],['Q','جلسة أولى علينا.','نسمعك ونقترح عليك، من غير التزام.'],['J','خطة خلال أسبوع.','نقرأ طاولتك ثم نضع في يدك الخطوة الأولى.'],['10','ورقتك الرابحة.','نحدد معك الحركة التي تغيّر الجولة.']],
+          SU=['♠︎','♥︎','♦︎','♣︎'],drawn=false,d=null,from=null;
+      function T(x,y,s,r){return'translate('+x+'px,'+y+'px) rotate('+r+'deg) scale('+s+')'}
+      function draw(){
+        if(drawn)return;drawn=true;
+        var fr=top.getBoundingClientRect(),o=O[Math.random()*O.length|0],su=SU[Math.random()*4|0];
+        face.className='f'+(su==='♥︎'||su==='♦︎'?' r':'');
+        face.innerHTML='<b>'+o[0]+'<i>'+su+'</i></b><span class="p">'+su+'</span>';
+        h.textContent=o[1];p.textContent=o[2];
+        top.style.transform='';st.classList.add('drawn');card.classList.add('on');
+        var to=card.getBoundingClientRect(),dx=fr.left+fr.width/2-(to.left+to.width/2),dy=fr.top+fr.height/2-(to.top+to.height/2),s=fr.width/to.width;
+        from=[dx,dy,s];
+        if(!RM){
+          card.animate([{transform:T(dx,dy,s,0)},{transform:T(dx*.4,dy*.4-90,1.12,-12),offset:.5},{transform:'rotate(-4deg)'}],{duration:900,easing:'cubic-bezier(.3,.8,.3,1)'});
+          card.firstChild.animate([{transform:'rotateY(180deg)'},{transform:'rotateY(180deg)',offset:.15},{transform:'rotateY(0deg)'}],{duration:900,easing:'ease-out'})}
+        card.removeAttribute('aria-hidden')}
+      /* drag the top card up past a threshold (or just click it) to draw */
+      top.addEventListener('pointerdown',function(e){if(drawn)return;top.setPointerCapture(e.pointerId);top.classList.add('drag');d={id:e.pointerId,x:e.clientX,y:e.clientY,m:false,dx:0,dy:0}});
+      top.addEventListener('pointermove',function(e){
+        if(!d||e.pointerId!==d.id)return;d.dx=e.clientX-d.x;d.dy=Math.min(0,e.clientY-d.y);
+        if(Math.abs(d.dx)+Math.abs(d.dy)>6)d.m=true;
+        top.style.transform='translate('+d.dx*.6+'px,'+d.dy+'px) rotate('+d.dx*.05+'deg)'});
+      function up(){
+        if(!d)return;var g=d;d=null;top.classList.remove('drag');
+        if(!g.m||-g.dy>70||Math.abs(g.dx)>110)draw();
+        else{top.animate([{transform:top.style.transform},{transform:'none'}],{duration:RM?1:300,easing:'cubic-bezier(.3,1.5,.4,1)'});top.style.transform=''}}
+      top.addEventListener('pointerup',up);top.addEventListener('pointercancel',up);
+      top.addEventListener('click',function(e){if(e.detail===0)draw()});
+      again.addEventListener('click',function(){
+        if(!drawn)return;st.classList.remove('drawn');drawn=false;card.setAttribute('aria-hidden','true');
+        /* the card stays put just long enough to fade away while the deck glides back to the centre */
+        var a=card.animate([{opacity:1,transform:'rotate(-4deg)'},{opacity:0,transform:'rotate(-10deg) translateY(36px) scale(.92)'}],{duration:RM?1:450,easing:'ease-in'});
+        a.onfinish=function(){card.classList.remove('on')};
+        top.focus()})
+    }
+  };
+  lazy('xp9-stage','p9');
+})();

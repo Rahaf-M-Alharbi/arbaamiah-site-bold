@@ -1,0 +1,24 @@
+/* hero extras: a one-line description and a proof row under the wordmark, and two buttons in the top band.
+   Both wrappers carry .sub, so the scroll story fades them out together with the wordmark. */
+
+/* the top nav is hidden on this screen, so the wordmark moves up into that empty band to make room */
+.story .wm{margin-top:clamp(0px,1vh,10px)}
+
+.hero-meta{display:grid;justify-items:center;gap:clamp(10px,2vh,20px);margin-top:clamp(30px,5vh,52px);padding-inline:16px}
+.hero-meta>*{animation:hm-in .8s cubic-bezier(.2,.8,.2,1) backwards}
+.hm-line{margin:0;max-width:34em;text-wrap:balance;font:600 clamp(15px,1.7vw,22px)/1.6 var(--f-body);animation-delay:.15s}
+.hm-proof{list-style:none;margin:0;padding:0;display:none;flex-wrap:wrap;justify-content:center;gap:6px 0;font:600 13px/1.4 var(--f-body);opacity:.8;animation-delay:.6s}
+.hm-proof li+li::before{content:"\2666\FE0E";margin-inline:12px;font-size:.8em;opacity:.7}
+@media (min-height:960px){.hm-proof{display:flex}}
+
+/* buttons: top band, so the card fan can never cover them */
+.hero-cta.sub{position:absolute;top:clamp(14px,3vh,28px);left:0;right:0;z-index:4;margin:0;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding-inline:60px;animation:hm-in .8s .3s cubic-bezier(.2,.8,.2,1) backwards}
+.hero-cta .fb-f,.hero-cta .fb-b{padding:11px 26px;font-size:15px}
+.hero-cta .fb--line .fb-f{background:transparent;color:#f4dabf;box-shadow:inset 0 0 0 1px #f4dabf}
+.hero-cta .fb--line .fb-b{background:#f4dabf;color:#2b0a10}
+@media (max-width:640px){.hero-cta.sub{padding-inline:44px;gap:8px}.hm-proof li+li::before{margin-inline:8px}}
+
+@keyframes hm-in{from{opacity:0;transform:translateY(14px)}}
+@media (prefers-reduced-motion:reduce){.hero-meta>*,.hero-cta.sub{animation:none}}
+/* hero frame (the two side lines and the four suits at their ends) in the brand beige (--cream) instead of grey */
+.h .frame{--fc:var(--cream)}

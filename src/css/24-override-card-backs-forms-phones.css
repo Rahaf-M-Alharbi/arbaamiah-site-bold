@@ -1,0 +1,65 @@
+/* brand colour tokens */
+:root{--wine-900:#2a080b;--wine-800:#3d0d12;--wine-700:#4f1117;--wine-600:#6c171e;--wine-400:#a63a43;--wine-200:#d9a0a4;--wine-100:#f0d4d6;--cream-50:#fbeedd;--paper-50:#fbf9f4;--ground-light:#e6decd;--gray-900:#2b2826;--gray-700:#4a4642;--gray-500:#7a746d;--gray-300:#b4b1ab;--gray-200:#d8d5d0;--gray-100:#edebe3;--ink-900:#17120f;--black:#0a0807}
+/* card backs: dark green */
+.slot::after,.hcard .b,.cc .b{background:url("../../assets/img/logo.png") center/58% auto no-repeat,#0d3d3a}
+.slot::after{box-shadow:inset 0 0 0 calc(var(--w)*.045) #0d3d3a, inset 0 0 0 calc(var(--w)*.052) rgba(244,218,191,.75)}
+.hcard .b{box-shadow:inset 0 0 0 4cqw #0d3d3a, inset 0 0 0 4.6cqw rgba(244,218,191,.75)}
+.cc .b{box-shadow:inset 0 0 0 calc(var(--cw)*.045) #0d3d3a, inset 0 0 0 calc(var(--cw)*.052) rgba(244,218,191,.75)}
+/* card backs: modern, asymmetric (wine circle, outline, triangle) with the logo on top */
+.slot::after,.hcard .b,.cc .b{background:url("../../assets/img/logo.png") 50% 13%/46% auto no-repeat,url(../../assets/img/texture-5.svg) center/100% 100% no-repeat,#0d3d3a;box-shadow:none}
+/* card backs: logo centred between two hairlines, the four suits underneath */
+.slot::after,.hcard .b,.cc .b{background:url("../../assets/img/logo-top.svg") 50% 48%/60% auto no-repeat,url(../../assets/img/texture-6.svg) center/100% 100% no-repeat,#0d3d3a;box-shadow:none}
+/* form polish: optional hints, inline errors, trap field, thank-you state */
+.ctf-l span em{font-style:normal;font-weight:400;opacity:.7;margin-inline-start:6px}
+.ctf-err{min-height:1.2em;font:400 14px/1.4 var(--f-body);color:#f4dabf;opacity:.9}
+.ctf-hp{position:absolute;inset:auto 0 0 auto;width:1px;height:1px;opacity:0;pointer-events:none;clip-path:inset(50%)}
+.ctf-ok{grid-column:1/-1;display:grid;gap:14px;justify-items:start;padding:40px 0;animation:ctfIn .6s ease both}
+.ctf-ok i{font-style:normal;font-size:44px;color:#f4dabf}
+.ctf-ok b{font:700 clamp(32px,4vw,56px)/1.2 var(--f-disp)}
+.ctf-ok span{font:400 22px/1.7 var(--f-body);opacity:.85}
+@keyframes ctfIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.ctf-f button:disabled{opacity:.6;cursor:wait}
+/* contact form: light card on the dark section */
+.ctf-f{background:#fbeedd;color:#2b0a10;border-radius:20px;padding:clamp(24px,3.4vw,48px)}
+.ctf-f .ctf-l span,.ctf-f .ctf-c legend{opacity:.75}
+.ctf-f .ctf-l input,.ctf-f .ctf-l textarea{border-bottom-color:rgba(43,10,16,.35)}
+.ctf-f .ctf-l input:focus,.ctf-f .ctf-l textarea:focus{border-bottom-color:#6c171e}
+.ctf-f .ctf-l input[aria-invalid="true"]{border-bottom-color:#6c171e}
+.ctf-f .ctf-c span{border-color:rgba(43,10,16,.35)}
+.ctf-f .ctf-c span i.r{color:#6c171e}
+.ctf-f .ctf-c input:checked+span{background:#6c171e;color:#f4dabf;border-color:#6c171e}
+.ctf-f .ctf-c input:checked+span i.r{color:#f4dabf}
+.ctf-f .ctf-c input:focus-visible+span{outline-color:#6c171e}
+.ctf-f .ctf-err{color:#6c171e}
+.ctf-f .ctf-ok i{color:#6c171e}
+.ctf-f .fb-f{background:#6c171e;color:#f4dabf}
+.ctf-f .fb-b{background:#f4dabf;color:#6c171e;box-shadow:inset 0 0 0 1px rgba(108,23,30,.4)}
+/* contact form: one field per row */
+.ctf-f{grid-template-columns:minmax(0,1fr)}
+.hcard .f .hlogo{position:absolute;left:50%;top:50%;width:78%;transform:translate(-50%,-50%);height:auto}
+/* the fixed flyer layer is only a visual: its invisible cards must not catch clicks (they covered the form chips) */
+.flyer,.flyer *{pointer-events:none!important}
+/* hero frame: the bottom-right diamond is drawn by the right line itself, so it always sits exactly at the line's end */
+.h .frame .br{display:none}
+.h .frame .ln.r::after{content:"♦︎";position:absolute;left:-9.5px;bottom:-24px;width:20px;height:20px;display:grid;place-items:center;font:400 16px/1 serif;color:var(--fc)}
+/* solutions intro: breathing room from the screen edges */
+.deck .dk-head{padding-inline:clamp(32px,7vw,120px)}
+/* phones: lift text that scales down too small, bigger tap targets */
+@media (max-width:640px){
+.card p{font-size:max(calc(var(--w)*.052),10px)}
+.card h4{font-size:max(calc(var(--w)*.14),17px)}
+.wc .tag,.wc li{font-size:max(3.6cqw,10px)}
+.wc p{font-size:max(4.6cqw,12px)}
+.cst-ctl button{width:44px;height:44px}
+}
+/* phones: more room below the hand-over text, tighter gaps so it still fits */
+@media (max-width:760px){
+.hnd .htxt{bottom:calc(14vh + env(safe-area-inset-bottom,0px));gap:clamp(18px,3.4vh,28px)}
+.hnd .htxt h2{font-size:clamp(36px,10vw,52px)}
+.hnd .htxt p{font-size:clamp(20px,5.4vw,26px)}
+.hnd .hrow{padding-top:clamp(14px,2.4vh,22px)}
+}
+/* phone: keep the second-section text inside the two frame lines */
+@media (max-width:760px){.h .frame{--fi:24px}.sec2{left:46px;right:46px}.sec2 h2{font-size:clamp(22px,6.4vw,32px)}.sec2 p{font-size:clamp(16px,4.6vw,20px)}}
+/* card backs: the thin rounded border is drawn in texture-6.svg (rect rx), so its corner radius is independent of the card's */
+.slot::after,.hcard .b,.cc .b{box-shadow:none}

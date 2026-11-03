@@ -1,0 +1,37 @@
+/* ===== components =====
+   frame   <div class="frame"><s class="ln l"></s><s class="ln r"></s><i class="tl">♠︎</i><i class="tr">♥︎</i><i class="bl">♣︎</i><i class="br">♦︎</i></div>
+           first child of any position:relative + isolation:isolate parent (.has-frame does both). --fi inset from the edges, --fc colour, --fg gap before the suits; .frame--ink for paper grounds
+   tag     <span class="tag">01 · فلسفتنا</span>   variants: .tag--accent (warm, with a spark icon), .tag--solid (filled), .tag--flush (no space below)
+   spacing every component ends with margin-bottom: var(--cmp-mb) = 50px (tag, section top row, section title)
+   section <section class="sec sec--paper"><div class="sec__in"><div class="sec__top"><span class="tag">…</span><span class="sec__rule"></span><span class="tag tag--accent">…</span></div><h2 class="sec__title">…</h2>…</div></section>
+           grounds: .sec--paper .sec--beige .sec--wine .sec--red .sec--velvet */
+/* every component leaves the same space below it: one token, --cmp-mb (50px). Change it once and all components follow; .tag--flush drops it for inline use */
+:root{--cmp-mb:50px}
+.has-frame{position:relative;isolation:isolate}
+.frame{--fi:50px;--fc:#8a7a72;--fg:14px;position:absolute;inset:var(--fi);z-index:-1;pointer-events:none}
+.frame .ln{position:absolute;top:var(--fg);bottom:var(--fg);width:0;border-left:1px solid var(--fc);text-decoration:none}
+.frame .ln.l{left:0}
+.frame .ln.r{right:0}
+.frame i{position:absolute;width:20px;height:20px;display:grid;place-items:center;font:400 16px/1 serif;font-style:normal;color:var(--fc)}
+.frame .tl{left:-10px;top:-10px}
+.frame .tr{right:-10px;top:-10px}
+.frame .bl{left:-10px;bottom:-10px}
+.frame .br{right:-10px;bottom:-10px}
+.frame--ink{--fc:rgba(31,24,20,.42)}
+.tag{display:inline-flex;align-items:center;gap:8px;margin-bottom:var(--cmp-mb);padding:8px 16px;border:1px solid currentColor;border-radius:99px;font:600 13px/1 var(--f-body);white-space:nowrap;color:inherit;background:transparent}
+.tag svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
+.tag--flush,.sec__top .tag,.wc .tag{margin-bottom:0}
+.tag--accent{color:#6c171e;border-color:#f4dabf;background:#f4e1d6}
+.tag--accent svg{stroke:#f4dabf}
+.tag--solid{color:#f4dabf;background:#1f1814;border-color:#1f1814}
+.sec{position:relative;isolation:isolate;overflow:clip;direction:rtl;padding:clamp(64px,11vh,130px) max(16px,env(safe-area-inset-right,0px)) clamp(64px,11vh,130px) max(16px,env(safe-area-inset-left,0px))}
+.sec__in{position:relative;max-width:1180px;margin:0 auto;display:flex;flex-direction:column;align-items:stretch}
+.sec__top{display:flex;align-items:center;gap:14px;margin-bottom:var(--cmp-mb)}
+.sec__rule{flex:1;min-width:20px;height:0;border-top:1px solid currentColor;opacity:.5}
+.sec__title{margin:0 0 var(--cmp-mb);font:700 clamp(36px,6vw,84px)/1.1 var(--f-disp);text-wrap:balance}
+.sec--paper{background:#efe6d6;color:#1f1814}
+.sec--beige{background:var(--beige);color:#2a211b}
+.sec--wine{background:#3d0d12;color:#f4dabf}
+.sec--red{background:#3d0d12;color:#1a0d0a}
+.sec--velvet{background:#3d0d12;color:#f4dabf}
+.mini .cta{box-shadow:none}

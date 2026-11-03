@@ -1,0 +1,58 @@
+/* Layout: huge Arabic wordmark centred under a small meta/nav row, fan of service cards cropped by the bottom edge. Paper-and-ink print look, single light theme by choice. */
+:root{
+  --paper:#d8d5d0; --paper2:#edebe3; --ink:#1b1b19; --vermilion:#6c171e; --blush:#f4dabf; --wine:#6c171e; --cream:#f4dabf; --rose:#f4dabf; --deep:#3d0d12; --tex:url(../../assets/img/velvet.jpg);
+  --f-disp:'Thmanyah Serif Display',serif;
+  --f-body:'Thmanyah Sans',system-ui,sans-serif;
+  --w:clamp(140px,19vw,260px);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--deep);color:var(--cream);font-family:var(--f-body);direction:rtl}
+.h{position:relative;overflow:hidden;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;
+  background-color:var(--deep);background-image:radial-gradient(ellipse 85% 75% at 50% 40%,transparent 50%,rgba(15,0,4,.5)),var(--tex);background-blend-mode:normal,luminosity;background-size:auto,cover;background-position:center;background-repeat:no-repeat;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+/* velvet: photographed burgundy pile, one image scaled to cover the hero, mirrored 2x2 in script so it repeats without seams */
+/* nav: card-index links, a card-shaped contact button, and a double rule with a diamond under it */
+.nav,.nav-rule{--suit:var(--rose)}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:18px 14px;position:relative;z-index:3}
+.brand{display:grid;gap:4px}
+.brand b{font:700 28px/1 var(--f-disp)}
+.brand small{font:600 12px/1 var(--f-body);opacity:.72}
+.links{display:flex;align-items:center;gap:26px;font:700 15px/1 var(--f-body)}
+.links a{color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.links a i{font-style:normal;font-size:1.05em}
+.links a:nth-child(2) i{color:var(--suit)}
+.links a:not(.flipbtn):hover{transform:translateY(-3px)}
+.links .cta{padding:9px 16px;border:1px solid currentColor;border-radius:7px;box-shadow:none}
+.links .cta i{color:inherit}
+.nav-rule{display:flex;align-items:center;gap:12px;position:relative;z-index:3;margin-bottom:4px}
+.nav-rule span{flex:1;height:5px;border-block:1px solid currentColor;opacity:.55}
+.nav-rule i{font-style:normal;font-size:16px;color:var(--suit)}
+@media (max-width:640px){.links{gap:12px;font-size:13px}.brand b{font-size:22px}.brand small{font-size:11px}.links .cta{padding:7px 11px}}
+
+.wm{position:relative;margin:clamp(24px,5vh,70px) 0 0;padding-top:.23em;text-align:center;font:700 clamp(80px,min(20vw,32vh),290px)/.95 var(--f-disp);white-space:nowrap;z-index:2}
+.wm .k{position:relative;display:block}
+.wm .g{position:absolute;inset:.23em 0 0;color:#3d0d12;z-index:-1;transform:translate(.3vw,.12vw);animation:reg 1.8s cubic-bezier(.2,.8,.2,1) backwards}
+@keyframes reg{from{transform:translate(2.8vw,1.3vw)}}
+.n4{position:absolute;right:6%;top:-.02em;font:700 .24em/1 var(--f-disp);transform:rotate(-8deg)}
+.sub{text-align:center;margin-top:12px;font:600 clamp(16px,2vw,26px)/1.4 var(--f-body);position:relative;z-index:2}
+.hint{position:absolute;left:max(16px,env(safe-area-inset-left,0px));bottom:16px;z-index:1;font:600 13px/1 var(--f-body)}
+
+.hand{direction:ltr;display:flex;justify-content:center;align-items:flex-start;margin-top:auto;height:calc(var(--w)*.9);position:relative;z-index:2}
+.card{--r:0deg;--lift:0px;--red:#6c171e;position:relative;flex:none;width:var(--w);aspect-ratio:5/7;margin-inline:calc(var(--w)*-.1);padding:0;font:inherit;color:var(--red);
+  background:#fbf9f4;border:0;border-radius:calc(var(--w)*.06);box-shadow:none;
+  text-align:center;cursor:pointer;transform-origin:50% 140%;transform:translateY(var(--lift)) rotate(var(--r));
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.card:hover,.card:focus-visible{--lift:calc(var(--w)*-.34);z-index:5;box-shadow:none;outline:none}
+.card:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+.ix{position:absolute;top:calc(var(--w)*.075);left:calc(var(--w)*.085);font:400 calc(var(--w)*.085)/1 var(--f-disp);text-align:center;z-index:1;color:var(--red)}
+.ix i{display:block;font-style:normal;font-size:.9em;margin-top:calc(var(--w)*.02)}
+.ix.b{top:auto;left:auto;bottom:calc(var(--w)*.075);right:calc(var(--w)*.085);transform:rotate(180deg)}
+.med{position:absolute;left:50%;top:28%;width:calc(var(--w)*.24);aspect-ratio:1;transform:translateX(-50%)}
+.ic{display:block;width:100%;height:100%;fill:none;stroke:var(--red);stroke-width:.9;stroke-linecap:round;stroke-linejoin:round}
+.body{position:absolute;left:14%;right:14%;top:49.5%;display:grid;gap:calc(var(--w)*.035);justify-items:center;color:var(--red);direction:rtl}
+.card h4{margin:0;font:600 calc(var(--w)*.14)/1.25 var(--f-disp);color:#1b1b19}
+.rule{display:none}
+.card p{margin:0;font:500 calc(var(--w)*.052)/1.7 var(--f-body);color:#1b1b19;opacity:.6;max-width:80%}
+@media (prefers-reduced-motion:reduce){.card{transition:none}.wm .g{animation:none}}
