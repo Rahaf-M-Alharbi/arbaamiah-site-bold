@@ -1,0 +1,9 @@
+/* link from the home FAQ to the full page */
+.fq .fq-all{display:inline-flex;align-items:center;gap:8px;margin-top:clamp(22px,4vh,40px);font:700 clamp(15px,1.4vw,18px)/1 var(--f-body);color:inherit;text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:6px}
+.fq .fq-all i{font-style:normal}
+
+/* full FAQ page */
+.pg-top{display:flex;justify-content:space-between;align-items:center;padding:20px max(20px,5vw);position:relative;z-index:2}
+.pg-brand{font:700 26px/1 var(--f-disp);color:inherit;text-decoration:none}
+.pg-back{font:700 15px/1 var(--f-body);color:inherit;text-decoration:none}
+.pg-fq{padding-top:clamp(24px,6vh,70px)}

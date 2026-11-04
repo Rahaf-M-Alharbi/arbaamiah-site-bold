@@ -42,8 +42,8 @@ const block = (html, name) => {
 };
 
 const sizes = [];
-for (const page of ["index.html", "pricing.html"]) {
-  const name = page.startsWith("index") ? "site" : "pricing";
+for (const page of ["index.html", "pricing.html", "faq.html"]) {
+  const name = page.startsWith("pricing") ? "pricing" : "site";
   let html = read(page);
   const css = block(html, "css"), js = block(html, "js");
 
