@@ -2,7 +2,7 @@
 
 Saved from branch `old-copy` (git). Sections marked **replaced** were changed on branch `new-copy`; the rest are unchanged.
 
-## Hero (unchanged)
+## Hero — line replaced on new-copy (title, bullets, buttons, cards unchanged)
 - Title: أربعمية
 - Line: مكتب إبداعي يجمع المحتوى والتصميم والإعلانات والنمو في فريق واحد.
 - Proof bullets: خطة واضحة خلال أسبوع · عقود قصيرة قابلة للتجديد · تقرير شهري بالنتائج
