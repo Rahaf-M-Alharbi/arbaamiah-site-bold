@@ -16,11 +16,11 @@
     b.innerHTML=PlayingCard.corners(d.r,d.s)+
       '<div class="med"><svg class="ic" viewBox="0 0 48 48"><use href="#l-'+d.ic+'"/></svg></div>'+
       '<div class="body"><h4>'+d.t+'</h4><span class="rule"></span><p>'+d.p+'</p></div>';
-    s.appendChild(b);(i===3?document.getElementById('flyer'):layer).appendChild(s);return s;
+    s.appendChild(b);layer.appendChild(s);return s;
   });
   var n2=document.getElementById('next2'),swapped=false,heroHTML='',bigHTML='',cardEl=null,FLY=3,mini=document.getElementById('mini'),big=document.getElementById('bigcard'),REST=[-2,1.5,-1,2],n=slots.length,mid=(n-1)/2,A=[],B=[],C=[],G=[],W,H,w,h,range;
   cardEl=slots[3].firstChild;heroHTML=cardEl.innerHTML;bigHTML=big.innerHTML;
-  var SEG=[[.04,.30],[.30,.56],[.56,.90]];
+  var SEG=[[.04,.66]];
   function clamp(x){return Math.max(0,Math.min(1,x))}
   function inOut(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
   function back(t){var c1=1.5,c3=c1+1;return 1+c3*Math.pow(t-1,3)+c1*Math.pow(t-1,2)}
@@ -59,43 +59,18 @@
   function update(){
     var sr=story.getBoundingClientRect(),
         P=range>0?clamp((-sr.top)/range):0,
-        p=clamp(P/.94),f=clamp(p/.2),t=clamp((p-.8)/.12),
+        p=clamp(P/.94),f=clamp(p/.2),t=clamp((p-.7)/.2),
         dd=(H-sr.bottom)/H,r=clamp(dd/1.6);
     mini.classList.toggle('on',t>=.5);
     slots.forEach(function(sl,i){
-      var t1=loc(p,0,i),t2=loc(p,1,i),t3=loc(p,2,i),dir=(i%2?-1:1);
+      var t1=loc(p,0,i);
       var s=mix(A[i],B[i],inOut(t1));
       s.y-=Math.sin(Math.PI*t1)*H*.04;
-      s=mix(s,C[i],inOut(t2));
-      s.y+=dir*Math.sin(Math.PI*t2)*H*.14;
-      s.x+=dir*Math.sin(Math.PI*t2)*W*.05;
-      s=mix(s,G[i],back(t3));
-      if(i===FLY){
-        var bw0=w*s.s,bw,cx=s.x,cy=s.y,rot=s.r,ang=0,lift=0,tr,
-            nr=n2.getBoundingClientRect(),pre=H*.9-nr.top,
-            m=inOut(clamp(pre/(.55*H))),fp=clamp((pre-.55*H)/H),g=0;
-        cx+=(W/2-cx)*m;cy+=(H/2-cy)*m;rot*=(1-m);
-        bw=bw0*(1+.25*m);
-        ang=720*inOut(fp);lift=Math.sin(Math.PI*fp)*160;
-        if(g>0){
-          tr=big.getBoundingClientRect();
-          cx+=(tr.left+tr.width/2-cx)*g;cy+=(tr.top+tr.height/2-cy)*g;
-          bw+=(tr.width-bw)*g;
-        }
-        var want=ang>=180;
-        if(want!==swapped){swapped=want;cardEl.innerHTML=want?bigHTML:heroHTML;cardEl.classList.toggle('swapped',want)}
-        /* the card keeps its normal size and is scaled like the other three: resizing it (width, height, --w) every frame
-           made the browser re-lay out and redraw its text at a new font size on each scroll frame, which stuttered on the first pass */
-        if(cardEl.style.borderRadius!==w*.07+'px')cardEl.style.borderRadius=w*.07+'px';
-        sl.style.visibility=g>=1?'hidden':'visible';
-        big.classList.toggle('on',g>=1);
-        sl.style.transform='translate('+(cx-w/2)+'px,'+(cy-h/2)+'px) translateZ('+lift+'px) rotate('+rot+'deg) rotateY('+s.ry+'deg) rotate3d(1,1,0,'+ang+'deg) scale('+(bw/w)+')';
-        return;
-      }
       sl.style.transform='translate('+(s.x-w/2)+'px,'+(s.y-h/2)+'px) rotate('+s.r+'deg) rotateY('+s.ry+'deg) scale('+s.s+')';
     });
     for(var k=0;k<fade.length;k++){fade[k].style.opacity=Math.max(0,1-f*2.5);fade[k].style.transform='translateY('+(-f*40)+'px)';fade[k].style.pointerEvents=f>.3?'none':''}
-    sec.style.opacity=t;sec.style.transform='translateY('+((1-t)*30)+'px)';
+    layer.style.opacity=1-inOut(clamp(t*1.6));
+    sec.style.opacity=clamp(t*1.6-.6);sec.style.transform='translateY('+((1-t)*30)+'px)';
   }
   var tick=false;
   function req(){if(!tick){tick=true;requestAnimationFrame(function(){tick=false;update()})}}

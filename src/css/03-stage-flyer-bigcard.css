@@ -3,7 +3,7 @@
 .stage{z-index:2}
 
 /* normal scroll: the velvet ends like a rug (woven band and fringe); one hero card grows into the big card that holds the next section */
-.story{height:480vh}
+.story{height:260vh}
 .flyer{position:fixed;inset:0;z-index:10;pointer-events:none;perspective:1500px}
 .slot::after{border-radius:var(--rad,calc(var(--w)*.07))}
 .next2{position:relative;z-index:1;direction:rtl}

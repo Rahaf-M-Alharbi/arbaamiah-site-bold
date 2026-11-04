@@ -29,7 +29,7 @@
 
 
 /* logos: after the big card lands it spreads into small cards, one per client logo */
-.next2{height:400vh}
+.next2{height:220vh}
 .bigcard{display:none!important}
 .lgl{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0}
 .lgl.on{pointer-events:auto}

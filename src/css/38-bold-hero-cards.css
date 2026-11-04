@@ -6,3 +6,19 @@
 .card.pk .pk-ix i{font-size:.55em;margin-top:1.5cqw}
 .card.pk .pk-ix.b{display:none}
 .card.pk .body{z-index:1}
+
+/* after the row of cards the stage clears and the "our cards" statement takes the whole screen, no cards beside it */
+.stage .sec2{top:0;bottom:0;left:46px;right:46px;align-content:center;justify-items:center;text-align:center}
+.stage .sec2 p{margin-inline:auto}
+
+/* phone: title, line and buttons sit together, centred in the space above the fanned cards */
+@media (max-width:760px){
+  .story .stage{display:flex;flex-direction:column;justify-content:center;align-items:center;padding-bottom:30vh;box-sizing:border-box}
+  .story .stage .wm{order:1;margin:0}
+  .story .stage .hero-meta{order:2;margin-top:clamp(14px,2.5vh,24px)}
+  .story .stage .hero-cta.sub{order:3;position:static;margin-top:clamp(18px,3vh,28px);padding-inline:16px;width:100%;box-sizing:border-box}
+}
+
+/* the main hero button (and its hover shadow) always sits above the secondary one */
+.hero-cta .flipbtn{position:relative;z-index:1}
+.hero-cta .flipbtn:first-child{z-index:3}

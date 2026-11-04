@@ -26,7 +26,7 @@
   }
   function update(){
     var H0=window.innerHeight,top=n2.getBoundingClientRect().top,
-        q=clamp((-top-.8*H0)/(1.7*H0)),fl=document.getElementById('flyer'),fc=fl&&fl.firstElementChild;
+        q=clamp((.2*H0-top)/(1.1*H0)),fl=document.getElementById('flyer'),fc=fl&&fl.firstElementChild;
     lgl.style.opacity=q>0?1:0;lgl.classList.toggle('on',q>=.98);if(fl)fl.style.opacity=1-inOut(clamp(q/.12));
     var br=fc?fc.getBoundingClientRect():{left:W/2-cw/4,top:H/2-ch/4,width:cw/2,height:ch/2},stR=lgl.parentNode.getBoundingClientRect(),
         ox=br.left+br.width/2-stR.left,oy=br.top+br.height/2-stR.top,sw=br.width,sh=br.height;
