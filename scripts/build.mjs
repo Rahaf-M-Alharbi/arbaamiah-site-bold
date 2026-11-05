@@ -5,6 +5,7 @@
 //  - writes .br and .gz copies of every text file for hosts/servers that serve precompressed files
 //  - writes _headers (Netlify / Cloudflare Pages caching rules)
 // Usage: npm run build
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, extname, join } from "node:path";
@@ -19,6 +20,7 @@ const hash = (s) => createHash("sha1").update(s).digest("hex").slice(0, 8);
 /* the browsers the design was checked in; esbuild only uses syntax all of them understand */
 const target = ["chrome100", "edge100", "firefox100", "safari15"];
 
+execFileSync("node", [join(root, "scripts/gen-projects.mjs")], { stdio: "inherit" });
 rmSync(dist, { recursive: true, force: true });
 for (const d of ["css", "js", "fonts", "img"]) mkdirSync(join(dist, "assets", d), { recursive: true });
 
@@ -33,6 +35,15 @@ for (const dir of ["fonts", "img"]) {
     map[`${dir}/${f}`] = out;
   }
 }
+/* project images and videos: assets/projects/<folder>/<file> keeps its folder, gets the same fingerprint */
+const projectFiles = (d = "projects") => readdirSync(join(root, "assets", d), { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? projectFiles(join(d, e.name)) : [join(d, e.name)]));
+for (const rel of projectFiles()) {
+  if (rel.split("/").pop().startsWith(".")) continue;
+  const buf = readFileSync(join(root, "assets", rel)), ext = extname(rel), out = `${rel.slice(0, -ext.length)}.${hash(buf)}${ext}`;
+  mkdirSync(dirname(join(dist, "assets", out)), { recursive: true });
+  writeFileSync(join(dist, "assets", out), buf);
+  map[rel] = out;
+}
 /* replace every "<prefix><asset>" with its fingerprinted name; prefix is "../" inside CSS, "assets/" inside HTML */
 const relink = (text, prefix) => Object.entries(map).reduce((t, [from, to]) => t.split(prefix + from).join(prefix + to), text);
 
@@ -42,7 +53,8 @@ const block = (html, name) => {
 };
 
 const sizes = [];
-for (const page of ["index.html", "pricing.html", "faq.html"]) {
+const pages = ["index.html", "pricing.html", "faq.html", "projects.html", ...readdirSync(root).filter((f) => f.startsWith("project-") && f.endsWith(".html"))];
+for (const page of pages) {
   const name = page.startsWith("pricing") ? "pricing" : "site";
   let html = read(page);
   const css = block(html, "css"), js = block(html, "js");

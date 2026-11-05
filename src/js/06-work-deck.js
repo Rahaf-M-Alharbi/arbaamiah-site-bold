@@ -82,7 +82,8 @@
   });
   var down=false,dragging=false,pid=-1,sx=0,dx=0,lastX=0,lastT=0,vx=0,moved=0,tgt=-1;
   deck.addEventListener('pointerdown',function(e){
-    if(down||(e.pointerType==='mouse'&&e.button!==0))return;/* one pointer at a time; right/middle click does not start a drag */
+    if(down||(e.pointerType==='mouse'&&e.button!==0))return;
+    if(e.target.closest&&e.target.closest('a'))return;/* a project link is a plain click: no drag, no pointer capture *//* one pointer at a time; right/middle click does not start a drag */
     steer();
     down=true;pid=e.pointerId;sx=lastX=e.clientX;lastT=e.timeStamp;dx=0;vx=0;moved=0;
     var el=e.target.closest&&e.target.closest('.wc');tgt=el?cards.indexOf(el):-1;

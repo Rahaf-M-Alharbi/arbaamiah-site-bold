@@ -10,7 +10,7 @@ const [dir = "dist", port = "8082", flag] = process.argv.slice(2);
 const root = resolve(dir), dev = flag === "--no-cache";
 const TYPES = {
   ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8",
-  ".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg", ".avif": "image/avif", ".woff2": "font/woff2", ".json": "application/json",
+  ".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg", ".avif": "image/avif", ".webp": "image/webp", ".mp4": "video/mp4", ".woff2": "font/woff2", ".json": "application/json",
 };
 
 createServer((req, res) => {
