@@ -72,7 +72,7 @@ for (const page of pages) {
       const { code } = await transform(read(f), { loader: "js", minify: true, target });
       parts.push(`try{${code}}catch(e){console.error(${JSON.stringify(f)},e)}`);
     }
-    const jsText = parts.join("\n");
+    const jsText = relink(parts.join("\n"), "assets/");  /* logo paths written inside the JS */
     const jsName = `${name}.${hash(jsText)}.js`;
     writeFileSync(join(dist, "assets/js", jsName), jsText);
     html = html.replace(js.whole, `<script src="assets/js/${jsName}" defer></script>`);

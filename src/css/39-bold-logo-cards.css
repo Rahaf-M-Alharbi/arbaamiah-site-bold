@@ -5,3 +5,7 @@
 .lgc .pk-slot{border-color:var(--wine);color:var(--wine);position:relative}
 .lgc .pk-logo{filter:none;position:relative}
 @media (max-width:640px){.lgc.pk{border-width:3px;box-shadow:5px 5px 0 #17120f}.lgc.pk::before{border-width:2px}}
+
+/* real logos: wide marks get more room; light-background logos blend into the cream face, dark ones sit as small rounded tiles */
+.lgc .pk-logo{width:72%;max-height:44%;border-radius:6px}
+.lgc .pk-logo.lt{mix-blend-mode:multiply;border-radius:0}

@@ -3,7 +3,8 @@
   if(!n2||!big||!lgl)return;
   var SU=['s','h','c','d'],R=['A','K','Q','J','10','9','8','7'];
   /* put the company logo in as <img src> by replacing a name here, e.g. {n:'اسم الشركة',src:'logo.svg'} */
-  var L=[{n:'شعار ١'},{n:'شعار ٢'},{n:'شعار ٣'},{n:'شعار ٤'},{n:'شعار ٥'},{n:'شعار ٦'},{n:'شعار ٧'},{n:'شعار ٨'}];
+  var L=[{n:'MFAZA Developments',src:'assets/img/logo-mafaz.webp'},{n:'DIGI HUB',src:'assets/img/logo-digi-hub.webp'},{n:'NMA',src:'assets/img/logo-nama-store.webp',cls:'lt'},{n:'زهيد',src:'assets/img/logo-zaheed.webp',cls:'lt'},
+    {n:'Lovént Spa',src:'assets/img/logo-lovent-spa.webp',cls:'lt'},{n:'بُنار',src:'assets/img/logo-bunar.webp',cls:'lt'},{n:'مظلة التميز',src:'assets/img/logo-mazallat-al-tamayyuz.webp',cls:'lt'},{n:'المحامي عيسى بن علي',src:'assets/img/logo-lawyer.webp'}];/* cls 'lt': light background, blends into the cream card */
   var els=L.map(function(l,k){
     var e=PlayingCard.create({rank:R[k],suit:SU[k%4],cls:'lgc logo',html:PlayingCard.logo(l)});
     e.style.zIndex=8-k;
