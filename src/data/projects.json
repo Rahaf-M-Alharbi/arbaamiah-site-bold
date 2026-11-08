@@ -1,14 +1,418 @@
 [
-  {"slug": "mafaz", "name": "مفازا", "name_en": "MFAZA Developments", "category": "عقارات", "folder": "mafaz", "why": "ضخامة حجم الأعمال العقارية وتنوع المحتوى لمفازا", "value": "خبرة الوكالة في المشاريع العقارية المختلفة", "skip_from": "^stories", "max": 24, "about": "تصاميم عقارية لشركة مفازا للتطوير العقاري (MFAZA Developments): منشورات إنستقرام وقصص ومنشورات لينكد إن لمشاريعها."},
-  {"slug": "bunar", "name": "بُنار", "name_en": "Bunar", "category": "هوية بصرية", "folder": "binar", "pick": [1, 2, 5, 6, 9, 13, 15, 16, 18, 19, 20], "about": "هوية بصرية لعلامة قهوة. الشعار مبني على كلمة «بُن» مع حرف R يرمز إلى أول حرف من اسم العميل. دليل الهوية يشمل الشعار والألوان والخطوط، وتطبيقات على الأكواب والعلب والبطاقات والقبعات."},
-  {"slug": "digi-hub", "name": "ديجي هوب", "name_en": "Digi Hub", "category": "تصميم", "folder": "digi-hub", "about": "محتوى وتصاميم لمتجر ديجي هوب للمنتجات الرقمية وتراخيص إعادة البيع (PLR)، على إنستقرام وتيك توك."},
-  {"slug": "mazallat-al-tamayyuz", "name": "مظلة التميز", "name_en": "Premium Umbrella", "category": "تصميم وموشن", "folder": "mazallat-al-tamayyuz", "why": "وضوح الرسالة ومباشرة الطرح", "value": "محتوى مختصر وواضح يحقق الهدف التسويقي", "skip": [1, 2], "about": "تصاميم وموشن لمظلة التميز لخدمات السيارات: حجز المواعيد عبر الموقع، وباقات الحماية والعناية بالسيارة."},
-  {"slug": "lawyer-designs", "name": "تصاميم المحامي", "name_en": "Legal Designs", "category": "تصميم", "folder": "lawyer-designs", "why": "تنوع المحتوى والتعامل مع مجالات متخصصة", "value": "تبسيط المعلومات القانونية للجمهور", "about": "تصاميم ومقطع فيديو للمحامي محمد الخمعلي: معلومات قانونية مبسطة للجمهور."},
-  {"slug": "nama-store", "name": "نما ستور", "name_en": "NMA Store", "category": "تجارة إلكترونية", "folder": "nama-store", "why": "قوة العلامة التجارية ومعرفة الجمهور بها", "value": "مصداقية من علامة معروفة", "about": "تصاميم حملة كود خصم لمتجر NMA بمناسبة اليوم العالمي للادخار."},
-  {"slug": "wazna", "name": "وزنة", "name_en": "Wazna", "category": "كتابة محتوى وفيديو", "folder": "content-writing", "why": "ربط العمل بشخصية مؤثرة", "value": "محتوى يناسب الشخصيات المؤثرة وجمهورها", "pick": [4, 5, 6, 1], "cover_video": false, "about": "متجر قهوة مختصة. عملنا على خطة إطلاق المتجر: التعريف به وبناء الثقة، مع جمهور من أصحاب الأعمال والموظفين والطلاب، بنبرة واثقة وفخورة بأسلوب شعبي راقٍ. محتوى تعريفي وتثقيفي وقصصي وتسويقي، وسيناريوهات ريلز وتعليق صوتي وتصميم عبوة وملصقات."},
-  {"slug": "campaign-management", "name": "إدارة الحملات", "name_en": "Campaign Management", "category": "حملات إعلانية", "folder": "campaign-management", "why": "نجاح الحملات المدفوعة بنتائج قابلة للقياس", "value": "ثقة العملاء في إدارة الحملات وتحليل أدائها", "pick": [1, 2, 5], "about": "تقرير نتائج حملة «فينا كافانا» الإعلانية: الوصول والتفاعل بحسب الأيام، وتوزيع الجمهور بحسب العمر والجنس، وتحليل الأداء."},
-  {"slug": "ahmed-hr", "name": "أحمد HR", "name_en": "Ahmed HR", "category": "إنفوجرافيك", "folder": "ahmed-hr", "about": "إنفوجرافيك لمستشار الموارد البشرية أحمد: إدارة الوقت، وأسئلة المقابلة الشخصية لصاحب العمل، وأهمية قول «لا» للالتزام بجدولك. معلومات مهنية مبسطة في تصاميم واضحة."},
-  {"slug": "bedding-hotel", "name": "المجموعة الفندقية", "name_en": "Hotel & Bedding", "category": "بانرات متجر", "folder": "bedding-hotel", "about": "بانرات لمتجر مفروشات: الأرواب والمناشف، والبطانيات، والبكجات الشتوية، والمجموعة الفندقية. تصاميم عريضة للموقع تقود الزائر إلى التسوق."},
-  {"slug": "lovent-spa", "name": "لوفينت سبا", "name_en": "Lovent Spa", "category": "تصميم وفيديو", "folder": "lovent-spa", "about": "محتوى لسبا لوفينت: منشور تعريفي بخدمات المساج والعناية بالأظافر، ومقطع فيديو بتصميم متحرك بألوان الزيتي والكريمي ورسائل عن الاسترخاء والدلال."},
-  {"slug": "zaheed", "name": "زهيد", "name_en": "Zaheed", "category": "تصميم وفيديو", "folder": "zaheed", "about": "محتوى لتطبيق زهيد للمقارنة والتوفير: منشور عروض العيد، ومقطع فيديو يشرح التطبيق في ثلاث خطوات ويعرض فكرة «السعر مختلف»."}
+ {
+  "slug": "bunar",
+  "name": "بُنار",
+  "name_en": "Bunar",
+  "category": "هوية بصرية",
+  "folder": "binar",
+  "pick": [
+   1,
+   2,
+   5,
+   6,
+   9,
+   13,
+   15,
+   16,
+   18,
+   19,
+   20
+  ],
+  "about": "هوية بصرية لعلامة قهوة. الشعار مبني على كلمة «بُن» مع حرف R يرمز إلى أول حرف من اسم العميل. دليل الهوية يشمل الشعار والألوان والخطوط، وتطبيقات على الأكواب والعلب والبطاقات والقبعات.",
+  "group": "الهويات البصرية",
+  "top": true
+ },
+ {
+  "slug": "ghsoon-najd",
+  "name": "غصون نجد",
+  "name_en": "Ghsoon Najd",
+  "category": "ملف تعريفي",
+  "folder": "ghsoon-najd",
+  "about": "ملف تعريفي لشركة غصون نجد للتشجير والمساحات الخضراء: رؤية الشركة وأهدافها الاستراتيجية وخدماتها، بتصميم أخضر يعكس هوية الشركة.",
+  "group": "الملفات التعريفية",
+  "layout": "book",
+  "top": true
+ },
+ {
+  "slug": "hero",
+  "name": "هيرو",
+  "name_en": "Hero Shipping Experts",
+  "category": "ملف تعريفي",
+  "folder": "hero",
+  "about": "ملف تعريفي عربي لشركة هيرو للخدمات اللوجستية والشحن: الرسالة والرؤية والقيم، وتطبيق منصة تربط الشاحنات وشركات النقل.",
+  "group": "الملفات التعريفية",
+  "layout": "book",
+  "top": true
+ },
+ {
+  "slug": "mafaz",
+  "name": "مفازا",
+  "name_en": "MFAZA Developments",
+  "category": "عقارات",
+  "folder": "mafaz",
+  "why": "ضخامة حجم الأعمال العقارية وتنوع المحتوى لمفازا",
+  "value": "خبرة الوكالة في المشاريع العقارية المختلفة",
+  "skip_from": "^stories",
+  "max": 24,
+  "about": "تصاميم عقارية لشركة مفازا للتطوير العقاري (MFAZA Developments): منشورات إنستقرام وقصص ومنشورات لينكد إن لمشاريعها.",
+  "group": "السوشل ميديا والتصاميم",
+  "top": true
+ },
+ {
+  "slug": "digi-hub",
+  "name": "ديجي هوب",
+  "name_en": "Digi Hub",
+  "category": "تصميم",
+  "folder": "digi-hub",
+  "about": "محتوى وتصاميم لمتجر ديجي هوب للمنتجات الرقمية وتراخيص إعادة البيع (PLR)، على إنستقرام وتيك توك.",
+  "group": "السوشل ميديا والتصاميم"
+ },
+ {
+  "slug": "mazallat-al-tamayyuz",
+  "name": "مظلة التميز",
+  "name_en": "Premium Umbrella",
+  "category": "تصميم وموشن",
+  "folder": "mazallat-al-tamayyuz",
+  "why": "وضوح الرسالة ومباشرة الطرح",
+  "value": "محتوى مختصر وواضح يحقق الهدف التسويقي",
+  "skip": [
+   1,
+   2
+  ],
+  "about": "تصاميم وموشن لمظلة التميز لخدمات السيارات: حجز المواعيد عبر الموقع، وباقات الحماية والعناية بالسيارة.",
+  "group": "السوشل ميديا والتصاميم",
+  "top": true
+ },
+ {
+  "slug": "lawyer-designs",
+  "name": "تصاميم المحامي",
+  "name_en": "Legal Designs",
+  "category": "تصميم",
+  "folder": "lawyer-designs",
+  "why": "تنوع المحتوى والتعامل مع مجالات متخصصة",
+  "value": "تبسيط المعلومات القانونية للجمهور",
+  "about": "تصاميم ومقطع فيديو للمحامي محمد الخمعلي: معلومات قانونية مبسطة للجمهور.",
+  "group": "السوشل ميديا والتصاميم",
+  "embeds": [
+   "https://drive.google.com/file/d/1yGxI7NF8WC-adinHWPsiAi_QccGCdpqE/view?usp=drivesdk",
+   "https://drive.google.com/file/d/1fjCO9FvIhW2_B29GJFYtU_B9eU1FJ6Fj/view?usp=drivesdk",
+   "https://drive.google.com/file/d/1ES-DTSWTG2uTVoZjwiZ3xwTeRsSKFrrJ/view?usp=drivesdk",
+   "https://drive.google.com/file/d/157EVTKGQggu_pli6GvH9O8mT2tPvLvWN/view?usp=drivesdk"
+  ]
+ },
+ {
+  "slug": "lovent-spa",
+  "name": "لوفينت سبا",
+  "name_en": "Lovent Spa",
+  "category": "تصميم وفيديو",
+  "folder": "lovent-spa",
+  "about": "محتوى لسبا لوفينت: منشور تعريفي بخدمات المساج والعناية بالأظافر، ومقطع فيديو بتصميم متحرك بألوان الزيتي والكريمي ورسائل عن الاسترخاء والدلال.",
+  "group": "السوشل ميديا والتصاميم"
+ },
+ {
+  "slug": "zaheed",
+  "name": "زهيد",
+  "name_en": "Zaheed",
+  "category": "تصميم وفيديو",
+  "folder": "zaheed",
+  "about": "محتوى لتطبيق زهيد للمقارنة والتوفير: منشور عروض العيد، ومقطع فيديو يشرح التطبيق في ثلاث خطوات ويعرض فكرة «السعر مختلف».",
+  "group": "السوشل ميديا والتصاميم",
+  "embeds": [
+   "https://drive.google.com/file/d/1Y563IqblxnvYTuNMSs1ELLvLzkqdIIKj/view?usp=drivesdk"
+  ]
+ },
+ {
+  "slug": "ahmed-hr",
+  "name": "أحمد HR",
+  "name_en": "Ahmed HR",
+  "category": "إنفوجرافيك",
+  "folder": "ahmed-hr",
+  "about": "إنفوجرافيك لمستشار الموارد البشرية أحمد: إدارة الوقت، وأسئلة المقابلة الشخصية لصاحب العمل، وأهمية قول «لا» للالتزام بجدولك. معلومات مهنية مبسطة في تصاميم واضحة.",
+  "group": "الإنفوجرافيك"
+ },
+ {
+  "slug": "nama-store",
+  "name": "نما ستور",
+  "name_en": "NMA Store",
+  "category": "تجارة إلكترونية",
+  "folder": "nama-store",
+  "why": "قوة العلامة التجارية ومعرفة الجمهور بها",
+  "value": "مصداقية من علامة معروفة",
+  "about": "تصاميم حملة كود خصم لمتجر NMA بمناسبة اليوم العالمي للادخار.",
+  "group": "المتاجر الإلكترونية"
+ },
+ {
+  "slug": "bedding-hotel",
+  "name": "المجموعة الفندقية",
+  "name_en": "Hotel & Bedding",
+  "category": "بانرات متجر",
+  "folder": "bedding-hotel",
+  "about": "بانرات لمتجر مفروشات: الأرواب والمناشف، والبطانيات، والبكجات الشتوية، والمجموعة الفندقية. تصاميم عريضة للموقع تقود الزائر إلى التسوق.",
+  "group": "المتاجر الإلكترونية"
+ },
+ {
+  "slug": "campaign-management",
+  "name": "إدارة الحملات",
+  "name_en": "Campaign Management",
+  "category": "حملات إعلانية",
+  "folder": "campaign-management",
+  "why": "نجاح الحملات المدفوعة بنتائج قابلة للقياس",
+  "value": "ثقة العملاء في إدارة الحملات وتحليل أدائها",
+  "pick": [
+   1,
+   2,
+   5
+  ],
+  "about": "تقرير نتائج حملة «فينا كافانا» الإعلانية: الوصول والتفاعل بحسب الأيام، وتوزيع الجمهور بحسب العمر والجنس، وتحليل الأداء.",
+  "group": "الحملات الإعلانية"
+ },
+ {
+  "slug": "strategy-1",
+  "name": "تحليل ٤ حسابات على منصة X",
+  "category": "الاستراتيجية وتحليل الحسابات",
+  "group": "الاستراتيجية وتحليل الحسابات",
+  "about": "ملف تحليل لأربعة حسابات على منصة X: تقييم المحتوى والتفاعل ومراكز التميز لكل حساب.",
+  "folder": "strategy-1",
+  "layout": "book"
+ },
+ {
+  "slug": "strategy-2",
+  "name": "استراتيجية محتوى متجر سكب",
+  "category": "الاستراتيجية وتحليل الحسابات",
+  "group": "الاستراتيجية وتحليل الحسابات",
+  "about": "استراتيجية محتوى لمتجر سكب للأحذية، تشمل خطة التيك توك: فيديوهات توضيحية ونصائح وتجارب العملاء.",
+  "folder": "strategy-2",
+  "layout": "book"
+ },
+ {
+  "slug": "strategy-4",
+  "name": "مجمع القارة الطبي",
+  "category": "الاستراتيجية وتحليل الحسابات",
+  "group": "الاستراتيجية وتحليل الحسابات",
+  "about": "ملف استراتيجية ومحتوى لمجمع القارة الطبي: التعريف بالمجمع وخدماته الطبية.",
+  "folder": "strategy-4",
+  "layout": "book"
+ },
+ {
+  "slug": "collage-1",
+  "name": "مقطع شقردي",
+  "category": "مقاطع الكولاج",
+  "group": "مقاطع الكولاج",
+  "drive": "https://drive.google.com/file/d/16sWCQYRgFph1PlAoB-1aCQU8Y36j6dK5/view?usp=drivesdk",
+  "placeholder": true,
+  "about": "مقطع كولاج كامل: محتوى وتصميم ومونتاج وتعليق."
+ },
+ {
+  "slug": "collage-2",
+  "name": "مقطع كولاج ٢",
+  "category": "مقاطع الكولاج",
+  "group": "مقاطع الكولاج",
+  "drive": "https://drive.google.com/file/d/1WlHdC70uyOIRaBPywd7ZcnfurE8__YG4/view?usp=drivesdk",
+  "placeholder": true,
+  "about": ""
+ },
+ {
+  "slug": "collage-3",
+  "name": "مقطع آبل وسامسونج",
+  "category": "مقاطع الكولاج",
+  "group": "مقاطع الكولاج",
+  "drive": "https://drive.google.com/file/d/1kyN3WZLLrNBsY-gNKiJ02P2tW1Ag-xpu/view?usp=drivesdk",
+  "placeholder": true,
+  "about": "مقطع كولاج كامل: محتوى وتصميم ومونتاج وتعليق."
+ },
+ {
+  "slug": "voiceover-1",
+  "name": "معسكر التسويق",
+  "category": "التعليق الصوتي",
+  "group": "التعليق الصوتي",
+  "drive": "https://drive.google.com/file/d/1Ve1EC5M8GPGW9H71lQ9QOFRXy48BeLma/view?usp=drivesdk",
+  "placeholder": true,
+  "about": "تعليق صوتي."
+ },
+ {
+  "slug": "voiceover-2",
+  "name": "صوت علامتك التجارية",
+  "category": "التعليق الصوتي",
+  "group": "التعليق الصوتي",
+  "drive": "https://drive.google.com/file/d/1XMXN9i0B5NkcowwWOC-Ix62AolcHVBsS/view?usp=drivesdk",
+  "placeholder": true,
+  "about": "تعليق صوتي."
+ },
+ {
+  "slug": "voiceover-3",
+  "name": "عميل الجمعة البيضاء",
+  "category": "التعليق الصوتي",
+  "group": "التعليق الصوتي",
+  "drive": "https://drive.google.com/file/d/1VO-MStc9PFmsltKpabpGCgrhQZQLBqIM/view?usp=drivesdk",
+  "placeholder": true,
+  "about": "تعليق صوتي."
+ },
+ {
+  "slug": "ugc-clean-up",
+  "name": "كلين اب",
+  "category": "UGC",
+  "group": "محتوى UGC",
+  "drive": "https://drive.google.com/drive/folders/1VeNeEEOutUoestPcrHqBrUcmPE-7I2AX",
+  "placeholder": true,
+  "about": "محتوى UGC لكلين اب (يوليو): كتابة وتصوير."
+ },
+ {
+  "slug": "ugc-sara-nasq",
+  "name": "نسق UGC",
+  "name_en": "Nasq UGC",
+  "category": "UGC",
+  "group": "محتوى UGC",
+  "about": "مقاطع UGC صنعناها لصالح علامات تجارية أخرى: فيديوهات بأسلوب المحتوى الواقعي الذي ينشره المستخدمون، تعرض المنتجات في الاستخدام اليومي بتصوير قريب وطبيعي يبني الثقة ويقرب العلامة من جمهورها. اضغط على أي مقطع لتشغيله.",
+  "embeds": [
+   "https://drive.google.com/file/d/1kIcsaJDiQ6I9l34RJ9qa1xr-vQ91FzMt/view",
+   "https://drive.google.com/file/d/16dajULxGkvGeleLODNa6BgpbEHfvhEAg/view",
+   "https://drive.google.com/file/d/17-ZkuONXlaedY1aVl3ohxcz8oellyMB5/view",
+   "https://drive.google.com/file/d/1-V3skAvuu2GEBbs8_yvvHlcMf2FR9EvG/view",
+   "https://drive.google.com/file/d/1JyhMHru4jJOEAstkQuPHAfK94Bz3bEtk/view",
+   "https://drive.google.com/file/d/1--a4_rvHjuUGB3cXQYU0MONfhBNNbuDP/view",
+   "https://drive.google.com/file/d/1q6P5ZG17lXe9LGbCsGu7UkY1YD7Hj5IY/view",
+   "https://drive.google.com/file/d/1p4igqudHebs2lrt5W3c3_V6Rh6gZ5_Aj/view",
+   "https://drive.google.com/file/d/1lnMiBjARed6_iVbTIy6i11ShpM3aQYSr/view",
+   "https://drive.google.com/file/d/1gsVp0022ofJJxFG7X6KOZidDCbQq9cd_/view",
+   "https://drive.google.com/file/d/1OTSCPtpu6rK88oICf8-F4M8zyi9QT3v6/view",
+   "https://drive.google.com/file/d/1gn6ChPUZ7PO0o0U9JXaC7vB5W9u-d8R1/view",
+   "https://drive.google.com/file/d/17fwNdseSz2cEZ_GQ9jMBSa6kNLhw81k8/view",
+   "https://drive.google.com/file/d/1hHlMadgjnZdp_iPWAGtVr_kqHgT0zClh/view",
+   "https://drive.google.com/file/d/1ZZPKDjB1Nr69JmE0MasWTcjMNJaQEYs4/view",
+   "https://drive.google.com/file/d/1z1I75NyY3bnjQwrLTtoZ6l11pMwcnXdL/view",
+   "https://drive.google.com/file/d/12wMIetL3GTS3zA1bbfW2VooALIIQhMwI/view",
+   "https://drive.google.com/file/d/1Vbp0iW0N6Doz18Z8JMMjUqbseDEObpVv/view",
+   "https://drive.google.com/file/d/1MQsJurE1PNS_cmO6s-7OU_dauGhFH14e/view",
+   "https://drive.google.com/file/d/1MtaXz_7i4J8Na1iaLxyGnt7BiPqbNvYy/view",
+   "https://drive.google.com/file/d/1JID7zfCP9nd8iR20hKQII8EbdA1X8MBG/view"
+  ],
+  "embed_ratio": "9/16"
+ },
+ {
+  "slug": "ugc-green-gum",
+  "name": "علك برنر",
+  "category": "UGC",
+  "group": "محتوى UGC",
+  "about": "مقاطع UGC صنعناها لعلامة علك برنر، عن علك الشاي الأخضر والقهوة الخضراء: فيديوهات بأسلوب المحتوى الواقعي الذي ينشره المستخدمون، تعرض المنتج في الاستخدام اليومي بتصوير قريب وطبيعي. اضغط على أي مقطع لتشغيله.",
+  "embeds": [
+   "https://drive.google.com/file/d/1qb_S4GfTYK5rVD7CyrSJPPJri2D0k119/view",
+   "https://drive.google.com/file/d/1JaZFTEl3XbQhurxqQN56m2Klg64MDigB/view",
+   "https://drive.google.com/file/d/1sTErNQPSyyb5WtdeS8C-cz0uamffR9RH/view",
+   "https://drive.google.com/file/d/16NByU68agrQMGDBIbdIDKE8JAVWIHoUm/view",
+   "https://drive.google.com/file/d/1vKcGP5PTtbx3PqlP8Ofz49l_zpXbt6-H/view",
+   "https://drive.google.com/file/d/1jAkPYBv3eRausDhW6RiaGG88Kf3-g4o-/view",
+   "https://drive.google.com/file/d/1R6ELGZIGh4p5urIhzR03_Dn1Dvyu_rNd/view",
+   "https://drive.google.com/file/d/1GfWjO509jkDj_s3armtD8CY_N_AVUAum/view",
+   "https://drive.google.com/file/d/1_SMzYGiY6qPLzC9ODpYLscVZakJTnF4Q/view",
+   "https://drive.google.com/file/d/1bQMpvUr7-Fo22-TlPrHc0GdgDHcmym-U/view",
+   "https://drive.google.com/file/d/1FHcG9fqYQloTSWF3ZTTzweMhJ2BPjbM7/view",
+   "https://drive.google.com/file/d/1B0X7Sqg3FaoFgZFf8aeq5o7ww7iG0J-e/view",
+   "https://drive.google.com/file/d/16FK4cqrdCP1CIgTh0qC4wJN5DH1eOqtB/view",
+   "https://drive.google.com/file/d/1TInWFAjGtr_aE0eFKtIUAetYiB5XWwiQ/view",
+   "https://drive.google.com/file/d/1ieiEzCGGiN72U-nr7VNPj4IYuwj5nlt-/view"
+  ],
+  "embed_ratio": "9/16"
+ },
+ {
+  "slug": "wazna",
+  "name": "وزنة",
+  "name_en": "Wazna",
+  "category": "كتابة محتوى وفيديو",
+  "folder": "content-writing",
+  "why": "ربط العمل بشخصية مؤثرة",
+  "value": "محتوى يناسب الشخصيات المؤثرة وجمهورها",
+  "pick": [
+   4,
+   5,
+   6,
+   1
+  ],
+  "cover_video": false,
+  "about": "متجر قهوة مختصة. عملنا على خطة إطلاق المتجر: التعريف به وبناء الثقة، مع جمهور من أصحاب الأعمال والموظفين والطلاب، بنبرة واثقة وفخورة بأسلوب شعبي راقٍ. محتوى تعريفي وتثقيفي وقصصي وتسويقي، وسيناريوهات ريلز وتعليق صوتي وتصميم عبوة وملصقات.",
+  "group": "كتابة المحتوى",
+  "layout": "book"
+ },
+ {
+  "slug": "nasq-content",
+  "name": "محتوى نسق",
+  "name_en": "Nasq Content",
+  "category": "كتابة محتوى",
+  "group": "كتابة المحتوى",
+  "kinds": [
+   "write",
+   "video"
+  ],
+  "placeholder": true,
+  "about": "محتوى كتبناه لنسق عن التسويق وصناعة المحتوى: نصوص مكتوبة ومقاطع قصيرة تتناول الخصوصية في التسويق، وصوت العلامة التجارية، ولغة المحتوى، واختيار المنتج للسوق المناسب، وسبب ذهاب العملاء إلى المنافسين.",
+  "media": [
+   {
+    "key": "write",
+    "label": "كتابة محتوى",
+    "items": [
+     {
+      "url": "https://docs.google.com/document/d/1PGD7FGclI5EcrdEL8RyPp1NQMhMGDRixK_vejR7dCTE/edit?usp=drivesdk",
+      "title": "التسويق × الخصوصية"
+     },
+     {
+      "url": "https://docs.google.com/document/d/1NpVdwyI1C8SZp6_eEIYiUOEn3gC-mEs_J0VD4EhmUwU/edit?usp=drivesdk",
+      "title": "كل مُسوِق مبدع؟"
+     }
+    ]
+   },
+   {
+    "key": "video",
+    "label": "فيديو",
+    "tall": true,
+    "items": [
+     {
+      "url": "https://drive.google.com/file/d/1zhIxEDrkl8XjNO1tGALYdcWpUgBuj6BO/view?usp=drivesdk",
+      "title": "المحتوى"
+     },
+     {
+      "url": "https://drive.google.com/file/d/1C_pBz7p2NncscXKCikGoUgP-XQFWB8jB/view?usp=drivesdk",
+      "title": "لغة المحتوى"
+     },
+     {
+      "url": "https://drive.google.com/file/d/1FR6G7lIB5kCfzIJzWc6X4uokkvYIQhrA/view?usp=drivesdk",
+      "title": "كل مسوق مبدع"
+     },
+     {
+      "url": "https://drive.google.com/file/d/1f7QDnZ7f2GIJm8mmGqt6gb20tRjnKL6F/view?usp=drivesdk",
+      "title": "صوت علامتك التجارية"
+     },
+     {
+      "url": "https://drive.google.com/file/d/1uJVcvHQ9ea28P4e-uDGNxXccyuRgMeg4/view?usp=drivesdk",
+      "title": "المنتج في السوق الصح"
+     },
+     {
+      "url": "https://drive.google.com/file/d/15HOTc0LzwFVZBdhcfcoooAVS6A5aARsz/view?usp=drivesdk",
+      "title": "المنافسين ٣"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "dxn-scripts",
+  "name": "نصوص فيديو DXN",
+  "name_en": "DXN Video Scripts",
+  "category": "كتابة محتوى",
+  "group": "كتابة المحتوى",
+  "kinds": [
+   "write",
+   "video"
+  ],
+  "tags": [
+   "كتابة محتوى",
+   "فيديو"
+  ],
+  "vid_label": "فيديو",
+  "embeds": [
+   "https://drive.google.com/file/d/1yJwunD9ap1IWtJsidTxVsUI_AMw9RZ6C/view?usp=drivesdk",
+   "https://drive.google.com/file/d/1V4G_mS2eDWFwVcVsPzEaO5aMHld3tqfn/view?usp=drivesdk"
+  ],
+  "embed_ratio": "9/16",
+  "placeholder": true,
+  "about": "كتبنا نصوص فيديوهين قصيرين بأسلوب تجربة شخصية لمنتجات DXN الصحية والطبيعية. الأول يحكي الرحلة مع الطب الحديث ثم الطبيعة، والثاني عن البداية مع DXN والحرية المالية. ظهر النص على الشاشة مع إبراز الكلمات المهمة باللون الأصفر."
+ }
 ]

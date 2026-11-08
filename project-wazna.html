@@ -53,29 +53,38 @@
 <link rel="stylesheet" href="src/css/41-services-grid.css">
 <link rel="stylesheet" href="src/css/42-projects.css">
 <!-- css:end -->
+<!-- js:start (run in this order; build concatenates them) -->
+<script src="src/js/43-project-lightbox.js" defer></script>
+<!-- js:end -->
 </head>
 <body>
 <header class="pg-top" lang="ar" dir="rtl"><a class="pg-brand" href="index.html">أربعمية</a><nav class="pg-nav" aria-label="التنقل"><a href="index.html">الرئيسية</a><a href="projects.html" aria-current="page">أعمالنا</a><a class="pg-cta" href="index.html#contact">تواصل معنا</a></nav></header>
 <main class="pj pj-page" lang="ar" dir="rtl" aria-label="وزنة">
   <div class="pj-hero">
-    <span class="eb pj-e">♦︎ كتابة محتوى وفيديو</span>
-    <h1>وزنة</h1>
-    <p class="pj-en" dir="ltr">Wazna</p>
-    <p class="pj-about">متجر قهوة مختصة. عملنا على خطة إطلاق المتجر: التعريف به وبناء الثقة، مع جمهور من أصحاب الأعمال والموظفين والطلاب، بنبرة واثقة وفخورة بأسلوب شعبي راقٍ. محتوى تعريفي وتثقيفي وقصصي وتسويقي، وسيناريوهات ريلز وتعليق صوتي وتصميم عبوة وملصقات.</p>
+    <div class="pj-ht">
+      <span class="eb pj-e">♦︎ كتابة محتوى وفيديو</span>
+      <h1>وزنة</h1>
+      <p class="pj-en" dir="ltr">Wazna</p>
+      
+    </div>
+    <div class="pj-hb">
+      <p class="pj-about">متجر قهوة مختصة. عملنا على خطة إطلاق المتجر: التعريف به وبناء الثقة، مع جمهور من أصحاب الأعمال والموظفين والطلاب، بنبرة واثقة وفخورة بأسلوب شعبي راقٍ. محتوى تعريفي وتثقيفي وقصصي وتسويقي، وسيناريوهات ريلز وتعليق صوتي وتصميم عبوة وملصقات.</p>
+      <ul class="pj-stats"><li><b>3</b><span>مقطع</span></li><li><b>4</b><span>صفحة</span></li></ul>
+    </div>
     <dl class="pj-notes"><div><dt>لماذا هذا المشروع</dt><dd>ربط العمل بشخصية مؤثرة</dd></div><div><dt>ما يضيفه</dt><dd>محتوى يناسب الشخصيات المؤثرة وجمهورها</dd></div></dl>
   </div>
-  <div class="pj-vids">
+  <div class="pj-chips" role="group" aria-label="محتوى المشروع" hidden><button type="button" data-k="all" aria-pressed="true">الكل</button><button type="button" data-k="video" aria-pressed="false">كتابة محتوى <small>3</small></button><button type="button" data-k="img" aria-pressed="false">كتابة محتوى <small>4</small></button></div>
+  <section class="pj-sec" data-kind="video"><div class="pj-vids">
 <figure class="pj-vid"><video controls muted playsinline preload="none" poster="assets/projects/content-writing/video-1-poster.webp" src="assets/projects/content-writing/video-1.mp4"></video></figure>
 <figure class="pj-vid"><video controls muted playsinline preload="none" poster="assets/projects/content-writing/video-2-poster.webp" src="assets/projects/content-writing/video-2.mp4"></video></figure>
 <figure class="pj-vid"><video controls muted playsinline preload="none" poster="assets/projects/content-writing/video-4-poster.webp" src="assets/projects/content-writing/video-4.mp4"></video></figure>
-</div>
-  <div class="pj-grid">
-<a class="pj-fig" href="assets/projects/content-writing/04-1280.webp" target="_blank" rel="noopener"><img src="assets/projects/content-writing/04-640.webp" srcset="assets/projects/content-writing/04-640.webp 640w, assets/projects/content-writing/04-1280.webp 1280w" sizes="(max-width:900px) 50vw, 33vw" width="2880" height="4860" alt="وزنة 1" loading="lazy" decoding="async"></a>
-<a class="pj-fig" href="assets/projects/content-writing/05-1280.webp" target="_blank" rel="noopener"><img src="assets/projects/content-writing/05-640.webp" srcset="assets/projects/content-writing/05-640.webp 640w, assets/projects/content-writing/05-1280.webp 1280w" sizes="(max-width:900px) 50vw, 33vw" width="2880" height="4860" alt="وزنة 2" loading="lazy" decoding="async"></a>
-<a class="pj-fig" href="assets/projects/content-writing/06-1280.webp" target="_blank" rel="noopener"><img src="assets/projects/content-writing/06-640.webp" srcset="assets/projects/content-writing/06-640.webp 640w, assets/projects/content-writing/06-1280.webp 1280w" sizes="(max-width:900px) 50vw, 33vw" width="2880" height="4860" alt="وزنة 3" loading="lazy" decoding="async"></a>
-<a class="pj-fig" href="assets/projects/content-writing/01-1280.webp" target="_blank" rel="noopener"><img src="assets/projects/content-writing/01-640.webp" srcset="assets/projects/content-writing/01-640.webp 640w, assets/projects/content-writing/01-1280.webp 1280w" sizes="(max-width:900px) 50vw, 33vw" width="2880" height="4860" alt="وزنة 4" loading="lazy" decoding="async"></a>
-</div>
-  <a class="pj-next" href="project-campaign-management.html"><small>المشروع التالي</small><b>إدارة الحملات ←</b></a>
+</div></section>
+  <section class="pj-sec" data-kind="img"><div class="pj-view" data-mode="book" data-n="4">
+    <div class="pj-stage" tabindex="0" aria-label="صفحات الملف"><button class="pj-sn pj-sp" dir="ltr" type="button" data-d="-1" aria-label="السابق">›</button><a class="pj-main" href="assets/projects/content-writing/04-1280.webp"><img src="assets/projects/content-writing/04-1280.webp" width="2880" height="4860" alt="وزنة 1" loading="lazy" decoding="async"></a><a class="pj-main" hidden href="assets/projects/content-writing/05-1280.webp"><img src="assets/projects/content-writing/05-1280.webp" width="2880" height="4860" alt="وزنة 2" loading="lazy" decoding="async"></a><button class="pj-sn pj-sx" dir="ltr" type="button" data-d="1" aria-label="التالي">‹</button></div>
+    <p class="pj-cnt" dir="ltr">1 / 4</p>
+    <div class="pj-strip"><a class="pj-fig" href="assets/projects/content-writing/04-1280.webp" data-w="2880" data-h="4860"><img src="assets/projects/content-writing/04-640.webp" width="2880" height="4860" alt="وزنة 1" loading="lazy" decoding="async"></a><a class="pj-fig" href="assets/projects/content-writing/05-1280.webp" data-w="2880" data-h="4860"><img src="assets/projects/content-writing/05-640.webp" width="2880" height="4860" alt="وزنة 2" loading="lazy" decoding="async"></a><a class="pj-fig" href="assets/projects/content-writing/06-1280.webp" data-w="2880" data-h="4860"><img src="assets/projects/content-writing/06-640.webp" width="2880" height="4860" alt="وزنة 3" loading="lazy" decoding="async"></a><a class="pj-fig" href="assets/projects/content-writing/01-1280.webp" data-w="2880" data-h="4860"><img src="assets/projects/content-writing/01-640.webp" width="2880" height="4860" alt="وزنة 4" loading="lazy" decoding="async"></a></div>
+  </div></section>
+  <a class="pj-next" href="project-nasq-content.html"><small>المشروع التالي</small><b>محتوى نسق ←</b></a>
 </main>
 <footer class="ft" id="ft" data-cur="heart" lang="ar" dir="rtl">
   <div class="ft-top">
