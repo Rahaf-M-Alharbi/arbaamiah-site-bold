@@ -20,7 +20,7 @@
     /* 9: bold draw. Click or drag the top card up: it flies out of the deck, flips and lands on it. */
     p9:function(st){
       var top=document.getElementById('xp9top'),card=document.getElementById('xp9c'),face=card.querySelector('.f'),h=document.getElementById('xp9h'),p=document.getElementById('xp9p'),
-          O=[['A','ورقتك رابحة، والفرصة محدودة!','سجل بياناتك وادخل السحب على خدمة أو استشارة مجانية']],
+          O=[['A','ورقتـك رابـحة، والفرصـة محـدودة!','سجل بياناتك وادخل السحب على خدمة أو استشارة مجانية']],
           SU=['♠︎','♥︎','♦︎','♣︎'],drawn=false,d=null,from=null;
       function T(x,y,s,r){return'translate('+x+'px,'+y+'px) rotate('+r+'deg) scale('+s+')'}
       function draw(){

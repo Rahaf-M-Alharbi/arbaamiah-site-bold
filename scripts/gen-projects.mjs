@@ -134,7 +134,7 @@ const slide = (p, k) => {
 const stars = projects.filter((p) => p.top && p.folder);
 const slides = stars.length ? `<section class="pj-show" aria-roledescription="carousel" aria-label="أبرز أعمالنا"><div class="pj-slides">${stars.map(slide).join("")}</div><div class="pj-ctl" hidden><button class="pj-sl-n" type="button" dir="ltr" data-d="-1" aria-label="السابق">›</button><span class="pj-dots">${stars.map((p, k) => `<button type="button" aria-label="${esc(p.name)}"${k === 0 ? ' aria-current="true"' : ""}></button>`).join("")}</span><button class="pj-sl-n" type="button" dir="ltr" data-d="1" aria-label="التالي">‹</button></div></section>` : "";
 writeFileSync(join(root, "projects.html"), page("مشاريعنا | أربعمية", `<main class="pj pj-page" lang="ar" dir="rtl" aria-label="مشاريعنا">
-  <div class="pj-hero pj-hero-1"><div class="pj-ht"><span class="eb pj-e">♦︎ مشاريعنا</span><h1>أعمال اخترناها لنعرضها</h1></div></div>
+  <div class="pj-hero pj-hero-1"><div class="pj-ht"><span class="eb pj-e">♦︎ مشاريعنا</span><h1>أعمـال اختـرناها لنعـرضها</h1></div></div>
 ${slides}
   <div class="pj-chips" role="group" aria-label="نوع العمل" hidden>${[["all", "الكل"], ...kinds].map(([k, t], j) => `<button type="button" data-k="${k}" aria-pressed="${j === 0}">${t}</button>`).join("")}</div>
   <a class="pj-order" id="pjOrder" href="contact.html" hidden>اطلب خدمتك <i>←</i></a>
