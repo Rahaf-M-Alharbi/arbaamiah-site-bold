@@ -52,6 +52,8 @@ const block = (html, name) => {
   return m ? { whole: m[0], files: [...m[1].matchAll(/(?:href|src)="([^"]+)"/g)].map((x) => x[1]) } : null;
 };
 
+const site = JSON.parse(readFileSync(join(root, "src/data/site.json"), "utf8"));
+const siteUrl = (process.env.SITE_URL || site.url || "").replace(/\/$/, "");
 const sizes = [];
 const pages = ["index.html", "pricing.html", "faq.html", "contact.html", "draw.html", "about.html", "services.html", "projects.html", ...readdirSync(root).filter((f) => f.startsWith("project-") && f.endsWith(".html"))];
 for (const page of pages) {
@@ -79,8 +81,21 @@ for (const page of pages) {
     sizes.push(`${page}: css ${(cssText.length / 1024).toFixed(0)} KB (was ${(cssSrc.length / 1024).toFixed(0)}), js ${(jsText.length / 1024).toFixed(0)} KB`);
   } else sizes.push(`${page}: css ${(cssText.length / 1024).toFixed(0)} KB (was ${(cssSrc.length / 1024).toFixed(0)})`);
 
+  /* canonical + social tags only once the real domain is set in src/data/site.json (or SITE_URL); descriptions only where the owner wrote one */
+  if (siteUrl) {
+    const title = (html.match(/<title>(.*?)<\/title>/) || [])[1] || "";
+    const url = siteUrl + (page === "index.html" ? "/" : "/" + page);
+    const desc = site.descriptions[page];
+    html = html.replace("</title>", `</title>\n<link rel="canonical" href="${url}">\n<meta property="og:type" content="website">\n<meta property="og:locale" content="ar_SA">\n<meta property="og:title" content="${title}">\n<meta property="og:url" content="${url}">` + (desc ? `\n<meta name="description" content="${desc}">\n<meta property="og:description" content="${desc}">` : ""));
+  }
   writeFileSync(join(dist, page), relink(html, "assets/"));
 }
+
+/* 1b. custom 404 (Netlify and Cloudflare Pages serve /404.html for missing paths), robots.txt, sitemap.xml */
+const hex = (n) => ({ wine: "#6C171E", cream: "#f4dabf" })[n];
+writeFileSync(join(dist, "404.html"), `<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>الصفحة غير موجودة | أربعمية</title><style>@font-face{font-family:T;src:url(/assets/${map["fonts/thmanyahserifdisplay-Bold.woff2"]}) format("woff2");font-display:swap}body{margin:0;min-height:100vh;display:grid;place-content:center;gap:1rem;text-align:center;background:${hex("wine")};color:${hex("cream")};font:700 clamp(1.5rem,5vw,2.5rem) T,serif}a{color:inherit;font-size:1.1rem}</style></head><body><h1>الصفحة غير موجودة</h1><a href="/">العودة للرئيسية</a></body></html>`);
+writeFileSync(join(dist, "robots.txt"), `User-agent: *\nAllow: /\n` + (siteUrl ? `Sitemap: ${siteUrl}/sitemap.xml\n` : ""));
+if (siteUrl) writeFileSync(join(dist, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.map((p) => `<url><loc>${siteUrl}${p === "index.html" ? "/" : "/" + p}</loc></url>`).join("\n")}\n</urlset>\n`);
 
 /* 2. caching rules for static hosts that read _headers (Netlify, Cloudflare Pages). Fingerprinted files never change; pages always revalidate. */
 writeFileSync(join(dist, "_headers"), `/assets/*

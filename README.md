@@ -80,7 +80,6 @@ Upload `dist/`. On Netlify or Cloudflare Pages, `_headers` sets the caching auto
 - Checked in Chromium only (the desktop app's browser). Safari, Firefox and real phones still to check.
 
 ## Before launch (needs content, not code)
-- Page title is still "بروفة أربعمية المخمل"; no meta description, social preview image, canonical URL, sitemap or robots.txt yet. These need the final wording and the real domain.
+- Page title is still "بروفة أربعمية المخمل"; no meta descriptions or social preview image yet (need final wording). Canonical URL, OG tags and `sitemap.xml` switch on when the real domain is set in `src/data/site.json` (`url`; or `SITE_URL=https://… npm run build`). Page descriptions go in the same file under `descriptions`, keyed by page file name. `robots.txt` and a branded `404.html` are always built.
 - Placeholders: testimonials ("نص تجريبي"), logo cards ("شعار ١…٨"), stats, calculator prices.
 - The contact form does not send anything yet: set `ENDPOINT` in `src/js/11-contact-form.js` to a form service. Until then it shows the thank-you message without sending.
-- No custom 404 page.

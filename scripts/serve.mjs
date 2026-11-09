@@ -18,8 +18,9 @@ createServer((req, res) => {
   if (path.endsWith("/")) path += "index.html";
   const file = join(root, path);
   if (!file.startsWith(root) || !existsSync(file) || !statSync(file).isFile()) {
-    res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-    return res.end("404 Not Found");
+    const page = join(root, "404.html");  /* hosts serve /404.html for missing paths; so does the preview */
+    res.writeHead(404, { "Content-Type": existsSync(page) ? TYPES[".html"] : "text/plain; charset=utf-8" });
+    return res.end(existsSync(page) ? readFileSync(page) : "404 Not Found");
   }
   const headers = {
     "Content-Type": TYPES[extname(file)] || "application/octet-stream",
