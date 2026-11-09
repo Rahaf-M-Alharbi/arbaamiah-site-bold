@@ -9,8 +9,8 @@ body::before{background-image:url(../../assets/img/texture-4.svg)!important;back
 .stt-i b{text-shadow:none}
 /* paper texture on the service cards, no shadow for now */
 :root{--paper:url(../../assets/img/paper.jpg)}
-.card,.card.swapped,.bigcard.on{background-color:#fbf9f4;background-image:linear-gradient(rgba(255,255,255,.4),rgba(255,255,255,.4)),var(--paper);background-size:auto,cover;background-position:center;box-shadow:none}
-.card,.card.swapped{border:1px solid rgba(70,35,28,.38)}
+.card,.bigcard.on{background-color:#fbf9f4;background-image:linear-gradient(rgba(255,255,255,.4),rgba(255,255,255,.4)),var(--paper);background-size:auto,cover;background-position:center;box-shadow:none}
+.card{border:1px solid rgba(70,35,28,.38)}
 .card .med{display:none}
 .card .body{top:36%}
 /* index sits 8.5% in from the card's own left edge, like the small cards; if the screen crops the card, it keeps 24px clear of the cropped part */

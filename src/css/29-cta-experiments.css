@@ -60,7 +60,7 @@
 .xp9-top,.xp9-card .b{background:url("../../assets/img/logo-wine.svg") 50% 48%/58% auto no-repeat,url(../../assets/img/texture-6.svg) center/100% 100% no-repeat,#0d3d3a;box-shadow:10px 10px 0 #17120f}
 .xp9-bk{display:none}
 /* phone: the two buttons stack; the fanned cards behind a tapped button tilt down about 33px at their far end, so leave room for them above the next button */
-@media (max-width:760px){.xp9-btns{row-gap:40px}}
+@media (max-width:760px){}
 /* drawn state, wider screens: the card and its text sit side by side as one group centred in the section (card on the right, text right-aligned against it, fixed gap between them), and the stage rises into the space the faded heading leaves, so the group sits in the middle of the screen instead of low and pushed apart */
 @media (min-width:761px){
   .xp9-stage{--tw:min(44vw,520px);--gap:clamp(40px,5vw,88px);--grp:calc(var(--cw) + var(--gap) + var(--tw));translate:0 0;transition:translate .7s cubic-bezier(.3,1.1,.4,1)}

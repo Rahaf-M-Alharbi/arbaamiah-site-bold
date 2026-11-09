@@ -37,21 +37,14 @@
 .prv-g small{font:700 14px/1 var(--f-body);opacity:.6;font-variant-numeric:tabular-nums}
 .prv-g h3{margin:0;font:700 clamp(22px,2.2vw,30px)/1.35 var(--f-disp);text-wrap:balance}
 .prv-g p{margin:0;font:500 clamp(15px,1.3vw,18px)/1.85 var(--f-body);opacity:.88}
-.prv-b i{font-style:normal;margin-inline-start:.3em}
 @media (max-width:900px){.prv-g{grid-template-columns:minmax(0,1fr)}}
-.prv-b{margin:0;font:700 clamp(20px,2.2vw,30px)/1.5 var(--f-disp);text-align:center}
 
 /* about page: three full-width colour bands (wine, cream, green) sharing one column; everything starts on the same (right) edge */
 .ab-band{position:relative;overflow:hidden}
 .ab-w{max-width:1100px;margin:0 auto;padding:clamp(72px,12vh,140px) max(24px,5vw)}
 .ab-wine{background:#6c171e;color:#f4dabf}
-.ab-cream{background:#f4dabf;color:#6c171e;border-block:4px solid #17120f}
 .ab-green{background:#0d3d3a;color:#f4dabf;border-bottom:4px solid #17120f}
 .ab .prv{max-width:none;padding-inline:0;margin:0;justify-items:start;text-align:start}
-.ab-i p{margin:0;max-width:30em;font:600 clamp(18px,2vw,26px)/1.9 var(--f-body);opacity:.92}
-.ab-s{display:flex;gap:clamp(14px,2.4vw,28px);margin-top:clamp(8px,2vw,24px);font:700 clamp(40px,6vw,84px)/1 var(--f-body);direction:ltr;justify-content:flex-end;width:100%;text-shadow:.06em .06em 0 #17120f}
-.ab-s i{font-style:normal}.ab-s i.r{color:#f4dabf}
-.ab-wine .ab-s i:nth-child(odd){color:#f4dabf}
 .ab .why{padding:0;background:#f4dabf;min-height:0}
 .ab .why .sec2{position:static;opacity:1;transform:none;pointer-events:auto;left:auto;right:auto;margin:0;padding:0;max-width:none;align-content:start;justify-items:start;text-align:start;color:#6c171e}
 .ab .why .sec2 p{margin:0;max-width:26em;opacity:.9}
@@ -65,12 +58,6 @@
 @media (max-width:900px){.ab-green .prv-g li{box-shadow:6px 6px 0 #17120f}}
 
 /* home: short about block (link under the text) */
-.prv-b a{color:inherit;text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:4px}
-.prv-b a i{font-style:normal;display:inline-block;transition:transform .2s}
-.prv-b a:hover i{transform:translateX(-4px)}
-.prv.ab-i .prv-b{text-align:start;justify-self:start;margin:0}
-.ab-cream .prv,.ab-cream .prv h2,.ab-cream .prv p,.ab-cream .prv .e{color:#6c171e}
-.ab-cream .prv p{max-width:34em}
 
 /* home: the "what is 400" and values bands sit on the page's own dark wine */
 .ab-home{background:#3d0d12;color:#f4dabf;border-top:3px solid rgba(244,218,191,.25)}
@@ -96,7 +83,6 @@
 .k4-c i{font-style:normal;font-size:clamp(30px,5vw,64px);line-height:1}
 .k4-c.r{color:#6c171e}
 .k4-c:nth-child(1){--r:-14deg;--y:10px}.k4-c:nth-child(2){--r:-5deg}.k4-c:nth-child(3){--r:5deg}.k4-c:nth-child(4){--r:14deg;--y:10px}
-.k4-n{font:700 clamp(64px,10vw,140px)/1 var(--f-disp);color:#f4dabf;text-shadow:.05em .05em 0 #17120f;letter-spacing:.02em;direction:ltr}
 @media (max-width:820px){.k4{grid-template-columns:1fr}}
 .k4-logo{display:block;width:clamp(150px,20vw,240px);height:auto}
 
@@ -112,7 +98,6 @@
 .ab .prv-g li small{display:block;margin-bottom:10px}
 .ab .prv-g li h3{margin:0 0 10px}
 .ab .prv-g li p{margin:0;max-width:none;font-size:clamp(15px,1.3vw,17px);line-height:1.8}
-.ab .ab-s{margin-top:clamp(22px,4vh,36px)}
 .ab .prv + .prv{margin-top:clamp(56px,9vh,96px)}
 
 /* about: problem and solution cards are light, like the values cards */
@@ -123,7 +108,6 @@
 
 
 /* about: closing call to action, and the dark band keeps its top rule only between wine bands */
-.ab .ab-end .prv-b a{font:700 clamp(20px,2.4vw,30px)/1 var(--f-body)}
 .ab .ab-home{border-top:0;border-bottom:4px solid #17120f}
 .ab .ab-btn{margin-top:clamp(18px,3vh,28px)}
 

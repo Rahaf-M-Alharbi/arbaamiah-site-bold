@@ -18,7 +18,7 @@
 @media (prefers-reduced-motion:reduce){.mini nav a:not(.flipbtn),.links a:not(.flipbtn){transition:none}}
 
 /* the same bar on every page: brand link, page links, the contact button and (on narrow screens) a menu button. Built from src/partials/nav.html by scripts/sync-nav.mjs. */
-.mini-b{display:inline-block;text-decoration:none}
+.mini-b{text-decoration:none}
 .mini-l{display:flex;align-items:center;gap:4px}
 .mini-m{display:none}
 .mini nav .mini-l a[aria-current="page"],.mini.on-dark nav .mini-l a[aria-current="page"]{background:#6c171e;color:#f4dabf;border-color:#17120f;box-shadow:3px 3px 0 #17120f}

@@ -23,7 +23,7 @@
 .wc .pip{position:absolute;right:4cqw;bottom:2cqw;font-size:40cqw;line-height:1;color:var(--ac);opacity:.07;pointer-events:none}
 .wc .tag{position:absolute;top:6%;right:9%;font:700 3.6cqw/1 var(--f-body);color:var(--ac);border:1px solid currentColor;border-radius:99px;padding:1.4cqw 3.2cqw}
 .wc h3{position:absolute;left:9%;right:9%;top:25%;margin:0;font:700 13.5cqw/1.2 var(--f-disp);text-wrap:balance}
-.wc p{position:absolute;left:9%;right:9%;top:57%;margin:0;font:600 4.6cqw/1.8 var(--f-body);opacity:.85}
+.wc p{position:absolute;left:9%;right:9%;margin:0;font:600 4.6cqw/1.8 var(--f-body);opacity:.85}
 .wc ul{position:absolute;left:9%;right:22%;bottom:6%;margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:2cqw;direction:rtl}
 .wc li{font:700 3.6cqw/1 var(--f-body);padding:1.6cqw 3.2cqw;border-radius:99px;box-shadow:inset 0 0 0 1px currentColor;opacity:.9}
 @media (prefers-reduced-motion:reduce){.wk-ctl button{transition:none}}

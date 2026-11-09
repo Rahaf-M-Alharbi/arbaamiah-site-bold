@@ -1,13 +1,12 @@
 /* projects: the home section, the all-projects page and the page of each project (written by scripts/gen-projects.mjs) */
 .pj{background:var(--ground);color:var(--on);padding:clamp(56px,10vh,120px) max(20px,5vw)}
 .pj-page{padding-top:clamp(24px,6vh,70px)}
-.pj-hero{max-width:900px;margin-bottom:clamp(28px,5vh,56px)}
+.pj-hero{margin-bottom:clamp(28px,5vh,56px)}
 .pj-hero h1,.pj-hero h2{font:700 clamp(34px,5.4vw,76px)/1.15 var(--f-disp);margin:10px 0 0}
 .pj-en{font:500 clamp(15px,1.5vw,20px)/1.3 var(--f-body);opacity:.7;margin:10px 0 0;text-align:right}
-.pj-about{font:500 clamp(17px,1.6vw,21px)/1.85 var(--f-body);margin:clamp(16px,3vh,28px) 0 0;max-width:62ch}
+.pj-about{font:500 clamp(17px,1.6vw,21px)/1.85 var(--f-body)}
 .pj-notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(14px,2vw,28px);margin:clamp(22px,4vh,40px) 0 0}
-.pj-notes dt{font:700 14px/1 var(--f-body);color:var(--cream);opacity:.7;margin-bottom:8px}
-.pj-notes dd{font:500 clamp(16px,1.5vw,20px)/1.6 var(--f-body);margin:0}
+.pj-notes dd{margin:0}
 
 /* cards: poster, name, kind of work */
 .pj-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,28px)}
@@ -18,8 +17,6 @@
 .pj-meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:14px 16px}
 .pj-meta b{font:700 clamp(17px,1.6vw,22px)/1.2 var(--f-disp)}
 .pj-meta i{font:500 13px/1.2 var(--f-body);font-style:normal;opacity:.75}
-.pj-all{display:inline-flex;gap:8px;margin-top:clamp(22px,4vh,40px);font:700 clamp(15px,1.4vw,18px)/1 var(--f-body);color:inherit;text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:6px}
-.pj-all i{font-style:normal}
 
 /* one project: videos first, then the images in columns that keep each image's own shape */
 .pj-vids{display:flex;flex-wrap:wrap;gap:clamp(12px,2vw,24px);margin-bottom:clamp(14px,2vw,24px)}
@@ -36,11 +33,6 @@
 @media (prefers-reduced-motion:reduce){.pj-img img{transition:none}}
 
 /* top bar of the project pages */
-.pg-nav{display:flex;align-items:center;gap:clamp(14px,2.4vw,28px);font:600 15px/1 var(--f-body)}
-.pg-nav a{color:inherit;text-decoration:none;padding-block:6px;border-bottom:1px solid transparent}
-.pg-nav a:hover,.pg-nav a:focus-visible,.pg-nav a[aria-current]{border-bottom-color:currentColor}
-.pg-nav .pg-cta{padding:9px 16px;border:1px solid currentColor;border-radius:7px}
-@media (max-width:480px){.pg-nav{gap:12px;font-size:13px}.pg-nav .pg-cta{padding:7px 11px}.pg-brand{font-size:22px}}
 
 /* project cards in the work deck */
 .wc h3 a{color:inherit;text-decoration:none;background:linear-gradient(currentColor,currentColor) 100% 100%/0 2px no-repeat;transition:background-size .3s}
@@ -49,10 +41,6 @@
 /* projects still waiting for name, details and images: typographic cover, link to the file */
 .pj-ph{position:relative;display:flex;align-items:center;justify-content:center;padding:18px;text-align:center;background:var(--deep)}
 .pj-ph b{font:700 clamp(22px,2.4vw,34px)/1.3 var(--f-disp);color:var(--cream);opacity:.9}
-.pj-grp{margin-top:clamp(40px,8vh,90px)}
-.pj-grp h2{font:700 clamp(24px,2.8vw,40px)/1.2 var(--f-disp);margin:0 0 clamp(16px,3vh,28px);padding-top:clamp(16px,3vh,28px);border-top:1px solid rgba(244,218,191,.3)}
-.pj-open{display:inline-block;margin-bottom:clamp(18px,3vh,32px);padding:12px 20px;border:1px solid currentColor;border-radius:8px;color:inherit;text-decoration:none;font:700 16px/1 var(--f-body)}
-.pj-open:hover,.pj-open:focus-visible{background:var(--cream);color:var(--wine)}
 .pj-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:var(--deep)}
 .pj-embed{margin:0 0 14px}
 .pj-embed iframe{display:block;width:100%;height:clamp(420px,82vh,900px);border:0;border-radius:12px;background:var(--deep)}
@@ -73,14 +61,6 @@
 @media (max-width:600px){.lb-prev{right:-6px}.lb-next{left:-6px}.lb-x{top:-10px;inset-inline-end:-6px}}
 
 /* projects page: one row per category, name on the side, cards the same size whatever the count */
-.pj-grp{display:grid;grid-template-columns:minmax(150px,1fr) 4fr;gap:clamp(16px,3vw,48px);align-items:start;padding-top:clamp(18px,3vh,30px);border-top:1px solid rgba(244,218,191,.3)}
-.pj-grp h2{position:sticky;top:20px;margin:0;padding:0;border:0;font-size:clamp(22px,2.2vw,32px)}
-.pj-grp .pj-cards{grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,1.4vw,20px)}
-.pj-grp .pj-meta{flex-direction:column;align-items:flex-start;gap:4px;padding:10px 12px}
-.pj-grp .pj-meta b{font-size:clamp(15px,1.3vw,18px)}
-.pj-grp .pj-meta i{font-size:12px}
-@media (max-width:1000px){.pj-grp{grid-template-columns:1fr}.pj-grp h2{position:static}.pj-grp .pj-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:600px){.pj-grp .pj-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 
 /* click-to-play cover of a Drive file */
@@ -166,7 +146,7 @@
 .pj-clips[data-n="1"] .pj-stage{padding-inline:clamp(10px,1.6vw,20px)}
 
 /* description section: title on one side, text and numbers on the other, notes as cards */
-.pj-hero{max-width:none;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(20px,4vw,64px);align-items:end}
+.pj-hero{max-width:none;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
 .pj-hero h1{font-size:clamp(38px,6vw,88px)}
 .pj-about{margin:0;max-width:none;padding-inline-start:clamp(14px,2vw,26px);border-inline-start:3px solid var(--cream)}
 .pj-stats{display:flex;flex-wrap:wrap;gap:clamp(18px,3vw,44px);margin:clamp(18px,3vh,30px) 0 0;padding:0;list-style:none}
@@ -196,7 +176,7 @@
 .pj-hero-1{grid-template-columns:1fr;margin-bottom:clamp(40px,8vh,90px)}
 
 /* work deck: a tap on the card only brings it forward; the project opens from this button */
-.wc .go{position:absolute;left:9%;bottom:18.5%;font:700 4cqw/1 var(--f-body);color:inherit;text-decoration:none;padding:2.2cqw 4cqw;border-radius:99px;background:var(--fg);color:var(--bg);transition:transform .2s}
+.wc .go{position:absolute;left:9%;bottom:18.5%;font:700 4cqw/1 var(--f-body);text-decoration:none;padding:2.2cqw 4cqw;border-radius:99px;background:var(--fg);color:var(--bg);transition:transform .2s}
 .wc .go:hover,.wc .go:focus-visible{transform:translateX(-1.5cqw)}
 
 /* projects page: small order link under the filter chips */
@@ -208,7 +188,6 @@
 /* work deck: the project's logo sits straight on the card, under the tag and above the title */
 .wc .wlogo{position:absolute;right:9cqw;top:10cqw;height:21cqw;width:auto;max-width:52cqw;margin-inline-start:auto;object-fit:contain;object-position:right center;pointer-events:none}
 .wc.hl h3{top:30%}
-.wc.hl p{top:56%}
 .wc p{top:54%}
 .wc.hl p{top:55%}
 .wc .wlogo[src*="ghsoon"]{height:27cqw}

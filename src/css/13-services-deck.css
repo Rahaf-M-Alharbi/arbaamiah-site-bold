@@ -9,11 +9,9 @@
 .pnl{margin-bottom:12vh;flex-direction:column}
 .pnl::before{content:"";position:absolute;inset:8px;border:1px solid rgba(23,18,15,.35);pointer-events:none}
 .pnl .top{direction:ltr;position:relative;z-index:1}
-.pnl .rn{font:700 22px/1 var(--f-disp)}
 .pnl .st{font-size:22px;line-height:1}
 .pnl .st.red{color:#6c171e}
 .pnl .big{position:absolute;line-height:1;pointer-events:none}
-.pnl .pm{position:relative;z-index:1;padding-top:2vh}
 .pnl h3{margin:0;font:700 clamp(40px,5.4vw,76px)/1.1 var(--f-disp)}
 .pnl .cap{margin:0}
 .pnl .dl li{align-content:start}

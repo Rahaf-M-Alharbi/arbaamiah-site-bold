@@ -36,7 +36,7 @@ body{color:var(--cream);font-family:var(--f-body);direction:rtl}
 .sub{text-align:center;margin-top:12px;font:600 clamp(16px,2vw,26px)/1.4 var(--f-body);position:relative;z-index:2}
 
 .card{--r:0deg;--lift:0px;--red:#6c171e;position:relative;flex:none;width:var(--w);aspect-ratio:5/7;margin-inline:calc(var(--w)*-.1);padding:0;font:inherit;color:var(--red);
-  background:#fbf9f4;border:0;border-radius:calc(var(--w)*.06);box-shadow:none;
+  background:#fbf9f4;border-radius:calc(var(--w)*.06);box-shadow:none;
   text-align:center;cursor:pointer;transform-origin:50% 140%;transform:translateY(var(--lift)) rotate(var(--r));
   transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
 .card:hover,.card:focus-visible{--lift:calc(var(--w)*-.34);z-index:5;outline:none}

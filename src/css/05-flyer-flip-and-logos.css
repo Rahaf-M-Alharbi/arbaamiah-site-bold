@@ -2,15 +2,12 @@
 .bigcard:not(.on)>*{visibility:hidden}
 
 /* the flyer card turns over twice about a diagonal axis in the centre of the screen; its new content is swapped in while the face is turned away, so the final face is the same side it started on */
-.card.swapped{container-type:inline-size;overflow:hidden;color:#1b1b19;background:#fbf9f4}
-.card.swapped *{pointer-events:none}
 
 /* the next section is a beige runway: the card waits until it is reached, then moves to the centre, flips twice, grows into the pinned big card */
 .next2{padding:0}
-.nstage{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;place-items:center}
+.nstage{top:0;overflow:hidden;place-items:center}
 
 /* final placement: the big card sits in the lower left, its lower half off-screen; the top and the right half stay empty */
-.nstage{display:block}
 .bigcard{position:absolute;margin:0}
 @media (max-width:760px){}
 

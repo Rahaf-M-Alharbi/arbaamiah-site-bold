@@ -1,6 +1,6 @@
 // Finds CSS that can never apply: selectors naming a class or id that appears nowhere in the pages or scripts,
 // and @keyframes that no animation uses. Deliberately cautious: a name counts as used if it appears as a word
-// anywhere in index.html, pricing.html or src/js (also inside strings), so only truly orphaned rules are reported.
+// anywhere in any page (root *.html) or src/js (also inside strings), so only truly orphaned rules are reported.
 // Usage: node scripts/unused-css.mjs          report only
 //        node scripts/unused-css.mjs --fix    also remove them from src/css (check the result with a visual comparison)
 //        --gone=a,b   also treat these class names as unused: names that still appear as plain words in a script
@@ -15,7 +15,7 @@ const gone = new Set((process.argv.find((a) => a.startsWith("--gone=")) || "--go
 const list = (dir, ext) => readdirSync(join(root, dir), { recursive: true }).filter((f) => f.endsWith(ext)).map((f) => join(dir, f));
 
 /* every word in the markup and scripts; class and id names must be among them */
-const sources = ["index.html", "pricing.html", ...list("src/js", ".js")].map((f) => readFileSync(join(root, f), "utf8")).join("\n");
+const sources = [...readdirSync(root).filter((f) => f.endsWith(".html")), ...list("src/js", ".js")].map((f) => readFileSync(join(root, f), "utf8")).join("\n");
 const words = new Set(sources.match(/[A-Za-z_][\w-]*/g));
 
 /* split a stylesheet into top-level items, keeping exact text so untouched parts are written back byte for byte */

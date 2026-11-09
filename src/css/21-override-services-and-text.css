@@ -3,7 +3,6 @@
 .pnl .lt{display:flex;flex-direction:row-reverse;justify-content:space-between;align-items:flex-start;gap:16px;position:relative;z-index:1}
 .pnl .lt .top{padding-top:.5em}
 .pnl .top{display:flex;justify-content:space-between;align-items:center}
-.pnl .pm{display:grid;justify-items:start;text-align:start;gap:14px;padding:0}
 .pnl h3{font-size:clamp(40px,5.2vw,76px)}
 .pnl .cap{font:600 clamp(15px,1.4vw,18px)/1.8 var(--f-body);opacity:.75;max-width:26em}
 .pnl .big{right:auto;top:auto;bottom:-8%;left:-2%;transform:none;font-size:min(30vw,300px);color:rgba(23,18,15,.05)}
