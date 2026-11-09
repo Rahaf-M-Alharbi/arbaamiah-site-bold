@@ -19,13 +19,13 @@
 
     /* 9: bold draw. Click or drag the top card up: it flies out of the deck, flips and lands on it. */
     p9:function(st){
-      var top=document.getElementById('xp9top'),card=document.getElementById('xp9c'),face=card.querySelector('.f'),h=document.getElementById('xp9h'),p=document.getElementById('xp9p'),again=document.getElementById('xp9a'),
-          O=[['A','ابدأ اليوم','احكِ لنا عن شركتك، ونكمل من هناك'],['K','ردّ خلال يوم','فريق صغير، ورد سريع، بلا وسطاء'],['Q','جلسة أولى علينا','نسمعك ونقترح عليك، من غير التزام'],['J','خطة خلال أسبوع','نقرأ طاولتك ثم نضع في يدك الخطوة الأولى'],['10','ورقتك الرابحة','نحدد معك الحركة التي تغيّر الجولة']],
+      var top=document.getElementById('xp9top'),card=document.getElementById('xp9c'),face=card.querySelector('.f'),h=document.getElementById('xp9h'),p=document.getElementById('xp9p'),
+          O=[['A','ورقتك رابحة، والفرصة محدودة!','سجل بياناتك وادخل السحب على خدمة أو استشارة مجانية']],
           SU=['♠︎','♥︎','♦︎','♣︎'],drawn=false,d=null,from=null;
       function T(x,y,s,r){return'translate('+x+'px,'+y+'px) rotate('+r+'deg) scale('+s+')'}
       function draw(){
         if(drawn)return;drawn=true;
-        var fr=top.getBoundingClientRect(),o=O[Math.random()*O.length|0],su=SU[Math.random()*4|0];
+        var fr=top.getBoundingClientRect(),o=O[0],su=SU[Math.random()*4|0];
         face.className='f'+(su==='♥︎'||su==='♦︎'?' r':'');
         face.innerHTML='<b>'+o[0]+'<i>'+su+'</i></b><span class="p">'+su+'</span>';
         h.textContent=o[1];p.textContent=o[2];
@@ -55,12 +55,6 @@
         else{top.animate([{transform:top.style.transform},{transform:'none'}],{duration:RM?1:300,easing:'cubic-bezier(.3,1.5,.4,1)'});top.style.transform=''}}
       top.addEventListener('pointerup',up);top.addEventListener('pointercancel',up);
       top.addEventListener('click',function(e){if(e.detail===0)draw()});
-      again.addEventListener('click',function(){
-        if(!drawn)return;st.classList.remove('drawn');st.parentNode.classList.remove('xp9-done');drawn=false;card.setAttribute('aria-hidden','true');
-        /* the card stays put just long enough to fade away while the deck glides back to the centre */
-        var a=card.animate([{opacity:1,transform:'rotate(-4deg)'},{opacity:0,transform:'rotate(-10deg) translateY(36px) scale(.92)'}],{duration:RM?1:450,easing:'ease-in'});
-        a.onfinish=function(){card.classList.remove('on')};
-        top.focus()})
     }
   };
   lazy('xp9-stage','p9');

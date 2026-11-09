@@ -26,14 +26,14 @@ var CONFIG = {
       { id:'d3', name:'المطبوعات والتغليف',     desc:'سعر القطعة الواحدة.',              type:'unit',  price:1200, unitLabel:'قطعة', max:30 }
     ]},
     { suit:'♦', name:'الإعلانات', blurb:'وصول مدفوع مبني على الأرقام', items:[
-      { id:'a1', name:'إدارة الحملات المدفوعة', desc:'رسوم الإدارة شهرياً (الميزانية الإعلانية منفصلة).', type:'month', price:3000 },
-      { id:'a2', name:'تحسين التحويل',          desc:'اختبارات متواصلة، شهرياً.',          type:'month', price:1500 },
+      { id:'a1', name:'إدارة الحملات المدفوعة', desc:'رسوم الإدارة شهريا (الميزانية الإعلانية منفصلة).', type:'month', price:3000 },
+      { id:'a2', name:'تحسين التحويل',          desc:'اختبارات متواصلة، شهريا.',          type:'month', price:1500 },
       { id:'a3', name:'تقارير الأداء',           desc:'تقرير واجتماع مراجعة شهري.',        type:'month', price:800 }
     ]},
     { suit:'♣', name:'النمو', blurb:'خطوة مدروسة بعد خطوة', items:[
       { id:'g1', name:'تحليل السوق',    desc:'المنافسون والفرص.',          type:'once',  price:4000 },
       { id:'g2', name:'خطة النمو',      desc:'أهداف قابلة للقياس وخطوات.', type:'once',  price:5000 },
-      { id:'g3', name:'القياس والتحسين', desc:'مراجعة وتعديل مستمر، شهرياً.', type:'month', price:2500 }
+      { id:'g3', name:'القياس والتحسين', desc:'مراجعة وتعديل مستمر، شهريا.', type:'month', price:2500 }
     ]}
   ]
 };
@@ -47,7 +47,7 @@ var CONFIG = {
   var byId = {}, rows = {}, cards = [];
   CONFIG.services.forEach(function(s,si){ s.items.forEach(function(it){ it.svc = si; byId[it.id] = it; }); });
 
-  function monthLabel(m){ return m===1 ? 'شهر' : m===2 ? 'شهران' : m+(m<=10 ? ' أشهر' : ' شهراً'); }
+  function monthLabel(m){ return m===1 ? 'شهر' : m===2 ? 'شهران' : m+(m<=10 ? ' أشهر' : ' شهرا'); }
 
   /* service cards */
   CONFIG.services.forEach(function(s){
@@ -59,7 +59,7 @@ var CONFIG = {
       html += '<label class="item" data-id="'+it.id+'">'+
         '<input type="checkbox" aria-label="'+it.name+'">'+
         '<div><div class="name">'+it.name+'</div><div class="desc">'+it.desc+'</div>'+
-        (it.type==='unit' ? '<div class="qty"><button type="button" data-d="1" aria-label="زِد">+</button><output>1</output><button type="button" data-d="-1" aria-label="أنقص">−</button><span>'+it.unitLabel+'</span></div>' : '')+
+        (it.type==='unit' ? '<div class="qty"><button type="button" data-d="1" aria-label="زد">+</button><output>1</output><button type="button" data-d="-1" aria-label="أنقص">−</button><span>'+it.unitLabel+'</span></div>' : '')+
         '</div><div class="pr"><b>'+fmt(it.price)+' '+CONFIG.currency+'</b><small>'+unit+'</small><em></em></div></label>';
     });
     card.innerHTML = html + '</div>';

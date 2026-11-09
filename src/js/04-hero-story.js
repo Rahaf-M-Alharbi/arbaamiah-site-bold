@@ -4,7 +4,7 @@
     {ic:'content',t:'محتوى',p:'حكايات تكسب الانتباه وتحافظ عليه.',r:'A',s:'s'},
     {ic:'design',t:'تصميم',p:'هوية وحرفة حتى آخر تفصيلة.',r:'K',s:'h'},
     {ic:'ads',t:'إعلانات',p:'وصول مدفوع مبني على ما تقوله الأرقام.',r:'Q',s:'d'},
-    {ic:'growth',t:'نمو',p:'حصة سوقية تُكسب بخطوة مدروسة بعد خطوة.',r:'A',s:'c'}
+    {ic:'growth',t:'نمو',p:'حصة سوقية تكسب بخطوة مدروسة بعد خطوة.',r:'A',s:'c'}
   ];
   var story=document.getElementById('story'),stage=story.querySelector('.stage'),layer=document.getElementById('hand');
   var slots=D.map(function(d,i){

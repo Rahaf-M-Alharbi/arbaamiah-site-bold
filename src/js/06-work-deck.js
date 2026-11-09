@@ -10,7 +10,7 @@
   /* the cards are written in index.html in project order (good for crawlers, screen readers and no-JS); the visual order runs the other way, so the first project is the rightmost card */
   cards=[].slice.call(deck.querySelectorAll('.wc')).reverse();n=cards.length;act=n-3;
   cards.forEach(function(c){c.setAttribute('aria-hidden','true');c._h=true});
-  deck.setAttribute('role','group');deck.setAttribute('aria-roledescription','عرض دوّار');
+  deck.setAttribute('role','group');deck.setAttribute('aria-roledescription','عرض دوار');
   num.setAttribute('aria-live','polite');num.setAttribute('aria-atomic','true');
   function clamp(x,a,b){return Math.max(a,Math.min(b,x))}
   function measure(){

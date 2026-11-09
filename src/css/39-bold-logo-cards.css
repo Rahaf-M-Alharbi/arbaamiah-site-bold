@@ -9,3 +9,5 @@
 /* real logos: wide marks get more room; light-background logos blend into the cream face, dark ones sit as small rounded tiles */
 .lgc .pk-logo{width:72%;max-height:44%;border-radius:6px}
 .lgc .pk-logo.lt{mix-blend-mode:multiply;border-radius:0}
+/* white-on-dark logo (no background of its own): a green plate, like the logos that come on a dark background */
+.lgc .pk-logo.dk{box-sizing:border-box;background:#154a3b;padding:5%;border-radius:6px}
