@@ -8,14 +8,16 @@ Needs Pillow and PyMuPDF (tooling only, not a site dependency):
   python3 -m venv .venv && .venv/bin/pip install pillow pymupdf
   .venv/bin/python scripts/optimize-projects.py
 """
-import json, sys
+import json, os, sys
 from pathlib import Path
 import fitz
 from PIL import Image
 
 Image.MAX_IMAGE_PIXELS = None
 root = Path(__file__).resolve().parent.parent
-src, out = root / "assets-src/projects", root / "assets/projects"
+# raw originals live outside the repo; override with ARBAAMIAH_SRC
+src = Path(os.environ.get("ARBAAMIAH_SRC", root.parent / "arbaamiah-archive/assets-src")) / "projects"
+out = root / "assets/projects"
 WIDTHS, QUALITY = (640, 1280), 78
 
 def kind(f):

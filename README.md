@@ -27,7 +27,7 @@ src/js/pricing/            the pricing calculator
 assets/fonts/              Thmanyah fonts (WOFF2)
 assets/img/                images and SVG textures the page uses
 scripts/                   build, preview server, CSS checkers, style comparison (scripts/compare/)
-drafts/                    experiments and removed sections kept for reference; not part of the site (see drafts/README.md)
+../arbaamiah-archive/      (outside the repo) original project files (assets-src/), old zip, drafts/ experiments; set ARBAAMIAH_SRC to point scripts/optimize-projects.py elsewhere
 dist/                      build output (not in git)
 ```
 
