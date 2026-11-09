@@ -111,7 +111,7 @@
         cs[k].classList.remove('dn');cs[k].classList.add('win');
         await sleep(RM?0:800);
         cs.forEach(function(c){if(c!==cs[k])c.classList.remove('dn')});
-        msg.textContent='أي ورقة تختارها، هي الرابحة. ابدأ اللعب الآن.';
+        msg.textContent='أي ورقة تختارها، هي الرابحة. تواصل معنا الآن.';
         cta.hidden=false;rs.hidden=false}
 
       go.addEventListener('click',run);
@@ -230,7 +230,7 @@
       function size(){cv.width=card.clientWidth*dpr;cv.height=card.clientHeight*dpr;foil()}
       function newOffer(){var o=OF[Math.random()*OF.length|0],su=['♠︎','♥︎','♦︎','♣︎'][Math.random()*4|0];f.innerHTML='<b>'+o[0]+'<i>'+su+'</i></b><h3>'+o[1]+'</h3><p>'+o[2]+'</p>'}
       function arm(){seen=new Uint8Array(GX*GY);count=0;open=false;cv.classList.remove('gone');cta.hidden=true;again.hidden=true;skip.hidden=false;msg.textContent=M0;newOffer();size()}
-      function reveal(){if(open)return;open=true;cv.classList.add('gone');cta.hidden=false;again.hidden=false;skip.hidden=true;msg.textContent='هذه ورقتك. ابدأ اللعب.'}
+      function reveal(){if(open)return;open=true;cv.classList.add('gone');cta.hidden=false;again.hidden=false;skip.hidden=true;msg.textContent='هذه ورقتك. تواصل معنا.'}
       function mark(x,y){var gx=Math.min(GX-1,Math.max(0,x/cv.width*GX|0)),gy=Math.min(GY-1,Math.max(0,y/cv.height*GY|0)),k=gy*GX+gx;if(!seen[k]){seen[k]=1;count++}}
       function pos(e){var r=cv.getBoundingClientRect();return[(e.clientX-r.left)/r.width*cv.width,(e.clientY-r.top)/r.height*cv.height]}
       function scratch(x,y){

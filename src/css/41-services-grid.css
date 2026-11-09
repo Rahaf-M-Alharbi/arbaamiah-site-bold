@@ -70,3 +70,8 @@
 .deck .stack[data-full] .svc-o i{font-style:normal;transition:transform .2s}
 .deck .stack[data-full] .svc-o:hover,.deck .stack[data-full] .svc-o:focus-visible{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #17120f}
 .deck .stack[data-full] .svc-o:hover i{transform:translateX(-4px)}
+
+/* home services: names only, two columns */
+.deck .stack.sol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,5vw,72px)}
+.deck .stack.sol .sol-r{grid-template-columns:auto minmax(0,1fr);padding-block:clamp(18px,2.6vw,30px)}
+@media (max-width:760px){.deck .stack.sol{grid-template-columns:minmax(0,1fr)}}

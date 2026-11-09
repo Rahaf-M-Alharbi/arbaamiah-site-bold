@@ -20,7 +20,7 @@
     /* 9: bold draw. Click or drag the top card up: it flies out of the deck, flips and lands on it. */
     p9:function(st){
       var top=document.getElementById('xp9top'),card=document.getElementById('xp9c'),face=card.querySelector('.f'),h=document.getElementById('xp9h'),p=document.getElementById('xp9p'),again=document.getElementById('xp9a'),
-          O=[['A','ابدأ اليوم.','احكِ لنا عن شركتك، ونكمل من هناك.'],['K','ردّ خلال يوم.','فريق صغير، ورد سريع، بلا وسطاء.'],['Q','جلسة أولى علينا.','نسمعك ونقترح عليك، من غير التزام.'],['J','خطة خلال أسبوع.','نقرأ طاولتك ثم نضع في يدك الخطوة الأولى.'],['10','ورقتك الرابحة.','نحدد معك الحركة التي تغيّر الجولة.']],
+          O=[['A','ابدأ اليوم','احكِ لنا عن شركتك، ونكمل من هناك'],['K','ردّ خلال يوم','فريق صغير، ورد سريع، بلا وسطاء'],['Q','جلسة أولى علينا','نسمعك ونقترح عليك، من غير التزام'],['J','خطة خلال أسبوع','نقرأ طاولتك ثم نضع في يدك الخطوة الأولى'],['10','ورقتك الرابحة','نحدد معك الحركة التي تغيّر الجولة']],
           SU=['♠︎','♥︎','♦︎','♣︎'],drawn=false,d=null,from=null;
       function T(x,y,s,r){return'translate('+x+'px,'+y+'px) rotate('+r+'deg) scale('+s+')'}
       function draw(){

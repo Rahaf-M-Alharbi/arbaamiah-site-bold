@@ -6,7 +6,7 @@ Saved from branch `old-copy` (git). Sections marked **replaced** were changed on
 - Title: أربعمية
 - Line: مكتب إبداعي يجمع المحتوى والتصميم والإعلانات والنمو في فريق واحد.
 - Proof bullets: خطة واضحة خلال أسبوع · عقود قصيرة قابلة للتجديد · تقرير شهري بالنتائج
-- Buttons: ابدأ اللعب · شاهد أعمالنا
+- Buttons: تواصل معنا · شاهد أعمالنا
 - Four hero cards: محتوى / تصميم / إعلانات / نمو
 
 ## Second section after the hero scroll — replaced

@@ -53,6 +53,7 @@
 <link rel="stylesheet" href="src/css/41-services-grid.css">
 <!-- css:end -->
 <!-- js:start (run in this order; build concatenates them) -->
+<script src="src/js/01-reveal-observers.js" defer></script>
 <script src="src/js/12-faq-hover.js" defer></script>
 <script src="src/js/14-kashida-justify.js" defer></script>
 <script src="src/js/15-cta-experiments.js" defer></script>
@@ -61,7 +62,7 @@
 <!-- js:end -->
 </head>
 <body>
-<header class="mini on pg" id="mini" lang="ar" dir="rtl"><a class="mini-b" href="index.html" aria-label="أربعمية"><img src="assets/img/logo-symbol.svg" alt="أربعمية" width="46" height="46"></a><nav aria-label="التنقل الرئيسي"><div class="mini-l" id="miniMenu"><a href="index.html">الرئيسية</a><a href="services.html">خدماتنا</a><a href="projects.html">أعمالنا</a><a href="about.html">من نحن</a><a href="faq.html" aria-current="page">الأسئلة الشائعة</a></div><a class="cta flipbtn fb--line" href="contact.html"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♣︎</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♣︎</i></span></span></a><button class="mini-m" type="button" aria-label="القائمة" aria-expanded="false" aria-controls="miniMenu"><i></i><i></i><i></i></button></nav></header>
+<header class="mini on pg" id="mini" lang="ar" dir="rtl"><a class="mini-b" href="index.html" aria-label="أربعمية"><img src="assets/img/logo-symbol.svg" alt="أربعمية" width="46" height="46"></a><nav aria-label="التنقل الرئيسي"><div class="mini-l" id="miniMenu"><a href="services.html">خدماتنا</a><a href="projects.html">أعمالنا</a><a href="about.html">من نحن</a></div><a class="cta flipbtn fb--line" href="contact.html"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♣︎</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♣︎</i></span></span></a><button class="mini-m" type="button" aria-label="القائمة" aria-expanded="false" aria-controls="miniMenu"><i></i><i></i><i></i></button></nav></header>
 <section class="fq pg-fq" id="fq" data-cur="card" lang="ar" dir="rtl" aria-label="الأسئلة الشائعة">
   <div class="fq-in">
     <div class="fq-t"><span class="fq-e eb">♠︎ الأسئلة الشائعة</span><h2>كل ما تسأل عنه قبل أن نبدأ</h2></div>
@@ -85,6 +86,17 @@
     </div>
   </div>
 </section>
+<section class="pr" id="pr" data-cur="card" lang="ar" dir="rtl" aria-label="كيف نعمل">
+  <div class="pr-in">
+    <h2 class="pr-h">كيف نعمل</h2>
+    <ol class="hw">
+      <li class="hw-s"><i class="hw-m" aria-hidden="true">♠︎</i><span class="hw-k">المرحلة 01</span><h3>تواصل معنا</h3><p>تشاركنا تفاصيل مشروعك واحتياجك، ونراجع طلبك لنحدد الخدمات المناسبة له.</p></li>
+      <li class="hw-s"><i class="hw-m r" aria-hidden="true">♥︎</i><span class="hw-k">المرحلة 02</span><h3>عرض مناسب</h3><p>نرسل لك عرضًا يوضح الخدمات المناسبة وتفاصيل التنفيذ والتكلفة والمدة الزمنية.</p></li>
+      <li class="hw-s"><i class="hw-m r" aria-hidden="true">♦︎</i><span class="hw-k">المرحلة 03</span><h3>ننفّذ</h3><p>بعد اعتماد العرض نبدأ العمل ونوزّع المهام، ونشاركك الأعمال المنجزة ونستقبل ملاحظاتك قبل الاعتماد النهائي.</p></li>
+      <li class="hw-s"><i class="hw-m" aria-hidden="true">♣︎</i><span class="hw-k">المرحلة 04</span><h3>نسلّمك</h3><p>نسلّم المخرجات النهائية بالصيغة المتفق عليها، بعد التأكد من اكتمال متطلبات المشروع.</p></li>
+    </ol>
+  </div>
+</section>
 <section class="xp xp9" data-cur="card" lang="ar" dir="rtl" aria-label="تجربة ٩: اسحب ورقتك">
   <h2>اسحب <em>ورقتك</em></h2>
   <p id="xp9m">اضغط على الرزمة، أو اسحب الورقة العلوية للأعلى.</p>
@@ -96,7 +108,7 @@
     <div class="xp9-card" id="xp9c" aria-hidden="true"><div class="in"><div class="f"></div><div class="b"></div></div></div>
     <div class="xp9-out" id="xp9o">
       <h3 class="xp9-h" id="xp9h"></h3><p class="xp9-p" id="xp9p"></p>
-      <div class="xp9-btns"><a class="flipbtn fb--cream" href="contact.html"><span class="fb-in"><span class="fb-f">ابدأ اللعب<i>♠&#xFE0E;</i></span><span class="fb-b" aria-hidden="true">ابدأ اللعب<i>♠&#xFE0E;</i></span></span></a><button class="flipbtn fb--line" id="xp9a" type="button"><span class="fb-in"><span class="fb-f">اسحب ورقة أخرى ↺</span><span class="fb-b" aria-hidden="true">اسحب ورقة أخرى ↺</span></span></button></div>
+      <div class="xp9-btns"><a class="flipbtn fb--cream" href="contact.html"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♠&#xFE0E;</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♠&#xFE0E;</i></span></span></a><button class="flipbtn fb--line" id="xp9a" type="button"><span class="fb-in"><span class="fb-f">اسحب ورقة أخرى ↺</span><span class="fb-b" aria-hidden="true">اسحب ورقة أخرى ↺</span></span></button></div>
     </div>
   </div>
 </section>
@@ -106,7 +118,7 @@
     <div class="ft-brand">
       <img class="ft-logo" src="assets/img/logo-wine.svg" alt="أربعمية" width="170" height="150">
       <div class="ft-tag">مكتب إبداعي يجمع المحتوى والتصميم والإعلانات والنمو في فريق واحد.</div>
-      <a class="ft-cta" href="contact.html">ابدأ اللعب <i>♠&#xFE0E;</i></a>
+      <a class="ft-cta" href="contact.html">تواصل معنا <i>♠&#xFE0E;</i></a>
     </div>
     <!-- Footer links: each .ft-col is one column and the grid adds more on its own. To add a column or a link, copy a block below. Links that point to pages or profiles that do not exist yet (social, legal, contact details) go in the last column or a new one. -->
     <nav class="ft-cols" aria-label="روابط التذييل">
