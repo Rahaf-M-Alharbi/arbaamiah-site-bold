@@ -85,7 +85,7 @@
  },
  {
   "slug": "lawyer-designs",
-  "name": "تصاميم المحامي",
+  "name": "المحامي محمد الخمعلي",
   "name_en": "Legal Designs",
   "category": "تصميم",
   "folder": "lawyer-designs",
@@ -123,7 +123,7 @@
  },
  {
   "slug": "ahmed-hr",
-  "name": "أحمد HR",
+  "name": "استشاري الموارد البشرية",
   "name_en": "Ahmed HR",
   "category": "إنفوجرافيك",
   "folder": "ahmed-hr",
@@ -152,6 +152,7 @@
  },
  {
   "slug": "campaign-management",
+  "hidden": true,
   "name": "إدارة الحملات",
   "name_en": "Campaign Management",
   "category": "حملات إعلانية",
@@ -195,7 +196,7 @@
  },
  {
   "slug": "collage-1",
-  "name": "مقطع شقردي",
+  "name": "كولاج شقردي",
   "category": "مقاطع الكولاج",
   "group": "مقاطع الكولاج",
   "drive": "https://drive.google.com/file/d/16sWCQYRgFph1PlAoB-1aCQU8Y36j6dK5/view?usp=drivesdk",
@@ -204,12 +205,12 @@
  },
  {
   "slug": "collage-2",
-  "name": "مقطع كولاج ٢",
+  "name": "كولاج نسق",
   "category": "مقاطع الكولاج",
   "group": "مقاطع الكولاج",
   "drive": "https://drive.google.com/file/d/1WlHdC70uyOIRaBPywd7ZcnfurE8__YG4/view?usp=drivesdk",
   "placeholder": true,
-  "about": ""
+  "about": "مقطع كولاج لنسق: محتوى وتصميم ومونتاج وتعليق."
  },
  {
   "slug": "collage-3",
@@ -254,7 +255,7 @@
   "group": "محتوى UGC",
   "drive": "https://drive.google.com/drive/folders/1VeNeEEOutUoestPcrHqBrUcmPE-7I2AX",
   "placeholder": true,
-  "about": "محتوى UGC لكلين اب (يوليو): كتابة وتصوير."
+  "about": "محتوى UGC لكلين اب: كتابة وتصوير."
  },
  {
   "slug": "ugc-sara-nasq",

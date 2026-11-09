@@ -54,11 +54,14 @@
 <link rel="stylesheet" href="src/css/42-projects.css">
 <!-- css:end -->
 <!-- js:start (run in this order; build concatenates them) -->
+<script src="src/js/15-cta-experiments.js" defer></script>
 <script src="src/js/43-project-lightbox.js" defer></script>
+<script src="src/js/13-nav-contrast.js" defer></script>
+<script src="src/js/19-nav.js" defer></script>
 <!-- js:end -->
 </head>
 <body>
-<header class="pg-top" lang="ar" dir="rtl"><a class="pg-brand" href="index.html">أربعمية</a><nav class="pg-nav" aria-label="التنقل"><a href="index.html">الرئيسية</a><a href="projects.html" aria-current="page">أعمالنا</a><a class="pg-cta" href="index.html#contact">تواصل معنا</a></nav></header>
+<header class="mini on pg" id="mini" lang="ar" dir="rtl"><a class="mini-b" href="index.html" aria-label="أربعمية"><img src="assets/img/logo-symbol.svg" alt="أربعمية" width="46" height="46"></a><nav aria-label="التنقل الرئيسي"><div class="mini-l" id="miniMenu"><a href="index.html">الرئيسية</a><a href="services.html">خدماتنا</a><a href="projects.html" aria-current="page">أعمالنا</a><a href="about.html">من نحن</a><a href="faq.html">الأسئلة الشائعة</a></div><a class="cta flipbtn fb--line" href="contact.html"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♣︎</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♣︎</i></span></span></a><button class="mini-m" type="button" aria-label="القائمة" aria-expanded="false" aria-controls="miniMenu"><i></i><i></i><i></i></button></nav></header>
 <main class="pj pj-page" lang="ar" dir="rtl" aria-label="معسكر التسويق">
   <div class="pj-hero">
     <div class="pj-ht">
@@ -78,44 +81,57 @@
   
   <a class="pj-next" href="project-voiceover-2.html"><small>المشروع التالي</small><b>صوت علامتك التجارية ←</b></a>
 </main>
+<section class="xp xp9" data-cur="card" lang="ar" dir="rtl" aria-label="تجربة ٩: اسحب ورقتك">
+  <h2>اسحب <em>ورقتك</em></h2>
+  <p id="xp9m">اضغط على الرزمة، أو اسحب الورقة العلوية للأعلى.</p>
+  <div class="xp9-stage" id="xp9t">
+    <div class="xp9-deck">
+      <i class="xp9-k" style="--n:4"></i><i class="xp9-k" style="--n:3"></i><i class="xp9-k" style="--n:2"></i><i class="xp9-k" style="--n:1"></i>
+      <button class="xp9-top" id="xp9top" type="button" aria-label="اسحب ورقة من الرزمة"><span class="xp9-bk"><u>♠&#xFE0E;</u><u>♥&#xFE0E;</u><u>♦&#xFE0E;</u><u>♣&#xFE0E;</u><b>اسحب</b><i>↑</i></span></button>
+    </div>
+    <div class="xp9-card" id="xp9c" aria-hidden="true"><div class="in"><div class="f"></div><div class="b"></div></div></div>
+    <div class="xp9-out" id="xp9o">
+      <h3 class="xp9-h" id="xp9h"></h3><p class="xp9-p" id="xp9p"></p>
+      <div class="xp9-btns"><a class="flipbtn fb--cream" href="contact.html"><span class="fb-in"><span class="fb-f">ابدأ اللعب<i>♠&#xFE0E;</i></span><span class="fb-b" aria-hidden="true">ابدأ اللعب<i>♠&#xFE0E;</i></span></span></a><button class="flipbtn fb--line" id="xp9a" type="button"><span class="fb-in"><span class="fb-f">اسحب ورقة أخرى ↺</span><span class="fb-b" aria-hidden="true">اسحب ورقة أخرى ↺</span></span></button></div>
+    </div>
+  </div>
+</section>
 <footer class="ft" id="ft" data-cur="heart" lang="ar" dir="rtl">
   <div class="ft-top">
     <div class="ft-brand">
-      <b>أربعمية</b>
+      <img class="ft-logo" src="assets/img/logo-wine.svg" alt="أربعمية" width="170" height="150">
       <div class="ft-tag">مكتب إبداعي يجمع المحتوى والتصميم والإعلانات والنمو في فريق واحد.</div>
-      <a class="ft-cta" href="#contact">ابدأ اللعب <i>♠&#xFE0E;</i></a>
+      <a class="ft-cta" href="contact.html">ابدأ اللعب <i>♠&#xFE0E;</i></a>
     </div>
     <!-- Footer links: each .ft-col is one column and the grid adds more on its own. To add a column or a link, copy a block below. Links that point to pages or profiles that do not exist yet (social, legal, contact details) go in the last column or a new one. -->
     <nav class="ft-cols" aria-label="روابط التذييل">
       <div class="ft-col">
-        <h3><i>♠&#xFE0E;</i>خدماتنا</h3>
+        <h3><i class="r">&#9829;&#xFE0E;</i>أربعمية</h3>
         <ul>
-          <li><a href="#deck">المحتوى</a></li>
-          <li><a href="#deck">التصميم</a></li>
-          <li><a href="#deck">الإعلانات</a></li>
-          <li><a href="#deck">النمو</a></li>
-        </ul>
-      </div>
-      <div class="ft-col">
-        <h3><i class="r">♥&#xFE0E;</i>أربعمية</h3>
-        <ul>
-          <li><a href="#work">أعمالنا</a></li>
-          <li><a href="projects.html">مشاريعنا</a></li>
-          <li><a href="#stt">بالأرقام</a></li>
-          <li><a href="#cst">قصص العملاء</a></li>
-          <li><a href="#pr">كيف نعمل</a></li>
+          <li><a href="index.html">الرئيسية</a></li>
+          <li><a href="services.html">خدماتنا</a></li>
+          <li><a href="projects.html">أعمالنا</a></li>
+          <li><a href="about.html">من نحن</a></li>
           <li><a href="faq.html">أسئلة شائعة</a></li>
         </ul>
       </div>
       <div class="ft-col">
-        <h3><i class="r">♦&#xFE0E;</i>تواصل معنا</h3>
+        <h3><i>&#9824;&#xFE0E;</i>خدماتنا</h3>
         <ul>
-          <li><a href="#contact">أرسل طلبك</a></li>
-          <!-- <li><a href="mailto:">البريد الإلكتروني</a></li> -->
-          <!-- <li><a href="tel:">الجوال</a></li> -->
+          <li><a href="services.html">المحتوى</a></li>
+          <li><a href="services.html">التصميم</a></li>
+          <li><a href="services.html">الإعلانات</a></li>
+          <li><a href="services.html">الفيديو</a></li>
         </ul>
       </div>
-      <!-- <div class="ft-col"><h3><i>♣&#xFE0E;</i>تابعنا</h3><ul><li><a href="#">…</a></li></ul></div> -->
+      <div class="ft-col">
+        <h3><i class="r">&#9830;&#xFE0E;</i>تواصل معنا</h3>
+        <ul>
+          <li><a href="contact.html">أرسل طلبك</a></li>
+          <!-- Contact links, to fill in later: uncomment a line and put the real address or profile in href. -->
+          <li class="ft-ic"><a href="mailto:arbaamia.sa@gmail.com" aria-label="البريد الإلكتروني"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1.6 2L12 12.4 19.4 7zM4 8.6V17h16V8.6l-8 5.8z"/></svg></a><!-- TODO: put the real number, e.g. https://wa.me/9665XXXXXXXX --><a href="#" target="_blank" rel="noopener" aria-label="واتساب"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l4.97-1.3A10 10 0 1 0 12 2zm0 1.9a8.1 8.1 0 1 1-4.3 15l-.3-.2-3 .8.8-2.9-.2-.3A8.1 8.1 0 0 1 12 3.9zM8.6 7.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.1c-.2-.5-.4-.5-.6-.5z"/></svg></a><!-- TODO: put the real profile, e.g. https://x.com/HANDLE --><a href="#" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.2-8.3L2 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"/></svg></a><!-- TODO: put the real profile, e.g. https://instagram.com/HANDLE --><a href="#" target="_blank" rel="noopener" aria-label="انستغرام"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 1.8A3.7 3.7 0 0 0 3.8 7.5v9a3.7 3.7 0 0 0 3.7 3.7h9a3.7 3.7 0 0 0 3.7-3.7v-9a3.7 3.7 0 0 0-3.7-3.7zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4zM17.3 5.6a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"/></svg></a></li>
+        </ul>
+      </div>
     </nav>
   </div>
   <div class="ft-in ft-r"><span>© أربعمية · جميع الحقوق محفوظة</span><!-- legal links (privacy, terms) can go here as <a> elements --><span class="ft-s" aria-hidden="true"><i>♠︎</i><i class="r">♥︎</i><i class="r">♦︎</i><i>♣︎</i></span></div>

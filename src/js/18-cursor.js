@@ -1,8 +1,8 @@
-/* Cursor: real mouse only. data-cur="card" sections show a card that leans with the movement and flips over cards; data-cur="heart" sections show a heart; buttons and links show the heart anywhere. Elsewhere and over text fields the system cursor stays. Styles in 40-cursor.css. */
+/* Cursor: real mouse only. the card is the default: it leans with the movement and flips over cards. Only buttons (and the busy data-cur="heart" sections: work deck, client stories, footer, contact form) show the heart. Over text fields the system cursor stays. Styles in 40-cursor.css. */
 (function(){
   if(!matchMedia('(pointer:fine)').matches||!matchMedia('(hover:hover)').matches) return;
   var still=matchMedia('(prefers-reduced-motion:reduce)').matches,
-      BTN='a,button:not(:disabled),summary,label,[role=button],.tab,.xp9-top',
+      BTN='button:not(:disabled),.flipbtn,.cta,.ft-cta,.pg-cta,.fq-all,summary,[role=button],.tab,.xp9-top',
       CARD='.pk,.pnl,.slot,.hcard,.pcard,.slot3.f,.cc',
       TXT='input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]),textarea,select,[contenteditable]';
   function mk(cls,html){var d=document.createElement('div');d.className='cu '+cls;d.setAttribute('aria-hidden','true');d.innerHTML=html;document.body.appendChild(d);return d}
@@ -17,7 +17,7 @@
   document.addEventListener('mouseover',function(e){
     var t=e.target,c=t.closest?t:t.parentElement,z=c&&c.closest('[data-cur]'),area=z?z.dataset.cur:'',
         txt=c&&c.closest(TXT),btn=c&&c.closest(BTN),
-        icon=txt?'':(btn?'heart':area);
+        icon=txt?'':(btn?'heart':(area||'card'));
     card.el.classList.toggle('on',icon==='card');
     card.el.classList.toggle('hot',!!(c&&c.closest(CARD)));
     heart.el.classList.toggle('on',icon==='heart');

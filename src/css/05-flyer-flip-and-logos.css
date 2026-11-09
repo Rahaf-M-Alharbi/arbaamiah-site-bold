@@ -28,9 +28,13 @@
 @media (max-width:760px){.bigcard{--bw:min(170vw,100vh);left:-20vw;top:26vh}}
 
 
-/* logos: after the big card lands it spreads into small cards, one per client logo */
-.next2{height:220vh}
+/* logos: one row of small cards that loops sideways */
+.next2{height:auto}
 .bigcard{display:none!important}
-.lgl{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0}
-.lgl.on{pointer-events:auto}
-.lgg{position:absolute;inset:0}
+.nstage{position:relative;height:auto;display:block;padding:clamp(48px,8vw,96px) 0}
+.lgl{position:relative;inset:auto;width:100%;max-width:100%;contain:inline-size;z-index:2;overflow:hidden;direction:ltr;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.lgg{position:static;display:flex;width:max-content;padding:12px 0 16px;animation:lgScroll 24s ease-in-out infinite alternate}
+.lgl:hover .lgg{animation-play-state:paused}
+.lgg .lgc{position:relative;flex:none;margin-right:clamp(14px,2vw,28px);width:clamp(120px,14vw,190px);aspect-ratio:1/1.1}
+@keyframes lgScroll{to{transform:translateX(var(--lgd,0px))}}
+@media (prefers-reduced-motion:reduce){.lgg{animation:none}.lgl{overflow-x:auto}}

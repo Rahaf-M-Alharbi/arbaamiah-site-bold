@@ -20,7 +20,7 @@
 .wc .ix{position:absolute;top:5%;left:9%;font:700 11cqw/1 var(--f-disp);text-align:center;direction:ltr;color:var(--ac)}
 .wc .ix i{display:block;font-style:normal;font-size:.8em}
 .wc .ix.b{top:auto;left:auto;bottom:5%;right:9%;transform:rotate(180deg)}
-.wc .pip{position:absolute;right:-14cqw;bottom:-10cqw;font-size:92cqw;line-height:1;color:var(--ac);opacity:.14;pointer-events:none}
+.wc .pip{position:absolute;right:4cqw;bottom:2cqw;font-size:40cqw;line-height:1;color:var(--ac);opacity:.07;pointer-events:none}
 .wc .tag{position:absolute;top:6%;right:9%;font:700 3.6cqw/1 var(--f-body);color:var(--ac);border:1px solid currentColor;border-radius:99px;padding:1.4cqw 3.2cqw}
 .wc h3{position:absolute;left:9%;right:9%;top:25%;margin:0;font:700 13.5cqw/1.2 var(--f-disp);text-wrap:balance}
 .wc p{position:absolute;left:9%;right:9%;top:57%;margin:0;font:600 4.6cqw/1.8 var(--f-body);opacity:.85}

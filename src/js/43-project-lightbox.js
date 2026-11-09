@@ -210,11 +210,22 @@ try {
   document.querySelectorAll(".pj-all-cards").forEach((grid) => {
     const c = document.querySelector(".pj-chips");
     c.hidden = false;
+    /* small link under the chips: opens the contact form with the service that matches the chosen kind of work */
+    const ord = document.getElementById("pjOrder"), SV = { design: ["design", "التصميم والهوية"], video: ["design", "الفيديو"], voice: ["content", "التعليق الصوتي"], write: ["content", "كتابة المحتوى"], strategy: ["growth", "الاستراتيجية والحملات"] };
+    const setOrder = (k) => {
+      if (!ord) return;
+      const v = SV[k];
+      ord.hidden = false;
+      ord.firstChild.nodeValue = v ? "اطلب هذه الخدمة " : "اطلب خدمتك ";
+      ord.href = v ? "contact.html?svc=" + v[0] + "&n=" + encodeURIComponent(v[1]) : "contact.html";
+    };
+    setOrder("all");
     c.addEventListener("click", (e) => {
       const b = e.target.closest("button");
       if (!b) return;
       c.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
       grid.querySelectorAll(".pj-card").forEach((card) => { card.hidden = b.dataset.k !== "all" && !card.dataset.kinds.split(" ").includes(b.dataset.k); });
+      setOrder(b.dataset.k);
     });
   });
 } catch (e) {}

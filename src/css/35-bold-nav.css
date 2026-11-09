@@ -16,3 +16,30 @@
 .mini .fb--line .fb-f,.mini .fb--line .fb-b{padding:11px 24px;font-size:16px}
 @media (max-width:640px){.mini{padding:6px 8px 6px 18px;box-shadow:5px 5px 0 #17120f;border-width:3px;border-radius:14px}.mini b,.mini.on-dark b{font-size:22px}.mini .fb--line .fb-f,.mini .fb--line .fb-b{padding:9px 16px;font-size:14px}}
 @media (prefers-reduced-motion:reduce){.mini nav a:not(.flipbtn),.links a:not(.flipbtn){transition:none}}
+
+/* the same bar on every page: brand link, page links, the contact button and (on narrow screens) a menu button. Built from src/partials/nav.html by scripts/sync-nav.mjs. */
+.mini-b{display:inline-block;text-decoration:none}
+.mini-l{display:flex;align-items:center;gap:4px}
+.mini-m{display:none}
+.mini nav .mini-l a[aria-current="page"],.mini.on-dark nav .mini-l a[aria-current="page"]{background:#6c171e;color:#f4dabf;border-color:#17120f;box-shadow:3px 3px 0 #17120f}
+.mini.pg+*{margin-top:clamp(92px,12vh,112px)}
+@media (max-width:1000px){
+  .mini nav{gap:10px}
+  .mini-m{display:grid;align-content:center;justify-items:center;gap:5px;width:46px;height:46px;padding:0;border:3px solid #17120f;border-radius:11px;background:#f4dabf;box-shadow:3px 3px 0 #17120f;cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s}
+  .mini-m i{display:block;width:20px;height:3px;border-radius:2px;background:#6c171e;transition:transform .25s,opacity .2s}
+  .mini-m:hover,.mini-m:focus-visible{background:#6c171e;transform:translate(-2px,-2px);box-shadow:5px 5px 0 #17120f}
+  .mini-m:hover i,.mini-m:focus-visible i{background:#f4dabf}
+  .mini.open .mini-m i:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .mini.open .mini-m i:nth-child(2){opacity:0}
+  .mini.open .mini-m i:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+  .mini-l{display:none;position:absolute;top:calc(100% + 14px);left:0;right:0;flex-direction:column;align-items:stretch;gap:4px;padding:10px;background:#f4dabf;border:4px solid #17120f;border-radius:16px;box-shadow:8px 8px 0 #17120f}
+  .mini.open .mini-l{display:flex}
+  .mini nav .mini-l a:not(.cta){display:block;padding:14px 18px;font-size:18px}
+}
+@media (max-width:640px){.mini-m{width:40px;height:40px}.mini-m i{width:18px}.mini.open .mini-m i:nth-child(1){transform:translateY(8px) rotate(45deg)}.mini-l{border-width:3px;box-shadow:5px 5px 0 #17120f}}
+@media (prefers-reduced-motion:reduce){.mini-m,.mini-m i{transition:none}}
+
+/* logo lockup in the bar and the footer */
+.mini-b{display:inline-flex;align-items:center;line-height:0}
+.mini-b img{display:block;height:clamp(40px,5.4vh,50px);width:auto}
+.ft-logo{display:block;height:clamp(110px,14vw,170px);width:auto;margin:0 0 18px}

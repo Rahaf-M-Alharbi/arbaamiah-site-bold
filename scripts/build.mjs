@@ -53,7 +53,7 @@ const block = (html, name) => {
 };
 
 const sizes = [];
-const pages = ["index.html", "pricing.html", "faq.html", "projects.html", ...readdirSync(root).filter((f) => f.startsWith("project-") && f.endsWith(".html"))];
+const pages = ["index.html", "pricing.html", "faq.html", "contact.html", "about.html", "services.html", "projects.html", ...readdirSync(root).filter((f) => f.startsWith("project-") && f.endsWith(".html"))];
 for (const page of pages) {
   const name = page.startsWith("pricing") ? "pricing" : "site";
   let html = read(page);

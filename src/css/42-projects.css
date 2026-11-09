@@ -194,3 +194,13 @@
 
 /* projects page title: tag above the title, room before the slideshow */
 .pj-hero-1{grid-template-columns:1fr;margin-bottom:clamp(40px,8vh,90px)}
+
+/* work deck: a tap on the card only brings it forward; the project opens from this button */
+.wc .go{position:absolute;left:9%;bottom:16%;font:700 4cqw/1 var(--f-body);color:inherit;text-decoration:none;padding:2.2cqw 4cqw;border-radius:99px;background:var(--fg);color:var(--bg);transition:transform .2s}
+.wc .go:hover,.wc .go:focus-visible{transform:translateX(-1.5cqw)}
+
+/* projects page: small order link under the filter chips */
+.pj-order{display:inline-flex;align-items:center;gap:6px;margin:0 0 clamp(16px,3vh,28px);padding:6px 2px;color:inherit;font:700 14px/1 var(--f-body);text-decoration:none;border-bottom:2px solid currentColor}
+.pj-order[hidden]{display:none}
+.pj-order i{font-style:normal;transition:transform .2s}
+.pj-order:hover i,.pj-order:focus-visible i{transform:translateX(-4px)}

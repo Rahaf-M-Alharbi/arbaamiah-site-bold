@@ -9,15 +9,18 @@ import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (p) => readFileSync(join(root, p), "utf8");
-const projects = JSON.parse(read("src/data/projects.json"));
+/* "hidden": true in projects.json keeps a project's data but leaves it off the site */
+const projects = JSON.parse(read("src/data/projects.json")).filter((p) => !p.hidden);
 const manifest = JSON.parse(read("src/data/projects-manifest.json"));
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 
 /* head, CSS list and footer are taken from the existing pages, so these pages always match them */
 const faq = read("faq.html"), home = read("index.html");
 const cssBlock = faq.match(/<!-- css:start[\s\S]*?<!-- css:end -->/)[0];
-const css = cssBlock.replace("<!-- css:end -->", '<link rel="stylesheet" href="src/css/42-projects.css">\n<!-- css:end -->\n<!-- js:start (run in this order; build concatenates them) -->\n<script src="src/js/43-project-lightbox.js" defer></script>\n<!-- js:end -->');
+const css = cssBlock.replace("<!-- css:end -->", '<link rel="stylesheet" href="src/css/42-projects.css">\n<!-- css:end -->\n<!-- js:start (run in this order; build concatenates them) -->\n<script src="src/js/15-cta-experiments.js" defer></script>\n<script src="src/js/43-project-lightbox.js" defer></script>\n<!-- js:end -->');
 const footer = home.match(/<footer class="ft"[\s\S]*?<\/footer>/)[0];
+/* the closing call to action ("اسحب ورقتك") sits above the footer on every page */
+const cta = home.match(/<section class="xp xp9"[\s\S]*?<\/section>/)[0];
 const heads = faq.split("<!-- css:start")[0].replace(/<title>.*<\/title>/, "<title>@@TITLE@@</title>");
 
 const shown = (p) => {
@@ -55,6 +58,7 @@ const page = (title, body, current = true) => `${heads.replace("@@TITLE@@", esc(
 <body>
 <header class="pg-top" lang="ar" dir="rtl"><a class="pg-brand" href="index.html">أربعمية</a><nav class="pg-nav" aria-label="التنقل"><a href="index.html">الرئيسية</a><a href="projects.html"${current ? ' aria-current="page"' : ""}>أعمالنا</a><a class="pg-cta" href="index.html#contact">تواصل معنا</a></nav></header>
 ${body}
+${cta}
 ${footer}
 </body>
 </html>
@@ -133,9 +137,13 @@ writeFileSync(join(root, "projects.html"), page("مشاريعنا | أربعمي
   <div class="pj-hero pj-hero-1"><div class="pj-ht"><span class="eb pj-e">♦︎ مشاريعنا</span><h1>أعمال اخترناها لنعرضها</h1></div></div>
 ${slides}
   <div class="pj-chips" role="group" aria-label="نوع العمل" hidden>${[["all", "الكل"], ...kinds].map(([k, t], j) => `<button type="button" data-k="${k}" aria-pressed="${j === 0}">${t}</button>`).join("")}</div>
+  <a class="pj-order" id="pjOrder" href="contact.html" hidden>اطلب خدمتك <i>←</i></a>
   <div class="pj-cards pj-all-cards">
 ${projects.map(cardOf).join("\n")}
   </div>
 </main>`));
 
 console.log(`projects: ${projects.length} pages + projects.html`);
+
+/* the pages above carry an old-style header; the shared navigation bar replaces it (and the other pages are kept in step) */
+await import("./sync-nav.mjs");

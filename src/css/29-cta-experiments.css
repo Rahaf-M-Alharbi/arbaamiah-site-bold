@@ -70,3 +70,14 @@
   .xp9-btns{row-gap:18px}
 }
 @media (min-width:761px) and (prefers-reduced-motion:reduce){.xp9-stage{transition:none}}
+
+/* phone: once a card is drawn, the card sits at the top and the text and buttons flow underneath it, so a long headline can never run under the card or off the edge */
+@media (max-width:760px){
+  .xp9-stage.drawn{height:auto;min-height:0;padding-top:calc(var(--cw)*1.4 + 48px)}
+  .xp9-stage.drawn .xp9-deck,.xp9-stage .xp9-card.on{top:calc(var(--cw)*.7 + 12px)}
+  .xp9-stage.drawn .xp9-out{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:100%;box-sizing:border-box;padding-inline:max(20px,6vw);gap:clamp(12px,1.8vh,18px)}
+  .xp9 .xp9-h{font-size:clamp(36px,11vw,54px);line-height:1.15;overflow-wrap:anywhere;text-wrap:balance}
+  .xp9 .xp9-p{font-size:clamp(16px,4.6vw,20px);max-width:none;text-wrap:balance}
+  .xp9-btns{width:100%;flex-direction:column;row-gap:16px;gap:16px;margin-top:8px}
+  .xp9-btns .flipbtn .fb-f,.xp9-btns .flipbtn .fb-b{min-width:min(260px,76vw)}
+}

@@ -12,7 +12,7 @@ var CONFIG = {
   monthOptions: [1, 3, 6, 12],
   defaultMonths: 3,
   bundleDiscount: { 2: 0.05, 3: 0.10, 4: 0.15 },  // by number of services chosen
-  ctaHref: '#contact',
+  ctaHref: 'contact.html',
 
   services: [
     { suit:'♠', name:'المحتوى', blurb:'حكايات تكسب الانتباه', items:[
