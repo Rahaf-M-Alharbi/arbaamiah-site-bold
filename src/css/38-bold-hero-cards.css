@@ -63,3 +63,21 @@
 .ab-green .prv-g small{opacity:.7;color:#6c171e}
 .ab-green .prv-g h3{color:#6c171e}
 @media (max-width:900px){.ab-green .prv-g li{box-shadow:6px 6px 0 #17120f}}
+
+/* home: short about block (link under the text) */
+.prv-b a{color:inherit;text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:4px}
+.prv-b a i{font-style:normal;display:inline-block;transition:transform .2s}
+.prv-b a:hover i{transform:translateX(-4px)}
+.prv.ab-i .prv-b{text-align:start;justify-self:start;margin:0}
+.ab-cream .prv,.ab-cream .prv h2,.ab-cream .prv p,.ab-cream .prv .e{color:#6c171e}
+.ab-cream .prv p{max-width:34em}
+
+/* home: the "what is 400" and values bands sit on the page's own dark wine */
+.ab-home{background:#3d0d12;color:#f4dabf;border-top:3px solid rgba(244,218,191,.25)}
+.ab-home .prv-g li{background:#f4dabf;color:#2b0a10;border:4px solid #17120f;box-shadow:8px 8px 0 #17120f;position:relative;overflow:hidden}
+.ab-home .prv-g li::after{content:attr(data-s);position:absolute;inset-inline-end:14px;bottom:-10px;font:700 clamp(70px,9vw,120px)/1 var(--f-body);color:#0d3d3a;opacity:.12;pointer-events:none}
+.ab-home .prv-g li.r::after{color:#6c171e;opacity:.16}
+.ab-home .prv-g small{opacity:.7;color:#6c171e}
+.ab-home .prv-g h3{color:#6c171e}
+.ab-home .prv p{max-width:34em}
+@media (max-width:900px){.ab-home .prv-g li{box-shadow:6px 6px 0 #17120f}}

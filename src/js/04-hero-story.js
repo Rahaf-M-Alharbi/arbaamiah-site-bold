@@ -39,9 +39,6 @@
   }
   function update(){
     if(!started)return;
-    var past=stage.getBoundingClientRect().bottom<H*.78;
-    var next=past?'out':'in';
-    if(next!==state){state=next;place()}
     mini.classList.toggle('on',stage.getBoundingClientRect().bottom<H*.3);
   }
   var tick=false;
@@ -49,7 +46,7 @@
   function start(){
     if(started)return;started=true;
     if(reduce)layer.classList.add('no-anim');
-    state=stage.getBoundingClientRect().bottom<H*.78?'out':'in';place();update();
+    state='in';place();update();
   }
   window.addEventListener('scroll',req,{passive:true});
   window.addEventListener('resize',function(){layer.classList.add('no-anim');layout();place();update();requestAnimationFrame(function(){if(!reduce)layer.classList.remove('no-anim')})});
