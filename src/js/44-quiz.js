@@ -3,6 +3,7 @@
 (function(){
   var f=document.getElementById('qzForm');if(!f)return;
   var ENDPOINT='https://formsubmit.co/ajax/arbaamia.sa@gmail.com';
+  var SEND_ENABLED=false;                                  /* testing: nothing is sent until this is true */
   var err=document.getElementById('qzErr'),btn=f.querySelector('button[type=submit]');
   f.addEventListener('submit',function(e){
     e.preventDefault();err.textContent='';
@@ -19,7 +20,7 @@
     var qa=[].map.call(f.querySelectorAll('fieldset.qz-q'),function(s){return {q:s.querySelector('legend').textContent.replace(/^[٠-٩]+/,''),a:s.querySelector('input:checked').value}}),account=f.elements.account.value.trim();
     /* the team always gets the answers; the client gets the approximate review if the assessment call works */
     /* on localhost nothing is sent to the team's inbox, so tests don't fill it */
-    var local=/^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+    var local=!SEND_ENABLED||/^(localhost|127\.0\.0\.1)$/.test(location.hostname);
     var sent=local?Promise.resolve():fetch(ENDPOINT,{method:'POST',body:d,headers:{Accept:'application/json'}}).then(function(r){return r.json().then(function(j){if(!r.ok||j.success==='false'||j.success===false)throw 0})});
     f.innerHTML='<div class="qz-done" role="status"><i>♠︎</i><b>نراجع حسابك الآن</b><span>نبحث عن المعلومات المتاحة ونجهز تقديرك. يستغرق هذا نحو نصف دقيقة.</span></div>';
     var rev=fetch('/api/assess',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({account:account,answers:qa,website:f.elements.website?f.elements.website.value:''})}).then(function(r){if(!r.ok)throw 0;return r.json()});
