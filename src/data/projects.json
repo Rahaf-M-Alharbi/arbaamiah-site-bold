@@ -101,15 +101,6 @@
   ]
  },
  {
-  "slug": "lovent-spa",
-  "name": "لوفينت سبا",
-  "name_en": "Lovent Spa",
-  "category": "تصميم وفيديو",
-  "folder": "lovent-spa",
-  "about": "محتوى لسبا لوفينت: منشور تعريفي بخدمات المساج والعناية بالأظافر، ومقطع فيديو بتصميم متحرك بألوان الزيتي والكريمي ورسائل عن الاسترخاء والدلال.",
-  "group": "السوشل ميديا والتصاميم"
- },
- {
   "slug": "zaheed",
   "name": "زهيد",
   "name_en": "Zaheed",
@@ -130,17 +121,6 @@
   "folder": "ahmed-hr",
   "about": "إنفوجرافيك لمستشار الموارد البشرية أحمد: إدارة الوقت، وأسئلة المقابلة الشخصية لصاحب العمل، وأهمية قول «لا» للالتزام بجدولك. معلومات مهنية مبسطة في تصاميم واضحة.",
   "group": "الإنفوجرافيك"
- },
- {
-  "slug": "nama-store",
-  "name": "نما ستور",
-  "name_en": "NMA Store",
-  "category": "تجارة إلكترونية",
-  "folder": "nama-store",
-  "why": "قوة العلامة التجارية ومعرفة الجمهور بها",
-  "value": "مصداقية من علامة معروفة",
-  "about": "تصاميم حملة كود خصم لمتجر NMA بمناسبة اليوم العالمي للادخار.",
-  "group": "المتاجر الإلكترونية"
  },
  {
   "slug": "bedding-hotel",
@@ -233,24 +213,6 @@
   "about": "تعليق صوتي."
  },
  {
-  "slug": "voiceover-2",
-  "name": "صوت علامتك التجارية",
-  "category": "التعليق الصوتي",
-  "group": "التعليق الصوتي",
-  "drive": "https://drive.google.com/file/d/1XMXN9i0B5NkcowwWOC-Ix62AolcHVBsS/view?usp=drivesdk",
-  "placeholder": true,
-  "about": "تعليق صوتي."
- },
- {
-  "slug": "voiceover-3",
-  "name": "عميل الجمعة البيضاء",
-  "category": "التعليق الصوتي",
-  "group": "التعليق الصوتي",
-  "drive": "https://drive.google.com/file/d/1VO-MStc9PFmsltKpabpGCgrhQZQLBqIM/view?usp=drivesdk",
-  "placeholder": true,
-  "about": "تعليق صوتي."
- },
- {
   "slug": "ugc-clean-up",
   "name": "كلين اب",
   "category": "UGC",
@@ -317,83 +279,25 @@
   "embed_ratio": "9/16"
  },
  {
-  "slug": "wazna",
-  "name": "وزنة",
-  "name_en": "Wazna",
-  "category": "كتابة محتوى وفيديو",
-  "folder": "content-writing",
-  "why": "ربط العمل بشخصية مؤثرة",
-  "value": "محتوى يناسب الشخصيات المؤثرة وجمهورها",
-  "pick": [
-   4,
-   5,
-   6,
-   1
-  ],
-  "cover_video": false,
-  "about": "متجر قهوة مختصة. عملنا على خطة إطلاق المتجر: التعريف به وبناء الثقة، مع جمهور من أصحاب الأعمال والموظفين والطلاب، بنبرة واثقة وفخورة بأسلوب شعبي راق. محتوى تعريفي وتثقيفي وقصصي وتسويقي، وسيناريوهات ريلز وتعليق صوتي وتصميم عبوة وملصقات.",
-  "group": "كتابة المحتوى",
-  "layout": "book"
- },
- {
   "slug": "nasq-content",
   "name": "محتوى نسق",
   "name_en": "Nasq Content",
   "category": "كتابة محتوى",
   "group": "كتابة المحتوى",
   "kinds": [
-   "write",
    "video"
   ],
   "placeholder": true,
-  "about": "محتوى كتبناه لنسق عن التسويق وصناعة المحتوى: نصوص مكتوبة ومقاطع قصيرة تتناول الخصوصية في التسويق، وصوت العلامة التجارية، ولغة المحتوى، واختيار المنتج للسوق المناسب، وسبب ذهاب العملاء إلى المنافسين.",
-  "media": [
-   {
-    "key": "write",
-    "label": "كتابة محتوى",
-    "items": [
-     {
-      "url": "https://docs.google.com/document/d/1PGD7FGclI5EcrdEL8RyPp1NQMhMGDRixK_vejR7dCTE/edit?usp=drivesdk",
-      "title": "التسويق × الخصوصية"
-     },
-     {
-      "url": "https://docs.google.com/document/d/1NpVdwyI1C8SZp6_eEIYiUOEn3gC-mEs_J0VD4EhmUwU/edit?usp=drivesdk",
-      "title": "كل مسوق مبدع؟"
-     }
-    ]
-   },
-   {
-    "key": "video",
-    "label": "فيديو",
-    "tall": true,
-    "items": [
-     {
-      "url": "https://drive.google.com/file/d/1zhIxEDrkl8XjNO1tGALYdcWpUgBuj6BO/view?usp=drivesdk",
-      "title": "المحتوى"
-     },
-     {
-      "url": "https://drive.google.com/file/d/1C_pBz7p2NncscXKCikGoUgP-XQFWB8jB/view?usp=drivesdk",
-      "title": "لغة المحتوى"
-     },
-     {
-      "url": "https://drive.google.com/file/d/1FR6G7lIB5kCfzIJzWc6X4uokkvYIQhrA/view?usp=drivesdk",
-      "title": "كل مسوق مبدع"
-     },
-     {
-      "url": "https://drive.google.com/file/d/1f7QDnZ7f2GIJm8mmGqt6gb20tRjnKL6F/view?usp=drivesdk",
-      "title": "صوت علامتك التجارية"
-     },
-     {
-      "url": "https://drive.google.com/file/d/1uJVcvHQ9ea28P4e-uDGNxXccyuRgMeg4/view?usp=drivesdk",
-      "title": "المنتج في السوق الصح"
-     },
-     {
-      "url": "https://drive.google.com/file/d/15HOTc0LzwFVZBdhcfcoooAVS6A5aARsz/view?usp=drivesdk",
-      "title": "المنافسين ٣"
-     }
-    ]
-   }
-  ]
+  "about": "مقاطع قصيرة كتبنا محتواها لنسق عن التسويق وصناعة المحتوى: الخصوصية في التسويق، وصوت العلامة التجارية، ولغة المحتوى، واختيار المنتج للسوق المناسب، وسبب ذهاب العملاء إلى المنافسين.",
+  "embeds": [
+   "https://drive.google.com/file/d/1zhIxEDrkl8XjNO1tGALYdcWpUgBuj6BO/view?usp=drivesdk",
+   "https://drive.google.com/file/d/1C_pBz7p2NncscXKCikGoUgP-XQFWB8jB/view?usp=drivesdk",
+   "https://drive.google.com/file/d/1FR6G7lIB5kCfzIJzWc6X4uokkvYIQhrA/view?usp=drivesdk",
+   "https://drive.google.com/file/d/1f7QDnZ7f2GIJm8mmGqt6gb20tRjnKL6F/view?usp=drivesdk",
+   "https://drive.google.com/file/d/1uJVcvHQ9ea28P4e-uDGNxXccyuRgMeg4/view?usp=drivesdk",
+   "https://drive.google.com/file/d/15HOTc0LzwFVZBdhcfcoooAVS6A5aARsz/view?usp=drivesdk"
+  ],
+  "embed_ratio": "9/16"
  },
  {
   "slug": "dxn-scripts",
@@ -402,11 +306,9 @@
   "category": "كتابة محتوى",
   "group": "كتابة المحتوى",
   "kinds": [
-   "write",
    "video"
   ],
   "tags": [
-   "كتابة محتوى",
    "فيديو"
   ],
   "vid_label": "فيديو",

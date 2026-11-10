@@ -75,7 +75,7 @@
 .k4-t .e{opacity:.8}
 .k4-t h2{margin:0;font:700 clamp(44px,7vw,96px)/1.05 var(--f-disp);text-shadow:.04em .04em 0 #17120f}
 .k4-t p{margin:0;max-width:30em;font:500 clamp(16px,1.5vw,20px)/1.9 var(--f-body);opacity:.88}
-.k4-t .k4-l{font:700 clamp(26px,3.6vw,46px)/1.55 var(--f-disp);opacity:1;max-width:none;text-wrap:balance}
+.k4-t .k4-l{font:700 clamp(21px,2.7vw,34px)/1.55 var(--f-disp);opacity:1;max-width:none;text-wrap:balance}
 .k4-l em{font-style:normal;display:inline;padding:0 .24em;color:#6c171e;background:#f4dabf;border-radius:.14em;box-shadow:.07em .07em 0 #17120f;-webkit-box-decoration-break:clone;box-decoration-break:clone;white-space:nowrap}
 .k4-t p:not(.k4-l){padding:clamp(16px,2vw,24px);border:3px solid rgba(244,218,191,.55);border-radius:14px;opacity:1}
 .k4-v{display:grid;justify-items:center;gap:clamp(14px,2.4vw,26px);padding:clamp(28px,4vw,52px) clamp(16px,3vw,36px) clamp(24px,3.4vw,40px);background:#0d3d3a;border:4px solid #17120f;border-radius:18px;box-shadow:8px 8px 0 #17120f}
