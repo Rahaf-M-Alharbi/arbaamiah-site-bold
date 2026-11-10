@@ -21,13 +21,27 @@
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
   /* hero cards: dealt in from below the screen when the page opens (timed), dropped away once you scroll past the hero.
      Positions are the resting fan (A); "pre" and "out" are the same fan pushed down off the stage. */
+  function r2(i){return (i-mid)*7*Math.PI/180}
   function layout(){
     W=stage.clientWidth;H=stage.clientHeight;
     w=slots[0].offsetWidth;h=w*1.4;
+    /* the fan rests fully inside the stage: lift it until the lowest card edge (plus its shadow) clears the bottom */
+    var lift=0,gap=Math.max(16,w*.08);
     for(var i=0;i<n;i++){
       var r=(i-mid)*7,rad=r*Math.PI/180;
       A[i]={x:W/2+(i-mid)*w*.8+1.26*w*Math.sin(rad),y:H+1.06*w-1.26*w*Math.cos(rad),r:r};
+      lift=Math.max(lift,A[i].y+h/2*Math.cos(rad)+w/2*Math.abs(Math.sin(rad))-(H-gap));
     }
+    /* never lift into the tagline: if the full fan does not fit under it, the cards sit lower and the bottom is cut by the stage */
+    var meta=stage.querySelector('.hero-meta'),cta=stage.querySelector('.hero-cta');
+    if(meta){
+      var mb=meta.getBoundingClientRect().bottom;
+      if(cta&&getComputedStyle(cta).position==='static')mb=Math.max(mb,cta.getBoundingClientRect().bottom);
+      var floor=mb-stage.getBoundingClientRect().top+20,room=1e9;
+      for(i=0;i<n;i++){var q=r2(i);room=Math.min(room,A[i].y-(h/2*Math.cos(q)+w/2*Math.abs(Math.sin(q)))-floor)}
+      lift=Math.max(0,Math.min(lift,room));
+    }
+    for(i=0;i<n;i++)A[i].y-=lift;
   }
   function place(){
     slots.forEach(function(sl,i){

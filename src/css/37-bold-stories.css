@@ -18,3 +18,11 @@
 /* keep the big quote marks clear of the text: the card's top and bottom padding are the mark's offset + its visible height (.7em at line-height .7) + a gap, so the quote starts below the opening mark and the name/role end above the closing one at every width */
 .cst-q{--qm:clamp(80px,9vw,140px);padding-top:calc(clamp(24px,3vw,40px) + var(--qm)*.7 + 14px);padding-bottom:calc(clamp(8px,1.4vw,18px) + var(--qm)*.7 + 14px)}
 .cst-q .qm{font-size:var(--qm)}
+
+/* long client quotes read at a smaller size so they stay inside the screen */
+.cst-q p.long{font-size:clamp(20px,2.6vw,38px);line-height:1.7}
+
+/* the section is as tall as its content, so the controls sit right under the card; the card keeps one height for every quote (set in 10-client-stories.js) */
+.cst{min-height:0}
+.cst-q{display:flex;flex-direction:column}
+.cst-q p{margin-block:auto}

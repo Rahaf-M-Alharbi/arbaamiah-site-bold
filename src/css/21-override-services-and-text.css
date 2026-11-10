@@ -25,7 +25,7 @@ a,.links a{font-weight:400}
 .wk-head{row-gap:clamp(56px,7vw,100px)}
 .ctf-t{gap:clamp(40px,5vw,72px)}
 .ft-in{gap:clamp(44px,8vh,80px)}
-.fq .a p{font-size:clamp(20px,2.2vw,30px);line-height:1.8;max-width:42em}
+.fq .a p{font-size:clamp(16px,1.76vw,24px);line-height:1.8;max-width:42em}
 /* one shared eyebrow tag: regular weight, same size everywhere */
 .eb.eb.eb{display:block;font:400 14px/1 var(--f-body);letter-spacing:0;opacity:.8}
 /* FAQ: opens on hover, eases open and shut */

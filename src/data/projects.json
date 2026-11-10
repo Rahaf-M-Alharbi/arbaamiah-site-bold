@@ -123,6 +123,7 @@
  },
  {
   "slug": "ahmed-hr",
+  "hidden": true,
   "name": "استشاري الموارد البشرية",
   "name_en": "Ahmed HR",
   "category": "إنفوجرافيك",
@@ -143,6 +144,7 @@
  },
  {
   "slug": "bedding-hotel",
+  "hidden": true,
   "name": "المجموعة الفندقية",
   "name_en": "Hotel & Bedding",
   "category": "بانرات متجر",

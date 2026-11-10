@@ -2,7 +2,7 @@
    Requests go to FormSubmit (formsubmit.co), which emails them to the address in ENDPOINT. The first submission sends an activation email to that address; click it once. Empty ENDPOINT = nothing is sent. */
 (function(){
   var ENDPOINT='https://formsubmit.co/ajax/arbaamia.sa@gmail.com';
-  var LABELS={content:'المحتوى',design:'التصميم',ads:'الإعلانات',growth:'النمو',consult:'استشارة مجانية'};
+  var LABELS={content:'المحتوى',design:'التصميم',ads:'الإعلانات',growth:'النمو',web:'تطوير المواقع',consult:'استشارة مجانية'};
   var f=document.getElementById('ctfForm'),m=document.getElementById('ctfMsg');if(!f)return;
   var btn=f.querySelector('button[type=submit]');
   /* arriving from a service's "اطلب الخدمة" button: tick that service and name it in the message */

@@ -75,16 +75,19 @@
 .k4-t .e{opacity:.8}
 .k4-t h2{margin:0;font:700 clamp(44px,7vw,96px)/1.05 var(--f-disp);text-shadow:.04em .04em 0 #17120f}
 .k4-t p{margin:0;max-width:30em;font:500 clamp(16px,1.5vw,20px)/1.9 var(--f-body);opacity:.88}
-.k4-t .k4-l{font:700 clamp(20px,2.2vw,30px)/1.6 var(--f-body);opacity:1;padding-inline-start:18px;border-inline-start:4px solid #f4dabf}
-.k4-v{display:grid;justify-items:center;gap:clamp(18px,3vw,34px)}
+.k4-t .k4-l{font:700 clamp(26px,3.6vw,46px)/1.55 var(--f-disp);opacity:1;max-width:none;text-wrap:balance}
+.k4-l em{font-style:normal;display:inline;padding:0 .24em;color:#6c171e;background:#f4dabf;border-radius:.14em;box-shadow:.07em .07em 0 #17120f;-webkit-box-decoration-break:clone;box-decoration-break:clone;white-space:nowrap}
+.k4-t p:not(.k4-l){padding:clamp(16px,2vw,24px);border:3px solid rgba(244,218,191,.55);border-radius:14px;opacity:1}
+.k4-v{display:grid;justify-items:center;gap:clamp(14px,2.4vw,26px);padding:clamp(28px,4vw,52px) clamp(16px,3vw,36px) clamp(24px,3.4vw,40px);background:#0d3d3a;border:4px solid #17120f;border-radius:18px;box-shadow:8px 8px 0 #17120f}
 .k4-f{display:flex;justify-content:center;direction:ltr;padding-block:10px}
-.k4-c{position:relative;display:grid;align-content:space-between;justify-items:center;width:clamp(74px,11vw,130px);aspect-ratio:5/7;padding:10% 0;margin-inline:-9%;border:4px solid #17120f;border-radius:12px;background:#f4dabf;color:#17120f;box-shadow:6px 6px 0 #17120f;transform:rotate(var(--r,0deg)) translateY(var(--y,0))}
-.k4-c b{font:700 clamp(22px,3.4vw,44px)/1 var(--f-disp)}
-.k4-c i{font-style:normal;font-size:clamp(30px,5vw,64px);line-height:1}
-.k4-c.r{color:#6c171e}
+.k4-c{position:relative;container-type:inline-size;width:clamp(74px,11vw,130px);aspect-ratio:5/7;margin-inline:-9%;box-sizing:border-box;border:4px solid #17120f;border-radius:6%;background:#f4dabf;color:#6c171e;box-shadow:6px 6px 0 #17120f;transform:rotate(var(--r,0deg)) translateY(var(--y,0))}
+.k4-c::before{content:"";position:absolute;inset:7cqw;border:2px solid #17120f;border-radius:4%;pointer-events:none}
+.k4-c::after{content:attr(data-s);position:absolute;right:11cqw;bottom:9cqw;font:700 40cqw/1 var(--f-body);pointer-events:none}
+.k4-c b{position:absolute;top:13cqw;left:15cqw;font:700 25cqw/.95 var(--f-disp)}
+.k4-c i{position:absolute;top:40cqw;left:17cqw;font-style:normal;font-size:14cqw;line-height:1}
 .k4-c:nth-child(1){--r:-14deg;--y:10px}.k4-c:nth-child(2){--r:-5deg}.k4-c:nth-child(3){--r:5deg}.k4-c:nth-child(4){--r:14deg;--y:10px}
-@media (max-width:820px){.k4{grid-template-columns:1fr}}
-.k4-logo{display:block;width:clamp(150px,20vw,240px);height:auto}
+@media (max-width:820px){.k4{grid-template-columns:minmax(0,1fr)}.k4-c{width:clamp(72px,19vw,120px)}.k4-v{box-shadow:6px 6px 0 #17120f;padding-inline:12px}}
+.k4-logo{display:block;width:clamp(120px,16vw,190px);height:auto}
 
 /* about page: one spacing rhythm (band padding, eyebrow > title > text > cards) */
 .ab .ab-w{padding-block:clamp(56px,9vh,96px)}
@@ -143,3 +146,7 @@
 .ab-hc img{position:absolute;inset:0;margin:auto;width:58%;height:auto}
 .ab-hc2{position:absolute;background:#0d3d3a;transform:rotate(7deg) translate(14px,8px);box-shadow:8px 8px 0 #17120f}
 @media (max-width:820px){.ab-hero{grid-template-columns:1fr}.ab-hv{justify-self:center;margin-top:8px}}
+
+/* hero and "why us" share one continuous velvet: the background lives on the story, not on each section */
+.story{background-image:linear-gradient(rgba(108,23,30,.62),rgba(108,23,30,.62)),var(--tex);background-size:auto,cover;background-color:#6c171e}
+.story>.h{background:none}

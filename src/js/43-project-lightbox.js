@@ -69,7 +69,7 @@ const player = (a) => {
 /* images: click one to see it larger */
 let zoom = null;
 try {
-  const all = [...document.querySelectorAll(".pj-fig")];
+  const all = [...document.querySelectorAll(".pj-fig:not(.pj-vf)")];
   if (all.length) zoom = overlay({
     label: "عرض الصورة",
     count: all.length,
@@ -85,17 +85,59 @@ try {
 /* one big picture (or two pages side by side in a book), arrows, counter, strip of small ones */
 try {
   document.querySelectorAll(".pj-view").forEach((v) => {
-    const thumbs = [...v.querySelectorAll(".pj-fig")], mains = [...v.querySelectorAll(".pj-main")];
+    const full = [...v.querySelectorAll(".pj-fig")], mains = [...v.querySelectorAll(".pj-main")];
     const strip = v.querySelector(".pj-strip"), cnt = v.querySelector(".pj-cnt"), stage = v.querySelector(".pj-stage");
-    const book = v.dataset.mode === "book", wide = matchMedia("(min-width:900px)"), n = thumbs.length;
+    const book = v.dataset.mode === "book", wide = matchMedia("(min-width:900px)");
+    let thumbs = full, n = full.length;
+    const isVid = (t) => !!(t && (t.dataset.video || t.dataset.embed));
+    let vid = null, emb = null;
     let cur = 0;
-    const per = () => (book && mains.length > 1 && wide.matches && +thumbs[0].dataset.h >= +thumbs[0].dataset.w ? 2 : 1);
+    const per = () => {
+      const base = thumbs.filter(isVid).length;
+      return book && mains.length > 1 && wide.matches && !isVid(thumbs[cur]) && !isVid(thumbs[cur + 1]) && thumbs[base] && +thumbs[base].dataset.h >= +thumbs[base].dataset.w ? 2 : 1;
+    };
     const render = () => {
       const p = per();
-      cur = Math.floor(cur / p) * p;
+      const base = thumbs.filter(isVid).length;
+      if (cur >= base) cur = base + Math.floor((cur - base) / p) * p;
+      const cv = isVid(thumbs[cur]);
+      if (emb) { emb.hidden = true; emb.replaceChildren(); }
+      if (vid) { vid.pause(); vid.hidden = true; }
+      if (cv && thumbs[cur].dataset.embed) {
+        const t = thumbs[cur];
+        if (!emb) {
+          emb = document.createElement("div");
+          emb.className = "pj-mainemb";
+          mains[0].after(emb);
+        }
+        emb.hidden = false;
+        emb.style.setProperty("--r", t.dataset.w / t.dataset.h);
+        const go = document.createElement("button");
+        go.type = "button";
+        go.className = "pj-mainplay";
+        go.setAttribute("aria-label", "تشغيل: " + t.dataset.title);
+        go.innerHTML = `<img src="${t.dataset.poster}" alt="" referrerpolicy="no-referrer"><b>${t.dataset.title}</b><i aria-hidden="true">${t.dataset.k === "write" ? "✎" : "▶"}</i>`;
+        go.querySelector("img").onerror = (e) => e.target.remove();
+        go.addEventListener("click", () => emb.replaceChildren(player(t)));
+        emb.replaceChildren(go);
+      } else if (cv) {
+        if (!vid) {
+          vid = document.createElement("video");
+          vid.className = "pj-mainvid";
+          vid.controls = vid.muted = vid.playsInline = true;
+          vid.preload = "metadata";
+          mains[0].after(vid);
+        }
+        const t = thumbs[cur];
+        vid.hidden = false;
+        vid.poster = t.dataset.poster;
+        vid.src = t.dataset.video;
+        vid.setAttribute("aria-label", t.firstElementChild.alt);
+        vid.style.aspectRatio = `${t.dataset.w} / ${t.dataset.h}`;
+      }
       mains.forEach((m, k) => {
         const t = thumbs[cur + k];
-        m.hidden = k >= p || !t;
+        m.hidden = k >= p || !t || cv;
         if (m.hidden) return;
         const im = m.firstElementChild;
         m.href = t.href;
@@ -112,7 +154,7 @@ try {
         const x = t.offsetLeft + t.offsetWidth / 2 - strip.clientWidth / 2;
         strip.scrollTo({ left: rtl ? x - (strip.scrollWidth - strip.clientWidth) : x, behavior: "smooth" });
       }
-      [cur + p, cur + p + 1].forEach((j) => { if (thumbs[j]) new Image().src = thumbs[j].href; });
+      [cur + p, cur + p + 1].forEach((j) => { if (thumbs[j] && !isVid(thumbs[j])) new Image().src = thumbs[j].href; });
     };
     const step = (d) => {
       const p = per();
@@ -122,16 +164,16 @@ try {
       render();
     };
     v.querySelectorAll(".pj-sn").forEach((b) => b.addEventListener("click", () => step(+b.dataset.d)));
-    thumbs.forEach((t, k) => t.addEventListener("click", (e) => {
+    full.forEach((t) => t.addEventListener("click", (e) => {
       if (!plain(e)) return;
       e.preventDefault();
-      cur = k;
+      cur = thumbs.indexOf(t);
       render();
     }));
     mains.forEach((m, k) => m.addEventListener("click", (e) => {
       if (!plain(e)) return;
       e.preventDefault();
-      if (zoom) zoom(cur + k);
+      if (zoom) zoom(Math.max(0, full.slice(0, full.indexOf(thumbs[cur + k])).filter((x) => !isVid(x)).length));
     }));
     /* the page reads right to left: the left arrow goes forward */
     stage.addEventListener("keydown", (e) => {
@@ -146,6 +188,18 @@ try {
       x0 = null;
       if (Math.abs(dx) > 50) step(dx > 0 ? 1 : -1);
     });
+    /* the tags in the page head pick what the gallery shows: clips or pictures; picking the same one again shows everything */
+    const tagBtns = [...document.querySelectorAll(".pj-tags [data-f]")];
+    tagBtns.forEach((b) => b.addEventListener("click", () => {
+      const on = b.getAttribute("aria-pressed") !== "true";
+      tagBtns.forEach((x) => x.setAttribute("aria-pressed", String(on && x === b)));
+      const want = on ? b.dataset.f : "all";
+      thumbs = full.filter((t) => want === "all" || t.dataset.k === want);
+      full.forEach((t) => { t.hidden = !thumbs.includes(t); });
+      n = thumbs.length;
+      cur = 0;
+      render();
+    }));
     wide.addEventListener("change", render);
     render();
   });

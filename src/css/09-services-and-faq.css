@@ -8,6 +8,6 @@
 .fq .fq-l{border:0}
 .fq .fq-l details{border:0;border-top:1px solid rgba(244,218,191,.3)}
 .fq .fq-l details:first-child{border-top:0}
-.fq .fq-l summary{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:0 clamp(16px,3vw,48px);padding:clamp(40px,7.5vh,76px) 0;font:700 clamp(22px,3vw,40px)/1.4 var(--f-disp)}
+.fq .fq-l summary{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:0 clamp(16px,3vw,48px);padding:clamp(40px,7.5vh,76px) 0;font:700 clamp(18px,2.4vw,32px)/1.4 var(--f-disp)}
 .fq .fq-l summary::after{font-size:32px}
 .fq .fq-l .a p{padding:0 0 clamp(40px,7vh,72px) 0;max-width:62ch}

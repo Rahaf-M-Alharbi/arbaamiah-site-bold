@@ -50,7 +50,9 @@
 .xp9-stage.drawn .xp9-top{visibility:hidden}
 .xp9-stage.drawn .xp9-out{visibility:visible;opacity:1;translate:0 0;transition-delay:.4s,.4s,0s}
 @media (max-width:760px){
-  .xp9-stage{height:clamp(560px,calc(100dvh - 200px),760px);--cw:clamp(130px,min(46vw,28dvh),240px)}
+  .xp9{min-height:0}
+  .xp9-stage{height:calc(var(--cw)*1.4 + 64px);--cw:clamp(130px,min(46vw,28dvh),240px)}
+  .xp9-deck,.xp9-card{top:calc(var(--cw)*.7 + 12px)}
   .xp9-stage.drawn .xp9-deck,.xp9-card.on{left:50%;top:27%}
   .xp9-out{left:5%;right:5%;width:auto;top:auto;bottom:0;transform:none;text-align:center;justify-items:center}
   .xp9-btns{justify-content:center}

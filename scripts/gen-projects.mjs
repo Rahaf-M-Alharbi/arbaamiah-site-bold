@@ -31,6 +31,13 @@ const shown = (p) => {
   const later = items.filter((i) => i.from.startsWith("يي-"));
   return p.max ? [...items.filter((i) => !later.includes(i)).slice(0, p.max), ...later] : items;
 };
+/* width/height of a .webp (VP8, VP8L or VP8X), read from its header */
+const webpSize = (file) => {
+  const b = readFileSync(file), k = b.toString("ascii", 12, 16);
+  if (k === "VP8X") return { w: 1 + b.readUIntLE(24, 3), h: 1 + b.readUIntLE(27, 3) };
+  if (k === "VP8L") { const v = b.readUInt32LE(21); return { w: 1 + (v & 0x3fff), h: 1 + ((v >> 14) & 0x3fff) }; }
+  return { w: b.readUInt16LE(26) & 0x3fff, h: b.readUInt16LE(28) & 0x3fff };
+};
 const videos = (p) => !p.folder ? [] : readdirSync(join(root, "assets/projects", p.folder)).filter((f) => /^video-\d+\.mp4$/.test(f)).sort();
 const num = (n) => String(n).padStart(2, "0");
 const base = (p) => `assets/projects/${p.folder}/`;
@@ -70,14 +77,29 @@ projects.forEach((p, i) => {
   const notes = [p.why && ["لماذا هذا المشروع", p.why], p.value && ["ما يضيفه", p.value]].filter(Boolean);
   const vhtml = vids.map((v) => `<figure class="pj-vid"><video controls muted playsinline preload="none" poster="${base(p)}${v.replace(".mp4", "-poster.webp")}" src="${base(p)}${v}"></video></figure>`).join("\n");
   const big = (it) => hasFile(p, `${num(it.n)}-1280.webp`) ? `${base(p)}${num(it.n)}-1280.webp` : `${base(p)}${num(it.n)}-640.webp`;
-  const thumbs = imgs.map((it, k) => `<a class="pj-fig" href="${big(it)}" data-w="${it.w}" data-h="${it.h}"><img src="${base(p)}${num(it.n)}-640.webp" width="${it.w}" height="${it.h}" alt="${esc(p.name)} ${k + 1}" loading="lazy" decoding="async"></a>`).join("");
+  const thumbs = imgs.map((it, k) => `<a class="pj-fig" data-k="img" href="${big(it)}" data-w="${it.w}" data-h="${it.h}"><img src="${base(p)}${num(it.n)}-640.webp" width="${it.w}" height="${it.h}" alt="${esc(p.name)} ${k + 1}" loading="lazy" decoding="async"></a>`).join("");
   const main = (it, k, hide) => `<a class="pj-main"${hide ? " hidden" : ""} href="${big(it)}"><img src="${big(it)}" width="${it.w}" height="${it.h}" alt="${esc(p.name)} ${k + 1}" ${k === 0 && !hide && !vids.length && !p.drive && !(p.embeds || []).length ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"></a>`;
   const book = p.layout === "book";
+  /* a project with both pictures and clips shows them in one gallery: the clips come first, then the pictures */
+  const mixed = imgs.length > 0 && (vids.length > 0 || (p.embeds || []).length > 0) && !p.drive && !p.media;
+  const vitem = (v, k) => {
+    const poster = `${base(p)}${v.replace(".mp4", "-poster.webp")}`, { w, h } = webpSize(join(root, poster));
+    return { poster, src: `${base(p)}${v}`, w, h, k };
+  };
+  const vthumbs = mixed ? vids.map(vitem).map((v) => `<a class="pj-fig pj-vf" data-k="video" href="${v.src}" data-video="${v.src}" data-poster="${v.poster}" data-w="${v.w}" data-h="${v.h}"><img src="${v.poster}" width="${v.w}" height="${v.h}" alt="${esc(p.name)} فيديو ${v.k + 1}" loading="lazy" decoding="async"><i class="pj-vplay" aria-hidden="true">▶</i></a>`).join("") : "";
+  /* Drive clips join the same gallery: the thumbnail shows in the strip, the player loads when it is picked */
+  const ratio = p.embed_ratio ? [9, 16] : [16, 9];
+  const ethumbs = mixed ? (p.embeds || []).map((u, k) => `<a class="pj-fig pj-vf" data-k="video" href="${esc(u)}" data-embed="${driveEmbed(u)}" data-title="${esc(p.name)} ${k + 1}" data-poster="https://drive.google.com/thumbnail?id=${driveId(u)}&amp;sz=w640" data-w="${ratio[0] * 40}" data-h="${ratio[1] * 40}"><img src="https://drive.google.com/thumbnail?id=${driveId(u)}&amp;sz=w360" width="${ratio[0] * 40}" height="${ratio[1] * 40}" alt="${esc(p.name)} فيديو ${vids.length + k + 1}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()"><i class="pj-vplay" aria-hidden="true">▶</i></a>`).join("") : "";
+  /* a project with several kinds of Drive media (texts, clips) gets one gallery too, filtered by kind */
+  const gmix = !!p.media && p.media.length > 1 && !p.drive && !(p.embeds || []).length && !vids.length;
+  const gratio = (g) => (g.tall ? [9, 16] : g.key === "write" ? [3, 4] : [16, 9]);
+  const gthumbs = gmix ? p.media.map((g) => g.items.map((it, k) => { const [rw, rh] = gratio(g); return `<a class="pj-fig pj-vf" data-k="${g.key}" href="${esc(it.url)}" data-embed="${driveEmbed(it.url)}" data-title="${esc(it.title)}" data-poster="https://drive.google.com/thumbnail?id=${driveId(it.url)}&amp;sz=w640" data-w="${rw * 40}" data-h="${rh * 40}"><img src="https://drive.google.com/thumbnail?id=${driveId(it.url)}&amp;sz=w360" width="${rw * 40}" height="${rh * 40}" alt="${esc(it.title)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()"><span class="pj-tt">${esc(it.title)}</span><i class="pj-vplay" aria-hidden="true">${g.key === "write" ? "✎" : "▶"}</i></a>`; }).join("")).join("") : "";
+  const total = gmix ? p.media.reduce((n, g) => n + g.items.length, 0) : imgs.length + (mixed ? vids.length + (p.embeds || []).length : 0);
   /* images: one big picture (two pages side by side for a book), arrows, counter, and a strip of small ones */
-  const imgSec = imgs.length ? `<section class="pj-sec" data-kind="img"><div class="pj-view" data-mode="${book ? "book" : "gallery"}" data-n="${imgs.length}">
-    <div class="pj-stage" tabindex="0" aria-label="${book ? "صفحات الملف" : "التصاميم"}"><button class="pj-sn pj-sp" dir="ltr" type="button" data-d="-1" aria-label="السابق">›</button>${main(imgs[0], 0)}${book && imgs[1] ? main(imgs[1], 1, true) : ""}<button class="pj-sn pj-sx" dir="ltr" type="button" data-d="1" aria-label="التالي">‹</button></div>
-    <p class="pj-cnt" dir="ltr">1 / ${imgs.length}</p>
-    <div class="pj-strip">${thumbs}</div>
+  const imgSec = imgs.length || gmix ? `<section class="pj-sec" data-kind="img"><div class="pj-view" data-mode="${book ? "book" : "gallery"}" data-n="${total}">
+    <div class="pj-stage" tabindex="0" aria-label="${book ? "صفحات الملف" : "التصاميم"}"><button class="pj-sn pj-sp" dir="ltr" type="button" data-d="-1" aria-label="السابق">›</button>${imgs[0] ? main(imgs[0], 0) : `<a class="pj-main" hidden href="#"><img alt="" width="1" height="1"></a>`}${book && imgs[1] ? main(imgs[1], 1, true) : ""}<button class="pj-sn pj-sx" dir="ltr" type="button" data-d="1" aria-label="التالي">‹</button></div>
+    <p class="pj-cnt" dir="ltr">1 / ${total}</p>
+    <div class="pj-strip">${gthumbs}${vthumbs}${ethumbs}${thumbs}</div>
   </div></section>` : "";
   /* videos: Drive players load on click; portrait clips open in a one-at-a-time player, others in a big slot with a strip */
   const tall = !!p.embed_ratio;
@@ -88,24 +110,26 @@ projects.forEach((p, i) => {
   const imgLabel = { "الهويات البصرية": "هوية بصرية", "الملفات التعريفية": "ملف تعريفي", "الإنفوجرافيك": "إنفوجرافيك", "المتاجر الإلكترونية": "تصميم متجر", "الحملات الإعلانية": "حملة إعلانية", "الاستراتيجية وتحليل الحسابات": "استراتيجية وتحليل", "كتابة المحتوى": "كتابة محتوى" }[p.group] || "تصميم";
   const vidLabel = p.vid_label || (tall ? "UGC" : { "التعليق الصوتي": "تعليق صوتي", "كتابة المحتوى": "كتابة محتوى" }[p.group] || "فيديو");
   const secs = [];
-  if (p.media) p.media.forEach((g) => secs.push({ key: g.key, label: g.label, count: g.items.length, html: clipsHtml(g.items, true, g.tall) }));
+  if (p.media && !gmix) p.media.forEach((g) => secs.push({ key: g.key, label: g.label, count: g.items.length, html: clipsHtml(g.items, true, g.tall) }));
   else {
     const clips = (p.embeds || []).map((u, k) => ({ url: u, title: `${p.name} ${k + 1}` }));
-    const parts = [p.drive && facade(p.drive, p.name), clips.length && clipsHtml(clips, false, tall), vids.length && `<div class="pj-vids">\n${vhtml}\n</div>`].filter(Boolean).join("\n");
+    const parts = [p.drive && facade(p.drive, p.name), !mixed && clips.length && clipsHtml(clips, false, tall), !mixed && vids.length && `<div class="pj-vids">\n${vhtml}\n</div>`].filter(Boolean).join("\n");
     if (parts) secs.push({ key: "video", label: vidLabel, count: clips.length || vids.length, html: parts });
   }
   const vidSec = secs.map((x) => `<section class="pj-sec" data-kind="${x.key}">${x.html}</section>`).join("\n  ");
   const kinds = [...secs.map((x) => [x.key, x.label, x.count]), ...(imgSec ? [["img", imgLabel, imgs.length]] : [])];
   const chips = kinds.length > 1 ? `<div class="pj-chips" role="group" aria-label="محتوى المشروع" hidden>${[["all", "الكل", 0], ...kinds].map(([k, t, c], j) => `<button type="button" data-k="${k}" aria-pressed="${j === 0}">${t}${c > 1 ? ` <small>${c}</small>` : ""}</button>`).join("")}</div>` : "";
-  const tags = p.tags || kinds.length === 1 ? `<ul class="pj-tags">${(p.tags || kinds.map(([, t]) => t)).map((t) => `<li>${t}</li>`).join("")}</ul>` : "";
+  const tags = p.tags || kinds.length === 1 ? `<ul class="pj-tags">${(p.tags || [...(mixed ? [vidLabel] : []), ...kinds.map(([, t]) => t)]).map((t, j) => mixed && !p.tags ? `<li><button type="button" data-f="${j === 0 ? "video" : "img"}" aria-pressed="false">${t}</button></li>` : `<li>${t}</li>`).join("")}</ul>` : "";
+  const tagsG = gmix ? `<ul class="pj-tags">${p.media.map((g) => `<li><button type="button" data-f="${g.key}" aria-pressed="false">${g.label}</button></li>`).join("")}</ul>` : "";
   const stats = [...secs.filter((x) => x.count > 1).map((x) => [x.count, p.media ? x.label : tall && !p.vid_label ? "مقطع UGC" : "مقطع"]), imgs.length > 1 && [imgs.length, book ? "صفحة" : "تصميم"]].filter(Boolean);
   writeFileSync(join(root, `project-${p.slug}.html`), page(`${p.name} | أربعمية`, `<main class="pj pj-page" lang="ar" dir="rtl" aria-label="${esc(p.name)}">
+  <a class="pj-back" href="projects.html">→ كل الأعمال</a>
   <div class="pj-hero">
     <div class="pj-ht">
       <span class="eb pj-e">♦︎ ${esc(p.category)}</span>
       <h1>${esc(p.name)}</h1>
       ${p.name_en ? `<p class="pj-en" dir="ltr">${esc(p.name_en)}</p>` : ""}
-      ${tags}
+      ${gmix ? tagsG : tags}
     </div>
     <div class="pj-hb">
       ${p.about ? `<p class="pj-about">${esc(p.about)}</p>` : ""}
@@ -117,6 +141,7 @@ projects.forEach((p, i) => {
   ${vidSec}
   ${imgSec}
   <a class="pj-next" href="project-${next.slug}.html"><small>المشروع التالي</small><b>${esc(next.name)} ←</b></a>
+  <a class="pj-back" href="projects.html">→ العودة إلى كل الأعمال</a>
 </main>`));
 });
 
@@ -134,7 +159,7 @@ const slide = (p, k) => {
 const stars = projects.filter((p) => p.top && p.folder);
 const slides = stars.length ? `<section class="pj-show" aria-roledescription="carousel" aria-label="أبرز أعمالنا"><div class="pj-slides">${stars.map(slide).join("")}</div><div class="pj-ctl" hidden><button class="pj-sl-n" type="button" dir="ltr" data-d="-1" aria-label="السابق">›</button><span class="pj-dots">${stars.map((p, k) => `<button type="button" aria-label="${esc(p.name)}"${k === 0 ? ' aria-current="true"' : ""}></button>`).join("")}</span><button class="pj-sl-n" type="button" dir="ltr" data-d="1" aria-label="التالي">‹</button></div></section>` : "";
 writeFileSync(join(root, "projects.html"), page("مشاريعنا | أربعمية", `<main class="pj pj-page" lang="ar" dir="rtl" aria-label="مشاريعنا">
-  <div class="pj-hero pj-hero-1"><div class="pj-ht"><span class="eb pj-e">♦︎ مشاريعنا</span><h1>أعمـال اختـرناها لنعـرضها</h1></div></div>
+  <div class="pj-hero pj-hero-1"><div class="pj-ht"><span class="eb pj-e">♦︎ مشاريعنا</span><h1>علامـات كبـرت معنـا</h1></div></div>
 ${slides}
   <div class="pj-chips" role="group" aria-label="نوع العمل" hidden>${[["all", "الكل"], ...kinds].map(([k, t], j) => `<button type="button" data-k="${k}" aria-pressed="${j === 0}">${t}</button>`).join("")}</div>
   <a class="pj-order" id="pjOrder" href="contact.html" hidden>اطلب خدمتك <i>←</i></a>

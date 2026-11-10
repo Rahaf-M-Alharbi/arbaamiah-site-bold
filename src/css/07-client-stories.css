@@ -1,5 +1,5 @@
 /* client stories: a single large quote on beige paper, page-style header and footer */
-.cst{position:relative;z-index:1;min-height:100vh;min-height:100dvh;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;padding:clamp(20px,3vw,40px) max(16px,3vw);direction:rtl}
+.cst{position:relative;z-index:1;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;padding:clamp(20px,3vw,40px) max(16px,3vw);direction:rtl}
 .cst::before{content:"";position:absolute;inset:0;background-image:var(--linen);background-size:480px 752px;mix-blend-mode:multiply;opacity:.55;pointer-events:none}
 .cst>*{position:relative}
 .cst-h{display:grid;gap:6px;padding-bottom:clamp(14px,2vw,22px);border-bottom:1px solid rgba(23,18,15,.28)}

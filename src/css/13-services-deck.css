@@ -1,5 +1,5 @@
 /* deck: the services section, one stacked card panel per service */
-.deck{position:relative;z-index:1;color:#17120f;padding:10vh 0 16vh;overflow:clip}
+.deck{position:relative;z-index:1;color:#17120f;padding:0 0 16vh;overflow:clip}
 .deck::before{content:"";position:absolute;inset:0;background-image:var(--linen);background-size:480px 752px;mix-blend-mode:multiply;opacity:.55;pointer-events:none}
 .dk-head{position:relative;direction:rtl;max-width:1280px;margin:0 auto 6vh;display:grid;padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px))}
 .dk-head h2{margin:0;font:700 clamp(34px,5vw,68px)/1.2 var(--f-disp);text-wrap:balance}

@@ -66,3 +66,6 @@
 .deck .stack.sol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,5vw,72px)}
 .deck .stack.sol .sol-r{grid-template-columns:auto minmax(0,1fr);padding-block:clamp(18px,2.6vw,30px)}
 @media (max-width:760px){.deck .stack.sol{grid-template-columns:minmax(0,1fr)}}
+
+/* nine services: the last card runs across both columns instead of sitting alone */
+.deck .stack[data-full] .svc:last-child:nth-child(odd){grid-column:1/-1}

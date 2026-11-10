@@ -21,7 +21,7 @@
 .mini .fb--line .fb-f{background:#6c171e;color:#f4dabf}
 .mini .fb--line .fb-b{background:#17120f;color:#f4dabf}
 /* solutions intro: one full screen with generous padding */
-.deck .dk-head{min-height:100vh;min-height:100svh;box-sizing:border-box;margin-bottom:0;align-content:center;padding-block:clamp(96px,16vh,180px)}
+.deck .dk-head{box-sizing:border-box;margin-bottom:0;align-content:center;padding-block:clamp(28px,4vh,48px)}
 /* numbers: one full screen, content centred */
 .stt{min-height:100vh;min-height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center}
 .stt .stt-in{width:100%}

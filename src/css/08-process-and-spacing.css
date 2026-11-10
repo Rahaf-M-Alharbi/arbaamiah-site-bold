@@ -22,7 +22,7 @@
 .stt .stt-in{gap:clamp(64px,13vh,150px)}
 .pr .pr-in{gap:clamp(72px,16vh,180px)}
 .fq .fq-in{gap:clamp(64px,13vh,150px)}
-.cst .cst-b{padding:clamp(72px,14vh,160px) 0}
+.cst .cst-b{padding:clamp(48px,8vh,90px) 0 clamp(24px,4vh,40px)}
 /* paper texture overlay: soft, low-contrast grain plus a very gentle paper tone, laid over the whole page without catching clicks */
 html::after{content:"";position:fixed;inset:0;z-index:2147483000;pointer-events:none;background-image:url(../../assets/img/texture-1.svg),url(../../assets/img/texture-2.svg);background-size:400px 400px,800px 800px;mix-blend-mode:multiply;opacity:.3}
 @media print{html::after{display:none}}

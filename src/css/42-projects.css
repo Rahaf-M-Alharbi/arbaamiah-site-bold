@@ -176,7 +176,7 @@
 .pj-hero-1{grid-template-columns:1fr;margin-bottom:clamp(40px,8vh,90px)}
 
 /* work deck: a tap on the card only brings it forward; the project opens from this button */
-.wc .go{position:absolute;left:9%;bottom:18.5%;font:700 4cqw/1 var(--f-body);text-decoration:none;padding:2.2cqw 4cqw;border-radius:99px;background:var(--fg);color:var(--bg);transition:transform .2s}
+.wc .go{position:absolute;left:9%;bottom:17%;font:700 5.6cqw/1 var(--f-body);text-decoration:none;padding:3cqw 5.6cqw;border-radius:99px;background:var(--fg);color:var(--bg);transition:transform .2s}
 .wc .go:hover,.wc .go:focus-visible{transform:translateX(-1.5cqw)}
 
 /* projects page: small order link under the filter chips */
@@ -186,8 +186,39 @@
 .pj-order:hover i,.pj-order:focus-visible i{transform:translateX(-4px)}
 
 /* work deck: the project's logo sits straight on the card, under the tag and above the title */
-.wc .wlogo{position:absolute;right:9cqw;top:10cqw;height:21cqw;width:auto;max-width:52cqw;margin-inline-start:auto;object-fit:contain;object-position:right center;pointer-events:none}
+.wc .wlogo{position:absolute;left:9cqw;top:10cqw;height:21cqw;width:auto;max-width:52cqw;object-fit:contain;object-position:left center;pointer-events:none}
 .wc.hl h3{top:30%}
 .wc p{top:54%}
 .wc.hl p{top:55%}
 .wc .wlogo[src*="ghsoon"]{height:27cqw}
+
+/* a clip inside the gallery: plays in the big slot like a picture, its thumbnail carries a play mark */
+.pj-mainvid{display:block;min-width:0;width:auto;height:auto;max-width:100%;max-height:min(78vh,860px);border-radius:8px;background:var(--deep)}
+.pj-mainvid[hidden]{display:none}
+.pj-vf{position:relative}
+.pj-vplay{position:absolute;inset:0;display:grid;place-items:center;font-style:normal;font-size:20px;color:var(--cream);background:rgba(23,18,15,.38);pointer-events:none}
+
+/* back to the all-projects page: top of every project page and again under "next project" */
+.pj-back{display:inline-block;margin-bottom:clamp(18px,3vh,32px);padding:10px 22px;border:3px solid #17120f;border-radius:99px;background:#f4dabf;color:#6c171e;font:700 15px/1 var(--f-body);text-decoration:none;box-shadow:5px 5px 0 #17120f;transition:transform .15s,box-shadow .15s}
+.pj-back:hover,.pj-back:focus-visible{transform:translate(3px,3px);box-shadow:2px 2px 0 #17120f}
+.pj-next+.pj-back{margin:clamp(24px,4vh,40px) 0 0}
+
+/* a Drive clip in the gallery: poster with a play button until picked, then the player fills the same slot */
+.pj-mainemb{position:relative;min-width:0;width:min(100%,calc(min(78vh,860px)*var(--r,.5625)));aspect-ratio:var(--r,.5625);border-radius:8px;overflow:hidden;background:var(--deep)}
+.pj-mainemb[hidden]{display:none}
+.pj-mainemb iframe{display:block;width:100%;height:100%;border:0}
+.pj-mainplay{all:unset;position:absolute;inset:0;cursor:pointer}
+.pj-mainplay img{display:block;width:100%;height:100%;object-fit:cover}
+.pj-mainplay i{position:absolute;inset:0;display:grid;place-items:center;font-style:normal;font-size:48px;color:var(--cream);background:rgba(23,18,15,.3)}
+.pj-mainplay:focus-visible{outline:3px solid var(--cream);outline-offset:-3px}
+
+/* tags that filter the gallery (clips / pictures) */
+.pj-fig[hidden]{display:none}
+.pj-tags li:has(button){padding:0;box-shadow:none}
+.pj-tags button{all:unset;box-sizing:border-box;padding:7px 14px;border-radius:99px;box-shadow:inset 0 0 0 1px currentColor;font:700 14px/1 var(--f-body);cursor:pointer;transition:background .15s,color .15s}
+.pj-tags button:hover,.pj-tags button:focus-visible{box-shadow:inset 0 0 0 2px currentColor}
+.pj-tags button[aria-pressed=true]{background:var(--cream);color:var(--wine);box-shadow:none}
+
+/* titles on Drive items, since a text or a clip may have no thumbnail */
+.pj-tt{position:absolute;inset-inline:6px;bottom:6px;font:700 11px/1.3 var(--f-body);color:var(--cream);text-shadow:0 1px 3px #17120f;pointer-events:none}
+.pj-mainplay b{position:absolute;inset-inline:16px;bottom:16px;font:700 clamp(16px,2vw,24px)/1.4 var(--f-disp);color:var(--cream);text-shadow:0 2px 6px #17120f}
