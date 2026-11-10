@@ -30,6 +30,9 @@ for (const f of pages) {
   for (const s of ["13-nav-contrast", "19-nav"]) {
     if (!html.includes(`src/js/${s}.js`)) html = html.replace("<!-- js:end -->", `<script src="src/js/${s}.js" defer></script>\n<!-- js:end -->`);
   }
+  /* email links open a card (open mail app / Gmail / copy): src/js/20-mail-link.js + src/css/49-mail-link.css */
+  if (!html.includes("20-mail-link.js")) html = html.replace("<!-- js:end -->", `<script src="src/js/20-mail-link.js" defer></script>\n<!-- js:end -->`);
+  if (!html.includes("49-mail-link.css")) html = html.replace("<!-- css:end -->", `<link rel="stylesheet" href="src/css/49-mail-link.css">\n<!-- css:end -->`);
   writeFileSync(join(root, f), html);
 }
 console.log("nav synced into", pages.length, "pages");

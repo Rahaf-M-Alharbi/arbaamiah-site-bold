@@ -69,7 +69,7 @@ const describe = (page) => {
   const about = p.about && p.about.length >= 30 ? p.about : `${p.category}، من أعمال أربعمية.`;
   return cut(about.includes(p.name) ? about : `${p.name}: ${about}`);  /* the name keeps near-identical project texts distinct */
 };
-const pages = ["index.html", "pricing.html", "faq.html", "contact.html", "draw.html", "quiz.html", "budget.html", "about.html", "privacy.html", "terms.html", "services.html", "projects.html", ...readdirSync(root).filter((f) => f.startsWith("project-") && f.endsWith(".html"))];
+const pages = ["index.html", "pricing.html", "faq.html", "contact.html", "draw.html", "quiz.html", "budget.html", "about.html", "privacy.html", "terms.html", "links.html", "services.html", "projects.html", ...readdirSync(root).filter((f) => f.startsWith("project-") && f.endsWith(".html"))];
 for (const page of pages) {
   const name = page.startsWith("pricing") ? "pricing" : "site";
   let html = read(page);

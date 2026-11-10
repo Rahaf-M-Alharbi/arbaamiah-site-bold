@@ -23,7 +23,7 @@
           /* one draw in three wins one of the three offers; the other two send the person to the free calculator. Edit WIN, MISS and WIN_CHANCE to change this. */
           WIN_CHANCE=1/3,
           WIN=[['استشارة مجانية','احجز استشارتك المجانية وتكلم معنا عن علامتك'],['تحليل حساباتك بالسوشل ميديا','نراجع حساباتك ونعطيك ملاحظات واضحة تبني عليها'],['ودك بخصم؟ واجهنا في صكة بلوت','اربح الصكة معنا واحصل على خصم على خدماتنا']],
-          MISS=['جرب حاسبة ميزانية التسويق','وزع ميزانيتك التسويقية في دقائق مع حاسبتنا المجانية، واعرف أين يذهب كل ريال.'],
+          MISS=['جرب حاسبة ميزانية التسويق','وزع ميزانيتك التسويقية في دقائق مع حاسبتنا المجانية.'],
           WA='https://api.whatsapp.com/message/U2EGUFBDX66ZE1?autoload=1&app_absent=0',
           btns=document.querySelectorAll('#xp9o .xp9-btns a'),
           SU=['♠︎','♥︎','♦︎','♣︎'],drawn=false,d=null,from=null,KEY='arb-card';
