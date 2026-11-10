@@ -26,17 +26,27 @@
           MISS=['جرب حاسبة ميزانية التسويق','وزع ميزانيتك التسويقية في دقائق مع حاسبتنا المجانية، واعرف أين يذهب كل ريال.'],
           WA='https://api.whatsapp.com/message/U2EGUFBDX66ZE1?autoload=1&app_absent=0',
           btns=document.querySelectorAll('#xp9o .xp9-btns a'),
-          SU=['♠︎','♥︎','♦︎','♣︎'],drawn=false,d=null,from=null;
+          SU=['♠︎','♥︎','♦︎','♣︎'],drawn=false,d=null,from=null,KEY='arb-card';
+      /* one card per visitor: the first draw is saved in this browser (localStorage and a one-year cookie, so clearing one still keeps the other) and every later visit, refresh, new tab or new window shows that same card, already face up */
+      function load(){
+        var raw=null;try{raw=localStorage.getItem(KEY)}catch(e){}
+        if(!raw){var m=document.cookie.match(new RegExp('(?:^|; )'+KEY+'=([^;]*)'));raw=m&&decodeURIComponent(m[1])}
+        try{var v=JSON.parse(raw);if(v&&v.s>=0&&v.s<4&&v.w>=-1&&v.w<WIN.length){save(v);return v}}catch(e){}return null}
+      function save(v){var j=JSON.stringify(v);
+        try{localStorage.setItem(KEY,j)}catch(e){}
+        document.cookie=KEY+'='+encodeURIComponent(j)+'; max-age=31536000; path=/; SameSite=Lax'}
       function T(x,y,s,r){return'translate('+x+'px,'+y+'px) rotate('+r+'deg) scale('+s+')'}
-      function draw(){
+      function draw(kept){
         if(drawn)return;drawn=true;
-        var fr=top.getBoundingClientRect(),win=Math.random()<WIN_CHANCE,w=win?WIN[Math.random()*WIN.length|0]:null,su=SU[Math.random()*4|0],red=su==='♥︎'||su==='♦︎';
+        var saved=kept||load();if(!saved){saved={w:Math.random()<WIN_CHANCE?Math.random()*WIN.length|0:-1,s:Math.random()*4|0};save(saved)}
+        var fr=top.getBoundingClientRect(),win=saved.w>=0,w=win?WIN[saved.w]:null,su=SU[saved.s],red=su==='♥︎'||su==='♦︎';
         face.className='f'+(red?' r':'');
         face.innerHTML='<b>A<i>'+su+'</i></b><span class="p">'+su+'</span>';
         /* a win: the contact button opens WhatsApp and the calculator button is hidden. A miss keeps both. */
         if(win){h.textContent=w[0];p.textContent=w[1]+'. تواصل معنا متى ما تحب ونفعل عرضك.';btns[0].href=WA;btns[0].target='_blank';btns[0].rel='noopener';btns[1].style.display='none'}
         else{h.textContent=MISS[0];p.textContent=MISS[1]}
         top.style.transform='';st.classList.add('drawn');st.parentNode.classList.add('xp9-done');card.classList.add('on');
+        if(kept){card.removeAttribute('aria-hidden');return}
         var to=card.getBoundingClientRect(),dx=fr.left+fr.width/2-(to.left+to.width/2),dy=fr.top+fr.height/2-(to.top+to.height/2),s=fr.width/to.width;
         from=[dx,dy,s];
         if(!RM){
@@ -62,6 +72,7 @@
         else{top.animate([{transform:top.style.transform},{transform:'none'}],{duration:RM?1:300,easing:'cubic-bezier(.3,1.5,.4,1)'});top.style.transform=''}}
       top.addEventListener('pointerup',up);top.addEventListener('pointercancel',up);
       top.addEventListener('click',function(e){if(e.detail===0)draw()});
+      var had=load();if(had)draw(had);
     }
   };
   lazy('xp9-stage','p9');
