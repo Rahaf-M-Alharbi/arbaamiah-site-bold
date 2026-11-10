@@ -1,5 +1,5 @@
-/* CTA experiments. Each one starts only when its section is near the viewport and sleeps while it is off-screen,
-   so nothing here costs anything until you scroll down to it. */
+/* Closing "pull a card" call to action. Starts only when its section is near the viewport and sleeps while it is
+   off-screen, so nothing here costs anything until you scroll down to it. */
 (function(){
   var RM=matchMedia('(prefers-reduced-motion:reduce)').matches,all=document.querySelectorAll('.xp');
   if(!all.length||!('IntersectionObserver' in window))return;

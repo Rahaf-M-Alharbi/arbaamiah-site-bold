@@ -23,7 +23,7 @@
 /* solutions intro: one full screen with generous padding */
 .deck .dk-head{box-sizing:border-box;margin-bottom:0;align-content:center;padding-block:clamp(28px,4vh,48px)}
 /* numbers: one full screen, content centred */
-.stt{min-height:100vh;min-height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center}
+.stt{box-sizing:border-box;display:flex;flex-direction:column}
 .stt .stt-in{width:100%}
 .mini b,.mini nav a:not(.flipbtn){color:#6c171e}
 /* sliding nav flips between light and dark treatment depending on the section behind it */

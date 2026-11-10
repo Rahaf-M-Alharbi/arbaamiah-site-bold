@@ -41,7 +41,7 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
 <link rel="stylesheet" href="src/css/25-hero-extras.css">
 <link rel="stylesheet" href="src/css/27-text-width-fix.css">
 <link rel="stylesheet" href="src/css/28-work-snatch.css">
-<link rel="stylesheet" href="src/css/29-cta-experiments.css">
+<link rel="stylesheet" href="src/css/29-pull-card.css">
 <link rel="stylesheet" href="src/css/30-loader.css">
 <link rel="stylesheet" href="src/css/31-bold-cards.css">
 <link rel="stylesheet" href="src/css/33-bold-buttons.css">
@@ -69,7 +69,7 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
 <script src="src/js/13-nav-contrast.js" defer></script>
 <script src="src/js/14-kashida-justify.js" defer></script>
 <script src="src/js/16-loader.js" defer></script>
-<script src="src/js/15-cta-experiments.js" defer></script>
+<script src="src/js/15-pull-card.js" defer></script>
 <script src="src/js/18-cursor.js" defer></script>
 <script src="src/js/19-nav.js" defer></script>
 <!-- js:end -->
@@ -85,7 +85,7 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
 
 <div class="flyer" id="flyer"></div>
 <a class="skip" href="#story">انتقل إلى المحتوى</a>
-<header class="mini" id="mini" lang="ar" dir="rtl"><a class="mini-b" href="index.html" aria-label="أربعمية"><img src="assets/img/logo-symbol.svg" alt="أربعمية" width="46" height="46"></a><nav aria-label="التنقل الرئيسي"><div class="mini-l" id="miniMenu"><a href="services.html">خدماتنا</a><a href="projects.html">أعمالنا</a><a href="about.html">من نحن</a></div><a class="cta flipbtn fb--line" href="contact.html"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♣︎</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♣︎</i></span></span></a><button class="mini-m" type="button" aria-label="القائمة" aria-expanded="false" aria-controls="miniMenu"><i></i><i></i><i></i></button></nav></header>
+<header class="mini" id="mini" lang="ar" dir="rtl"><a class="mini-b" href="index.html" aria-label="أربعمية"><img src="assets/img/logo-symbol.svg" alt="أربعمية" width="46" height="46"></a><nav aria-label="التنقل الرئيسي"><div class="mini-l" id="miniMenu"><a href="services.html">خدماتنا</a><a href="projects.html">أعمالنا</a><a href="about.html">من نحن</a></div><a class="cta flipbtn fb--line" href="contact.html"><span class="fb-in"><span class="fb-f">عرفنا على مشروعك<i>♣︎</i></span><span class="fb-b" aria-hidden="true">عرفنا على مشروعك<i>♣︎</i></span></span></a><button class="mini-m" type="button" aria-label="القائمة" aria-expanded="false" aria-controls="miniMenu"><i></i><i></i><i></i></button></nav></header>
 <main class="story" id="story" data-cur="card" lang="ar" dir="rtl">
   <div class="h stage">
   <div class="frame" aria-hidden="true"><s class="ln l"></s><s class="ln r"></s><i class="tl">♠︎</i><i class="tr">♥︎</i><i class="bl">♣︎</i><i class="br">♦︎</i></div>
@@ -258,8 +258,7 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
   <symbol id="l-ads" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="currentColor" stroke="none"/><circle cx="24" cy="24" r="13" fill="none" stroke="#fbf9f4" stroke-width="3"/><circle cx="24" cy="24" r="5.500" fill="currentColor" stroke="none"/><path d="M24 24L45 3" fill="none" stroke="#fbf9f4" stroke-width="3" stroke-linecap="round"/></symbol>
   <symbol id="l-growth" viewBox="0 0 48 48"><path d="M5 43V31a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v12zM19 43V19a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v24zM31 43V9a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v34z" fill="currentColor" stroke="none"/><path d="M9 38l8-7 6 4 15-17M31 18h7v7" fill="none" stroke="#fbf9f4" stroke-width="2.600" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
-<!-- CTA experiments (temporary, under the real final CTA) -->
-<section class="xp xp9" id="pull" data-cur="card" lang="ar" dir="rtl" aria-label="تجربة ٩: اسحب ورقتك">
+<section class="xp xp9" id="pull" data-cur="card" lang="ar" dir="rtl" aria-label="اسحب ورقتك">
   <h2>اسـحب <em>ورقـتك</em></h2>
   <p id="xp9m">اضغط على الرزمة، أو اسحب الورقة العلوية للأعلى</p>
   <div class="xp9-stage" id="xp9t">
@@ -281,7 +280,7 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
       <img class="ft-logo" src="assets/img/logo-wine.svg" alt="أربعمية" width="170" height="150">
       <div class="ft-pitch">
         <span class="ft-pe">&#9824;&#xFE0E; عندك مشكلة؟</span>
-        <p><strong>تنشر المحتوى ولا تجد تفاعلا؟ هويتك لا تعبر عنك؟ إعلاناتك تستنزف الميزانية دون عائد؟</strong> أو لعلك لم تبدأ بعد، ولا تعرف من أين تبدأ. أيا كانت مشكلتك، لا تحلها وحدك. في أربعمية فريق يغطي كل جوانب العمل، من الفكرة إلى النتيجة. <strong>أخبرنا بمشكلتك، ونرتب الحل معك.</strong></p>
+        <p><strong>محتواك ما يحقق التفاعل المطلوب؟ إعلاناتك ما تجيب نتائج؟ أو ما تعرف من وين تبدأ تسويق مشروعك؟</strong> في أربعمية، نفهم تحدياتك ونساعدك بالحل التسويقي المناسب. <strong>شاركنا مشكلتك، ونرتب الحل معك.</strong></p>
       </div>
       <a class="ft-cta" href="contact.html">تواصل معنا <i>♠&#xFE0E;</i></a>
     </div>
@@ -309,8 +308,7 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
         <h3><i class="r">&#9830;&#xFE0E;</i>تواصل معنا</h3>
         <ul>
           <li><a href="contact.html">أرسل طلبك</a></li>
-          <!-- Contact links, to fill in later: uncomment a line and put the real address or profile in href. -->
-          <li class="ft-ic"><a href="mailto:arbaamia.sa@gmail.com" aria-label="البريد الإلكتروني"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1.6 2L12 12.4 19.4 7zM4 8.6V17h16V8.6l-8 5.8z"/></svg></a><!-- TODO: put the real number, e.g. https://wa.me/9665XXXXXXXX --><a href="https://api.whatsapp.com/message/U2EGUFBDX66ZE1?autoload=1&amp;app_absent=0" target="_blank" rel="noopener" aria-label="واتساب"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l4.97-1.3A10 10 0 1 0 12 2zm0 1.9a8.1 8.1 0 1 1-4.3 15l-.3-.2-3 .8.8-2.9-.2-.3A8.1 8.1 0 0 1 12 3.9zM8.6 7.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.1c-.2-.5-.4-.5-.6-.5z"/></svg></a><!-- TODO: put the real profile, e.g. https://x.com/HANDLE --><a href="https://x.com/arbaamia" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.2-8.3L2 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"/></svg></a><!-- TODO: put the real profile, e.g. https://instagram.com/HANDLE --><a href="https://www.instagram.com/arbaamia/" target="_blank" rel="noopener" aria-label="انستغرام"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 1.8A3.7 3.7 0 0 0 3.8 7.5v9a3.7 3.7 0 0 0 3.7 3.7h9a3.7 3.7 0 0 0 3.7-3.7v-9a3.7 3.7 0 0 0-3.7-3.7zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4zM17.3 5.6a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"/></svg></a></li>
+          <li class="ft-ic"><a href="mailto:arbaamia.sa@gmail.com" aria-label="البريد الإلكتروني"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1.6 2L12 12.4 19.4 7zM4 8.6V17h16V8.6l-8 5.8z"/></svg></a><a href="https://api.whatsapp.com/message/U2EGUFBDX66ZE1?autoload=1&amp;app_absent=0" target="_blank" rel="noopener" aria-label="واتساب"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l4.97-1.3A10 10 0 1 0 12 2zm0 1.9a8.1 8.1 0 1 1-4.3 15l-.3-.2-3 .8.8-2.9-.2-.3A8.1 8.1 0 0 1 12 3.9zM8.6 7.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.1c-.2-.5-.4-.5-.6-.5z"/></svg></a><a href="https://x.com/arbaamia" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.2-8.3L2 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"/></svg></a><a href="https://www.instagram.com/arbaamia/" target="_blank" rel="noopener" aria-label="انستغرام"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 1.8A3.7 3.7 0 0 0 3.8 7.5v9a3.7 3.7 0 0 0 3.7 3.7h9a3.7 3.7 0 0 0 3.7-3.7v-9a3.7 3.7 0 0 0-3.7-3.7zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4zM17.3 5.6a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"/></svg></a></li>
         </ul>
       </div>
     </nav>

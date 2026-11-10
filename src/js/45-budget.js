@@ -38,12 +38,11 @@
     {id:'siteContent',stage:1,show:function(a){return a.website==='none'},title:'هل لديك نصوص وصور جاهزة للموقع؟',hint:'النصوص هي ما يعرف بنشاطك وخدماتك، والصور هي ما يظهر في صفحات الموقع.',opts:[['both','نعم، لدي النصوص والصور'],['text','لدي النصوص فقط'],['images','لدي الصور فقط'],['none','لا، أحتاج من يكتب المحتوى ويجهزه']]},
     {id:'accounts',stage:2,title:'هل لديك حسابات على منصات التواصل الاجتماعي؟',opts:[['active','نعم، وحساباتي نشطة'],['inactive','لدي حسابات لكنها غير نشطة'],['some','لدي حسابات على بعض المنصات'],['none','ليس لدي حسابات']]},
     {id:'platforms',stage:2,multi:true,title:'ما المنصات التي تستخدمها أو تريد العمل عليها؟',hint:'يمكنك اختيار أكثر من منصة.',opts:PLATFORMS},
-    {id:'content',stage:3,title:'هل لديك محتوى تسويقي جاهز؟',opts:[['both','تصاميم ومقاطع فيديو'],['designs','تصاميم فقط'],['videos','مقاطع فيديو فقط'],['old','محتوى قديم يحتاج إلى تحديث'],['none','لا، أحتاج إلى صناعته من البداية']]},
     {id:'ctype',stage:3,title:'ما نوع المحتوى الذي تحتاج إليه؟',opts:[['designs','تصاميم ومنشورات'],['videos','مقاطع فيديو مع تعليق صوتي'],['both','تصاميم ومقاطع فيديو'],['per','محتوى مخصص لكل منصة']]},
     {id:'managed',stage:2,title:'هل يدير حساباتك أحد غيرك؟',hint:'إدارة الحساب تعني التخطيط للمحتوى وجدولته ونشره ومتابعة الحساب باستمرار.',opts:[['all','نعم، يدير جميع حساباتي'],['some','نعم، يدير بعضها فقط'],['self','لا، أديرها بنفسي'],['need','أحتاج إلى من يدير حساباتي وينظم محتواها']]},
     {id:'camp',stage:4,title:'هل أطلقت حملات إعلانية من قبل؟',opts:[['good','نعم، ونتائجها جيدة'],['bad','نعم، لكن نتائجها غير مرضية'],['some','أطلقت حملات متقطعة'],['none','لا، لم أطلق حملات من قبل']]},
     {id:'adPlatforms',stage:4,multi:true,exclusive:'none',title:'على أي منصات تريد الإعلان؟',hint:'الإعلان المدفوع أن تدفع للمنصة لتعرض إعلانك على جمهور أوسع. ويمكنك اختيار أكثر من منصة.',opts:PLATFORMS.slice(0,5).concat([['none','لا أريد إطلاق حملات حاليا']])},
-    {id:'cgoal',stage:4,show:function(a){return (a.adPlatforms||[]).length>0&&a.adPlatforms.indexOf('none')<0},title:'ما هدفك من الحملات الإعلانية؟',opts:[['sales','زيادة المبيعات'],['visits','زيادة زيارات الموقع'],['requests','استقبال الطلبات والاستفسارات'],['aware','زيادة الوعي والانتشار'],['promo','الترويج لمنتج أو خدمة محددة']]},
+    {id:'cgoal',stage:4,multi:true,hint:'يمكنك اختيار أكثر من هدف.',show:function(a){return (a.adPlatforms||[]).length>0&&a.adPlatforms.indexOf('none')<0},title:'ما هدفك من الحملات الإعلانية؟',opts:[['sales','زيادة المبيعات'],['visits','زيادة زيارات الموقع'],['requests','استقبال الطلبات والاستفسارات'],['aware','زيادة الوعي والانتشار'],['promo','الترويج لمنتج أو خدمة محددة']]},
     {id:'budget',stage:5,select:true,title:'كم تخصص للتسويق؟',hint:'اختر المبلغ بالريال السعودي.',opts:[[2000,'٢٬٠٠٠ ريال'],[4000,'٤٬٠٠٠ ريال'],[6000,'٦٬٠٠٠ ريال'],[8000,'٨٬٠٠٠ ريال'],[10000,'١٠٬٠٠٠ ريال'],[12000,'١٢٬٠٠٠ ريال'],[14000,'١٤٬٠٠٠ ريال'],[16000,'١٦٬٠٠٠ ريال'],[18000,'١٨٬٠٠٠ ريال'],[20000,'٢٠٬٠٠٠ ريال أو أكثر']]},
     {id:'btype',stage:5,show:function(a){return setupItems(a).some(function(i){return i.cost>0})},title:'هل تشمل هذه الميزانية تكاليف التأسيس، أم هي ميزانية شهرية للتشغيل؟',hint:'التأسيس: أعمال تدفع مرة واحدة، مثل الهوية والموقع. التشغيل: ما تدفعه كل شهر.',opts:[['both','تشمل التأسيس والتشغيل'],['monthly','ميزانية شهرية للتشغيل فقط'],['separate','لدي ميزانية تأسيس منفصلة']]}
   ];
@@ -65,7 +64,7 @@
   function needsFrom(a){
     var plats=(a.platforms||[]).length,ads=(a.adPlatforms||[]).filter(function(x){return x!=='none'}).length,block=null;
     if(ads>0){
-      if(a.cgoal==='visits'&&a.website==='none')block='نقترح تأجيل الحملة حتى يجهز الموقع، لأن هدفها زيادة زيارات الموقع.';
+      if((a.cgoal||[]).indexOf('visits')>-1&&a.website==='none')block='نقترح تأجيل الحملة حتى يجهز الموقع، لأن هدفها زيادة زيارات الموقع.';
       else if(a.accounts!=='active'&&a.accounts!=='some'&&a.website!=='good')block='ليس لديك حسابات نشطة ولا موقع يستقبل زوار الحملة، فنوصي بتجهيز أحدهما قبل إطلاقها.'}
     return {ctype:a.ctype==='per'?'both':a.ctype,mgmtWanted:a.managed==='all'?0:Math.min(4,plats||1),adsWanted:Math.min(4,ads),block:block}
   }
@@ -189,7 +188,7 @@
   /* ============ report ============ */
   function readiness(){
     var rows=[['الهوية البصرية',{full:1,logo:.5,improve:.5,none:0}[A.identity]],['الموقع الإلكتروني',{good:1,improve:.5,none:0}[A.website]],['حسابات التواصل',{active:1,inactive:.5,some:.5,none:0}[A.accounts]],
-      ['المحتوى التسويقي',{both:1,designs:.6,videos:.6,old:.3,none:0}[A.content]],['إدارة الحسابات',{all:1,some:.6,self:.3,need:0}[A.managed]],['الخبرة مع الحملات',{good:1,some:.5,bad:.3,none:0}[A.camp]]];
+      ['إدارة الحسابات',{all:1,some:.6,self:.3,need:0}[A.managed]],['الخبرة مع الحملات',{good:1,some:.5,bad:.3,none:0}[A.camp]]];
     var pct=Math.round(rows.reduce(function(s,r){return s+r[1]},0)/rows.length*100);
     return {rows:rows,pct:pct,label:pct<35?'مشروعك في بداية الطريق':pct<70?'جاهزيتك متوسطة، وبعض الأساسيات ناقصة':'مشروعك جاهز للنمو'}
   }
@@ -270,7 +269,7 @@
       
       '<section class="bg-card"><h3 class="bg-h">التوصية</h3><p class="bg-rec">'+recommendation()+'</p><p class="bg-fine">زيادة عدد الحملات أو المنصات ليست دائما الخيار الأفضل، فالقرار يعتمد على الجمهور والهدف والنتائج. أما الإنفاق بمعدل '+ar(AD_DAILY)+' ر.س يوميا لكل منصة فهو افتراض مبدئي، ولا يضمن نتائج الحملة.</p></section>'+
       (nn.length?'<details class="bg-card bg-more"><summary class="bg-h">ما لا تحتاجه الآن</summary><ul class="bg-skip">'+nn.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></details>':'')+
-      '<section class="bg-card"><h3 class="bg-h">خطوتك القادمة</h3><p class="bg-note-l">ابدأ بالأولويات التي تجهز مشروعك للنمو، ثم وسع الإنفاق التسويقي تدريجيا.</p><p class="bg-fine">هذه التوصيات تقديرية. نحدد نطاق العمل والتكلفة النهائية بعد مراجعة تفاصيل مشروعك، ولا نضمن نتيجة بعينها.</p>'+
+      '<section class="bg-card"><h3 class="bg-h">خطوتك القادمة</h3><p class="bg-note-l">ابدأ بالأولويات التي تجهز مشروعك للنمو، ثم وسع الإنفاق التسويقي تدريجيا.</p><p class="bg-fine">هذه التوصيات تقديرية. نحدد نطاق العمل والتكلفة النهائية بعد مراجعة تفاصيل مشروعك، ولا نضمن نتيجة بعينها.</p><p class="bg-fine">الأسعار المعروضة افتراضية لغرض التوضيح فقط، ولا يعتمد عليها عند طلب الخدمات أو التعاقد.</p>'+
         '<a class="flipbtn fb--cream bg-cta" href="contact.html"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♠︎</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♠︎</i></span></span></a></section>'+
       '<div class="bg-actions"><button type="button" class="bg-go" id="bgCopy">نسخ ملخص الخطة</button><a class="bg-btn bg-x" id="bgX" target="_blank" rel="noopener" href="https://x.com/intent/post?text='+encodeURIComponent('جربت حاسبة التسويق من @arbaamia وعرفت وين أوزع ميزانيتي التسويقية 🧮 جربها مجانا: https://arbaamia.sa/budget.html')+'">شارك على إكس</a><button type="button" class="bg-btn" id="bgEdit">تعديل إجاباتي</button><button type="button" class="bg-btn" id="bgReset">ابدأ من جديد</button></div></div>';
     var y=window.scrollY;app.innerHTML=h;

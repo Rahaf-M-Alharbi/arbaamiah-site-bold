@@ -37,8 +37,10 @@ for (const dir of ["fonts", "img"]) {
 }
 /* project images and videos: assets/projects/<folder>/<file> keeps its folder, gets the same fingerprint */
 const projectFiles = (d = "projects") => readdirSync(join(root, "assets", d), { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? projectFiles(join(d, e.name)) : [join(d, e.name)]));
+/* only what a page, stylesheet or script names is shipped: hidden projects and unpicked images stay out of dist/ */
+const sources = readdirSync(root).filter((f) => f.endsWith(".html")).map(read).join("\n");
 for (const rel of projectFiles()) {
-  if (rel.split("/").pop().startsWith(".")) continue;
+  if (rel.split("/").pop().startsWith(".") || !sources.includes(rel)) continue;
   const buf = readFileSync(join(root, "assets", rel)), ext = extname(rel), out = `${rel.slice(0, -ext.length)}.${hash(buf)}${ext}`;
   mkdirSync(dirname(join(dist, "assets", out)), { recursive: true });
   writeFileSync(join(dist, "assets", out), buf);

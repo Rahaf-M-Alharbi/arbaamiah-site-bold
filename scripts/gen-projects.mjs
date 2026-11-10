@@ -15,12 +15,12 @@ const manifest = JSON.parse(read("src/data/projects-manifest.json"));
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 
 /* head and CSS list are taken from the existing pages; the footer comes from src/partials/footer.html */
-const faq = read("faq.html"), home = read("index.html");
+const faq = read("faq.html");
 const cssBlock = faq.match(/<!-- css:start[\s\S]*?<!-- css:end -->/)[0];
-const css = cssBlock.replace("<!-- css:end -->", '<link rel="stylesheet" href="src/css/42-projects.css">\n<!-- css:end -->\n<!-- js:start (run in this order; build concatenates them) -->\n<script src="src/js/15-cta-experiments.js" defer></script>\n<script src="src/js/43-project-lightbox.js" defer></script>\n<!-- js:end -->');
+const css = cssBlock.replace("<!-- css:end -->", '<link rel="stylesheet" href="src/css/42-projects.css">\n<!-- css:end -->\n<!-- js:start (run in this order; build concatenates them) -->\n<script src="src/js/15-pull-card.js" defer></script>\n<script src="src/js/43-project-lightbox.js" defer></script>\n<!-- js:end -->');
 const footer = read("src/partials/footer.html").trim();
 /* the closing call to action ("اسحب ورقتك") sits above the footer on every page */
-const cta = home.match(/<section class="xp xp9"[\s\S]*?<\/section>/)[0];
+const cta = read("src/partials/cta-pull.html").trim();
 const heads = faq.split("<!-- css:start")[0].replace(/<title>.*<\/title>/, "<title>@@TITLE@@</title>");
 
 const shown = (p) => {

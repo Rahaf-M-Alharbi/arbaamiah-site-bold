@@ -35,7 +35,7 @@
 .deck .dk-more{display:flex;justify-content:center;margin-top:clamp(36px,6vh,64px);padding-inline:max(16px,4vw)}
 
 /* home solutions: a numbered list with rules between the rows, no cards */
-.deck .stack.sol{width:100%;box-sizing:border-box;max-width:1100px;margin:0 auto;direction:rtl;border-top:3px solid rgba(244,218,191,.4)}
+.deck .stack.sol{width:100%;box-sizing:border-box;max-width:1100px;margin:0 auto;direction:rtl}
 .sol-r{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1.1fr);align-items:baseline;gap:clamp(14px,3vw,48px);padding:clamp(22px,3.4vw,40px) 0;border-bottom:3px solid rgba(244,218,191,.4);color:#f4dabf;transition:padding-inline .3s cubic-bezier(.2,.8,.2,1)}
 .sol-r:hover{padding-inline:clamp(10px,1.6vw,22px)}
 .sol-n{font:700 clamp(15px,1.4vw,18px)/1 var(--f-body);opacity:.65;font-variant-numeric:tabular-nums}
@@ -64,8 +64,6 @@
 
 /* home services: names only, two columns */
 .deck .stack.sol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,5vw,72px)}
-.deck .stack.sol .sol-r{grid-template-columns:auto minmax(0,1fr);padding-block:clamp(18px,2.6vw,30px)}
-.deck .stack.sol .sol-r h4{font-size:clamp(17px,2.24vw,31px)}
 @media (max-width:760px){.deck .stack.sol{grid-template-columns:minmax(0,1fr)}}
 
 /* nine services: the last card runs across both columns instead of sitting alone */
@@ -82,7 +80,7 @@
 
 /* TEMP review switcher */
 .sv-sw{position:fixed;inset-inline:0;bottom:16px;z-index:60;display:flex;justify-content:center;gap:6px;pointer-events:none}
-.sv-sw a{pointer-events:auto;padding:10px 16px;border:3px solid #17120f;border-radius:99px;background:#f4dabf;color:#6c171e;font:700 14px/1 var(--f-body);text-decoration:none;box-shadow:3px 3px 0 #17120f}
+.sv-sw a{pointer-events:auto;border:3px solid #17120f;border-radius:99px;background:#f4dabf;color:#6c171e;font:700 14px/1 var(--f-body);text-decoration:none;box-shadow:3px 3px 0 #17120f}
 .sv-sw a.on{background:#6c171e;color:#f4dabf}
 
 /* option 2: numbered rows on the maroon ground, click a row to open it */
@@ -188,9 +186,7 @@
 @media (prefers-reduced-motion:reduce){.sv-pn{animation:none}}
 /* simpler services list: names only, no numbers, no rules */
 .deck .stack.sol{border-top:0;row-gap:clamp(8px,1.6vw,20px)}
-.deck .stack.sol .sol-r{border-bottom:0;grid-template-columns:minmax(0,1fr);padding-block:clamp(10px,1.4vw,18px)}
 .deck .stack.sol .sol-n{display:none}
-.deck .stack.sol .sol-r h4{font-size:clamp(22px,3vw,42px);font-weight:600}
 /* middle ground: two columns, big names, suit mark, one hairline per row */
 .deck .stack.sol .sol-r{border-bottom:1px solid rgba(244,218,191,.18);grid-template-columns:auto minmax(0,1fr);align-items:center;gap:14px;padding-block:clamp(16px,2.2vw,28px)}
 .deck .stack.sol .sol-r::before{content:"♠︎";grid-column:1;grid-row:1;color:#f4dabf;opacity:.5;font-size:.9em}

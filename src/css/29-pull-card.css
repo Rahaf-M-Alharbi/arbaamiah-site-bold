@@ -1,4 +1,4 @@
-/* CTA experiments: closing section experiments under the real final CTA. Delete a section from index.html to drop it. The other experiments (1-8, 10-12) are saved in ../arbaamiah-archive/drafts/ (outside the repo). */
+/* Closing call to action "pull a card" (src/partials/cta-pull.html), above the footer. */
 .xp{position:relative;z-index:1;direction:rtl;padding:clamp(72px,12vh,140px) max(20px,5vw);overflow:hidden;text-align:center;display:grid;justify-items:center;gap:clamp(20px,3vh,36px)}
 .xp h2{margin:0;font:700 clamp(48px,8vw,128px)/1.08 var(--f-disp)}
 .xp h2 em{font-style:normal}

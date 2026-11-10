@@ -69,15 +69,9 @@
 .bg-prio li{display:flex;gap:10px;counter-increment:p;font:700 15px/1.6 var(--f-body)}
 .bg-prio li::before{content:counter(p,arabic-indic);flex:none;display:grid;place-items:center;width:26px;height:26px;margin-top:2px;border-radius:50%;background:#6c171e;color:#f4dabf;font:700 13px/1 var(--f-body)}
 .bg-prio small,.bg-lt small{display:block;font:500 13px/1.7 var(--f-body);opacity:.78}
-.bg-chk,.bg-line{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:2px solid rgba(23,18,15,.15)}
-.bg-chk input{flex:none;width:22px;height:22px;accent-color:#6c171e}
-.bg-nochk{flex:none;width:22px}
+.bg-line{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:2px solid rgba(23,18,15,.15)}
 .bg-lt{flex:1;min-width:0;font:600 15px/1.5 var(--f-body)}
 .bg-lc{min-width:64px;text-align:end;font:700 15px/1.4 var(--f-body);color:#6c171e}
-.bg-step{display:flex;align-items:center;gap:6px}
-.bg-step button{width:34px;height:34px;display:grid;place-items:center;border:3px solid #17120f;border-radius:10px;background:#fff8ee;color:#17120f;font:700 18px/1 var(--f-body);cursor:pointer}
-.bg-step button:disabled{opacity:.35;cursor:not-allowed}
-.bg-step output{min-width:34px;text-align:center;font:700 15px/1 var(--f-body)}
 .bg-total{display:flex;justify-content:space-between;gap:12px;padding-top:12px;border-top:3px solid #17120f;font:700 16px/1.4 var(--f-body);color:#6c171e}
 .bg-dw{position:relative;width:min(220px,60%);aspect-ratio:1;margin-inline:auto}
 .bg-donut{display:block;width:100%;height:100%}

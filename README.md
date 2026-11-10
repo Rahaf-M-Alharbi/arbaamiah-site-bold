@@ -12,7 +12,7 @@ Node 20 or newer.
 | `npm run check` | after a build: checks every page for title, description, one `h1`, `<main>`, image `alt`, broken internal links, duplicate titles/descriptions |
 | `npm run preview` | serves `dist/` on http://localhost:8082 the way a good host would: brotli/gzip, long caching, real 404s |
 | `npm run dev` | serves the source files on http://localhost:8082, never cached, for editing |
-| `node scripts/sync-nav.mjs` | writes the shared navigation bar (`src/partials/nav.html`) and footer (`src/partials/footer.html`) into every page; run it after editing a partial |
+| `node scripts/sync-nav.mjs` | writes the shared navigation bar (`src/partials/nav.html`), closing pull-a-card section (`src/partials/cta-pull.html`) and footer (`src/partials/footer.html`) into every page; run it after editing a partial |
 | `node scripts/sync-services.mjs` | writes the service texts (kept in `src/js/05-services-panels.js`) as plain HTML into services and home, so crawlers and no-JS visitors see them; run after editing those texts |
 | `node scripts/unused-css.mjs` | lists CSS that can never apply (`--fix` removes it) |
 | `node scripts/overridden-css.mjs` | lists declarations a later rule always replaces (`--fix` removes them) |
