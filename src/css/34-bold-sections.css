@@ -69,4 +69,4 @@
 .wk-head p{font-size:clamp(18px,2.2vw,34px)}
 
 /* numbers section: content starts nearer the section above instead of floating in the middle of a full-height block */
-.stt{justify-content:flex-start;padding-top:clamp(32px,6vh,72px)}
+.stt{justify-content:flex-start;min-height:0;padding-top:clamp(32px,6vh,72px);padding-bottom:clamp(32px,6vh,72px)}
