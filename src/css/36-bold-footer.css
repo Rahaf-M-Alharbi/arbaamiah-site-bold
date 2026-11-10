@@ -61,3 +61,12 @@
 .ft-col ul{gap:clamp(8px,1.2vh,12px)}
 .ft-col .ft-ic{margin-top:clamp(10px,1.6vh,16px)}
 .ft .ft-r{margin-top:clamp(64px,10vh,110px);padding-top:clamp(18px,3vh,28px)}
+/* stronger spacing (fixed minimums so it shows on short screens too) */
+.ft{padding-top:clamp(130px,16vh,190px);padding-bottom:clamp(40px,6vh,64px)}
+@media (min-width:601px){.ft-top{gap:clamp(96px,13vh,150px)}.ft-brand{row-gap:clamp(32px,4vh,48px)}}
+.ft-cols{gap:clamp(56px,6vw,96px) clamp(28px,3.6vw,60px)}
+.ft-col h3{margin-bottom:clamp(26px,3.2vh,36px);padding-bottom:clamp(18px,2.4vh,24px)}
+.ft-col ul{gap:clamp(14px,1.8vh,20px)}
+.ft-col a{padding-block:10px}
+.ft-col .ft-ic{margin-top:clamp(18px,2.4vh,26px)}
+.ft .ft-r{margin-top:clamp(96px,13vh,150px);padding-top:clamp(24px,3.6vh,36px)}
