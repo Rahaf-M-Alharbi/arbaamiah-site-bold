@@ -23,7 +23,7 @@
           /* one draw in three wins one of the three offers (with a shareable card image); the other two send the person to the free calculator. Edit WIN, MISS and WIN_CHANCE to change this. */
           WIN_CHANCE=1/3,
           WIN=[['استشارة مجانية','احجز استشارتك المجانية وتكلم معنا عن علامتك'],['تحليل حساباتك بالسوشل ميديا','نراجع حساباتك ونعطيك ملاحظات واضحة تبني عليها'],['ودك بخصم؟ واجهنا في صكة بلوت','اربح الصكة معنا واحصل على خصم على خدماتنا']],
-          MISS=['جرب الحاسبة المجانية','لم تظهر لك هدية هذه المرة، لكن حظك معنا: وزع ميزانيتك التسويقية بذكاء مع حاسبتنا المجانية.'],
+          MISS=['جرب الحاسبة المجانية','وزع ميزانيتك التسويقية في دقائق مع حاسبتنا المجانية، واعرف أين يذهب كل ريال.'],
           btns=document.querySelector('.xp9-btns'),calc=btns&&btns.querySelector('a[href="budget.html"]'),shareBtn=null,shareBlob=null,wonTitle='',
           SU=['♠︎','♥︎','♦︎','♣︎'],drawn=false,d=null,from=null;
       function T(x,y,s,r){return'translate('+x+'px,'+y+'px) rotate('+r+'deg) scale('+s+')'}
@@ -62,11 +62,22 @@
           var cw=700,ch=900;x.fillStyle=INK;rr(-cw/2+18,-ch/2+18,cw,ch,40);x.fill();
           x.fillStyle=CREAM;rr(-cw/2,-ch/2,cw,ch,40);x.fill();x.lineWidth=12;x.strokeStyle=INK;x.stroke();
           x.lineWidth=5;rr(-cw/2+30,-ch/2+30,cw-60,ch-60,24);x.stroke();
-          var col=red?WINE:INK;x.fillStyle=col;x.direction='ltr';x.textAlign='left';x.font='700 130px '+SER;x.fillText('A',-cw/2+64,-ch/2+170);x.font='700 90px '+SANS;x.fillText(su,-cw/2+64,-ch/2+270);
-          x.textAlign='center';x.font='700 360px '+SANS;x.globalAlpha=.9;x.fillText(su,0,-30);x.globalAlpha=1;
-          x.direction='rtl';x.fillStyle=WINE;x.font='700 52px '+SER;
-          var words=title.split(' '),lines=[],cur='';words.forEach(function(w){var t=cur?cur+' '+w:w;if(x.measureText(t).width>cw-150&&cur){lines.push(cur);cur=w}else cur=t});lines.push(cur);
-          lines.forEach(function(l,i){x.fillText(l,0,170+i*70)});
+          var col=red?WINE:INK;x.fillStyle=col;
+          /* draw a glyph so its ink (not its text box) is centred on cx,cy: the suit signs sit off-centre in their line box */
+          function glyph(t,cx,cy,font){x.font=font;var m=x.measureText(t);x.fillText(t,cx-(m.actualBoundingBoxRight-m.actualBoundingBoxLeft)/2,cy+(m.actualBoundingBoxAscent-m.actualBoundingBoxDescent)/2)}
+          x.direction='ltr';x.textAlign='left';x.textBaseline='alphabetic';
+          /* corner index, repeated upside down in the opposite corner like a real card */
+          function index(){glyph('A',0,0,'700 130px '+SER);glyph(su,0,92,'700 78px '+SANS)}
+          x.save();x.translate(-cw/2+84,-ch/2+96);index();x.restore();
+          x.save();x.translate(cw/2-84,ch/2-96);x.rotate(Math.PI);index();x.restore();
+          /* the suit: centred horizontally, in the middle of the space above the offer text */
+          x.globalAlpha=.92;glyph(su,0,-110,'700 380px '+SANS);x.globalAlpha=1;
+          /* divider with a small suit, then the offer, centred in the lower third */
+          x.lineWidth=4;x.strokeStyle=col;x.beginPath();x.moveTo(-170,130);x.lineTo(-40,130);x.moveTo(40,130);x.lineTo(170,130);x.stroke();
+          glyph(su,0,130,'700 36px '+SANS);
+          x.textAlign='center';x.direction='rtl';x.fillStyle=WINE;x.font='700 54px '+SER;
+          var words=title.split(' '),lines=[],cur='';words.forEach(function(w){var t=cur?cur+' '+w:w;if(x.measureText(t).width>cw-300&&cur){lines.push(cur);cur=w}else cur=t});lines.push(cur);
+          var y0=250+(lines.length>1?0:25);lines.forEach(function(l,i){x.fillText(l,0,y0+i*72)});
           x.restore();
           x.direction='rtl';x.textAlign='center';x.fillStyle=CREAM;x.font='700 78px '+SER;x.fillText('أربعمية',W/2,H-150);
           x.direction='ltr';x.font='600 42px '+SANS;x.fillText('@arbaamia  ·  arbaamia.sa',W/2,H-80);
