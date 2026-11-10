@@ -1,7 +1,7 @@
 <!-- Deliberately no doctype: the design was built and tuned in quirks mode, and standards mode shifts some heights by a few px. -->
 <html lang="ar">
 <head>
-<title>هيرو | أربعمية</title>
+<title>هيرو: ملف تعريفي | أربعمية</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -61,8 +61,9 @@
 <!-- js:end -->
 </head>
 <body>
+<a class="skip" href="#main">انتقل إلى المحتوى</a>
 <header class="mini on pg" id="mini" lang="ar" dir="rtl"><a class="mini-b" href="index.html" aria-label="أربعمية"><img src="assets/img/logo-symbol.svg" alt="أربعمية" width="46" height="46"></a><nav aria-label="التنقل الرئيسي"><div class="mini-l" id="miniMenu"><a href="services.html">خدماتنا</a><a href="projects.html" aria-current="page">أعمالنا</a><a href="about.html">من نحن</a></div><a class="cta flipbtn fb--line" href="contact.html"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♣︎</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♣︎</i></span></span></a><button class="mini-m" type="button" aria-label="القائمة" aria-expanded="false" aria-controls="miniMenu"><i></i><i></i><i></i></button></nav></header>
-<main class="pj pj-page" lang="ar" dir="rtl" aria-label="هيرو">
+<main id="main" class="pj pj-page" lang="ar" dir="rtl" aria-label="هيرو">
   <a class="pj-back" href="projects.html">→ كل الأعمال</a>
   <div class="pj-hero">
     <div class="pj-ht">
@@ -87,7 +88,7 @@
   <a class="pj-next" href="project-mafaz.html"><small>المشروع التالي</small><b>مفازا ←</b></a>
   <a class="pj-back" href="projects.html">→ العودة إلى كل الأعمال</a>
 </main>
-<section class="xp xp9" data-cur="card" lang="ar" dir="rtl" aria-label="تجربة ٩: اسحب ورقتك">
+<section class="xp xp9" id="pull" data-cur="card" lang="ar" dir="rtl" aria-label="تجربة ٩: اسحب ورقتك">
   <h2>اسـحب <em>ورقـتك</em></h2>
   <p id="xp9m">اضغط على الرزمة، أو اسحب الورقة العلوية للأعلى</p>
   <div class="xp9-stage" id="xp9t">
@@ -98,7 +99,7 @@
     <div class="xp9-card" id="xp9c" aria-hidden="true"><div class="in"><div class="f"></div><div class="b"></div></div></div>
     <div class="xp9-out" id="xp9o">
       <h3 class="xp9-h" id="xp9h"></h3><p class="xp9-p" id="xp9p"></p>
-      <div class="xp9-btns"><a class="flipbtn fb--cream" href="contact.html"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♠&#xFE0E;</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♠&#xFE0E;</i></span></span></a><a class="flipbtn fb--line" href="draw.html"><span class="fb-in"><span class="fb-f">شارك في السحب<i>♦︎</i></span><span class="fb-b" aria-hidden="true">شارك في السحب<i>♦︎</i></span></span></a></div>
+      <div class="xp9-btns"><a class="flipbtn fb--cream" href="contact.html"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♠&#xFE0E;</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♠&#xFE0E;</i></span></span></a><a class="flipbtn fb--line" href="budget.html"><span class="fb-in"><span class="fb-f">حاسبة التسويق<i>♦︎</i></span><span class="fb-b" aria-hidden="true">حاسبة التسويق<i>♦︎</i></span></span></a></div>
     </div>
   </div>
 </section>
@@ -106,7 +107,10 @@
   <div class="ft-top">
     <div class="ft-brand">
       <img class="ft-logo" src="assets/img/logo-wine.svg" alt="أربعمية" width="170" height="150">
-      <div class="ft-tag">مكتب إبداعي يجمع المحتوى والتصميم والإعلانات والنمو في فريق واحد.</div>
+      <div class="ft-pitch">
+        <span class="ft-pe">&#9824;&#xFE0E; عندك مشكلة؟</span>
+        <p><strong>محتواك ينشر وما أحد يتفاعل؟ هويتك ما تشبهك؟ إعلاناتك تصرف وما ترجع لك بشي؟</strong> أو يمكن لسه ما بدأت وما تدري من وين؟ مهما كانت مشكلتك، لا تحلها لحالك. في أربعمية عندنا فريق يغطي كل الزوايا، من الفكرة لين النتيجة، ونراجع كل عمل قبل لا يوصلك. <strong>قل لنا وش مشكلتك، ونبدأ نرتبها معك.</strong></p>
+      </div>
       <a class="ft-cta" href="contact.html">تواصل معنا <i>♠&#xFE0E;</i></a>
     </div>
     <!-- Footer links: each .ft-col is one column and the grid adds more on its own. To add a column or a link, copy a block below. Links that point to pages or profiles that do not exist yet (social, legal, contact details) go in the last column or a new one. -->
@@ -125,7 +129,6 @@
         <ul>
           <li><a href="services.html">المحتوى</a></li>
           <li><a href="services.html">التصميم</a></li>
-          <li><a href="services.html">الإعلانات</a></li>
           <li><a href="services.html">الفيديو</a></li>
           <li><a href="services.html">تطوير المواقع</a></li>
         </ul>

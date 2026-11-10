@@ -31,3 +31,11 @@
 /* the two buttons of the draw-a-card section share the hero button size */
 .xp9-btns .flipbtn .fb-f,.xp9-btns .flipbtn .fb-b{box-sizing:border-box;min-width:240px;padding:14px 36px;font-size:18px}
 @media (max-width:640px){.xp9-btns .flipbtn .fb-f,.xp9-btns .flipbtn .fb-b{min-width:170px;padding:12px 26px;font-size:16px}}
+
+/* the share-to-X control after a win: a round cream button with the X logo and the label "شاركنا" under it */
+.xp9-btns [hidden]{display:none!important}
+.xp9-btns .xp9-share{flex:none;display:grid;justify-items:center;gap:8px;padding:4px;border:0;background:none;color:#f4dabf;cursor:pointer}
+.xp9-btns .xp9-circ{display:grid;place-items:center;width:68px;height:68px;border:4px solid #17120f;border-radius:50%;background:#f4dabf;color:#17120f;box-shadow:5px 5px 0 #17120f;transition:transform .15s,box-shadow .15s}
+.xp9-btns .xp9-sl{font:700 15px/1.3 var(--f-body);text-align:center;max-width:12em}
+.xp9-btns .xp9-share:hover .xp9-circ,.xp9-btns .xp9-share:focus-visible .xp9-circ{transform:translate(3px,3px);box-shadow:2px 2px 0 #17120f}
+.xp9-btns .xp9-share:focus-visible{outline:3px solid #f4dabf;outline-offset:6px;border-radius:14px}

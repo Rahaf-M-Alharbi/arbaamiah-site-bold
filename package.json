@@ -5,6 +5,7 @@
   "engines": { "node": ">=20" },
   "scripts": {
     "build": "node scripts/build.mjs",
+    "check": "node scripts/seo-check.mjs",
     "preview": "node scripts/serve.mjs dist 8082",
     "dev": "node scripts/serve.mjs . 8082 --no-cache"
   },

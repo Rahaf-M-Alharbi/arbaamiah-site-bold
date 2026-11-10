@@ -64,3 +64,9 @@
   .deck .dk-head{padding-inline:max(20px,5.5vw)}
   .deck .dk-head p{width:100%;max-width:none;font-size:clamp(20px,5.6vw,28px);line-height:1.75}
 }
+
+/* work intro paragraph: smaller than the shared section-paragraph size */
+.wk-head p{font-size:clamp(18px,2.2vw,34px)}
+
+/* numbers section: content starts nearer the section above instead of floating in the middle of a full-height block */
+.stt{justify-content:flex-start;padding-top:clamp(32px,6vh,72px)}

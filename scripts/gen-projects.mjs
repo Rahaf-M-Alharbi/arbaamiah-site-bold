@@ -122,7 +122,7 @@ projects.forEach((p, i) => {
   const tags = p.tags || kinds.length === 1 ? `<ul class="pj-tags">${(p.tags || [...(mixed ? [vidLabel] : []), ...kinds.map(([, t]) => t)]).map((t, j) => mixed && !p.tags ? `<li><button type="button" data-f="${j === 0 ? "video" : "img"}" aria-pressed="false">${t}</button></li>` : `<li>${t}</li>`).join("")}</ul>` : "";
   const tagsG = gmix ? `<ul class="pj-tags">${p.media.map((g) => `<li><button type="button" data-f="${g.key}" aria-pressed="false">${g.label}</button></li>`).join("")}</ul>` : "";
   const stats = [...secs.filter((x) => x.count > 1).map((x) => [x.count, p.media ? x.label : tall && !p.vid_label ? "مقطع UGC" : "مقطع"]), imgs.length > 1 && [imgs.length, book ? "صفحة" : "تصميم"]].filter(Boolean);
-  writeFileSync(join(root, `project-${p.slug}.html`), page(`${p.name} | أربعمية`, `<main class="pj pj-page" lang="ar" dir="rtl" aria-label="${esc(p.name)}">
+  writeFileSync(join(root, `project-${p.slug}.html`), page(`${p.name}: ${p.category} | أربعمية`, `<main class="pj pj-page" lang="ar" dir="rtl" aria-label="${esc(p.name)}">
   <a class="pj-back" href="projects.html">→ كل الأعمال</a>
   <div class="pj-hero">
     <div class="pj-ht">

@@ -24,3 +24,28 @@
 .ft-col .ft-ic{display:flex;gap:10px;margin-top:6px}
 .ft-col .ft-ic a{display:grid;place-items:center;width:44px;height:44px;padding:0;margin:0;border-color:#f4dabf}
 .ft-col .ft-ic svg{width:22px;height:22px}
+.ft-pitch{position:relative;display:grid;gap:12px;padding:clamp(22px,2.4vw,30px) clamp(20px,2.2vw,28px);background:#f4dabf;color:#6c171e;border:4px solid #17120f;border-radius:16px;box-shadow:8px 8px 0 #17120f;transform:none;text-shadow:none}
+.ft-pe{justify-self:start;padding:5px 14px;background:#6c171e;color:#f4dabf;border-radius:999px;font:700 14px/1.4 var(--f-body)}
+.ft-pitch p{margin:0;max-width:26em;font:500 clamp(15px,1.25vw,18px)/1.95 var(--f-body)}
+.ft-pitch strong{font-weight:800;background:linear-gradient(transparent 62%,rgba(108,23,30,.18) 62%)}
+@media (max-width:640px){.ft-pitch{box-shadow:5px 5px 0 #17120f;border-width:3px;transform:none}}
+/* horizontal footer: pitch on the right, logo over button on the left, link columns in one row below */
+@media (min-width:601px){
+  .ft-top{grid-template-columns:minmax(0,1fr);gap:clamp(40px,6vh,72px)}
+  .ft-brand{direction:rtl;grid-template-columns:minmax(0,1.25fr) auto;grid-template-rows:1fr auto auto 1fr;column-gap:clamp(40px,7vw,110px);row-gap:clamp(16px,2.4vh,24px);align-items:center}
+  .ft-brand .ft-pitch{grid-column:1;grid-row:1/5}
+  .ft-brand .ft-logo{grid-column:2;grid-row:2;margin:0;justify-self:center;height:clamp(96px,10.5vw,116px)}
+  .ft-brand .ft-cta{grid-column:2;grid-row:3;justify-self:center}
+  .ft-cols{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+}
+/* phone: logo + button in one row (button drops under the logo if too narrow), pitch card below */
+@media (max-width:600px){
+  .ft-brand{display:flex;flex-wrap:wrap;align-items:center;gap:16px 20px}
+  .ft-brand .ft-logo{margin:0;height:clamp(84px,24vw,110px)}
+  .ft-brand .ft-cta{order:2}
+  .ft-brand .ft-pitch{order:3;flex:1 1 100%}
+}
+/* about page: the problem card on its own in the green band */
+.ab-pitch{display:grid;justify-items:center}
+.ab-pitch .ft-pitch{max-width:760px;width:100%;gap:16px;padding:clamp(26px,3.4vw,44px)}
+.ab-pitch .ft-pitch p{max-width:none;font-size:clamp(16px,1.6vw,21px)}

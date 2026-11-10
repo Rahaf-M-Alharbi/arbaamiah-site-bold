@@ -1,0 +1,47 @@
+/* account form: five questions and an email */
+.qz{position:relative;z-index:1;background:var(--ground);color:var(--on);padding:clamp(100px,16vh,180px) max(16px,3vw) clamp(60px,10vh,120px)}
+.qz-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,88px);align-items:start}
+.qz-t{display:grid;gap:clamp(16px,2.4vw,26px);position:sticky;top:110px}
+.qz-t .eb{font:700 13px/1 var(--f-body);opacity:.7}
+.qz-t h1{margin:0;font:700 clamp(34px,4.8vw,70px)/1.15 var(--f-disp);text-wrap:balance}
+.qz-t p{margin:0;max-width:30ch;font:500 clamp(15px,1.3vw,18px)/1.9 var(--f-body);opacity:.8}
+.qz-form{display:grid;gap:clamp(16px,2.4vw,26px)}
+.qz-box{box-sizing:border-box;background:#f4dabf;color:#17120f;border:4px solid #17120f;border-radius:14px;box-shadow:10px 10px 0 #17120f;padding:clamp(22px,3.4vw,44px);display:grid;gap:clamp(16px,2.4vw,26px)}
+.qz-q{border:0;margin:0;padding:0;display:grid;gap:12px}
+.qz-q legend{padding:0;margin-bottom:12px;float:right;width:100%;font:700 clamp(18px,1.9vw,24px)/1.5 var(--f-disp)}
+.qz-q legend span{display:inline-grid;place-items:center;width:1.7em;height:1.7em;margin-inline-end:10px;border-radius:50%;background:#6c171e;color:#f4dabf;font:700 .8em/1 var(--f-body)}
+.qz-q label{position:relative;cursor:pointer;display:block}
+.qz-q input{position:absolute;opacity:0;pointer-events:none}
+.qz-q label span{display:block;padding:12px 16px;border:3px solid #17120f;border-radius:10px;background:#fff8ee;font:600 clamp(15px,1.3vw,18px)/1.6 var(--f-body);transition:background .15s,color .15s}
+.qz-q input:checked+span{background:#6c171e;color:#f4dabf}
+.qz-q input:focus-visible+span{outline:3px solid #6c171e;outline-offset:3px}
+.qz-l{display:grid;gap:8px}
+.qz-l span{font:700 14px/1.4 var(--f-body)}
+.qz-l em{font-style:normal;opacity:.6;font-weight:500}
+.qz-l input{box-sizing:border-box;width:100%;padding:14px 16px;border:3px solid #17120f;border-radius:10px;background:#fff;color:#17120f;font:500 17px/1.4 var(--f-body)}
+.qz-l input[aria-invalid=true]{border-color:#b3261e}
+.qz-hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);opacity:0}
+.qz-err{color:#b3261e;font:600 14px/1.5 var(--f-body);min-height:1.5em}
+.qz-go{justify-self:start;padding:15px 32px;border:4px solid #17120f;border-radius:14px;background:#6c171e;color:#f4dabf;box-shadow:7px 7px 0 #17120f;font:700 18px/1 var(--f-body);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.qz-go:hover,.qz-go:focus-visible{transform:translate(4px,4px);box-shadow:3px 3px 0 #17120f}
+.qz-go[disabled]{opacity:.6;cursor:wait}
+.qz-box small{font:500 13px/1.7 var(--f-body);opacity:.75}
+.qz-done{display:grid;gap:12px;justify-items:start;padding:20px 0}
+.qz-done i{font-style:normal;font-size:44px;color:#6c171e}
+.qz-done b{font:700 clamp(28px,3.4vw,44px)/1.2 var(--f-disp)}
+.qz-done span{font:500 clamp(16px,1.5vw,20px)/1.8 var(--f-body)}
+@media (max-width:900px){.qz-in{grid-template-columns:minmax(0,1fr)}.qz-t{position:static}}
+@media (max-width:640px){.qz-box{box-shadow:6px 6px 0 #17120f;border-width:3px}}
+@media (prefers-reduced-motion:reduce){.qz-q label span,.qz-go{transition:none}}
+.qz-ok{margin:0;font:700 clamp(24px,2.6vw,34px)/1.4 var(--f-disp)}
+.qz-note{margin:0;font:500 clamp(16px,1.4vw,19px)/1.9 var(--f-body)}
+.qz-warn{padding:12px 16px;border:3px solid #17120f;border-radius:10px;background:#fff8ee}
+.qz-ax{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.qz-ax li{display:grid;gap:6px;padding:14px 16px;border:3px solid #17120f;border-radius:12px;background:#fff8ee}
+.qz-ax h3{margin:0;display:flex;justify-content:space-between;gap:12px;font:700 clamp(17px,1.6vw,21px)/1.4 var(--f-disp)}
+.qz-ax h3 em{font-style:normal;color:#6c171e}
+.qz-ax p{margin:0;font:500 clamp(15px,1.25vw,17px)/1.85 var(--f-body)}
+.qz-steps b{display:block;margin-bottom:6px;font:700 clamp(17px,1.6vw,21px)/1.4 var(--f-disp)}
+.qz-steps ol{margin:0;padding-inline-start:1.4em;display:grid;gap:6px;font:500 clamp(15px,1.25vw,17px)/1.85 var(--f-body)}
+.qz-cta{justify-self:start}
+.qz-disc{margin:0;padding-top:14px;border-top:3px solid #17120f;font:500 13px/1.8 var(--f-body);opacity:.8}

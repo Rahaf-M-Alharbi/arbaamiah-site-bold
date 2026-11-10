@@ -3,7 +3,8 @@
 .ctf-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(48px,9vw,140px);align-items:start}
 .ctf-t{display:grid;position:sticky;top:110px}
 .ctf-e{font:700 13px/1 var(--f-body);opacity:.7}
-.ctf-t h2{margin:0;font:700 clamp(38px,5.4vw,84px)/1.15 var(--f-disp);text-wrap:balance}
+.ctf-t h2,
+.ctf-t h1{margin:0;font:700 clamp(38px,5.4vw,84px)/1.15 var(--f-disp);text-wrap:balance}
 .ctf-t p{margin:0;max-width:30ch;font:500 clamp(15px,1.3vw,18px)/1.9 var(--f-body);opacity:.75}
 .ctf-f{display:grid;gap:clamp(28px,5vh,48px) clamp(20px,3vw,40px)}
 .ctf-l{display:grid;gap:10px}

@@ -26,3 +26,9 @@
 .cst{min-height:0}
 .cst-q{display:flex;flex-direction:column}
 .cst-q p{margin-block:auto}
+
+/* shorter card: smaller quote text and quote marks, tighter padding */
+.cst-q{--qm:clamp(52px,5.5vw,80px)}
+.cst-q p{font-size:clamp(20px,2.6vw,38px);line-height:1.55}
+.cst-q p.long{font-size:clamp(16px,1.8vw,26px);line-height:1.7}
+.cst-by{padding-top:clamp(12px,2vh,20px)}

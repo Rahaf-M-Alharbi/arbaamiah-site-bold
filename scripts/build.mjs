@@ -55,7 +55,18 @@ const block = (html, name) => {
 const site = JSON.parse(readFileSync(join(root, "src/data/site.json"), "utf8"));
 const siteUrl = (process.env.SITE_URL || site.url || "").replace(/\/$/, "");
 const sizes = [];
-const pages = ["index.html", "pricing.html", "faq.html", "contact.html", "draw.html", "about.html", "services.html", "projects.html", ...readdirSync(root).filter((f) => f.startsWith("project-") && f.endsWith(".html"))];
+const hex = (n) => ({ wine: "#6C171E", cream: "#f4dabf" })[n];
+/* meta description: written ones live in site.json; project pages fall back to the project's own "about" text (src/data/projects.json) */
+const projects = JSON.parse(readFileSync(join(root, "src/data/projects.json"), "utf8"));
+const cut = (t, n = 155) => (t.length <= n ? t : t.slice(0, n).replace(/\s+\S*$/, "") + "…");
+const describe = (page) => {
+  if (site.descriptions[page]) return site.descriptions[page];
+  const p = (Array.isArray(projects) ? projects : projects.projects).find((x) => `project-${x.slug}.html` === page);
+  if (!p) return "";
+  const about = p.about && p.about.length >= 30 ? p.about : `${p.category}، من أعمال أربعمية.`;
+  return cut(about.includes(p.name) ? about : `${p.name}: ${about}`);  /* the name keeps near-identical project texts distinct */
+};
+const pages = ["index.html", "pricing.html", "faq.html", "contact.html", "draw.html", "quiz.html", "budget.html", "about.html", "services.html", "projects.html", ...readdirSync(root).filter((f) => f.startsWith("project-") && f.endsWith(".html"))];
 for (const page of pages) {
   const name = page.startsWith("pricing") ? "pricing" : "site";
   let html = read(page);
@@ -81,21 +92,33 @@ for (const page of pages) {
     sizes.push(`${page}: css ${(cssText.length / 1024).toFixed(0)} KB (was ${(cssSrc.length / 1024).toFixed(0)}), js ${(jsText.length / 1024).toFixed(0)} KB`);
   } else sizes.push(`${page}: css ${(cssText.length / 1024).toFixed(0)} KB (was ${(cssSrc.length / 1024).toFixed(0)})`);
 
-  /* canonical + social tags only once the real domain is set in src/data/site.json (or SITE_URL); descriptions only where the owner wrote one */
-  if (siteUrl) {
-    const title = (html.match(/<title>(.*?)<\/title>/) || [])[1] || "";
+  /* head tags. Description, theme colour and noindex need no domain; canonical, social tags and structured data wait for the real domain (src/data/site.json "url", or SITE_URL). */
+  const title = (html.match(/<title>(.*?)<\/title>/) || [])[1] || "";
+  const desc = describe(page);
+  const attr = (v) => v.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+  const noindex = (site.noindex || []).includes(page);
+  let tags = `\n<meta name="theme-color" content="${hex("wine")}">`;
+  if (desc) tags += `\n<meta name="description" content="${attr(desc)}">`;
+  if (noindex) tags += `\n<meta name="robots" content="noindex">`;
+  if (siteUrl && !noindex) {
     const url = siteUrl + (page === "index.html" ? "/" : "/" + page);
-    const desc = site.descriptions[page];
-    html = html.replace("</title>", `</title>\n<link rel="canonical" href="${url}">\n<meta property="og:type" content="website">\n<meta property="og:locale" content="ar_SA">\n<meta property="og:title" content="${title}">\n<meta property="og:url" content="${url}">` + (desc ? `\n<meta name="description" content="${desc}">\n<meta property="og:description" content="${desc}">` : ""));
+    tags += `\n<link rel="canonical" href="${url}">\n<meta property="og:type" content="website">\n<meta property="og:locale" content="ar_SA">\n<meta property="og:site_name" content="أربعمية">\n<meta property="og:title" content="${title}">\n<meta property="og:url" content="${url}">\n<meta name="twitter:card" content="summary">`;
+    if (desc) tags += `\n<meta property="og:description" content="${attr(desc)}">`;
+    const ld = page === "index.html"
+      ? { "@context": "https://schema.org", "@type": "Organization", name: "أربعمية", url: siteUrl + "/", logo: `${siteUrl}/assets/${map["img/logo-symbol.svg"]}`, ...(desc && { description: desc }) }
+      : page.startsWith("project-") ? { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [["الرئيسية", "/"], ["مشاريعنا", "/projects.html"], [title.replace(/ \| أربعمية$/, ""), "/" + page]].map(([name, path], i) => ({ "@type": "ListItem", position: i + 1, name, item: siteUrl + path })) } : null;
+    if (ld) tags += `\n<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, "\\u003c")}</script>`;
   }
+  html = html.replace("</title>", "</title>" + tags);
+  /* the charset declaration must sit within the first 1024 bytes; Arabic title + description would push it past that */
+  if (/<meta charset="utf-8">/i.test(html)) html = html.replace(/<meta charset="utf-8">\n?/i, "").replace(/<head>\n?/, "<head>\n<meta charset=\"utf-8\">\n");
   writeFileSync(join(dist, page), relink(html, "assets/"));
 }
 
 /* 1b. custom 404 (Netlify and Cloudflare Pages serve /404.html for missing paths), robots.txt, sitemap.xml */
-const hex = (n) => ({ wine: "#6C171E", cream: "#f4dabf" })[n];
 writeFileSync(join(dist, "404.html"), `<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>الصفحة غير موجودة | أربعمية</title><style>@font-face{font-family:T;src:url(/assets/${map["fonts/thmanyahserifdisplay-Bold.woff2"]}) format("woff2");font-display:swap}body{margin:0;min-height:100vh;display:grid;place-content:center;gap:1rem;text-align:center;background:${hex("wine")};color:${hex("cream")};font:700 clamp(1.5rem,5vw,2.5rem) T,serif}a{color:inherit;font-size:1.1rem}</style></head><body><h1>الصفحة غير موجودة</h1><a href="/">العودة للرئيسية</a></body></html>`);
 writeFileSync(join(dist, "robots.txt"), `User-agent: *\nAllow: /\n` + (siteUrl ? `Sitemap: ${siteUrl}/sitemap.xml\n` : ""));
-if (siteUrl) writeFileSync(join(dist, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.map((p) => `<url><loc>${siteUrl}${p === "index.html" ? "/" : "/" + p}</loc></url>`).join("\n")}\n</urlset>\n`);
+if (siteUrl) writeFileSync(join(dist, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter((p) => !(site.noindex || []).includes(p)).map((p) => `<url><loc>${siteUrl}${p === "index.html" ? "/" : "/" + p}</loc></url>`).join("\n")}\n</urlset>\n`);
 
 /* 2. caching rules for static hosts that read _headers (Netlify, Cloudflare Pages). Fingerprinted files never change; pages always revalidate. */
 writeFileSync(join(dist, "_headers"), `/assets/*

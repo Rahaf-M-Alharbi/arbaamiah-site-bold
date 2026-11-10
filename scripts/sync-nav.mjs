@@ -19,7 +19,11 @@ for (const f of pages) {
   bar = bar.replace(new RegExp(`<a href="${here}">`), `<a href="${here}" aria-current="page">`);
   const re = /<header class="(?:mini|pg-top)[^"]*"[^>]*>[\s\S]*?<\/header>/;
   if (!re.test(html)) { console.log("no header in", f); continue; }
-  html = html.replace(re, () => bar);
+  /* skip link: first focusable element, jumps to the page's <main> (gets id="main" when it has none) */
+  html = html.replace(/<main(?![^>]*\bid=)/, '<main id="main"');
+  const target = (html.match(/<main[^>]*\bid="([^"]+)"/) || [])[1] || "main";
+  html = html.replace(/<a class="skip"[^>]*>[^<]*<\/a>\n?/, "");
+  html = html.replace(re, () => `<a class="skip" href="#${target}">انتقل إلى المحتوى</a>\n${bar}`);
   html = html.replace(/<footer class="ft"[\s\S]*?<\/footer>/, () => footer);
   for (const s of ["13-nav-contrast", "19-nav"]) {
     if (!html.includes(`src/js/${s}.js`)) html = html.replace("<!-- js:end -->", `<script src="src/js/${s}.js" defer></script>\n<!-- js:end -->`);

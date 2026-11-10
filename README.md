@@ -1,6 +1,6 @@
 # أربعمية website
 
-The live site (served on http://localhost:8081 from `dist/`). One page (`index.html`) plus the pricing calculator (`pricing.html`). Plain HTML, CSS and JavaScript: no framework. One build step makes the deployable `dist/` folder.
+The site: home, services, projects (plus one generated page per project), about, FAQ, contact, draw and the pricing calculator. Plain HTML, CSS and JavaScript: no framework. One build step makes the deployable `dist/` folder. Engineering rules for this folder are in `AGENTS.md`.
 
 ## Commands
 Node 20 or newer.
@@ -9,9 +9,11 @@ Node 20 or newer.
 |---|---|
 | `npm install` | once; installs the only dependency, `esbuild` (pinned, used by the build only) |
 | `npm run build` | writes `dist/`, the folder to deploy |
+| `npm run check` | after a build: checks every page for title, description, one `h1`, `<main>`, image `alt`, broken internal links, duplicate titles/descriptions |
 | `npm run preview` | serves `dist/` on http://localhost:8082 the way a good host would: brotli/gzip, long caching, real 404s |
 | `npm run dev` | serves the source files on http://localhost:8082, never cached, for editing |
 | `node scripts/sync-nav.mjs` | writes the shared navigation bar (`src/partials/nav.html`) and footer (`src/partials/footer.html`) into every page; run it after editing a partial |
+| `node scripts/sync-services.mjs` | writes the service texts (kept in `src/js/05-services-panels.js`) as plain HTML into services and home, so crawlers and no-JS visitors see them; run after editing those texts |
 | `node scripts/unused-css.mjs` | lists CSS that can never apply (`--fix` removes it) |
 | `node scripts/overridden-css.mjs` | lists declarations a later rule always replaces (`--fix` removes them) |
 
@@ -79,7 +81,23 @@ Upload `dist/`. On Netlify or Cloudflare Pages, `_headers` sets the caching auto
 - **No `<!doctype>` on purpose.** The design was built in quirks mode; adding one shifts some heights by a few pixels.
 - Checked in Chromium only (the desktop app's browser). Safari, Firefox and real phones still to check.
 
+## SEO: what is in place and how it works
+- Every page has its own title, one `h1`, a `<main>` landmark and a skip link. Page descriptions are written in `src/data/site.json` (`descriptions`); project pages take theirs from the project's `about` text in `src/data/projects.json`.
+- `noindex` pages are listed in `site.json` (`noindex`); today only `pricing.html` (placeholder prices). Remove it from that list when real prices are in.
+- Once the real domain is set (`src/data/site.json` `url`, or `SITE_URL=https://… npm run build`) the build also writes canonical links, Open Graph and Twitter tags, Organization data on the home page, breadcrumb data on project pages, `sitemap.xml` and the `Sitemap:` line in `robots.txt`.
+- The services are also in the first HTML response (not only drawn by script); see `sync-services.mjs`.
+- Project pages are generated (`scripts/gen-projects.mjs`): change their markup there, not in `project-*.html`.
+- Not verified here: Search Console, real-user Core Web Vitals, Safari/Firefox, a screen reader. Do these on the preview deployment.
+
 ## Before launch (needs content, not code)
-- Page title is still "بروفة أربعمية المخمل"; no meta descriptions or social preview image yet (need final wording). Canonical URL, OG tags and `sitemap.xml` switch on when the real domain is set in `src/data/site.json` (`url`; or `SITE_URL=https://… npm run build`). Page descriptions go in the same file under `descriptions`, keyed by page file name. `robots.txt` and a branded `404.html` are always built.
-- Placeholders: testimonials ("نص تجريبي"), logo cards ("شعار ١…٨"), stats, calculator prices.
-- The contact form does not send anything yet: set `ENDPOINT` in `src/js/11-contact-form.js` to a form service. Until then it shows the thank-you message without sending.
+- Set the real domain (above). Add a social preview image (1200×630) and tell the build where it is (`og:image` is not written yet).
+- Placeholders: testimonials ("نص تجريبي"), logo cards ("شعار ١…٨"), stats, calculator prices. Thin placeholder text hurts both visitors and ranking.
+- The contact form does not send anything yet: set `ENDPOINT` in `src/js/11-contact-form.js` to a form service. Until then it shows the thank-you message without sending, which is wrong for a live site.
+- Project pages with a one-line `about` ("تعليق صوتي.") need a real sentence in `src/data/projects.json`.
+
+## Account assessment (`/api/assess`)
+`quiz.html` sends the answers to FormSubmit (the team's inbox) and calls `functions/api/assess.js`, a Cloudflare Pages Function that asks Claude, with web search, for an approximate review of the client's account. The review is shown with a disclaimer.
+- Needs the environment variable `ANTHROPIC_API_KEY` (Cloudflare Pages → Settings → Variables and Secrets, as a secret). The key never goes in the page or in git.
+- Functions only run when Pages deploys from the repository (or `wrangler pages deploy`), not when you drag-upload `dist/` alone. Netlify or another host needs the same code ported to its function format.
+- Without the function (or the key) the page still works: the client sees "we'll send you a review by email" and the team gets the answers.
+- Each call costs a little (one model request with up to 3 web searches). Add Cloudflare rate limiting or Turnstile before launch so the endpoint can't be spammed.

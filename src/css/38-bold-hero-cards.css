@@ -112,7 +112,7 @@
 
 /* about: closing call to action, and the dark band keeps its top rule only between wine bands */
 .ab .ab-home{border-top:0;border-bottom:4px solid #17120f}
-.ab .ab-btn{margin-top:clamp(18px,3vh,28px)}
+.ab .ab-btn{margin-top:clamp(18px,3vh,28px);display:flex;flex-wrap:wrap;gap:14px}
 
 /* about: each problem next to its solution */
 .ab-pairs{list-style:none;margin:clamp(18px,3.4vh,34px) 0 0;padding:0;display:grid;gap:clamp(18px,2.6vw,30px);width:100%}
@@ -133,7 +133,8 @@
 .ab-hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:clamp(32px,6vw,80px);align-items:center;direction:rtl}
 .ab-ht{display:grid;gap:0;justify-items:start;text-align:start}
 .ab-ht .e{margin-bottom:clamp(12px,2vh,18px);opacity:.85}
-.ab-ht h2{margin:0 0 clamp(18px,3vh,28px);font:700 clamp(38px,5.6vw,76px)/1.15 var(--f-disp);text-wrap:balance;text-shadow:.04em .04em 0 #17120f}
+.ab-ht h2,
+.ab-ht h1{margin:0 0 clamp(18px,3vh,28px);font:700 clamp(38px,5.6vw,76px)/1.15 var(--f-disp);text-wrap:balance;text-shadow:.04em .04em 0 #17120f}
 .ab .ab-ht p{margin:0;max-width:30em;font:500 clamp(16px,1.6vw,21px)/1.95 var(--f-body);opacity:.92}
 .ab-chips{display:flex;gap:12px;margin-top:clamp(22px,4vh,36px)}
 .ab-chips i{display:grid;place-items:center;width:clamp(42px,4vw,54px);aspect-ratio:1;border-radius:50%;background:#f4dabf;color:#17120f;border:3px solid #17120f;box-shadow:3px 3px 0 #17120f;font-style:normal;font-size:clamp(20px,2vw,26px);line-height:1}
