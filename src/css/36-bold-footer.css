@@ -53,3 +53,4 @@
 /* top edge: a stripe of the four suits running the full width, with a rule under it */
 .ft::after{content:"♠\FE0E  ♥\FE0E  ♦\FE0E  ♣\FE0E  ♠\FE0E  ♥\FE0E  ♦\FE0E  ♣\FE0E  ♠\FE0E  ♥\FE0E  ♦\FE0E  ♣\FE0E  ♠\FE0E  ♥\FE0E  ♦\FE0E  ♣\FE0E  ♠\FE0E  ♥\FE0E  ♦\FE0E  ♣\FE0E  ♠\FE0E  ♥\FE0E  ♦\FE0E  ♣\FE0E  ♠\FE0E  ♥\FE0E  ♦\FE0E  ♣\FE0E  ♠\FE0E  ♥\FE0E  ♦\FE0E  ♣\FE0E  ♠\FE0E  ♥\FE0E  ♦\FE0E  ♣\FE0E  ♠\FE0E  ♥\FE0E  ♦\FE0E  ♣\FE0E";position:absolute;top:0;inset-inline:0;box-sizing:border-box;height:38px;overflow:hidden;white-space:nowrap;direction:ltr;text-align:center;font:700 18px/38px var(--f-body);letter-spacing:.6em;color:#f4dabf;opacity:.85;border-bottom:3px solid rgba(244,218,191,.35);pointer-events:none}
 @media (max-width:640px){.ft::after{font-size:15px;height:32px;line-height:32px}}
+.ft .ft-r{border-top:0}
