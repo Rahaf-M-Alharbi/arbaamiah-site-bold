@@ -151,3 +151,11 @@
 /* hero and "why us" share one continuous velvet: the background lives on the story, not on each section */
 .story{background-image:linear-gradient(rgba(108,23,30,.62),rgba(108,23,30,.62)),var(--tex);background-size:auto,cover;background-color:#6c171e}
 .story>.h{background:none}
+
+/* hero: on short or wide windows the hand of cards is taller than the stage, so let it overhang the bottom edge instead of cutting it flat; sides stay clipped */
+@supports (overflow:clip){.h.stage{overflow-x:clip;overflow-y:visible}}
+
+/* why section: the four aces shrink to fit inside the green card instead of spilling out of it */
+.k4-v{grid-template-columns:minmax(0,1fr)}
+.k4-f{width:100%;align-items:center}
+.k4-c{flex:0 1 auto;min-width:0}
