@@ -69,40 +69,13 @@
 /* nine services: the last card runs across both columns instead of sitting alone */
 .deck .stack[data-full] .svc:last-child:nth-child(odd){grid-column:1/-1}
 
-/* services page: shared card look for the one-card and rail layouts */
-.sv-view .svc .body,.sv-fan .svc .body{padding:clamp(64px,16cqw,96px) clamp(24px,9cqw,44px) clamp(28px,8cqw,40px)}
-.sv-view .svc .body h4,.sv-fan .svc .body h4{font-size:clamp(22px,2.2vw,32px);margin-bottom:clamp(12px,1.6vw,18px)}
-.sv-view .svc .body p,.sv-fan .svc .body p{font-size:clamp(14px,1.2vw,17px);line-height:1.9}
-.sv-view .svc-get li,.sv-fan .svc-get li{border-bottom:0}
-.sv-view .svc .svc-l,.sv-fan .svc .svc-l{margin-top:clamp(22px,2.6vw,32px)}
-@keyframes svcIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.sv-r.open .sv-d{animation:none}}
-
-/* TEMP review switcher */
-.sv-sw{position:fixed;inset-inline:0;bottom:16px;z-index:60;display:flex;justify-content:center;gap:6px;pointer-events:none}
-.sv-sw a{pointer-events:auto;border:3px solid #17120f;border-radius:99px;background:#f4dabf;color:#6c171e;font:700 14px/1 var(--f-body);text-decoration:none;box-shadow:3px 3px 0 #17120f}
-.sv-sw a.on{background:#6c171e;color:#f4dabf}
-
-/* option 2: numbered rows on the maroon ground, click a row to open it */
-.deck .stack[data-full].sv-rows{display:block;max-width:1000px;border-top:3px solid rgba(244,218,191,.4)}
-.sv-r{border-bottom:3px solid rgba(244,218,191,.4);color:#f4dabf}
-.sv-h{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:baseline;gap:clamp(14px,3vw,40px);width:100%;padding:clamp(26px,3.8vw,48px) 0;border:0;background:none;color:inherit;font:inherit;text-align:start;cursor:pointer}
-.sv-h h4{margin:0;font:700 clamp(26px,3.4vw,48px)/1.25 var(--f-disp);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
-.sv-h:hover h4{transform:translateX(-10px)}
-.sv-pl{font:400 clamp(26px,3vw,40px)/1 var(--f-body);transition:transform .3s}
-.sv-r.open .sv-pl{transform:rotate(45deg)}
-.sv-d{display:none;padding:0 0 clamp(32px,4.5vw,56px);padding-inline-start:calc(clamp(14px,3vw,40px) + 2.2em)}
-.sv-r.open .sv-d{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);animation:svcIn .35s cubic-bezier(.2,.8,.2,1)}
-.sv-d p{margin:0;font:500 clamp(16px,1.4vw,19px)/1.95 var(--f-body);opacity:.9}
-.sv-g{display:grid;justify-items:start}
-.sv-g .svc-l{display:none}
-.sv-g .svc-get{margin-top:0}
-.sv-g .svc-get li::before{color:#f4dabf}
-.sv-g .svc-get li{color:#f4dabf;border-bottom:1px solid rgba(244,218,191,.25)}
-.deck .stack[data-full] .sv-g .svc-o{background:#f4dabf;color:#6c171e;border-color:#17120f}
-@media (max-width:760px){.sv-r.open .sv-d{grid-template-columns:minmax(0,1fr);padding-inline-start:0}}
-
-/* option 3: pick a service on one side, its card on the other */
+/* services page: card look for the selected service */
+.sv-view .svc .body .body{padding:clamp(64px,16cqw,96px) clamp(24px,9cqw,44px) clamp(28px,8cqw,40px)}
+.sv-view .svc .body h4 .body h4{font-size:clamp(22px,2.2vw,32px);margin-bottom:clamp(12px,1.6vw,18px)}
+.sv-view .svc .body p .body p{font-size:clamp(14px,1.2vw,17px);line-height:1.9}
+.sv-view .svc-get li-get li{border-bottom:0}
+.sv-view .svc .svc-l .svc-l{margin-top:clamp(22px,2.6vw,32px)}
+/* services page: pick a service on one side, its card on the other */
 .deck .stack[data-full].sv-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;column-gap:clamp(32px,6vw,96px);max-width:1180px}
 .sv-tabs{display:grid;color:#f4dabf}
 .sv-tabs button{display:flex;align-items:baseline;gap:clamp(14px,2vw,24px);padding:clamp(14px,1.7vw,22px) 0;border:0;border-bottom:2px solid rgba(244,218,191,.25);background:none;color:inherit;font:700 clamp(22px,2.6vw,36px)/1.3 var(--f-disp);text-align:start;cursor:pointer;opacity:.5;transition:opacity .25s,padding .3s cubic-bezier(.2,.8,.2,1)}
@@ -112,78 +85,6 @@
 .sv-view{position:sticky;top:110px}
 .deck .stack[data-full] .sv-view .svc{margin:0}
 @media (max-width:860px){.deck .stack[data-full].sv-split{grid-template-columns:minmax(0,1fr);max-width:520px}.sv-tabs{display:flex;overflow-x:auto;gap:22px;margin-bottom:24px}.sv-tabs button{flex:none;border-bottom:0;font-size:20px;white-space:nowrap}.sv-view{position:static}}
-
-/* option 3: a rail of full cards, swipe or use the arrows */
-.deck .stack[data-full].sv-fan{display:block;max-width:none}
-.sv-rail{display:flex;gap:clamp(20px,3vw,40px);overflow-x:auto;scroll-snap-type:x mandatory;padding:12px max(16px,7vw) 28px;scrollbar-width:none}
-.sv-rail::-webkit-scrollbar{display:none}
-.deck .stack .sv-rail .svc{flex:none;width:clamp(290px,32vw,400px);scroll-snap-align:center;margin:0}
-.sv-nav{display:flex;justify-content:center;align-items:center;gap:clamp(18px,3vw,36px);margin-top:clamp(20px,3vw,36px);color:#f4dabf;font:700 16px/1 var(--f-body)}
-.sv-nav button{width:52px;height:52px;border:3px solid #17120f;border-radius:50%;background:#f4dabf;color:#6c171e;font:700 22px/1 var(--f-body);box-shadow:3px 3px 0 #17120f;cursor:pointer}
-.sv-nav button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #17120f}
-.sv-ct{font-variant-numeric:tabular-nums;opacity:.8}
-
-/* option 4: one big page per service, rank and suit as the hero */
-.deck .stack[data-full].sv-ed{display:block;max-width:1100px}
-.sv-s{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:center;gap:clamp(24px,6vw,96px);padding:clamp(56px,12vh,140px) 0;border-top:3px solid rgba(244,218,191,.35);color:#f4dabf}
-.sv-big{display:grid;justify-items:center;line-height:.9;font-family:var(--f-disp);color:#f4dabf}
-.sv-big b{font-size:clamp(110px,17vw,240px);font-weight:700}
-.sv-big i{font-style:normal;font-size:clamp(54px,8vw,110px);margin-top:.1em;opacity:.9}
-.sv-s.red .sv-big i{color:#e8887f}
-.sv-t{display:grid;justify-items:start}
-.sv-t .sol-n{margin-bottom:12px}
-.sv-t h4{margin:0 0 clamp(14px,2vw,24px);font:700 clamp(32px,4.4vw,60px)/1.2 var(--f-disp)}
-.sv-t p{margin:0;max-width:30em;font:500 clamp(16px,1.5vw,20px)/1.95 var(--f-body);opacity:.9}
-.sv-t .svc-l{margin:clamp(28px,3.4vw,44px) 0 4px;justify-content:flex-start;color:#f4dabf;opacity:.7}
-.sv-t .svc-l::before{display:none}
-.sv-t .svc-get{width:100%;max-width:30em}
-.sv-t .svc-get li{color:#f4dabf;border-bottom:1px solid rgba(244,218,191,.25)}
-.sv-t .svc-get li::before{color:#f4dabf}
-.deck .stack[data-full] .sv-t .svc-o{background:#f4dabf;color:#6c171e}
-@media (max-width:760px){.sv-s{grid-template-columns:minmax(0,1fr);gap:8px;padding:64px 0}.sv-big{grid-auto-flow:column;justify-content:start;align-items:center;gap:16px}.sv-big b{font-size:96px}.sv-big i{font-size:56px;margin:0}}
-
-.sv-sw{flex-wrap:wrap;padding-inline:12px}
-.sv-sw a{padding:9px 13px;font-size:13px}
-
-/* option 5: a dealt table of small cards; click one and it flips over in place */
-.deck .stack[data-full].sv-table{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,56px);max-width:960px}
-.sv-k{aspect-ratio:5/6;perspective:1400px;cursor:pointer;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
-.sv-k:nth-child(3n+1){transform:rotate(-1.6deg)}.sv-k:nth-child(3n+2){transform:rotate(.8deg)}.sv-k:nth-child(3n){transform:rotate(-.6deg)}
-.sv-k:hover,.sv-k:focus-within{transform:translateY(-10px) rotate(0)}
-.sv-k.flip{transform:none}
-.sv-in{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
-.sv-k.flip .sv-in{transform:rotateY(180deg)}
-.deck .stack .sv-k .sv-f,.deck .stack .sv-k .sv-b{position:absolute;inset:0;width:auto;height:auto;aspect-ratio:auto;margin:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;color:#6c171e}
-.deck .stack .sv-k .sv-b{transform:rotateY(180deg);cursor:pointer}
-.sv-f:focus-visible{outline:3px solid #f4dabf;outline-offset:6px}
-.sv-kc{position:absolute;inset:0;display:grid;align-content:center;justify-items:center;gap:clamp(10px,2cqw,18px);padding:0 12cqw;text-align:center}
-.sv-kc i{font-style:normal;font-size:30cqw;line-height:1}
-.sv-kc b{font:700 9cqw/1.3 var(--f-disp)}
-.sv-bb{position:absolute;inset:0;display:grid;align-content:center;gap:0;padding:23cqw 11cqw 7cqw;text-align:center}
-.deck .stack[data-full] .sv-bb h4{margin:0 0 4cqw;font:700 7.4cqw/1.25 var(--f-disp)}
-.deck .stack[data-full] .sv-bb p{margin:0;font:500 4.4cqw/1.7 var(--f-body)}
-.deck .stack[data-full] .sv-bb .svc-get{margin:0;gap:0}
-.deck .stack[data-full] .sv-bb .svc-get li{padding-block:1.6cqw;font:500 4.2cqw/1.55 var(--f-body);border-bottom:0;border-top:1px solid rgba(108,23,30,.2)}
-.deck .stack[data-full] .sv-bb .svc-get li::before{top:calc(1.6cqw + .3em)}
-.deck .stack[data-full] .sv-bb .svc-o{margin-top:5cqw;padding:3.4cqw 7cqw;gap:2cqw;font-size:4.6cqw;border-width:2px;box-shadow:3px 3px 0 #17120f}
-@media (max-width:640px){.deck .stack[data-full].sv-table{grid-template-columns:minmax(0,1fr);max-width:340px;gap:28px}}
-@media (prefers-reduced-motion:reduce){.sv-k,.sv-in{transition:none}}
-
-/* option 6: chips across the top, one wide panel under them */
-.deck .stack[data-full].sv-hz{display:block;max-width:1080px}
-.sv-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:clamp(28px,4vw,48px)}
-.sv-chips button{padding:12px 20px;border:2px solid rgba(244,218,191,.5);border-radius:99px;background:none;color:#f4dabf;font:700 clamp(14px,1.2vw,17px)/1 var(--f-body);cursor:pointer;transition:background .2s,color .2s}
-.sv-chips button:hover{border-color:#f4dabf}
-.sv-chips button[aria-selected=true]{background:#f4dabf;color:#6c171e;border-color:#f4dabf}
-.sv-pn{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);padding:clamp(36px,6vw,80px);border:3px solid #17120f;border-radius:32px;background:#f4dabf;color:#6c171e;box-shadow:10px 10px 0 #17120f;animation:svcIn .35s cubic-bezier(.2,.8,.2,1)}
-.sv-wm{position:absolute;inset-inline-start:clamp(20px,3vw,40px);bottom:-.1em;font:700 clamp(120px,20vw,260px)/1 var(--f-disp);opacity:.07;pointer-events:none}
-.sv-pa,.sv-pb{position:relative;display:grid;align-content:start;justify-items:start}
-.sv-pa h4{margin:8px 0 clamp(14px,2vw,24px);font:700 clamp(30px,4vw,54px)/1.2 var(--f-disp)}
-.sv-pa p{margin:0;font:500 clamp(16px,1.4vw,19px)/1.95 var(--f-body)}
-.sv-pb .svc-l{justify-self:stretch;margin-top:0}
-.sv-pb .svc-get{width:100%}
-@media (max-width:760px){.sv-pn{grid-template-columns:minmax(0,1fr);box-shadow:6px 6px 0 #17120f;border-radius:24px}}
-@media (prefers-reduced-motion:reduce){.sv-pn{animation:none}}
 /* simpler services list: names only, no numbers, no rules */
 .deck .stack.sol{border-top:0;row-gap:clamp(8px,1.6vw,20px)}
 .deck .stack.sol .sol-n{display:none}
