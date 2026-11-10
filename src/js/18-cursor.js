@@ -1,9 +1,9 @@
-/* Cursor: real mouse only. the card is the default: it leans with the movement and flips over cards. Only buttons (and the busy data-cur="heart" sections: work deck, client stories, footer, contact form) show the heart. Over text fields the system cursor stays. Styles in 40-cursor.css. */
+/* Cursor: real mouse only. the card is the default: it leans with the movement and flips over cards. The heart shows only over buttons and the other things you click (BTN below); a section can still ask for it with data-cur="heart", but none does now. Over text fields the system cursor stays. Styles in 40-cursor.css. */
 (function(){
   if(!matchMedia('(pointer:fine)').matches||!matchMedia('(hover:hover)').matches) return;
   var still=matchMedia('(prefers-reduced-motion:reduce)').matches,
       BTN='button:not(:disabled),.flipbtn,.cta,.ft-cta,.pg-cta,.fq-all,summary,[role=button],.tab,.xp9-top',
-      CARD='.pk,.pnl,.slot,.hcard,.pcard,.slot3.f,.cc',
+      CARD='.pk,.pnl,.slot,.hcard,.pcard,.slot3.f,.cc,.wc,.k4-c,.k4-v,.prv-g li,.cst-q,.pj-main,.pj-mainvid,.pj-mainemb,.pj-card,.pj-fig,.fq-l details,.xp9-card,.sol-r,h1,h2,h3,h4,p,li,dt,dd,img,video,iframe,figure,.eb,.fq-l summary,.ft-col,.pj-hero,.pj-notes,.pj-stats,.pj-strip,.wk-ctl,.dk-head,.stt-t',
       TXT='input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]),textarea,select,[contenteditable]';
   function mk(cls,html){var d=document.createElement('div');d.className='cu '+cls;d.setAttribute('aria-hidden','true');d.innerHTML=html;document.body.appendChild(d);return d}
   var card={el:mk('cu-c','<span class="t"><i class="b">♦&#xFE0E;</i><i class="f">♠&#xFE0E;</i></span>'),x:-100,y:-100,k:still?1:.38},

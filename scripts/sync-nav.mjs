@@ -1,4 +1,4 @@
-/* Writes the one navigation bar (src/partials/nav.html) into every page, so it is the same component everywhere.
+/* Writes the shared parts into every page, so each is one component everywhere: the navigation bar (src/partials/nav.html) and the footer (src/partials/footer.html).
    Run `node scripts/sync-nav.mjs` after changing the partial. index.html keeps the bar hidden until you scroll past the hero;
    the other pages show it at once (class "on"). Pages other than index and services also get "pg": the bar sits in the page flow's top margin. */
 import { readFileSync, writeFileSync, readdirSync } from "node:fs";
@@ -7,6 +7,7 @@ import { dirname, join } from "node:path";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const tpl = readFileSync(join(root, "src/partials/nav.html"), "utf8").trim();
+const footer = readFileSync(join(root, "src/partials/footer.html"), "utf8").trim();
 const pages = readdirSync(root).filter((f) => f.endsWith(".html") && f !== "pricing.html");
 const section = (f) => (f.startsWith("project-") ? "projects.html" : f);
 
@@ -19,6 +20,7 @@ for (const f of pages) {
   const re = /<header class="(?:mini|pg-top)[^"]*"[^>]*>[\s\S]*?<\/header>/;
   if (!re.test(html)) { console.log("no header in", f); continue; }
   html = html.replace(re, () => bar);
+  html = html.replace(/<footer class="ft"[\s\S]*?<\/footer>/, () => footer);
   for (const s of ["13-nav-contrast", "19-nav"]) {
     if (!html.includes(`src/js/${s}.js`)) html = html.replace("<!-- js:end -->", `<script src="src/js/${s}.js" defer></script>\n<!-- js:end -->`);
   }

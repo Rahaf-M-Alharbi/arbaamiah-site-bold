@@ -11,7 +11,7 @@ Node 20 or newer.
 | `npm run build` | writes `dist/`, the folder to deploy |
 | `npm run preview` | serves `dist/` on http://localhost:8082 the way a good host would: brotli/gzip, long caching, real 404s |
 | `npm run dev` | serves the source files on http://localhost:8082, never cached, for editing |
-| `node scripts/sync-nav.mjs` | writes the shared navigation bar (`src/partials/nav.html`) into every page; run it after editing the partial |
+| `node scripts/sync-nav.mjs` | writes the shared navigation bar (`src/partials/nav.html`) and footer (`src/partials/footer.html`) into every page; run it after editing a partial |
 | `node scripts/unused-css.mjs` | lists CSS that can never apply (`--fix` removes it) |
 | `node scripts/overridden-css.mjs` | lists declarations a later rule always replaces (`--fix` removes them) |
 
