@@ -104,3 +104,9 @@
 .bg-sel{box-sizing:border-box;width:100%;padding:14px;border:3px solid #17120f;border-radius:10px;background:#fff;color:#17120f;font:600 16px/1.4 var(--f-body)}
 .bg-sel:focus-visible{outline:3px solid #6c171e;outline-offset:3px}
 .bg-x{text-decoration:none;display:inline-flex;align-items:center}
+/* secondary report cards start closed so the report stays short */
+.bg-more>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.bg-more>summary::-webkit-details-marker{display:none}
+.bg-more>summary::after{content:"+";font:700 22px/1 var(--f-body);color:#6c171e}
+.bg-more[open]>summary::after{content:"−"}
+.bg-more>summary:focus-visible{outline:3px solid #6c171e;outline-offset:4px}
