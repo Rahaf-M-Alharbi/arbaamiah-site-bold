@@ -23,7 +23,7 @@
           /* one draw in three wins one of the three offers (with a shareable card image); the other two send the person to the free calculator. Edit WIN, MISS and WIN_CHANCE to change this. */
           WIN_CHANCE=1/3,
           WIN=[['استشارة مجانية','احجز استشارتك المجانية وتكلم معنا عن علامتك'],['تحليل حساباتك بالسوشل ميديا','نراجع حساباتك ونعطيك ملاحظات واضحة تبني عليها'],['ودك بخصم؟ واجهنا في صكة بلوت','اربح الصكة معنا واحصل على خصم على خدماتنا']],
-          MISS=['جرب الحاسبة المجانية','وزع ميزانيتك التسويقية في دقائق مع حاسبتنا المجانية، واعرف أين يذهب كل ريال.'],
+          MISS=['جرب حاسبة ميزانية التسويق','وزع ميزانيتك التسويقية في دقائق مع حاسبتنا المجانية، واعرف أين يذهب كل ريال.'],
           btns=document.querySelector('.xp9-btns'),calc=btns&&btns.querySelector('a[href="budget.html"]'),shareBtn=null,shareBlob=null,wonTitle='',
           SU=['♠︎','♥︎','♦︎','♣︎'],drawn=false,d=null,from=null;
       function T(x,y,s,r){return'translate('+x+'px,'+y+'px) rotate('+r+'deg) scale('+s+')'}
