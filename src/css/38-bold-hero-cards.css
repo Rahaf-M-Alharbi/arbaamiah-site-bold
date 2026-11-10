@@ -159,6 +159,6 @@
 .k4-v{grid-template-columns:minmax(0,1fr)}
 .k4-f{width:100%;align-items:center}
 .k4-c{flex:0 1 auto;min-width:0}
-/* why-section green box: just the logo, centred, about half a card tall */
-.k4-v{align-content:center;justify-content:center;min-height:clamp(90px,10vw,130px);padding:clamp(14px,2vw,22px)}
-.k4-logo{width:clamp(70px,8vw,100px)}
+/* why-section green box: a single playing-card shape (5:7) with the logo centred */
+.k4-v{justify-self:center;align-content:center;justify-content:center;width:clamp(110px,13vw,160px);aspect-ratio:5/7;min-height:0;padding:0}
+.k4-logo{width:62%}
