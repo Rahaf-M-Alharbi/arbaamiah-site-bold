@@ -6,8 +6,8 @@
 (function(){
   var app=document.getElementById('bgApp');if(!app)return;
   var ENDPOINT='https://formsubmit.co/ajax/arbaamia.sa@gmail.com';
-  /* testing: while false, nothing is sent (the email step just opens the result). Set to true when the form is agreed, then do a real submission test. */
-  var SEND_ENABLED=false;
+  /* while false, nothing is sent (the gate just opens the result). On localhost nothing is sent either. */
+  var SEND_ENABLED=true;
 
   /* ============ prices (SAR): edit here only ============ */
   var PRICES={identity:2000,website:2000,design:100,video:150,mgmt:1000,campaignFee:1000,adSpend:1500};   /* mgmt per platform per month; campaignFee per campaign; adSpend per platform per month (50 a day) */
@@ -162,20 +162,22 @@
     else{idx=STAGES.length;gate()}
   }
   function gate(){
-    app.innerHTML='<section class="bg-card"><div class="bg-prog"><span>الخطوة '+ar(STEPS)+' من '+ar(STEPS)+'</span></div><div class="bg-bar"><i style="width:100%"></i></div><h2 class="bg-big">آخر خطوة قبل نتيجتك</h2><p class="bg-hint">اكتب بريدك الإلكتروني لنعرض لك الخطة. سنحتفظ بإجاباتك لنراجعها ونتواصل معك.</p>'+
-      '<form class="bg-gate" id="bgGate" novalidate><label for="bgEmail"><span>بريدك الإلكتروني</span></label><input type="email" id="bgEmail" name="email" autocomplete="email" dir="ltr" placeholder="name@company.com">'+
-      '<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="bg-hp"><small class="bg-me" id="bgErr" role="alert"></small><small>بإرسال بريدك، توافق على أن نتواصل معك عليه.</small>'+
+    app.innerHTML='<section class="bg-card"><div class="bg-prog"><span>الخطوة '+ar(STEPS)+' من '+ar(STEPS)+'</span></div><div class="bg-bar"><i style="width:100%"></i></div><h2 class="bg-big">آخر خطوة قبل نتيجتك</h2><p class="bg-hint">اكتب اسمك وبريدك الإلكتروني لنعرض لك الخطة. سنحتفظ بإجاباتك لنراجعها ونتواصل معك.</p>'+
+      '<form class="bg-gate" id="bgGate" novalidate><label for="bgName"><span>اسمك</span></label><input type="text" id="bgName" name="name" autocomplete="name" placeholder="الاسم الكامل" required><label for="bgEmail"><span>بريدك الإلكتروني</span></label><input type="email" id="bgEmail" name="email" autocomplete="email" dir="ltr" placeholder="name@company.com">'+
+      '<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="bg-hp"><small class="bg-me" id="bgErr" role="alert"></small><small>بإرسال بياناتك، توافق على أن نتواصل معك عليه.</small>'+
       '<div class="bg-nav"><button type="button" class="bg-btn" id="bgBack">رجوع</button><button type="submit" class="bg-go" id="bgGo">شاهد النتيجة</button></div></form></section>';
     document.getElementById('bgBack').onclick=function(){idx=STAGES.length-1;step()};
     document.getElementById('bgGate').onsubmit=send;
     top()
   }
   function send(e){
-    e.preventDefault();var f=e.target,err=document.getElementById('bgErr'),go=document.getElementById('bgGo'),em=f.elements.email;err.textContent='';
+    e.preventDefault();var f=e.target,err=document.getElementById('bgErr'),go=document.getElementById('bgGo'),em=f.elements.email,nm=f.elements.name;err.textContent='';
     if(f.elements.website.value||sending)return;
+    if(!nm.value.trim()){nm.setAttribute('aria-invalid','true');err.textContent='اكتب اسمك لنعرف من نخاطب.';nm.focus();return}
+    nm.removeAttribute('aria-invalid');
     if(!/^\S+@\S+\.\S+$/.test(em.value.trim())){em.setAttribute('aria-invalid','true');err.textContent='اكتب بريدا إلكترونيا صحيحا، مثل name@company.com.';em.focus();return}
     em.removeAttribute('aria-invalid');S={};rebuild();
-    var d=new FormData();d.append('email',em.value.trim());
+    var d=new FormData();d.append('الاسم',nm.value.trim());d.append('email',em.value.trim());
     visible().forEach(function(q){var v=A[q.id];d.append(q.title,q.multi?(v||[]).map(function(x){return LABELS[q.id][x]}).join('، '):LABELS[q.id][v])});
     d.append('التأسيس لمرة واحدة',money(C.setupTotal));d.append('التشغيل الشهري المقترح',money(monthly(P)));
     d.append('_subject','طلب خطة ميزانية من موقع أربعمية');d.append('_template','table');d.append('_captcha','false');

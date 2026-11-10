@@ -40,8 +40,9 @@
 /* email gate */
 .bg-gate{display:grid;gap:10px}
 .bg-gate label span{font:700 14px/1.4 var(--f-body)}
-.bg-gate input[type=email]{box-sizing:border-box;width:100%;min-width:0;padding:14px;border:3px solid #17120f;border-radius:10px;background:#fff;color:#17120f;caret-color:#17120f;font:500 16px/1.4 var(--f-body);direction:ltr;text-align:start}
-.bg-gate input[type=email]::placeholder{color:#8a6b57;opacity:1}
+.bg-gate input[type=email],.bg-gate input[type=text]:not(.bg-hp){box-sizing:border-box;width:100%;min-width:0;padding:14px;border:3px solid #17120f;border-radius:10px;background:#fff;color:#17120f;caret-color:#17120f;font:500 16px/1.4 var(--f-body);direction:ltr;text-align:start}
+.bg-gate input[type=text]:not(.bg-hp){direction:rtl}
+.bg-gate input[type=email]::placeholder,.bg-gate input[type=text]::placeholder{color:#8a6b57;opacity:1}
 .bg-gate input[aria-invalid=true]{border-color:#b3261e}
 .bg-gate small{font:500 12px/1.7 var(--f-body);opacity:.75}
 .bg-me{color:#b3261e;font-weight:600;opacity:1;min-height:1.4em}

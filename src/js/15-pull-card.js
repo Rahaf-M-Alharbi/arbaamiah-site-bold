@@ -24,6 +24,8 @@
           WIN_CHANCE=1/3,
           WIN=[['استشارة مجانية','احجز استشارتك المجانية وتكلم معنا عن علامتك'],['تحليل حساباتك بالسوشل ميديا','نراجع حساباتك ونعطيك ملاحظات واضحة تبني عليها'],['ودك بخصم؟ واجهنا في صكة بلوت','اربح الصكة معنا واحصل على خصم على خدماتنا']],
           MISS=['جرب حاسبة ميزانية التسويق','وزع ميزانيتك التسويقية في دقائق مع حاسبتنا المجانية، واعرف أين يذهب كل ريال.'],
+          WA='https://api.whatsapp.com/message/U2EGUFBDX66ZE1?autoload=1&app_absent=0',
+          btns=document.querySelectorAll('#xp9o .xp9-btns a'),
           SU=['♠︎','♥︎','♦︎','♣︎'],drawn=false,d=null,from=null;
       function T(x,y,s,r){return'translate('+x+'px,'+y+'px) rotate('+r+'deg) scale('+s+')'}
       function draw(){
@@ -31,7 +33,8 @@
         var fr=top.getBoundingClientRect(),win=Math.random()<WIN_CHANCE,w=win?WIN[Math.random()*WIN.length|0]:null,su=SU[Math.random()*4|0],red=su==='♥︎'||su==='♦︎';
         face.className='f'+(red?' r':'');
         face.innerHTML='<b>A<i>'+su+'</i></b><span class="p">'+su+'</span>';
-        if(win){h.textContent=w[0];p.textContent=w[1]+'. تواصل معنا متى ما تحب ونفعل عرضك.'}
+        /* a win: the contact button opens WhatsApp and the calculator button is hidden. A miss keeps both. */
+        if(win){h.textContent=w[0];p.textContent=w[1]+'. تواصل معنا متى ما تحب ونفعل عرضك.';btns[0].href=WA;btns[0].target='_blank';btns[0].rel='noopener';btns[1].style.display='none'}
         else{h.textContent=MISS[0];p.textContent=MISS[1]}
         top.style.transform='';st.classList.add('drawn');st.parentNode.classList.add('xp9-done');card.classList.add('on');
         var to=card.getBoundingClientRect(),dx=fr.left+fr.width/2-(to.left+to.width/2),dy=fr.top+fr.height/2-(to.top+to.height/2),s=fr.width/to.width;
