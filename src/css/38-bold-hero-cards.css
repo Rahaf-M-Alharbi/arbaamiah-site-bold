@@ -80,13 +80,13 @@
 .k4-t p:not(.k4-l){padding:clamp(16px,2vw,24px);border:3px solid rgba(244,218,191,.55);border-radius:14px;opacity:1}
 .k4-v{display:grid;justify-items:center;gap:clamp(14px,2.4vw,26px);padding:clamp(28px,4vw,52px) clamp(16px,3vw,36px) clamp(24px,3.4vw,40px);background:#0d3d3a;border:4px solid #17120f;border-radius:18px;box-shadow:8px 8px 0 #17120f}
 .k4-f{display:flex;justify-content:center;direction:ltr;padding-block:10px}
-.k4-c{position:relative;container-type:inline-size;width:clamp(58px,7vw,92px);aspect-ratio:5/7;margin-inline:-9%;box-sizing:border-box;border:4px solid #17120f;border-radius:6%;background:#f4dabf;color:#6c171e;box-shadow:6px 6px 0 #17120f;transform:rotate(var(--r,0deg)) translateY(var(--y,0))}
+.k4-c{position:relative;container-type:inline-size;--w:clamp(74px,11vw,130px);width:var(--w);aspect-ratio:5/7;margin-inline:calc(var(--w)*-.33);box-sizing:border-box;border:4px solid #17120f;border-radius:6%;background:#f4dabf;color:#6c171e;box-shadow:6px 6px 0 #17120f;transform:rotate(var(--r,0deg)) translateY(var(--y,0))}
 .k4-c::before{content:"";position:absolute;inset:7cqw;border:2px solid #17120f;border-radius:4%;pointer-events:none}
 .k4-c::after{content:attr(data-s);position:absolute;right:11cqw;bottom:9cqw;font:700 40cqw/1 var(--f-body);pointer-events:none}
 .k4-c b{position:absolute;top:13cqw;left:15cqw;font:700 25cqw/.95 var(--f-disp)}
 .k4-c i{position:absolute;top:40cqw;left:17cqw;font-style:normal;font-size:14cqw;line-height:1}
 .k4-c:nth-child(1){--r:-14deg;--y:10px}.k4-c:nth-child(2){--r:-5deg}.k4-c:nth-child(3){--r:5deg}.k4-c:nth-child(4){--r:14deg;--y:10px}
-@media (max-width:820px){.k4{grid-template-columns:minmax(0,1fr)}.k4-c{width:clamp(56px,14vw,88px)}.k4-v{box-shadow:6px 6px 0 #17120f;padding-inline:12px}}
+@media (max-width:820px){.k4{grid-template-columns:minmax(0,1fr)}.k4-c{--w:clamp(72px,19vw,120px)}.k4-v{box-shadow:6px 6px 0 #17120f;padding-inline:12px}}
 .k4-logo{display:block;width:clamp(120px,16vw,190px);height:auto}
 
 /* about page: one spacing rhythm (band padding, eyebrow > title > text > cards) */
