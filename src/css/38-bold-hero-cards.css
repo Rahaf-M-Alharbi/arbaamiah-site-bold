@@ -160,5 +160,5 @@
 .k4-f{width:100%;align-items:center}
 .k4-c{flex:0 1 auto;min-width:0}
 /* why-section green box: a single playing-card shape (5:7) with the logo centred */
-.k4-v{justify-self:center;align-content:center;justify-content:center;width:clamp(110px,13vw,160px);aspect-ratio:5/7;min-height:0;padding:0}
+.k4-v{justify-self:center;align-content:center;justify-content:center;width:clamp(190px,30vw,360px);aspect-ratio:5/7;min-height:0;padding:0}
 .k4-logo{width:62%}
