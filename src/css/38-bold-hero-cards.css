@@ -164,3 +164,5 @@
 .k4-logo{width:62%}
 /* about hero, desktop: card and title 20% smaller */
 @media (min-width:821px){.ab-hc{width:clamp(136px,17.6vw,224px)}.ab-hc b{font-size:clamp(18px,2.1vw,27px)}.ab-ht h1{font-size:clamp(30px,4.5vw,61px)}}
+/* about page: only wine and green bands; keep the rule where wine meets green */
+.ab .ab-wine+.ab-green{border-top:4px solid #17120f}
