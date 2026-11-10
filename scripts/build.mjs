@@ -57,6 +57,7 @@ const block = (html, name) => {
 const site = JSON.parse(readFileSync(join(root, "src/data/site.json"), "utf8"));
 const siteUrl = (process.env.SITE_URL || site.url || "").replace(/\/$/, "");
 const sizes = [];
+const shareImg = siteUrl && `${siteUrl}/assets/${map["img/og-share.png"]}`;
 const hex = (n) => ({ wine: "#6C171E", cream: "#f4dabf" })[n];
 /* meta description: written ones live in site.json; project pages fall back to the project's own "about" text (src/data/projects.json) */
 const projects = JSON.parse(readFileSync(join(root, "src/data/projects.json"), "utf8"));
@@ -104,11 +105,19 @@ for (const page of pages) {
   if (noindex) tags += `\n<meta name="robots" content="noindex">`;
   if (siteUrl && !noindex) {
     const url = siteUrl + (page === "index.html" ? "/" : "/" + page);
-    tags += `\n<link rel="canonical" href="${url}">\n<meta property="og:type" content="website">\n<meta property="og:locale" content="ar_SA">\n<meta property="og:site_name" content="أربعمية">\n<meta property="og:title" content="${title}">\n<meta property="og:url" content="${url}">\n<meta name="twitter:card" content="summary">`;
+    tags += `\n<link rel="canonical" href="${url}">\n<meta property="og:type" content="website">\n<meta property="og:locale" content="ar_SA">\n<meta property="og:site_name" content="أربعمية">\n<meta property="og:title" content="${title}">\n<meta property="og:url" content="${url}">\n<meta property="og:image" content="${shareImg}">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta property="og:image:alt" content="أربعمية: مكتب إبداعي للمحتوى والتصميم والإعلانات والنمو">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:image" content="${shareImg}">`;
     if (desc) tags += `\n<meta property="og:description" content="${attr(desc)}">`;
+    const ctx = "https://schema.org";
+    const crumbs = (items) => ({ "@type": "BreadcrumbList", itemListElement: items.map(([name, path], i) => ({ "@type": "ListItem", position: i + 1, name, item: siteUrl + path })) });
+    const faq = page === "faq.html" ? [...html.matchAll(/<details[^>]*><summary>(.*?)<\/summary><div class="a"><div>(.*?)<\/div><\/div><\/details>/g)].map(([, q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a.replace(/<[^>]+>/g, "") } })) : [];
+    const project = page.startsWith("project-") ? (Array.isArray(projects) ? projects : projects.projects).find((x) => `project-${x.slug}.html` === page) : null;
     const ld = page === "index.html"
-      ? { "@context": "https://schema.org", "@type": "Organization", name: "أربعمية", url: siteUrl + "/", logo: `${siteUrl}/assets/${map["img/logo-symbol.svg"]}`, ...(desc && { description: desc }) }
-      : page.startsWith("project-") ? { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [["الرئيسية", "/"], ["مشاريعنا", "/projects.html"], [title.replace(/ \| أربعمية$/, ""), "/" + page]].map(([name, path], i) => ({ "@type": "ListItem", position: i + 1, name, item: siteUrl + path })) } : null;
+      ? { "@context": ctx, "@type": "Organization", name: "أربعمية", alternateName: "Arbaamiah", url: siteUrl + "/", logo: `${siteUrl}/assets/${map["img/logo-symbol.svg"]}`, email: "arbaamia.sa@gmail.com", sameAs: site.sameAs, ...(desc && { description: desc }) }
+      : page.startsWith("project-") ? { "@context": ctx, "@graph": [
+          crumbs([["الرئيسية", "/"], ["مشاريعنا", "/projects.html"], [title.replace(/ \| أربعمية$/, ""), "/" + page]]),
+          ...(project ? [{ "@type": "CreativeWork", name: project.name, genre: project.category, url: siteUrl + "/" + page, inLanguage: "ar", creator: { "@type": "Organization", name: "أربعمية", url: siteUrl + "/" }, ...(desc && { description: desc }) }] : [])] }
+      : faq.length ? { "@context": ctx, "@graph": [crumbs([["الرئيسية", "/"], ["الأسئلة الشائعة", "/faq.html"]]), { "@type": "FAQPage", inLanguage: "ar", mainEntity: faq }] }
+      : null;
     if (ld) tags += `\n<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, "\\u003c")}</script>`;
   }
   html = html.replace("</title>", "</title>" + tags);
@@ -117,10 +126,13 @@ for (const page of pages) {
   writeFileSync(join(dist, page), relink(html, "assets/"));
 }
 
+/* sitemap lastmod: date of the last commit touching the page, or today for pages not committed yet */
+const lastmod = (p) => { try { return execFileSync("git", ["log", "-1", "--format=%cs", "--", p], { cwd: root }).toString().trim() || new Date().toISOString().slice(0, 10); } catch { return new Date().toISOString().slice(0, 10); } };
+
 /* 1b. custom 404 (Netlify and Cloudflare Pages serve /404.html for missing paths), robots.txt, sitemap.xml */
 writeFileSync(join(dist, "404.html"), `<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>الصفحة غير موجودة | أربعمية</title><style>@font-face{font-family:T;src:url(/assets/${map["fonts/thmanyahserifdisplay-Bold.woff2"]}) format("woff2");font-display:swap}body{margin:0;min-height:100vh;display:grid;place-content:center;gap:1rem;text-align:center;background:${hex("wine")};color:${hex("cream")};font:700 clamp(1.5rem,5vw,2.5rem) T,serif}a{color:inherit;font-size:1.1rem}</style></head><body><h1>الصفحة غير موجودة</h1><a href="/">العودة للرئيسية</a></body></html>`);
 writeFileSync(join(dist, "robots.txt"), `User-agent: *\nAllow: /\n` + (siteUrl ? `Sitemap: ${siteUrl}/sitemap.xml\n` : ""));
-if (siteUrl) writeFileSync(join(dist, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter((p) => !(site.noindex || []).includes(p)).map((p) => `<url><loc>${siteUrl}${p === "index.html" ? "/" : "/" + p}</loc></url>`).join("\n")}\n</urlset>\n`);
+if (siteUrl) writeFileSync(join(dist, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter((p) => !(site.noindex || []).includes(p)).map((p) => `<url><loc>${siteUrl}${p === "index.html" ? "/" : "/" + p}</loc><lastmod>${lastmod(p)}</lastmod></url>`).join("\n")}\n</urlset>\n`);
 
 /* 2. caching rules for static hosts that read _headers (Netlify, Cloudflare Pages). Fingerprinted files never change; pages always revalidate. */
 writeFileSync(join(dist, "_headers"), `/assets/*
