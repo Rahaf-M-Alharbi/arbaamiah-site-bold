@@ -25,3 +25,6 @@
 .ctf-m{font:600 15px/1.7 var(--f-body);opacity:.9}
 @media (max-width:900px){.ctf-in{grid-template-columns:minmax(0,1fr)}.ctf-t{position:static}}
 @media (max-width:560px){.ctf-f{grid-template-columns:minmax(0,1fr)}}
+/* browser autofill: keep the field's own look (the browser would paint its tint) */
+.ctf-l input:-webkit-autofill,.ctf-l input:-webkit-autofill:hover{-webkit-box-shadow:0 0 0 100px #fdf5eb inset;box-shadow:0 0 0 100px #fdf5eb inset;-webkit-text-fill-color:#2b0a10;caret-color:#2b0a10}
+.ctf-l input:-webkit-autofill:focus{-webkit-box-shadow:0 0 0 100px #fdf5eb inset;box-shadow:4px 4px 0 #17120f,0 0 0 100px #fdf5eb inset;-webkit-text-fill-color:#2b0a10}

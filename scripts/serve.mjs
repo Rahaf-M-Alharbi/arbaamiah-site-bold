@@ -2,7 +2,6 @@
 //   node scripts/serve.mjs dist 8082             production preview: serves .br/.gz copies, caches fingerprinted assets for a year
 //   node scripts/serve.mjs . 8082 --no-cache     development: serves the source files, never cached
 // Missing files get a real 404 status.
-// POST /api/assess answers with a fixed sample review (no AI, no key), so the quiz page can be tested locally.
 import { createServer } from "node:http";
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { extname, join, normalize, resolve } from "node:path";
@@ -14,17 +13,7 @@ const TYPES = {
   ".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg", ".avif": "image/avif", ".webp": "image/webp", ".mp4": "video/mp4", ".woff2": "font/woff2", ".json": "application/json",
 };
 
-const SAMPLE = {
-  found: true, summary: "هذا رد تجريبي من الخادم المحلي، وليس تقييما حقيقيا لحسابك.",
-  content: { rating: "متوسط", note: "نص تجريبي عن المحتوى." }, marketing: { rating: "ضعيف", note: "نص تجريبي عن التسويق." }, identity: { rating: "جيد", note: "نص تجريبي عن الهوية." },
-  next_steps: ["الخطوة الأولى التجريبية", "الخطوة الثانية التجريبية", "الخطوة الثالثة التجريبية"],
-};
-
 createServer((req, res) => {
-  if (req.method === "POST" && req.url === "/api/assess") {
-    req.resume();
-    return setTimeout(() => { res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" }); res.end(JSON.stringify(SAMPLE)); }, 1500);
-  }
   let path = normalize(decodeURIComponent(new URL(req.url, "http://x").pathname));
   if (path.endsWith("/")) path += "index.html";
   const file = join(root, path);

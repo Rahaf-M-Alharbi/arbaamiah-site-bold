@@ -1,6 +1,6 @@
 # أربعمية website
 
-The site: home, services, projects (plus one generated page per project), about, FAQ, contact, draw and the pricing calculator. Plain HTML, CSS and JavaScript: no framework. One build step makes the deployable `dist/` folder. Engineering rules for this folder are in `AGENTS.md`.
+The site: home, services, projects (plus one generated page per project), about, FAQ, contact and the pricing calculator. Plain HTML, CSS and JavaScript: no framework. One build step makes the deployable `dist/` folder. Engineering rules for this folder are in `AGENTS.md`.
 
 ## Commands
 Node 20 or newer.
@@ -12,6 +12,7 @@ Node 20 or newer.
 | `npm run check` | after a build: checks every page for title, description, one `h1`, `<main>`, image `alt`, broken internal links, duplicate titles/descriptions |
 | `npm run preview` | serves `dist/` on http://localhost:8082 the way a good host would: brotli/gzip, long caching, real 404s |
 | `npm run dev` | serves the source files on http://localhost:8082, never cached, for editing |
+| `npm test` | budget calculator rules: the reference budgets from the brief plus every combination of answers, checked against the rules in `src/js/44-budget-engine.js` |
 | `node scripts/sync-nav.mjs` | writes the shared navigation bar (`src/partials/nav.html`), closing pull-a-card section (`src/partials/cta-pull.html`) and footer (`src/partials/footer.html`) into every page; run it after editing a partial |
 | `node scripts/sync-services.mjs` | writes the service texts (kept in `src/js/05-services-panels.js`) as plain HTML into services and home, so crawlers and no-JS visitors see them; run after editing those texts |
 | `node scripts/unused-css.mjs` | lists CSS that can never apply (`--fix` removes it) |
@@ -95,9 +96,7 @@ Upload `dist/`. On Netlify or Cloudflare Pages, `_headers` sets the caching auto
 - The contact form does not send anything yet: set `ENDPOINT` in `src/js/11-contact-form.js` to a form service. Until then it shows the thank-you message without sending, which is wrong for a live site.
 - Project pages with a one-line `about` ("تعليق صوتي.") need a real sentence in `src/data/projects.json`.
 
-## Account assessment (`/api/assess`)
-`quiz.html` sends the answers to FormSubmit (the team's inbox) and calls `functions/api/assess.js`, a Cloudflare Pages Function that asks Claude, with web search, for an approximate review of the client's account. The review is shown with a disclaimer.
-- Needs the environment variable `ANTHROPIC_API_KEY` (Cloudflare Pages → Settings → Variables and Secrets, as a secret). The key never goes in the page or in git.
-- Functions only run when Pages deploys from the repository (or `wrangler pages deploy`), not when you drag-upload `dist/` alone. Netlify or another host needs the same code ported to its function format.
-- Without the function (or the key) the page still works: the client sees "we'll send you a review by email" and the team gets the answers.
-- Each call costs a little (one model request with up to 3 web searches). Add Cloudflare rate limiting or Turnstile before launch so the endpoint can't be spammed.
+
+## Budget calculator
+
+`budget.html` asks eight questions and shows the plan in cards. All prices and rules are in `DEFAULTS` at the top of `src/js/44-budget-engine.js` (pure functions, no DOM); `src/js/45-budget.js` only asks, shows and sends. Hidden settings: open `budget.html#admin` (or press Ctrl+Shift+A) to edit prices and rules in that browser and watch the plan react; the panel's JSON can be pasted back into `DEFAULTS` to make a change permanent. Reset clears the browser copy.
