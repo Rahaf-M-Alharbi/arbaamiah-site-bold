@@ -281,9 +281,8 @@
   }
   /* one plan, in words: "15 videos, 10 posts, 2 platforms managed, 1 campaign" */
   function describe(p){
-    var t=[ar(p.videos)+' مقطع',ar(p.designs)+' بوست'];
+    var t=[ar(p.videos)+' مقطع',ar(p.designs+p.stories)+' بوست وستوري'];
     if(p.tweets)t.push(ar(p.tweets)+' تغريدة');
-    if(p.stories)t.push(ar(p.stories)+' ستوري');
     t.push(p.mgmt?'إدارة '+pw(p.mgmt):'بلا إدارة');
     t.push(p.campaigns===1?'حملة واحدة':p.campaigns?ar(p.campaigns)+' حملات':'بلا حملات');
     return t.join('، ')
@@ -316,7 +315,7 @@
         return '<label class="bg-chk">'+(i.cost>0?'<input type="checkbox" data-s="'+i.id+'"'+(S[i.id]?' checked':'')+'>':'<span class="bg-nochk"></span>')+'<span class="bg-lt">'+i.label+'<small>'+(i.optional&&!S[i.id]?i.optNote:i.note)+'</small></span><span class="bg-lc">'+(i.cost>0?fmt(i.cost):'ضمن الإدارة')+'</span></label>'}).join('')+
         '<div class="bg-total"><span>إجمالي التأسيس</span><span>'+money(su)+'</span></div><p class="bg-fine">النطاق والاستضافة وأي خصائص برمجية خاصة تراجع حسب المتطلبات.</p></section>':'')+
       (C.fits?'<section class="bg-card"><h3 class="bg-h">'+(su>0?'خطتك الشهرية للشهر الأول':'خطتك الشهرية')+'</h3><p class="bg-sub">عدل الأعداد كما تشاء، وستتحدث التكلفة فورا.</p>'+
-        stepRow('videos','مقاطع فيديو','مع تعليق صوتي، '+fmt(PRICES.video)+' ريال للمقطع',P.videos,P.videos*PRICES.video,80)+stepRow('designs','بوستات',fmt(PRICES.design)+' ريال للبوست',P.designs,P.designs*PRICES.design,80)+(showTweets?stepRow('tweets','تغريدات',fmt(PRICES.tweet)+' ريال للتغريدة',P.tweets,P.tweets*PRICES.tweet,100):'')+stepRow('stories','ستوري',fmt(PRICES.story)+' ريال للستوري',P.stories,P.stories*PRICES.story,60)+
+        stepRow('videos','مقاطع فيديو','مع تعليق صوتي، '+fmt(PRICES.video)+' ريال للمقطع',P.videos,P.videos*PRICES.video,80)+stepRow('posts','بوستات وستوري',fmt(PRICES.design)+' ريال للبوست، '+fmt(PRICES.story)+' ريال للستوري',P.designs+P.stories,P.designs*PRICES.design+P.stories*PRICES.story,80)+(showTweets?stepRow('tweets','تغريدات',fmt(PRICES.tweet)+' ريال للتغريدة',P.tweets,P.tweets*PRICES.tweet,100):'')+
         stepRow('mgmt','منصات تحتاج إدارة',fmt(PRICES.mgmt)+' ريال لكل منصة',P.mgmt,P.mgmt*PRICES.mgmt,4)+stepRow('campaigns','حملات إعلانية','أتعاب الإعداد والإدارة، '+fmt(PRICES.campaignFee)+' ريال لكل حملة',P.campaigns,P.campaigns*PRICES.campaignFee,4)+
         (P.adSpend>0?'<div class="bg-line"><div class="bg-lt">الإنفاق الإعلاني<small>يدفع للمنصات الإعلانية'+(P.ads?'، نحو '+fmt(P.adSpend/P.ads)+' ريال لكل منصة':'')+'</small></div><div class="bg-lc">'+fmt(P.adSpend)+'</div></div>':'')+
         '<div class="bg-total"><span>إجمالي التشغيل الشهري</span><span>'+money(m)+'</span></div></section>'+
@@ -338,8 +337,9 @@
   }
   /* the steppers edit the plan itself; the campaign and its ad spend move together */
   function adjust(k,d){
-    var lim={designs:[0,80],videos:[0,80],stories:[0,60],tweets:[0,100],mgmt:[0,4],campaigns:[0,4]}[k];
-    P[k]=Math.min(lim[1],Math.max(lim[0],P[k]+d));
+    var lim={videos:[0,80],tweets:[0,100],mgmt:[0,4],campaigns:[0,4]}[k];
+    if(k==='posts'){if(d>0)P.designs=Math.min(80,P.designs+1);else if(P.stories>0)P.stories--;else P.designs=Math.max(0,P.designs-1)}
+    else P[k]=Math.min(lim[1],Math.max(lim[0],P[k]+d));
     if(k==='campaigns'&&P.campaigns>0&&P.adSpend===0)P.adSpend=PRICES.adSpend;
     if(P.campaigns===0)P.adSpend=0;
     if(P.adSpend>0&&!P.ads)P.ads=1;
@@ -352,7 +352,7 @@
     if(C.setupTotal>0){lines.push('التأسيس لمرة واحدة: '+money(C.setupTotal));C.items.filter(function(i){return i.cost>0&&S[i.id]}).forEach(function(i){lines.push('- '+i.label)});lines.push('')}
     if(C.fits){
       lines.push('الخطة التسويقية'+(C.setupTotal>0?' للشهر الأول':'')+': '+money(m));
-      lines.push('- '+ar(P.videos)+' مقطع، '+ar(P.designs)+' بوست'+(P.tweets?'، '+ar(P.tweets)+' تغريدة':'')+(P.stories?'، '+ar(P.stories)+' ستوري':''));
+      lines.push('- '+ar(P.videos)+' مقطع، '+ar(P.designs+P.stories)+' بوست وستوري'+(P.tweets?'، '+ar(P.tweets)+' تغريدة':''));
       if(P.mgmt)lines.push('- إدارة '+pw(P.mgmt));
       if(P.campaigns)lines.push('- '+ar(P.campaigns)+' حملة إعلانية (مع إنفاقها الإعلاني)');
       if(C.next)lines.push('من الشهر الثاني: خطة بميزانية '+money(monthly(C.next)))}
