@@ -9,7 +9,7 @@
   var SEND_ENABLED=true;
 
   /* ============ prices (SAR): edit here only ============ */
-  var PRICES={identity:2000,website:2000,partial:.8,design:100,video:150,story:50,tweet:50,mgmt:1000,campaignFee:1000,adSpend:1500};   /* partial: improving or finishing costs 80% of building from scratch; mgmt per platform per month; adSpend per platform per month (50 a day) */
+  var PRICES={identity:2000,website:2000,partial:.8,design:100,video:150,story:100,tweet:50,mgmt:1000,campaignFee:1000,adSpend:1500};   /* partial: improving or finishing costs 80% of building from scratch; mgmt per platform per month; adSpend per platform per month (50 a day) */
   /* platform order by priority: the default, and the one for reach goals where video leads */
   var PRIORITY={dflt:['instagram','tiktok','x','linkedin','snapchat','other'],video:['tiktok','instagram','x','linkedin','snapchat','other']};
   /* share of the content budget that goes to video, by goal */
@@ -315,7 +315,7 @@
         return '<label class="bg-chk">'+(i.cost>0?'<input type="checkbox" data-s="'+i.id+'"'+(S[i.id]?' checked':'')+'>':'<span class="bg-nochk"></span>')+'<span class="bg-lt">'+i.label+'<small>'+(i.optional&&!S[i.id]?i.optNote:i.note)+'</small></span><span class="bg-lc">'+(i.cost>0?fmt(i.cost):'ضمن الإدارة')+'</span></label>'}).join('')+
         '<div class="bg-total"><span>إجمالي التأسيس</span><span>'+money(su)+'</span></div><p class="bg-fine">النطاق والاستضافة وأي خصائص برمجية خاصة تراجع حسب المتطلبات.</p></section>':'')+
       (C.fits?'<section class="bg-card"><h3 class="bg-h">'+(su>0?'خطتك الشهرية للشهر الأول':'خطتك الشهرية')+'</h3><p class="bg-sub">عدل الأعداد كما تشاء، وستتحدث التكلفة فورا.</p>'+
-        stepRow('videos','مقاطع فيديو','مع تعليق صوتي، '+fmt(PRICES.video)+' ريال للمقطع',P.videos,P.videos*PRICES.video,80)+stepRow('posts','بوستات وستوري',fmt(PRICES.design)+' ريال للبوست، '+fmt(PRICES.story)+' ريال للستوري',P.designs+P.stories,P.designs*PRICES.design+P.stories*PRICES.story,80)+(showTweets?stepRow('tweets','تغريدات',fmt(PRICES.tweet)+' ريال للتغريدة',P.tweets,P.tweets*PRICES.tweet,100):'')+
+        stepRow('videos','مقاطع فيديو','مع تعليق صوتي، '+fmt(PRICES.video)+' ريال للمقطع',P.videos,P.videos*PRICES.video,80)+stepRow('posts','بوستات وستوري',fmt(PRICES.design)+' ريال للواحد',P.designs+P.stories,P.designs*PRICES.design+P.stories*PRICES.story,80)+(showTweets?stepRow('tweets','تغريدات',fmt(PRICES.tweet)+' ريال للتغريدة',P.tweets,P.tweets*PRICES.tweet,100):'')+
         stepRow('mgmt','منصات تحتاج إدارة',fmt(PRICES.mgmt)+' ريال لكل منصة',P.mgmt,P.mgmt*PRICES.mgmt,4)+stepRow('campaigns','حملات إعلانية','أتعاب الإعداد والإدارة، '+fmt(PRICES.campaignFee)+' ريال لكل حملة',P.campaigns,P.campaigns*PRICES.campaignFee,4)+
         (P.adSpend>0?'<div class="bg-line"><div class="bg-lt">الإنفاق الإعلاني<small>يدفع للمنصات الإعلانية'+(P.ads?'، نحو '+fmt(P.adSpend/P.ads)+' ريال لكل منصة':'')+'</small></div><div class="bg-lc">'+fmt(P.adSpend)+'</div></div>':'')+
         '<div class="bg-total"><span>إجمالي التشغيل الشهري</span><span>'+money(m)+'</span></div></section>'+
