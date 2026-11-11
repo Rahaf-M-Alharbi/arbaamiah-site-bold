@@ -96,3 +96,17 @@
 .bg-step button:focus-visible{outline:3px solid #6c171e;outline-offset:3px}
 .bg-step button:disabled{opacity:.35;cursor:not-allowed}
 .bg-step output{min-width:32px;text-align:center;font:700 16px/1 var(--f-body);color:#6c171e}
+/* readiness, key-value rows and short lists */
+.bg-meter{display:flex;align-items:center;gap:12px}
+.bg-pct{font:700 clamp(26px,3vw,34px)/1 var(--f-disp);color:#6c171e}
+.bg-track{flex:1;height:10px;border:2px solid #17120f;border-radius:99px;background:#fff8ee;overflow:hidden}
+.bg-track i{display:block;height:100%;background:#6c171e}
+.bg-kv{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 0;border-top:2px solid rgba(23,18,15,.15);font:500 14.5px/1.6 var(--f-body)}
+.bg-kv span:first-child{opacity:.75;flex:none}
+.bg-kv span:last-child{text-align:start}
+.bg-pill{padding:3px 12px;border-radius:99px;font:700 12.5px/1.5 var(--f-body);white-space:nowrap}
+.bg-pill.good{background:#d3e8de;color:#0d3d3a}
+.bg-pill.warn{background:#f6e3b4;color:#6b4a00}
+.bg-pill.bad{background:#fde3df;color:#7a1710}
+.bg-skip{margin:0;padding:0;list-style:none;display:grid;gap:6px;font:500 14.5px/1.7 var(--f-body)}
+.bg-skip li::before{content:"–";margin-inline-end:8px}
