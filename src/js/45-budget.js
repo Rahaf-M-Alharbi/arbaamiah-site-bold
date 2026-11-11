@@ -1,8 +1,7 @@
 /* budget calculator: one question per screen, an email gate, then an editable report.
-   Rule: start from what the project needs, not from the budget. The answers set the needs; the budget pays for them
-   (one-time setup first when the budget includes it, then the monthly package of the budget tier).
-   Prices and tiers live at the top, so changing them never touches the logic. Built from the agency's calculator brief
-   and merged with the team's version (steppers, setup checkboxes, month-two view, readiness, copy summary). */
+   Rule: the setup (identity, website) is paid first, then the rest of the budget is split by a marketer's priorities:
+   content on the platforms that suit the goal, account management when the budget allows, and an ad campaign when it can be launched properly.
+   Prices live at the top, so changing them never touches the logic. Engine and report follow the team's version (steppers, setup checkboxes, month-two view, copy summary). */
 (function(){
   var app=document.getElementById('bgApp');if(!app)return;
   var ENDPOINT='https://formsubmit.co/ajax/arbaamia.sa@gmail.com';
@@ -10,44 +9,28 @@
   var SEND_ENABLED=true;
 
   /* ============ prices (SAR): edit here only ============ */
-  var PRICES={identity:2000,website:2000,design:100,video:150,mgmt:1000,campaignFee:1000,adSpend:1500};   /* mgmt per platform per month; campaignFee per campaign; adSpend per platform per month (50 a day) */
-  var AD_DAILY=50;
-  /* monthly packages by operating budget: m platforms managed, d designs, v videos, c campaigns, a ad platforms; fill = the rest goes to extra content */
-  var TIERS=[
-    {b:2000,m:0,d:10,v:6,c:0,a:0,t:'نركز على صناعة محتوى منتظم تنشره على أكثر من منصة. لا نوصي بإدارة الحسابات أو بحملة شهرية ضمن هذه الميزانية.'},
-    {b:4000,m:1,d:10,v:6,c:0,a:0,t:'ندير منصة أساسية واحدة ونصنع محتوى متنوعا، ويمكن توجيه المتبقي لزيادة المحتوى أو تطويره. لا نوصي بحملة شهرية، لأن المتبقي لا يغطي تكاليف إطلاقها وتشغيلها.'},
-    {b:6000,m:1,d:8,v:4,c:1,a:1,t:'محتوى وإدارة حساب وحملة شهرية، على منصة واحدة.'},
-    {b:8000,m:2,d:10,v:6,c:1,a:1,t:'إدارة منصتين، ومحتوى يوزع بينهما، وحملة إعلانية شهرية.'},
-    {b:10000,m:3,d:15,v:10,c:1,a:2,t:'إدارة ثلاث منصات، ومحتوى متنوع، وحملة إعلانية على منصتين.'},
-    {b:12000,m:3,d:15,v:10,c:1,a:2,fill:1,t:'محتوى أكثر، وحضور أوسع على ثلاث منصات، وإعلانات على منصتين.'},
-    {b:14000,m:4,d:15,v:12,c:1,a:2,fill:1,t:'إدارة أربع منصات، ومحتوى أكثر، وإنفاق إعلاني أكبر على المنصات الأنسب.'},
-    {b:16000,m:4,d:20,v:14,c:1,a:3,fill:1,t:'حضور على عدة منصات، ومحتوى أكثر، وحملات إعلانية على ثلاث منصات.'},
-    {b:18000,m:4,d:20,v:16,c:2,a:3,fill:1,t:'محتوى أكثر، وحملتان بهدفين مختلفين، وإعلانات أوسع انتشارا.'},
-    {b:20000,m:4,d:25,v:18,c:2,a:4,fill:1,t:'إدارة حضور علامتك على أربع منصات، ومحتوى مكثف، وحملات إعلانية متعددة بحسب أهداف المشروع.'}
-  ];
+  var PRICES={identity:2000,website:2000,partial:.8,design:100,video:150,story:50,tweet:50,mgmt:1000,campaignFee:1000,adSpend:1500};   /* partial: improving or finishing costs 80% of building from scratch; mgmt per platform per month; adSpend per platform per month (50 a day) */
+  /* platform order by priority: the default, and the one for reach goals where video leads */
+  var PRIORITY={dflt:['instagram','tiktok','x','linkedin','snapchat','other'],video:['tiktok','instagram','x','linkedin','snapchat','other']};
+  /* share of the content budget that goes to video, by goal */
+  var VIDEO_SHARE={sales:.55,requests:.55,newcust:.65,aware:.7,launch:.65};
+  var VIDEO_PLATS=['instagram','tiktok','snapchat'];
+  var MIN_PLAN=500;   /* the least that still pays for a plan: 5 posts */
 
   /* ============ questions ============ */
-  var PLATFORMS=[['instagram','إنستغرام'],['tiktok','تيك توك'],['snapchat','سناب شات'],['x','إكس'],['linkedin','لينكدإن'],['other','أخرى']];
-  var STAGES=['معلومات المشروع','جاهزية العلامة التجارية','حسابات التواصل الاجتماعي','المحتوى التسويقي','الحملات الإعلانية','الميزانية'];
+  var PLATFORMS=[['instagram','إنستغرام'],['tiktok','تيك توك'],['snapchat','سناب شات'],['x','إكس'],['linkedin','لينكدإن']];
+  var STAGES=['معلومات المشروع','جاهزية العلامة التجارية','الحضور الرقمي والمحتوى','الإعلانات','الميزانية'];
   var Q=[
     {id:'type',stage:0,title:'ما طبيعة نشاطك التجاري؟',opts:[['store','متجر إلكتروني'],['food','مطعم أو مقهى'],['services','شركة خدمات'],['brand','علامة تجارية'],['startup','مشروع ناشئ'],['other','أخرى']]},
-    {id:'phase',stage:0,title:'ما المرحلة الحالية لمشروعك؟',opts:[['setup','مشروعي في مرحلة التأسيس'],['new','بدأت العمل حديثا'],['running','مشروعي قائم ولدي عملاء'],['growing','مشروعي قائم وأريد التوسع']]},
-    {id:'goal',stage:0,title:'ما هدفك التسويقي الحالي؟',opts:[['sales','زيادة المبيعات'],['newcust','الوصول إلى عملاء جدد'],['aware','زيادة الوعي بالعلامة التجارية'],['launch','إطلاق منتج أو خدمة جديدة'],['presence','تحسين الحضور الرقمي'],['requests','زيادة الطلبات والاستفسارات']]},
-    {id:'identity',stage:1,title:'هل لديك هوية بصرية جاهزة؟',hint:'الهوية البصرية هي الشعار والألوان والخطوط التي يعرف بها عملاؤك علامتك من النظرة الأولى.',opts:[['full','نعم، لدي هوية متكاملة'],['logo','لدي شعار فقط'],['improve','لدي هوية تحتاج إلى تطوير'],['none','لا، أحتاج إلى تصميم هوية']]},
-    {id:'website',stage:1,title:'هل لديك موقع إلكتروني؟',opts:[['good','نعم، وهو يعمل جيدا'],['improve','لدي موقع يحتاج إلى تطوير'],['none','لا، ليس لدي موقع']]},
-    {id:'siteContent',stage:1,show:function(a){return a.website==='none'},title:'هل لديك نصوص وصور جاهزة للموقع؟',hint:'النصوص هي ما يعرف بنشاطك وخدماتك، والصور هي ما يظهر في صفحات الموقع.',opts:[['both','نعم، لدي النصوص والصور'],['text','لدي النصوص فقط'],['images','لدي الصور فقط'],['none','لا، أحتاج من يكتب المحتوى ويجهزه']]},
-    {id:'accounts',stage:2,title:'هل لديك حسابات على منصات التواصل الاجتماعي؟',opts:[['active','نعم، وحساباتي نشطة'],['inactive','لدي حسابات لكنها غير نشطة'],['some','لدي حسابات على بعض المنصات'],['none','ليس لدي حسابات']]},
-    {id:'platforms',stage:2,multi:true,title:'ما المنصات التي تستخدمها أو تريد العمل عليها؟',hint:'يمكنك اختيار أكثر من منصة.',opts:PLATFORMS},
-    {id:'ctype',stage:3,title:'ما نوع المحتوى الذي تحتاج إليه؟',opts:[['designs','تصاميم ومنشورات'],['videos','مقاطع فيديو مع تعليق صوتي'],['both','تصاميم ومقاطع فيديو'],['per','محتوى مخصص لكل منصة']]},
-    {id:'managed',stage:2,title:'هل يدير حساباتك أحد غيرك؟',hint:'إدارة الحساب تعني التخطيط للمحتوى وجدولته ونشره ومتابعة الحساب باستمرار.',opts:[['all','نعم، يدير جميع حساباتي'],['some','نعم، يدير بعضها فقط'],['self','لا، أديرها بنفسي'],['need','أحتاج إلى من يدير حساباتي وينظم محتواها']]},
-    {id:'camp',stage:4,title:'هل أطلقت حملات إعلانية من قبل؟',opts:[['good','نعم، ونتائجها جيدة'],['bad','نعم، لكن نتائجها غير مرضية'],['some','أطلقت حملات متقطعة'],['none','لا، لم أطلق حملات من قبل']]},
-    {id:'adPlatforms',stage:4,multi:true,exclusive:'none',title:'على أي منصات تريد الإعلان؟',hint:'الإعلان المدفوع أن تدفع للمنصة لتعرض إعلانك على جمهور أوسع. ويمكنك اختيار أكثر من منصة.',opts:PLATFORMS.slice(0,5).concat([['none','لا أريد إطلاق حملات حاليا']])},
-    {id:'cgoal',stage:4,multi:true,hint:'يمكنك اختيار أكثر من هدف.',show:function(a){return (a.adPlatforms||[]).length>0&&a.adPlatforms.indexOf('none')<0},title:'ما هدفك من الحملات الإعلانية؟',opts:[['sales','زيادة المبيعات'],['visits','زيادة زيارات الموقع'],['requests','استقبال الطلبات والاستفسارات'],['aware','زيادة الوعي والانتشار'],['promo','الترويج لمنتج أو خدمة محددة']]},
-    {id:'budget',stage:5,select:true,title:'كم تخصص للتسويق؟',hint:'اختر المبلغ بالريال السعودي.',opts:[[2000,'٢٬٠٠٠ ريال'],[4000,'٤٬٠٠٠ ريال'],[6000,'٦٬٠٠٠ ريال'],[8000,'٨٬٠٠٠ ريال'],[10000,'١٠٬٠٠٠ ريال'],[12000,'١٢٬٠٠٠ ريال'],[14000,'١٤٬٠٠٠ ريال'],[16000,'١٦٬٠٠٠ ريال'],[18000,'١٨٬٠٠٠ ريال'],[20000,'٢٠٬٠٠٠ ريال أو أكثر']]},
-    {id:'btype',stage:5,show:function(a){return setupItems(a).some(function(i){return i.cost>0})},title:'هل تشمل هذه الميزانية تكاليف التأسيس، أم هي ميزانية شهرية للتشغيل؟',hint:'التأسيس: أعمال تدفع مرة واحدة، مثل الهوية والموقع. التشغيل: ما تدفعه كل شهر.',opts:[['both','تشمل التأسيس والتشغيل'],['monthly','ميزانية شهرية للتشغيل فقط'],['separate','لدي ميزانية تأسيس منفصلة']]}
+    {id:'goal',stage:0,title:'ما هدفك التسويقي الأهم الآن؟',opts:[['sales','زيادة المبيعات'],['requests','زيادة الطلبات والاستفسارات'],['newcust','الوصول إلى عملاء جدد'],['aware','زيادة الوعي بالعلامة التجارية'],['launch','إطلاق منتج أو خدمة جديدة']]},
+    {id:'identity',stage:1,title:'هل لديك هوية بصرية؟',hint:'الهوية البصرية هي الشعار والألوان والخطوط التي تجعل علامتك معروفة من النظرة الأولى.',opts:[['full','نعم، متكاملة'],['partial','لدي شعار فقط، أو هوية تحتاج إلى تطوير'],['none','لا، أحتاج إلى تصميم هوية']]},
+    {id:'website',stage:1,title:'هل لديك موقع إلكتروني؟',opts:[['good','نعم، ويعمل بشكل جيد'],['improve','لدي موقع يحتاج إلى تطوير'],['none','لا أملك موقعا']]},
+    {id:'accounts',stage:2,title:'ما وضع حساباتك على منصات التواصل؟',opts:[['managed','نشطة وتديرها جهة أخرى'],['self','نشطة وأديرها بنفسي'],['inactive','موجودة لكنها غير نشطة'],['none','لا أملك حسابات']]},
+    {id:'platforms',stage:2,multi:true,title:'ما المنصات التي تريد العمل عليها؟',hint:'يمكنك اختيار أكثر من منصة. سنقترح التركيز على الأنسب منها لنشاطك.',opts:PLATFORMS},
+    {id:'ads',stage:3,title:'ماذا عن الإعلانات المدفوعة؟',hint:'الإعلان المدفوع هو مبلغ تدفعه للمنصة لتعرض إعلانك على جمهور أوسع.',opts:[['good','جربتها ونتائجها جيدة'],['bad','جربتها ونتائجها ضعيفة'],['none','لم أجربها وأرغب بها'],['no','لا أريد إعلانات حاليا']]},
+    {id:'budget',stage:4,select:true,title:'كم تبلغ ميزانيتك المخصصة للتسويق؟',hint:'الميزانية الشهرية للتسويق، وتشمل أسعار الخدمات والإنفاق على الإعلانات، وأي تأسيس يحتاجه مشروعك مثل الهوية أو الموقع.',opts:[[2000,'٢٬٠٠٠ ريال'],[4000,'٤٬٠٠٠ ريال'],[6000,'٦٬٠٠٠ ريال'],[8000,'٨٬٠٠٠ ريال'],[10000,'١٠٬٠٠٠ ريال'],[12000,'١٢٬٠٠٠ ريال'],[14000,'١٤٬٠٠٠ ريال'],[16000,'١٦٬٠٠٠ ريال'],[18000,'١٨٬٠٠٠ ريال'],[20000,'٢٠٬٠٠٠ ريال أو أكثر']]}
   ];
   var LABELS={};Q.forEach(function(q){LABELS[q.id]={};q.opts.forEach(function(o){LABELS[q.id][o[0]]=o[1]})});
-  var COL={setup:'#0d3d3a',designs:'#6c171e',videos:'#17120f',mgmt:'#0d3d3a',campaigns:'#c8873a',ads:'#9a7b64',extra:'#7a4b3a',left:'#d9c2a6'};
 
   /* ============ state ============ */
   var A={},idx=-1,P=null,C=null,S={},unlocked=false,sending=false;
@@ -55,63 +38,128 @@
   function ar(n){return String(n).replace(/\d/g,function(d){return DG[d]})}
   function fmt(n){return ar(Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,','))}
   function money(n){return fmt(n)+' ر.س'}
-  function visible(){return Q.filter(function(q){return !q.show||q.show(A)})}
+  /* the questions in asking order: by stage, then as listed */
+  function visible(){return Q.map(function(q,i){return [q,i]}).filter(function(x){return !x[0].show||x[0].show(A)}).sort(function(a,b){return a[0].stage-b[0].stage||a[1]-b[1]}).map(function(x){return x[0]})}
   function platName(k){var p=PLATFORMS.filter(function(x){return x[0]===k})[0];return p?p[1]:k}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 
   /* ============ engine ============ */
-  function tierFor(avail){var t=null;TIERS.forEach(function(x){if(x.b<=avail)t=x});return t}
+  function pw(n){return n===1?'منصة واحدة':n===2?'منصتين':ar(n)+' منصات'}
   function needsFrom(a){
-    var plats=(a.platforms||[]).length,ads=(a.adPlatforms||[]).filter(function(x){return x!=='none'}).length,block=null;
-    if(ads>0){
-      if((a.cgoal||[]).indexOf('visits')>-1&&a.website==='none')block='نقترح تأجيل الحملة حتى يجهز الموقع، لأن هدفها زيادة زيارات الموقع.';
-      else if(a.accounts!=='active'&&a.accounts!=='some'&&a.website!=='good')block='ليس لديك حسابات نشطة ولا موقع يستقبل زوار الحملة، فنوصي بتجهيز أحدهما قبل إطلاقها.'}
-    return {ctype:a.ctype==='per'?'both':a.ctype,mgmtWanted:a.managed==='all'?0:Math.min(4,plats||1),adsWanted:Math.min(4,ads),block:block}
+    var sel=(a.platforms&&a.platforms.length)?a.platforms:['instagram'];
+    var order=(a.goal==='newcust'||a.goal==='aware')?PRIORITY.video:PRIORITY.dflt;
+    var plats=sel.slice().sort(function(x,y){return order.indexOf(x)-order.indexOf(y)});
+    return {plats:plats,platCount:Math.min(4,plats.length),managed:a.accounts==='managed',adsWanted:a.ads!=='no',adsExp:a.ads,
+      block:a.type==='store'&&a.website==='none'}   /* a store without a site gets no campaign until the site is ready */
   }
-  function buildPlan(avail,n){
-    var p={mgmt:0,designs:0,videos:0,campaigns:0,ads:0,extra:0,reasons:[],low:false,tier:null},t=tierFor(avail);
-    if(!t){
-      p.low=true;
-      if(n.ctype==='designs')p.designs=Math.floor(avail/PRICES.design);
-      else if(n.ctype==='videos')p.videos=Math.floor(avail/PRICES.video);
-      else{p.designs=Math.floor(avail*.5/PRICES.design);p.videos=Math.floor(avail*.5/PRICES.video)}
-      if(n.adsWanted>0)p.reasons.push('الميزانية المتاحة لا تكفي لإطلاق حملة، فنقترح أن تبدأ بالمحتوى.');
-      return p}
-    p.tier=t;
-    var d=t.d,v=t.v;                                                         /* a single content type takes over the whole content spend */
-    if(n.ctype==='designs'){d=Math.round(d+v*PRICES.video/PRICES.design);v=0}
-    else if(n.ctype==='videos'){v=Math.round(v+d*PRICES.design/PRICES.video);d=0}
-    p.designs=d;p.videos=v;p.mgmt=Math.min(t.m,n.mgmtWanted);
-    if(n.mgmtWanted>0&&t.m===0)p.reasons.push('ميزانيتك التشغيلية الحالية لا تكفي لإدارة الحسابات، فنقترح البدء بصناعة المحتوى.');
-    var ads=Math.min(t.a,n.adsWanted);
-    if(n.adsWanted>0){
-      if(n.block){p.reasons.push(n.block);ads=0}
-      else if(t.c===0)p.reasons.push('الميزانية المتاحة لا تكفي لإعداد الحملة وتشغيلها. نقترح أن تستثمر في المحتوى والإدارة، أو تؤجل الحملة.');
-      else if(n.adsWanted>ads)p.reasons.push('الميزانية تكفي للإعلان على '+ar(ads)+' من المنصات التي اخترتها، لأن لكل منصة ميزانية إعلانية مستقلة. ويمكنك إضافة البقية عند رفع الميزانية.')}
-    if(t.c===0)ads=0;
-    p.ads=ads;p.campaigns=Math.min(t.c,ads);
-    if(t.fill){var base=t.m*PRICES.mgmt+t.d*PRICES.design+t.v*PRICES.video+t.c*PRICES.campaignFee+t.a*PRICES.adSpend;p.extra=Math.max(0,Math.floor((t.b-base)/100)*100)}
+  /* the n platforms to work on: the first, then one more video platform when the first is one, then the rest in order */
+  function pickN(list,n){
+    if(n>=list.length)return list.slice();
+    if(n<=0)return [];
+    var rest=list.slice(1),out=[list[0]];
+    if(n>=2){
+      var vid=VIDEO_PLATS.indexOf(list[0])>-1?rest.filter(function(x){return VIDEO_PLATS.indexOf(x)>-1})[0]:null,pick=vid||rest[0];
+      out.push(pick);rest.splice(rest.indexOf(pick),1)}
+    while(out.length<n)out.push(rest.shift());
+    return out
+  }
+  /* the target monthly package: video first, then posts, then tweets, then stories */
+  var CKEYS=['videos','designs','tweets','stories'];
+  function cprice(){return {videos:PRICES.video,designs:PRICES.design,tweets:PRICES.tweet,stories:PRICES.story}}
+  function pkgCost(t){var pr=cprice();return CKEYS.reduce(function(s,k){return s+t[k]*pr[k]},0)}
+  function contentTargets(list){
+    var hasX=list.indexOf('x')>-1,onlyX=hasX&&list.length===1;
+    if(onlyX)return {videos:8,designs:6,tweets:30,stories:0};
+    return {videos:15,designs:10,tweets:hasX?20:0,stories:7}
+  }
+  function fillContent(cb,t,ads,onlyX){
+    var pr=cprice(),out={videos:0,designs:0,tweets:0,stories:0};
+    if(ads){
+      /* with a campaign: 10 videos and 10 posts (or tweets) first, then the rest of the package in order */
+      var b10=10*pr.videos+10*(onlyX?pr.tweets:pr.designs),base=cb>=b10?10:6;
+      out.videos=base;if(onlyX)out.tweets=base;else out.designs=base;
+      var left=cb-CKEYS.reduce(function(s,k){return s+out[k]*pr[k]},0);
+      CKEYS.forEach(function(k){while(t[k]>0&&left>=pr[k]&&out[k]<t[k]){out[k]++;left-=pr[k]}});
+      return out}
+    var full=pkgCost(t),f=Math.min(2,cb/full);
+    CKEYS.forEach(function(k){out[k]=Math.floor(t[k]*f)});
+    var left2=cb-CKEYS.reduce(function(s,k){return s+out[k]*pr[k]},0);
+    CKEYS.forEach(function(k){while(t[k]>0&&left2>=pr[k]&&out[k]<Math.ceil(t[k]*f)){out[k]++;left2-=pr[k]}});
+    return out
+  }
+  /* the monthly plan for the money left after setup: management, then the campaign, then content with what remains */
+  function allocate(avail,n){
+    var p={mgmt:0,contentList:[],designs:0,videos:0,stories:0,tweets:0,campaigns:0,ads:0,adSpend:0,reasons:[]},fee=PRICES.campaignFee,per=PRICES.mgmt;
+    /* 1) platforms and management: a small budget goes to content, management comes with a larger one */
+    var focus2=n.adsWanted&&n.platCount>=3&&avail>=4000&&!n.block;   /* three platforms and a campaign: focus on two and keep the rest for the campaign */
+    var maxP=focus2?2:Math.min(4,n.platCount),top1=platName(n.plats[0]||'instagram'),second=n.plats.length>1?platName(pickN(n.plats,2)[1]):'',m=0,cp=maxP,platMsg='';
+    if(avail<4000){
+      cp=1;
+      if(n.platCount>1)platMsg='اخترت '+ar(n.platCount)+' منصات، لكن ميزانيتك لا تكفي لتوزيعها عليها كلها. ننصحك بالتركيز على '+top1+' الآن، ثم التوسع لبقية المنصات عند رفع الميزانية.'}
+    else if(avail<6000){
+      m=n.managed?0:1;cp=Math.min(2,maxP);
+      if(n.platCount>=2&&!n.managed)platMsg='اخترت '+ar(n.platCount)+' منصات، لكن إدارة كل منصة ستستهلك ميزانيتك كلها. الأفضل إدارة '+top1+' فقط، ونشر المحتوى نفسه على '+second+'.'}
+    else{
+      m=n.managed?0:maxP;
+      while(m>1&&m*per>avail*.4)m--;
+      if(!n.managed&&m>0&&m<maxP)platMsg='ميزانيتك تكفي لإدارة '+pw(m)+' بإتقان، وننشر المحتوى نفسه على بقية منصاتك.'}
+    var m0=m,contentList=pickN(n.plats,cp),targets=contentTargets(contentList),pkg=pkgCost(targets),onlyX=contentList.length===1&&contentList[0]==='x',postPrice=onlyX?PRICES.tweet:PRICES.design;
+    /* 2) ads: 10 videos and 10 posts before a campaign when possible, otherwise lighten content, then management, to still launch it */
+    var k=0,c=0,spend=0,rem=avail-m*per,redM=false,redC=false;
+    if(n.adsWanted){
+      if(n.block)p.reasons.push('الحملات تبدأ بعد جاهزية الموقع، لأن الإعلان بلا موقع يهدر الميزانية. صرفنا ميزانيتها في هذه الفترة على المحتوى.');
+      else if(avail>=4000){
+        var cc=(avail>=18000&&n.adsExp!=='bad')?2:1,share=({good:.6,none:.5,bad:.4})[n.adsExp]||.5,kCap=n.platCount>=3?2:Math.min(4,n.platCount),tries=[[10,0],[6,0]];
+        for(var ti=0;ti<tries.length&&!k;ti++){
+          var cnt=tries[ti][0],mmin=tries[ti][1],minC=cnt*PRICES.video+cnt*postPrice;
+          for(var mm=m0;mm>=mmin&&!k;mm--){
+            var r2=avail-mm*per;
+            for(var kk=kCap;kk>=1;kk--){
+              var pool=r2-cc*fee,lo=PRICES.adSpend*kk,hi=Math.floor((pool-minC)/100)*100,ad=Math.max(Math.round(pool*share/100)*100,lo);   /* never below the minimum per platform */
+              if(ad>hi)ad=hi;
+              if(ad>=lo){k=kk;c=cc;spend=ad;m=mm;rem=r2;redM=mm<m0;redC=cnt<10;break}}}}}
+      if(k>0){
+        var dropM=redM&&m===0;
+        if(focus2&&dropM)p.reasons.push('اخترت '+ar(n.platCount)+' منصات وتحتاج حملة، فننصحك بالنشر على منصتين فقط، والاستغناء عن إدارة الحساب لتنشر المحتوى والمقاطع بنفسك، ونوجه الميزانية لإطلاق الحملة لأنها مهمة أيضا.');
+        else if(focus2)p.reasons.push('اخترت '+ar(n.platCount)+' منصات وتحتاج حملة، فننصحك بتحديد منصتين فقط للإدارة والمحتوى، ونوفر الباقي للحملة لأنها مهمة أيضا.');
+        else if(k<n.platCount)p.reasons.push(n.platCount>=3&&k===2?'اخترت '+ar(n.platCount)+' منصات، وننصحك بالإعلان على منصتين فقط ليتركز الإنفاق ويعطي نتيجة أفضل.':'ميزانيتك تكفي للإعلان على '+pw(k)+' الآن، ويمكن إضافة غيرها عند رفع الميزانية.');
+        if(dropM&&!focus2)p.reasons.push('ننصحك بالاستغناء عن إدارة الحساب، وأن تنشر المحتوى والمقاطع بنفسك، ونوجه الميزانية لإطلاق الحملة.');
+        else if(redM&&!dropM)p.reasons.push('خففنا عدد المنصات المدارة لنتمكن من إطلاق الحملة.');
+        if(redC)p.reasons.push('خففنا عدد المحتوى قليلا لنتمكن من إطلاق الحملة، مع إبقاء عدد جيد منه.')}
+      else{
+        if(platMsg)p.reasons.push(platMsg);
+        if(!n.block)p.reasons.push('الميزانية المتاحة لا تكفي لإطلاق حملة الآن، فنقترح البدء بالمحتوى وتأجيل الحملة أو رفع الميزانية.')}}
+    if(!n.adsWanted&&platMsg)p.reasons.push(platMsg);
+    if(n.adsWanted&&n.block&&platMsg)p.reasons.push(platMsg);
+    /* 3) content: what remains up to the package; with a campaign, anything above the package goes to ad spend */
+    var cb=Math.max(0,rem-c*fee-spend);
+    if(k>0&&cb>pkg){var extra=Math.floor((cb-pkg)/100)*100;spend+=extra;cb-=extra}
+    else cb=Math.min(cb,pkg*2);
+    var out=fillContent(cb,targets,k>0,onlyX);
+    p.videos=out.videos;p.designs=out.designs;p.tweets=out.tweets;p.stories=out.stories;
+    p.mgmt=m;p.contentList=contentList;p.ads=k;p.campaigns=c;p.adSpend=spend;
     return p
   }
   function setupItems(a){
-    var items=[];
-    if(a.identity!=='full'){
-      items.push({id:'identity',label:{none:'تصميم هوية بصرية متكاملة',logo:'استكمال الهوية البصرية',improve:'تطوير الهوية البصرية'}[a.identity],
-        note:{none:'تدفع مرة واحدة',logo:'لديك شعار، وسنبني عليه هوية متكاملة',improve:'سعر تقديري، ونحدد نطاق التطوير بعد المراجعة'}[a.identity],cost:PRICES.identity})}
-    if(a.website==='none'){
-      var note={both:'لديك النصوص والصور، ونحدد نطاق العمل بعد المراجعة',text:'لديك النصوص، وسنجهز الصور',images:'لديك الصور، وسنكتب النصوص',none:'تشمل التصميم وكتابة المحتوى وتجهيزه'}[a.siteContent]||'';
-      items.push({id:'website',label:'إنشاء موقع إلكتروني متكامل',note:note,cost:PRICES.website,optional:a.type==='food',optNote:'اختياري لنشاطك، فمعظم المطاعم والمقاهي تكتفي بالحسابات'})}
-    else if(a.website==='improve')items.push({id:'website',label:'تطوير الموقع الحالي',note:'نحدد السعر بعد مراجعة المتطلبات',cost:0,pending:true});
-    if(a.accounts!=='active')items.push({id:'accounts',label:{none:'تأسيس الحسابات وتجهيزها',some:'تأسيس الحسابات الناقصة وتجهيزها',inactive:'تفعيل الحسابات غير النشطة وتجهيزها'}[a.accounts],note:'تدخل ضمن بداية إدارة الحسابات',cost:0});
+    var items=[],part=Math.round(PRICES.identity*PRICES.partial);
+    if(a.identity==='partial')items.push({id:'identity',label:'استكمال الهوية البصرية وتطويرها',note:'أقل بـ ٢٠٪ من تصميم هوية جديدة، ويراجع النطاق',cost:part});
+    if(a.identity==='none')items.push({id:'identity',label:'تصميم هوية بصرية متكاملة',note:'مرة واحدة',cost:PRICES.identity});
+    if(a.website==='none')items.push({id:'website',label:'إنشاء موقع إلكتروني متكامل',note:'يشمل التصميم وكتابة المحتوى وإنشاء الموقع',cost:PRICES.website,optional:a.type==='food',optNote:'اختياري لنشاطك، فمعظم المطاعم والمقاهي تكتفي بالحسابات'});
+    if(a.website==='improve')items.push({id:'website',label:'تطوير الموقع الحالي',note:'أقل بـ ٢٠٪ من إنشاء موقع جديد، ويحدد السعر النهائي بعد مراجعة المتطلبات',cost:Math.round(PRICES.website*PRICES.partial)});
+    if(a.accounts==='none'||a.accounts==='inactive')items.push({id:'accounts',label:a.accounts==='none'?'تأسيس الحسابات وتجهيزها':'تفعيل الحسابات وتجهيزها',note:'تجهيز الحسابات قبل بدء النشر',cost:0});
     return items
   }
+  /* setup is paid first and the rest goes to the plan; when it is too little for a plan, the report says so */
   function rebuild(){
     var items=setupItems(A);items.forEach(function(i){if(!(i.id in S))S[i.id]=!i.optional});
-    var setupTotal=items.filter(function(i){return S[i.id]}).reduce(function(s,i){return s+i.cost},0),B=A.budget,incl=A.btype==='both',avail=incl?Math.max(0,B-setupTotal):B,needs=needsFrom(A);
-    P=buildPlan(avail,needs);
-    C={items:items,setupTotal:setupTotal,B:B,incl:incl,avail:avail,next:(incl&&setupTotal>0)?buildPlan(B,needs):null,needs:needs}
+    var setupTotal=items.filter(function(i){return S[i.id]}).reduce(function(s,i){return s+i.cost},0),B=A.budget,needs=needsFrom(A);
+    needs.block=needs.block&&!!S.website;
+    var R=B-setupTotal,fits=R>=MIN_PLAN;
+    P=fits?allocate(R,needs):{mgmt:0,contentList:[],designs:0,videos:0,stories:0,tweets:0,campaigns:0,ads:0,adSpend:0,reasons:[]};
+    C={items:items,setupTotal:setupTotal,B:B,needs:needs,R:R,fits:fits,next:(setupTotal>0||needs.block)?allocate(B,Object.assign({},needs,{block:false})):null}
   }
-  function monthly(p){return p.mgmt*PRICES.mgmt+p.designs*PRICES.design+p.videos*PRICES.video+p.campaigns*PRICES.campaignFee+p.ads*PRICES.adSpend+p.extra}
+  function contentCount(p){return p.designs+p.videos+p.stories+p.tweets}
+  function monthly(p){return p.mgmt*PRICES.mgmt+p.designs*PRICES.design+p.videos*PRICES.video+p.stories*PRICES.story+p.tweets*PRICES.tweet+p.campaigns*PRICES.campaignFee+p.adSpend}
 
   /* ============ screens ============ */
   function top(){app.scrollIntoView({block:'start',behavior:'smooth'})}
@@ -122,9 +170,11 @@
       '<div class="bg-nav"><button type="button" class="bg-go" id="bgStart">ابدأ الآن</button></div></section>';
     document.getElementById('bgStart').onclick=function(){idx=0;step()}
   }
-  /* the steps are the five stages; the sixth is the email screen. Questions that depend on an earlier answer appear inside their step as soon as it is given. */
-  var STEPS=STAGES.length+1;
-  function stepQs(n){return visible().filter(function(q){return q.stage===n})}
+  /* one question per screen, then the email screen. A single-choice answer moves on by itself; multi-choice questions use the next button. */
+  var autoTimer=null;
+  function stepCount(){return visible().length+1}
+  function stepQs(n){var q=visible()[n];return q?[q]:[]}
+  function later(fn){clearTimeout(autoTimer);autoTimer=setTimeout(fn,260)}
   function answered(q){var v=A[q.id];return q.multi?!!(v&&v.length):v!==undefined&&v!==''}
   function qBlock(q){
     var sel=A[q.id];
@@ -135,17 +185,18 @@
       q.opts.map(function(o){return '<button type="button" class="bg-opt'+(on(o[0])?' on':'')+'" data-q="'+q.id+'" data-v="'+o[0]+'" role="'+(q.multi?'checkbox':'radio')+'" aria-checked="'+on(o[0])+'"><span class="bg-mark"></span><span>'+o[1]+'</span></button>'}).join('')+'</div></fieldset>'
   }
   function step(keepScroll){
-    var qs=stepQs(idx),y=window.scrollY,last=idx===STAGES.length-1;
-    app.innerHTML='<section class="bg-card"><div class="bg-prog"><span>الخطوة '+ar(idx+1)+' من '+ar(STEPS)+'</span></div>'+
-      '<div class="bg-bar"><i style="width:'+((idx+1)/STEPS*100)+'%"></i></div>'+
-      '<h2 class="bg-big">'+STAGES[idx]+'</h2>'+qs.map(qBlock).join('')+'<small class="bg-me" id="bgErr" role="alert"></small>'+
+    var qs=stepQs(idx),y=window.scrollY,last=idx===visible().length-1,total=stepCount();
+    app.innerHTML='<section class="bg-card"><div class="bg-prog"><span>الخطوة '+ar(idx+1)+' من '+ar(total)+'</span></div>'+
+      '<div class="bg-bar"><i style="width:'+((idx+1)/total*100)+'%"></i></div>'+
+      '<h2 class="bg-big">'+STAGES[qs[0].stage]+'</h2>'+qs.map(qBlock).join('')+'<small class="bg-me" id="bgErr" role="alert"></small>'+
       '<div class="bg-nav"><button type="button" class="bg-btn" id="bgBack">رجوع</button><button type="button" class="bg-go" id="bgNext">'+(last&&unlocked?'شاهد النتيجة':'التالي')+'</button></div></section>';
-    document.getElementById('bgBack').onclick=function(){if(idx===0){idx=-1;intro()}else{idx--;step()}};
+    document.getElementById('bgBack').onclick=function(){clearTimeout(autoTimer);if(idx===0){idx=-1;intro()}else{idx--;step()}};
     document.getElementById('bgNext').onclick=function(){
+      clearTimeout(autoTimer);
       var m=stepQs(idx).filter(function(q){return !answered(q)});
       if(m.length){document.getElementById('bgErr').textContent='أجب عن جميع أسئلة هذه الخطوة قبل المتابعة.';var f=app.querySelector('[data-id="'+m[0].id+'"]');f.classList.add('miss');f.scrollIntoView({block:'center',behavior:'smooth'});return}
       advance()};
-    [].forEach.call(app.querySelectorAll('.bg-sel'),function(s){s.onchange=function(){A[s.dataset.q]=s.value===''?undefined:Number(s.value)}});
+    [].forEach.call(app.querySelectorAll('.bg-sel'),function(s){s.onchange=function(){A[s.dataset.q]=s.value===''?undefined:Number(s.value);if(s.value!=='')later(advance)}});
     [].forEach.call(app.querySelectorAll('.bg-opt'),function(b){b.onclick=function(){
       var q=Q.filter(function(x){return x.id===b.dataset.q})[0],raw=b.dataset.v,v=q.id==='budget'?Number(raw):raw;
       if(q.multi){var cur=(A[q.id]||[]).slice();
@@ -153,20 +204,21 @@
         else{if(q.exclusive===v)cur=[v];else{cur=cur.filter(function(x){return x!==q.exclusive});cur.push(v)}}
         A[q.id]=cur}
       else A[q.id]=v;
-      var id=q.id;step(true);var f=app.querySelector('.bg-opt[data-q="'+id+'"][data-v="'+raw+'"]');if(f)f.focus({preventScroll:true})}});
+      var id=q.id;step(true);var f=app.querySelector('.bg-opt[data-q="'+id+'"][data-v="'+raw+'"]');if(f)f.focus({preventScroll:true});
+      if(!q.multi)later(advance)}});
     if(keepScroll)window.scrollTo(0,y);else top()
   }
   function advance(){
-    if(idx<STAGES.length-1){idx++;step()}
+    if(idx<visible().length-1){idx++;step()}
     else if(unlocked){S={};rebuild();result()}
-    else{idx=STAGES.length;gate()}
+    else{idx=visible().length;gate()}
   }
   function gate(){
-    app.innerHTML='<section class="bg-card"><div class="bg-prog"><span>الخطوة '+ar(STEPS)+' من '+ar(STEPS)+'</span></div><div class="bg-bar"><i style="width:100%"></i></div><h2 class="bg-big">آخر خطوة قبل نتيجتك</h2><p class="bg-hint">اكتب اسمك وبريدك الإلكتروني لنعرض لك الخطة. سنحتفظ بإجاباتك لنراجعها ونتواصل معك.</p>'+
+    app.innerHTML='<section class="bg-card"><div class="bg-prog"><span>الخطوة '+ar(stepCount())+' من '+ar(stepCount())+'</span></div><div class="bg-bar"><i style="width:100%"></i></div><h2 class="bg-big">آخر خطوة قبل نتيجتك</h2><p class="bg-hint">اكتب اسمك وبريدك الإلكتروني لنعرض لك الخطة. سنحتفظ بإجاباتك لنراجعها ونتواصل معك.</p>'+
       '<form class="bg-gate" id="bgGate" novalidate><label for="bgName"><span>اسمك</span></label><input type="text" id="bgName" name="name" autocomplete="name" placeholder="الاسم الكامل" required><label for="bgEmail"><span>بريدك الإلكتروني</span></label><input type="email" id="bgEmail" name="email" autocomplete="email" dir="ltr" placeholder="name@company.com">'+
       '<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="bg-hp"><small class="bg-me" id="bgErr" role="alert"></small><small>بإرسال بياناتك، توافق على أن نتواصل معك عليه.</small>'+
       '<div class="bg-nav"><button type="button" class="bg-btn" id="bgBack">رجوع</button><button type="submit" class="bg-go" id="bgGo">شاهد النتيجة</button></div></form></section>';
-    document.getElementById('bgBack').onclick=function(){idx=STAGES.length-1;step()};
+    document.getElementById('bgBack').onclick=function(){idx=visible().length-1;step()};
     document.getElementById('bgGate').onsubmit=send;
     top()
   }
@@ -189,102 +241,81 @@
 
   /* ============ report ============ */
   function readiness(){
-    var rows=[['الهوية البصرية',{full:1,logo:.5,improve:.5,none:0}[A.identity]],['الموقع الإلكتروني',{good:1,improve:.5,none:0}[A.website]],['حسابات التواصل',{active:1,inactive:.5,some:.5,none:0}[A.accounts]],
-      ['إدارة الحسابات',{all:1,some:.6,self:.3,need:0}[A.managed]],['الخبرة مع الحملات',{good:1,some:.5,bad:.3,none:0}[A.camp]]];
-    var pct=Math.round(rows.reduce(function(s,r){return s+r[1]},0)/rows.length*100);
-    return {rows:rows,pct:pct,label:pct<35?'مشروعك في بداية الطريق':pct<70?'جاهزيتك متوسطة، وبعض الأساسيات ناقصة':'مشروعك جاهز للنمو'}
+    var rows=[[{full:1,partial:.5,none:0}[A.identity]],[{good:1,improve:.5,none:0}[A.website]],[{managed:1,self:.7,inactive:.4,none:0}[A.accounts]]];
+    if(A.ads!=='no')rows.push([{good:1,bad:.4,none:.2}[A.ads]]);
+    return Math.round(rows.reduce(function(s,r){return s+r[0]},0)/rows.length*100)
   }
   function priorities(){
-    var L=[],it=function(id){return C.items.filter(function(i){return i.id===id&&(i.cost===0||S[i.id])})[0]};
-    if(it('identity'))L.push(['الهوية البصرية','عليها تبنى كل المواد التسويقية الأخرى.']);
-    if(it('website'))L.push([it('website').pending?'تطوير الموقع الحالي':'الموقع الإلكتروني','يعطي عملاءك مكانا واضحا يتعرفون فيه عليك ويتواصلون معك.']);
-    if(it('accounts'))L.push(['تأسيس الحسابات وتجهيزها','ليكون لمحتواك وإعلاناتك وجهة جاهزة.']);
-    if(P.designs+P.videos>0)L.push(['صناعة المحتوى','محتوى منتظم تنشره على أكثر من منصة.']);
-    if(P.mgmt>0)L.push(['إدارة الحسابات','تنظيم النشر والمتابعة على '+(P.mgmt===1?'منصة واحدة':ar(P.mgmt)+' منصات')+'.']);
-    if(A.camp==='bad'&&A.adPlatforms&&A.adPlatforms.indexOf('none')<0)L.push(['تحليل أداء الحملات السابقة','نعرف سبب ضعف النتائج قبل أن ننفق ميزانية جديدة.']);
-    else if(P.campaigns>0)L.push(['الحملات الإعلانية','حملة بهدف واضح على '+(P.ads===1?'منصة واحدة':ar(P.ads)+' منصات')+'.']);
-    if(A.camp==='good'&&P.ads>=2)L.push(['التوسع التسويقي','نتائج حملاتك السابقة جيدة، فيمكنك التوسع تدريجيا في المنصات والمؤثرين.']);
+    var L=[],on=function(id){return C.items.filter(function(i){return i.id===id&&(i.cost===0||S[i.id])})[0]};
+    if(on('identity'))L.push('الهوية البصرية');
+    if(on('website'))L.push(A.website==='improve'?'تطوير الموقع الإلكتروني':'إنشاء الموقع الإلكتروني');
+    if(on('accounts'))L.push('تجهيز الحسابات');
+    if(contentCount(P)>0)L.push('صناعة المحتوى');
+    if(P.mgmt>0)L.push('إدارة الحسابات');
+    if(P.campaigns>0)L.push(A.ads==='bad'?'تحليل الحملات السابقة ثم إطلاق حملة تجريبية':'الحملات الإعلانية');
+    if(!L.length)L.push('رفع الميزانية أو انتظار الشهر القادم لتبدأ الخطة');
     return L
   }
-  function notNeeded(){
-    var L=[];
-    if(A.identity==='full')L.push('الهوية البصرية: لديك هوية متكاملة');
-    if(A.website==='good')L.push('الموقع الإلكتروني: موقعك يعمل جيدا');
-    var web=C.items.filter(function(i){return i.id==='website'&&i.optional})[0];if(web&&!S.website)L.push('الموقع الإلكتروني: اختياري لنشاطك حاليا');
-    if(A.accounts==='active')L.push('تأسيس الحسابات: حساباتك نشطة');
-    if(A.managed==='all')L.push('إدارة الحسابات: لديك جهة تديرها');else if(P.mgmt===0)L.push('إدارة الحسابات: الميزانية الحالية لا تكفيها');
-    if(P.campaigns===0)L.push('الحملات الإعلانية: '+((A.adPlatforms||[]).indexOf('none')>-1?'لا تريدها حاليا':'مؤجلة حاليا'));
-    return L
-  }
-  function recommendation(){
-    var t=P.tier;
-    if(!t)return 'ابدأ بمحتوى منتظم ضمن ميزانية التشغيل، ثم وسع الخدمات عندما تزيد الميزانية.';
-    if((P.mgmt>0)===(t.m>0)&&(P.campaigns>0)===(t.c>0)&&P.mgmt===Math.min(t.m,C.needs.mgmtWanted))return t.t;
-    var parts=[];if(P.designs+P.videos)parts.push('صناعة محتوى منتظم');if(P.mgmt)parts.push('إدارة الحسابات');if(P.campaigns)parts.push('حملة إعلانية شهرية');
-    return parts.length?'ركز على '+parts.join(' و')+'، فهي الأنسب لمرحلة مشروعك وميزانيتك.':'حضورك الرقمي جيد. ادرس الحملات الإعلانية، وابدأ بها عندما تتوفر ميزانيتها.'
-  }
-  function donut(){
-    var items=[['designs',P.designs*PRICES.design],['videos',P.videos*PRICES.video],['mgmt',P.mgmt*PRICES.mgmt],['campaigns',P.campaigns*PRICES.campaignFee],['ads',P.ads*PRICES.adSpend],['extra',P.extra]].filter(function(x){return x[1]>0}),
-        m=monthly(P),total=Math.max(m,C.avail),left=Math.max(0,total-m);if(left>0)items.push(['left',left]);
-    if(!items.length)return '';
-    var off=25,svg='<svg viewBox="0 0 42 42" class="bg-donut" role="img" aria-label="رسم دائري لتوزيع الميزانية التشغيلية">';
-    items.forEach(function(x){var p=x[1]/total*100;svg+='<circle cx="21" cy="21" r="15.9155" fill="none" stroke="'+COL[x[0]]+'" stroke-width="7" stroke-dasharray="'+p+' '+(100-p)+'" stroke-dashoffset="'+off+'"/>';off-=p});
-    return '<div class="bg-dw">'+svg+'</svg><div class="bg-mid"><b>'+money(m)+'</b><span>شهريا</span></div></div>'
-  }
-  /* where the budget goes, by area. Shows amounts and shares only: unit prices stay out of the report on purpose. */
-  function allocRows(su,remaining){
-    var rows=[],setupNames=C.items.filter(function(i){return S[i.id]}).map(function(i){return i.label});
-    if(su>0)rows.push(['setup',C.incl?'التأسيس (مرة واحدة)':'التأسيس (خارج الميزانية الشهرية)',su,setupNames.join('، '),C.incl]);
-    [['designs','تصاميم ومقاطع فيديو',P.designs*PRICES.design+P.videos*PRICES.video,'محتوى منتظم لحساباتك وإعلاناتك'],
-     ['mgmt','إدارة الحسابات',P.mgmt*PRICES.mgmt,'تخطيط المحتوى ونشره ومتابعة الحسابات'],
-     ['campaigns','إعداد الحملات وإدارتها',P.campaigns*PRICES.campaignFee,'أتعاب إعداد الحملات وتحسينها'],
-     ['ads','الإنفاق الإعلاني',P.ads*PRICES.adSpend,'تدفعه مباشرة للمنصة الإعلانية'],
-     ['extra','محتوى إضافي أو تطوير',P.extra,'نوجهه لما يخدم هدفك']].forEach(function(r){if(r[2]>0)rows.push([r[0],r[1],r[2],r[3],true])});
-    if(remaining>0)rows.push(['left','المتبقي',remaining,'احتياطي للنمو أو لتوسيع الخدمات',true]);
-    return rows
-  }
-  function allocCard(m,su,remaining){
-    var rows=allocRows(su,remaining),base=C.B||1;
-    return '<section class="bg-card"><h3 class="bg-h">كيف توزع ميزانيتك</h3><p class="bg-sub">هذا توزيع مقترح لميزانيتك على مجالات التسويق، وليس تسعيرا لكل خدمة.'+(C.incl&&su>0&&C.next?' وبعد التأسيس تصبح ميزانيتك كلها ('+money(C.B)+') للتشغيل من الشهر الثاني.':'')+'</p>'+donut()+
-      rows.map(function(r){var pct=r[4]?Math.round(r[2]/base*100):0,c=COL[r[0]]||'#0d3d3a';
-        return '<div class="bg-line"><div class="bg-lt"><span class="bg-dot" style="background:'+c+'"></span>'+r[1]+(r[3]?'<small>'+r[3]+'</small>':'')+(r[4]?'<span class="bg-bar" aria-hidden="true"><span style="width:'+Math.min(100,pct)+'%;background:'+c+'"></span></span>':'')+'</div><div class="bg-lc">'+money(r[2])+(r[4]?'<small>'+ar(pct)+'٪</small>':'')+'</div></div>'}).join('')+
-      '<div class="bg-total"><span>'+(C.incl?'إجمالي ميزانيتك':'إجمالي التشغيل الشهري')+'</span><span>'+money(C.incl?C.B:m)+'</span></div></section>'
+  function stepRow(key,label,sub,val,max){
+    return '<div class="bg-line"><div class="bg-lt">'+label+(sub?'<small>'+sub+'</small>':'')+'</div><div class="bg-step" dir="ltr">'+
+      '<button type="button" data-k="'+key+'" data-d="-1" aria-label="تقليل '+label+'"'+(val<=0?' disabled':'')+'>−</button><output>'+ar(val)+'</output>'+
+      '<button type="button" data-k="'+key+'" data-d="1" aria-label="زيادة '+label+'"'+(val>=max?' disabled':'')+'>+</button></div></div>'
   }
   function result(){
-    var m=monthly(P),su=C.setupTotal,remaining=C.incl?C.B-su-m:C.B-m,rd=readiness(),pr=priorities(),nn=notNeeded();
-    var contentPlats=(A.platforms||[]).map(platName),adPlats=(A.adPlatforms||[]).filter(function(x){return x!=='none'}).slice(0,P.ads).map(platName),warns=[];
-    if(C.incl&&su>C.B)warns.push(['bad','تكاليف التأسيس ('+money(su)+') أعلى من ميزانيتك. يمكنك تأجيل أحد بنود التأسيس أو زيادة الميزانية.']);
-    else if(P.low)warns.push(['bad','الميزانية المتاحة للتشغيل أقل من الحد الأدنى للمحتوى المنتظم ('+money(2000)+').']);
-    if(remaining<0&&!(C.incl&&su>C.B))warns.push(['bad','الخطة الحالية أعلى من ميزانيتك بمقدار '+money(-remaining)+'. قلل أحد البنود أو ارفع الميزانية.']);
-    P.reasons.forEach(function(r){warns.push(['',r])});
-    if(P.ads>0&&P.designs+P.videos===0)warns.push(['','تحتاج الحملة إلى محتوى إعلاني، فأضف تصاميم أو مقاطع فيديو.']);
-    if(A.camp==='some'&&P.campaigns>0)warns.push(['','حملاتك السابقة كانت متقطعة. الاستمرار شهرا بعد شهر يعطي بيانات أوضح لتحسين الأداء.']);
-    var tileSetup=(!C.incl&&su>0)?'خارج الميزانية الشهرية':(C.incl&&su>0?'من ميزانيتك':'لا يوجد'),remLabel=C.incl&&su>0?'المتبقي في الشهر الأول':'المتبقي شهريا';
+    var m=monthly(P),su=C.setupTotal,R=C.R,B=C.B,n=C.needs,pr=priorities(),warns=[];
+    if(R<0)warns.push(['bad','تكاليف التأسيس ('+money(su)+') أكبر من ميزانيتك ('+money(B)+'). ارفع ميزانيتك، أو أجل أحد بنود التأسيس للشهر القادم.']);
+    else if(!C.fits)warns.push(['bad','المتبقي بعد التأسيس ('+money(R)+') لا يكفي حتى لـ ٥ بوستات، فلا نقترح خطة. ارفع ميزانيتك، أو ابدأ بالتأسيس الآن وانتظر الشهر القادم لتبدأ الخطة بميزانية '+money(B)+'.']);
+    else{
+      if(m>R)warns.push(['bad','الخطة تتجاوز المتاح بمقدار '+money(m-R)+'. قلل أحد البنود.']);
+      var seen={};P.reasons.forEach(function(r){if(!seen[r]){seen[r]=1;warns.push(['',r])}});
+      if(P.campaigns>0&&P.designs+P.videos===0)warns.push(['','الحملة تحتاج إلى محتوى إعلاني، فأضف تصاميم أو مقاطع.'])}
+    var names=function(l){return l.map(platName).join('، ')},
+      info=[contentCount(P)>0?'المحتوى على: '+names(P.contentList):'',P.mgmt?'الإدارة: '+names(pickN(n.plats,P.mgmt)):'',P.campaigns?'الإعلان: '+names(pickN(n.plats,Math.max(1,P.ads))):''].filter(Boolean).join(' · '),
+      showTweets=P.tweets>0||P.contentList.indexOf('x')>-1;
     var h='<div class="bg-rep">'+
-      '<section class="bg-card"><h2 class="bg-big">هذه خطتك التسويقية</h2><p class="bg-note-l">بناء على إجاباتك، حددنا الخدمات التي يحتاجها مشروعك، وما تبدأ به منها. هدفك الحالي: '+LABELS.goal[A.goal]+'.</p></section>'+
-      '<section class="bg-tiles" aria-label="ملخص التكاليف"><div class="bg-tile"><small>تأسيس لمرة واحدة</small><b>'+fmt(su)+'</b><em>'+tileSetup+'</em></div><div class="bg-tile"><small>تشغيل شهري</small><b>'+fmt(m)+'</b><em>ريال</em></div><div class="bg-tile'+(remaining<0?' neg':'')+'"><small>'+remLabel+'</small><b>'+fmt(remaining)+'</b><em>ريال</em></div></section>'+
+      '<section class="bg-card"><h2 class="bg-big">ميزانيتك تستحق أن تستثمر بذكاء</h2><p class="bg-note-l">هدفك: '+LABELS.goal[A.goal]+'. جاهزية مشروعك '+ar(readiness())+'٪.</p></section>'+
+      '<section class="bg-tiles" aria-label="ملخص الميزانية"><div class="bg-tile"><small>تأسيس لمرة واحدة</small><b>'+fmt(su)+'</b><em>'+(su?'يدفع أولا':'لا يوجد')+'</em></div><div class="bg-tile'+(R<0?' neg':'')+'"><small>المتبقي للخطة</small><b>'+fmt(Math.max(0,R))+'</b><em>بعد التأسيس</em></div><div class="bg-tile"><small>ميزانيتك الشهرية</small><b>'+fmt(B)+'</b><em>ريال</em></div></section>'+
       (warns.length?'<div class="bg-notes">'+warns.map(function(w){return '<div class="bg-note'+(w[0]?' bad':'')+'">'+w[1]+'</div>'}).join('')+'</div>':'')+
-      '<section class="bg-card"><h3 class="bg-h">جاهزية مشروعك</h3><div class="bg-meter"><span class="bg-pct">'+ar(rd.pct)+'٪</span><div class="bg-track" role="img" aria-label="نسبة الجاهزية '+ar(rd.pct)+' بالمئة"><i style="width:'+rd.pct+'%"></i></div></div><p class="bg-sub">'+rd.label+'</p>'+
-        '<div class="bg-rows">'+rd.rows.map(function(r){return '<div class="bg-rrow"><span>'+r[0]+'</span><span class="bg-pill '+(r[1]>=1?'good':r[1]>0?'warn':'bad')+'">'+(r[1]>=1?'جاهز':r[1]>0?'يحتاج تطوير':'لا يوجد')+'</span></div>'}).join('')+'</div></section>'+
-      '<section class="bg-card"><h3 class="bg-h">أولوياتك التسويقية</h3><ol class="bg-prio">'+pr.map(function(p){return '<li><div>'+p[0]+'<small>'+p[1]+'</small></div></li>'}).join('')+'</ol></section>'+
-      allocCard(m,su,remaining)+
-      
-      '<section class="bg-card"><h3 class="bg-h">التوصية</h3><p class="bg-rec">'+recommendation()+'</p><p class="bg-fine">زيادة عدد الحملات أو المنصات ليست دائما الخيار الأفضل، فالقرار يعتمد على الجمهور والهدف والنتائج. أما الإنفاق بمعدل '+ar(AD_DAILY)+' ر.س يوميا لكل منصة فهو افتراض مبدئي، ولا يضمن نتائج الحملة.</p></section>'+
-      (nn.length?'<details class="bg-card bg-more"><summary class="bg-h">ما لا تحتاجه الآن</summary><ul class="bg-skip">'+nn.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></details>':'')+
-      '<section class="bg-card"><h3 class="bg-h">خطوتك القادمة</h3><p class="bg-note-l">ابدأ بالأولويات التي تجهز مشروعك للنمو، ثم وسع الإنفاق التسويقي تدريجيا.</p><p class="bg-fine">هذه التوصيات تقديرية. نحدد نطاق العمل والتكلفة النهائية بعد مراجعة تفاصيل مشروعك، ولا نضمن نتيجة بعينها.</p><p class="bg-fine">الأسعار المعروضة افتراضية لغرض التوضيح فقط، ولا يعتمد عليها عند طلب الخدمات أو التعاقد.</p>'+
+      (C.items.length?'<section class="bg-card"><h3 class="bg-h">التأسيس</h3>'+C.items.map(function(i){
+        return '<label class="bg-chk">'+(i.cost>0?'<input type="checkbox" data-s="'+i.id+'"'+(S[i.id]?' checked':'')+'>':'<span class="bg-nochk"></span>')+'<span class="bg-lt">'+i.label+'<small>'+(i.optional&&!S[i.id]?i.optNote:i.note)+'</small></span>'+(i.cost>0?'<span class="bg-lc">'+money(i.cost)+'</span>':'')+'</label>'}).join('')+
+        '<div class="bg-total"><span>إجمالي التأسيس</span><span>'+money(su)+'</span></div></section>':'')+
+      '<section class="bg-card"><h3 class="bg-h">'+(su>0?'خطتك التسويقية للشهر الأول':'خطتك التسويقية الشهرية')+'</h3><p class="bg-sub">'+(su>0&&C.next?'من الشهر الثاني تتسع الخطة لميزانية '+money(monthly(C.next))+'. ':'')+'عدل الأعداد وتتحدث التكلفة فورا.</p>'+
+        stepRow('videos','مقاطع فيديو','مع تعليق صوتي',P.videos,80)+stepRow('designs','بوستات','',P.designs,80)+(showTweets?stepRow('tweets','تغريدات','',P.tweets,100):'')+stepRow('stories','ستوري','',P.stories,60)+
+        stepRow('mgmt','إدارة منصات','',P.mgmt,4)+stepRow('campaigns','حملات إعلانية','تشمل إنفاقها الإعلاني',P.campaigns,4)+
+        '<div class="bg-total"><span>إجمالي الخطة</span><span>'+money(m)+'</span></div>'+(info?'<p class="bg-fine">'+info+'</p>':'')+'</section>'+
+      '<section class="bg-card"><h3 class="bg-h">خطوتك القادمة</h3><ol class="bg-prio">'+pr.map(function(p){return '<li><div>'+p+'</div></li>'}).join('')+'</ol><p class="bg-fine">توزيع مبدئي وتقديري، وتعتمد التكلفة النهائية بعد مراجعة تفاصيل المشروع. الأسعار المعروضة افتراضية لغرض التوضيح فقط، ولا يعتمد عليها عند طلب الخدمات أو التعاقد.</p>'+
         '<a class="flipbtn fb--cream bg-cta" href="contact.html"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♠︎</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♠︎</i></span></span></a></section>'+
       '<div class="bg-actions"><button type="button" class="bg-go" id="bgCopy">نسخ ملخص الخطة</button><a class="bg-btn bg-x" id="bgX" target="_blank" rel="noopener" href="https://x.com/intent/post?text='+encodeURIComponent('جربت حاسبة التسويق من @arbaamia وعرفت وين أوزع ميزانيتي التسويقية 🧮 جربها مجانا: https://arbaamia.sa/budget.html')+'">شارك على إكس</a><button type="button" class="bg-btn" id="bgEdit">تعديل إجاباتي</button><button type="button" class="bg-btn" id="bgReset">ابدأ من جديد</button></div></div>';
     var y=window.scrollY;app.innerHTML=h;
+    [].forEach.call(app.querySelectorAll('[data-k]'),function(b){b.onclick=function(){adjust(b.dataset.k,Number(b.dataset.d))}});
+    [].forEach.call(app.querySelectorAll('[data-s]'),function(c){c.onchange=function(){S[c.dataset.s]=c.checked;var y2=window.scrollY;rebuild();result();window.scrollTo(0,y2);var x=app.querySelector('[data-s="'+c.dataset.s+'"]');if(x)x.focus({preventScroll:true})}});
     document.getElementById('bgCopy').onclick=copySummary;
     document.getElementById('bgEdit').onclick=function(){idx=0;step()};
     document.getElementById('bgReset').onclick=function(){A={};S={};idx=-1;unlocked=false;intro()};
     if(!result.shown){result.shown=true;top()}else window.scrollTo(0,y)
   }
-  function kv(a,b){return '<div class="bg-kv"><span>'+a+'</span><span>'+b+'</span></div>'}
+  /* the steppers edit the plan itself; the campaign and its ad spend move together */
+  function adjust(k,d){
+    var lim={designs:[0,80],videos:[0,80],stories:[0,60],tweets:[0,100],mgmt:[0,4],campaigns:[0,4]}[k];
+    P[k]=Math.min(lim[1],Math.max(lim[0],P[k]+d));
+    if(k==='campaigns'&&P.campaigns>0&&P.adSpend===0)P.adSpend=PRICES.adSpend;
+    if(P.campaigns===0)P.adSpend=0;
+    if(P.adSpend>0&&!P.ads)P.ads=1;
+    if(P.adSpend===0)P.ads=0;
+    var y=window.scrollY;result();window.scrollTo(0,y);
+    var f=app.querySelector('[data-k="'+k+'"][data-d="'+d+'"]:not(:disabled)')||app.querySelector('[data-k="'+k+'"]:not(:disabled)');if(f)f.focus({preventScroll:true})
+  }
   function copySummary(){
-    var m=monthly(P),rem=C.incl?C.B-C.setupTotal-m:C.B-m;
-    var lines=['خطتي التسويقية من أربعمية','جاهزية المشروع: '+ar(readiness().pct)+'٪','','توزيع الميزانية:'].concat(allocRows(C.setupTotal,rem).map(function(r){return '- '+r[1]+': '+money(r[2])}),
-      ['','تقديرات أولية، ونحدد التكلفة النهائية بعد مراجعة مشروعك.']);
+    var m=monthly(P),lines=['خطتي التسويقية من أربعمية (تقدير مبدئي)','ميزانيتي الشهرية: '+money(C.B),''];
+    if(C.setupTotal>0){lines.push('التأسيس لمرة واحدة: '+money(C.setupTotal));C.items.filter(function(i){return i.cost>0&&S[i.id]}).forEach(function(i){lines.push('- '+i.label)});lines.push('')}
+    if(C.fits){
+      lines.push('الخطة التسويقية'+(C.setupTotal>0?' للشهر الأول':'')+': '+money(m));
+      lines.push('- '+ar(P.videos)+' مقطع، '+ar(P.designs)+' بوست'+(P.tweets?'، '+ar(P.tweets)+' تغريدة':'')+(P.stories?'، '+ar(P.stories)+' ستوري':''));
+      if(P.mgmt)lines.push('- إدارة '+pw(P.mgmt));
+      if(P.campaigns)lines.push('- '+ar(P.campaigns)+' حملة إعلانية (مع إنفاقها الإعلاني)');
+      if(C.next)lines.push('من الشهر الثاني: خطة بميزانية '+money(monthly(C.next)))}
+    else lines.push('المتبقي بعد التأسيس لا يكفي لخطة، فأحتاج لرفع الميزانية أو انتظار الشهر القادم.');
+    lines.push('','تقديرات أولية، والتكلفة النهائية بعد مراجعة تفاصيل المشروع.');
     function done(ok){var t=document.createElement('div');t.className='bg-toast';t.setAttribute('role','status');t.textContent=ok?'تم نسخ الملخص':'تعذر النسخ. حدد النص وانسخه يدويا.';document.body.appendChild(t);setTimeout(function(){t.remove()},2200)}
     try{navigator.clipboard.writeText(lines.join('\n')).then(function(){done(true)},function(){done(false)})}catch(e){done(false)}
   }
