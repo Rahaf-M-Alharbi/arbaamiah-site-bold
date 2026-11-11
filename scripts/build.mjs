@@ -69,7 +69,7 @@ const describe = (page) => {
   const about = p.about && p.about.length >= 30 ? p.about : `${p.category}، من أعمال أربعمية.`;
   return cut(about.includes(p.name) ? about : `${p.name}: ${about}`);  /* the name keeps near-identical project texts distinct */
 };
-const pages = ["index.html", "pricing.html", "faq.html", "contact.html", "draw.html", "quiz.html", "budget.html", "about.html", "privacy.html", "terms.html", "services.html", "projects.html", ...readdirSync(root).filter((f) => f.startsWith("project-") && f.endsWith(".html"))];
+const pages = ["index.html", "pricing.html", "faq.html", "contact.html", "draw.html", "quiz.html", "budget.html", "about.html", "privacy.html", "terms.html", "links.html", "services.html", "projects.html", ...readdirSync(root).filter((f) => f.startsWith("project-") && f.endsWith(".html"))];
 for (const page of pages) {
   const name = page.startsWith("pricing") ? "pricing" : "site";
   let html = read(page);
@@ -112,7 +112,7 @@ for (const page of pages) {
     const faq = page === "faq.html" ? [...html.matchAll(/<details[^>]*><summary>(.*?)<\/summary><div class="a"><div>(.*?)<\/div><\/div><\/details>/g)].map(([, q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a.replace(/<[^>]+>/g, "") } })) : [];
     const project = page.startsWith("project-") ? (Array.isArray(projects) ? projects : projects.projects).find((x) => `project-${x.slug}.html` === page) : null;
     const ld = page === "index.html"
-      ? { "@context": ctx, "@type": "Organization", name: "أربعمية", alternateName: "Arbaamiah", url: siteUrl + "/", logo: `${siteUrl}/assets/${map["img/logo-symbol.svg"]}`, email: "arbaamia.sa@gmail.com", sameAs: site.sameAs, ...(desc && { description: desc }) }
+      ? { "@context": ctx, "@type": ["Organization", "ProfessionalService"], name: "أربعمية", alternateName: "Arbaamiah", url: siteUrl + "/", logo: `${siteUrl}/assets/${map["img/logo-symbol.svg"]}`, email: "arbaamia.sa@gmail.com", areaServed: { "@type": "Country", name: "المملكة العربية السعودية" }, availableLanguage: "ar", serviceType: ["كتابة المحتوى", "الاستراتيجيات التسويقية", "التصميم الإبداعي", "الهوية البصرية", "التصوير", "التعليق الصوتي", "الإعلانات", "تطوير المواقع"], sameAs: site.sameAs, ...(desc && { description: desc }) }
       : page.startsWith("project-") ? { "@context": ctx, "@graph": [
           crumbs([["الرئيسية", "/"], ["مشاريعنا", "/projects.html"], [title.replace(/ \| أربعمية$/, ""), "/" + page]]),
           ...(project ? [{ "@type": "CreativeWork", name: project.name, genre: project.category, url: siteUrl + "/" + page, inLanguage: "ar", creator: { "@type": "Organization", name: "أربعمية", url: siteUrl + "/" }, ...(desc && { description: desc }) }] : [])] }
@@ -144,6 +144,9 @@ writeFileSync(join(dist, "_headers"), `/assets/*
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Cross-Origin-Opener-Policy: same-origin
+  Strict-Transport-Security: max-age=31536000
 `);
 
 /* 3. precompressed copies of text files */

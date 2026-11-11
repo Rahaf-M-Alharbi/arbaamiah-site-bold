@@ -14,7 +14,7 @@
     b.className='card pk'+((d.s==='h'||d.s==='d')?' red':'');
     b.innerHTML=PlayingCard.corners(d.r,d.s)+
       '<div class="med"><svg class="ic" viewBox="0 0 48 48"><use href="#l-'+d.ic+'"/></svg></div>'+
-      '<div class="body"><h4>'+d.t+'</h4><span class="rule"></span><p>'+d.p+'</p></div>';
+      '<div class="body"><h4 aria-level="2">'+d.t+'</h4><span class="rule"></span><p>'+d.p+'</p></div>';
     s.appendChild(b);layer.appendChild(s);return s;
   });
   var mini=document.getElementById('mini'),n=slots.length,mid=(n-1)/2,A=[],W,H,w,h,state='pre',started=false;

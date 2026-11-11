@@ -34,14 +34,14 @@
   if(!full){
     /* home: the services as a plain numbered list of names, no cards and no descriptions */
     stack.className+=' sol';
-    stack.innerHTML=P.map(function(p,i){return '<div class="sol-r"><span class="sol-n">'+(i<9?'0':'')+(i+1)+'</span><h4>'+p[0]+'</h4></div>'}).join('');
+    stack.innerHTML=P.map(function(p,i){return '<div class="sol-r"><span class="sol-n">'+(i<9?'0':'')+(i+1)+'</span><h4 aria-level="3">'+p[0]+'</h4></div>'}).join('');
     return;
   }
   var K=['content','growth','content','design','design','content','ads','growth','web'];/* which box on the contact form each service ticks */
   function more(i){return '<span class="svc-l">ماذا تحصل عليه</span><ul class="svc-get">'+G[i].map(function(t){return '<li>'+t+'</li>'}).join('')+'</ul><a class="svc-o" href="contact.html?svc='+K[i]+'&amp;n='+encodeURIComponent(P[i][0])+'">اطلب الخدمة<i>←</i></a>'}
   function num(i){return (i<9?'0':'')+(i+1)}
   /* pick a service on one side, its card on the other */
-  function card(i){var s=SU[i];return '<article class="card pk svc open'+((s==='h'||s==='d')?' red':'')+'">'+PlayingCard.corners(R[i],s)+'<div class="body"><h4>'+P[i][0]+'</h4><span class="rule"></span><p>'+P[i][1]+'</p>'+more(i)+'</div></article>'}
+  function card(i){var s=SU[i];return '<article class="card pk svc open'+((s==='h'||s==='d')?' red':'')+'">'+PlayingCard.corners(R[i],s)+'<div class="body"><h4 aria-level="3">'+P[i][0]+'</h4><span class="rule"></span><p>'+P[i][1]+'</p>'+more(i)+'</div></article>'}
   stack.className+=' sv-split';
   stack.innerHTML='<div class="sv-tabs" role="tablist">'+P.map(function(p,i){return '<button type="button" role="tab" data-i="'+i+'" aria-selected="'+(i===0)+'"><span class="sol-n">'+num(i)+'</span>'+p[0]+'</button>'}).join('')+'</div><div class="sv-view"></div>';
   var view=stack.querySelector('.sv-view');

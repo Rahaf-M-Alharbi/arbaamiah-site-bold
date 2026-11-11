@@ -160,6 +160,7 @@
  },
  {
   "slug": "strategy-2",
+  "cover_img": "assets/projects/covers/strategy-2.webp",
   "name": "استراتيجية محتوى متجر سكب",
   "category": "الاستراتيجية وتحليل الحسابات",
   "group": "الاستراتيجية وتحليل الحسابات",
@@ -178,6 +179,7 @@
  },
  {
   "slug": "collage-1",
+  "cover_img": "assets/projects/covers/collage-1.webp",
   "name": "كولاج شقردي",
   "category": "مقاطع الكولاج",
   "group": "مقاطع الكولاج",
@@ -187,6 +189,7 @@
  },
  {
   "slug": "collage-2",
+  "cover_img": "assets/projects/covers/collage-2.webp",
   "name": "كولاج نسق",
   "category": "مقاطع الكولاج",
   "group": "مقاطع الكولاج",
@@ -196,6 +199,7 @@
  },
  {
   "slug": "collage-3",
+  "cover_img": "assets/projects/covers/collage-3.webp",
   "name": "مقطع آبل وسامسونج",
   "category": "مقاطع الكولاج",
   "group": "مقاطع الكولاج",
@@ -205,6 +209,7 @@
  },
  {
   "slug": "voiceover-1",
+  "hidden": true,
   "name": "معسكر التسويق",
   "category": "التعليق الصوتي",
   "group": "التعليق الصوتي",
@@ -217,14 +222,17 @@
   "name": "كلين اب",
   "category": "UGC",
   "group": "محتوى UGC",
-  "drive": "https://drive.google.com/drive/folders/1VeNeEEOutUoestPcrHqBrUcmPE-7I2AX",
-  "placeholder": true,
-  "about": "محتوى UGC لكلين اب: كتابة وتصوير."
+  "about": "محتوى UGC لكلين اب: كتابة وتصوير. اضغط على أي مقطع لتشغيله.",
+  "embeds": [
+   "https://drive.google.com/file/d/1NFKkTAwiIKyNPTBL4B938dnJ1Jhwqrn1/view",
+   "https://drive.google.com/file/d/140PA-Y1xfsfPpVQxG5VPG2fIN3UJkWSR/view"
+  ],
+  "embed_ratio": "9/16"
  },
  {
   "slug": "ugc-sara-nasq",
-  "name": "نسق UGC",
-  "name_en": "Nasq UGC",
+  "name": "عسل الطيبات UGC",
+  "name_en": "Asal Al-Tayyibat UGC",
   "category": "UGC",
   "group": "محتوى UGC",
   "about": "مقاطع UGC صنعناها لصالح علامات تجارية أخرى: فيديوهات بأسلوب المحتوى الواقعي الذي ينشره المستخدمون، تعرض المنتجات في الاستخدام اليومي بتصوير قريب وطبيعي يبني الثقة ويقرب العلامة من جمهورها. اضغط على أي مقطع لتشغيله.",

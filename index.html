@@ -1,7 +1,7 @@
 <!-- Deliberately no doctype: the design was built and tuned in quirks mode, and standards mode shifts some heights by a few px. -->
 <html lang="ar">
 <head>
-<title>أربعمية | مكتب إبداعي للمحتوى والتصميم والإعلانات والنمو</title>
+<title>أربعمية | شركة تسويق إبداعي في السعودية: محتوى وتصميم وإعلانات</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -54,6 +54,8 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
 <link rel="stylesheet" href="src/css/40-cursor.css">
 <link rel="stylesheet" href="src/css/41-services-grid.css">
 <link rel="stylesheet" href="src/css/42-projects.css">
+<link rel="stylesheet" href="src/css/47-seo-intro.css">
+<link rel="stylesheet" href="src/css/49-mail-link.css">
 <!-- css:end -->
 <!-- js:start (run in this order; build concatenates them) -->
 <script src="src/js/01-reveal-observers.js" defer></script>
@@ -72,6 +74,7 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
 <script src="src/js/15-pull-card.js" defer></script>
 <script src="src/js/18-cursor.js" defer></script>
 <script src="src/js/19-nav.js" defer></script>
+<script src="src/js/20-mail-link.js" defer></script>
 <!-- js:end -->
 </head>
 <body>
@@ -122,10 +125,6 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
     </section></div>
   </div>
 </main>
-<section class="next2" id="next2" data-cur="card" lang="ar" dir="rtl">
-  <div class="nstage"><div class="bigcard" id="bigcard"></div>
-  <div class="lgl" id="lgl" aria-label="شركاؤنا"><div class="lgg" id="lgg"></div></div></div>
-</section>
 <section class="stt" id="stt" data-cur="card" lang="ar" dir="rtl" aria-label="بالأرقام">
   <div class="stt-in">
     <p class="stt-t"><span class="eb">بالأرقام</span><span>♠︎ ♥︎ ♦︎ ♣︎</span></p>
@@ -164,8 +163,8 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
   <div class="wk-head">
     <div class="t">
       <div class="e eb">♦︎ أعمالنا</div>
-      <h2>جـولات لعبـناها بحـساب</h2>
-      <p>مشاريع حقيقية عملنا عليها. ثلاث أوراق ظاهرة بالكامل وباقيها مجموع في رزمة على كل جانب. اسحب يمينا أو يسارا لتنتقل الأوراق بين الرزمتين.</p>
+      <h2>أعـمال تعـكس إبداعـنا</h2>
+      <p>من الأفكار التي اقترحناها، إلى حلول نفذناها نستعرض معكم نماذج من أعمال أربعمية.</p>
     </div>
   </div>
   <div class="wk-ctl"><button type="button" id="wkPrev" aria-label="السابق">&#8592;</button><span class="n" id="wkNum">1–3 / 7</span><button type="button" id="wkNext" aria-label="التالي">&#8594;</button></div>
@@ -178,6 +177,10 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
     <article class="wc hl c5" role="group" aria-roledescription="بطاقة" aria-label="6 من 7"><span class="ix b" aria-hidden="true">J<i>♣︎</i></span><img class="wlogo" src="assets/img/card-logo-mazallat-al-tamayyuz.webp" width="640" height="215" alt="" loading="lazy" decoding="async"><h3>مظلة التميز</h3><p>تصاميم وموشن لخدمات السيارات: حجز المواعيد وباقات الحماية والعناية</p><ul><li>تصميم</li><li>موشن</li></ul><a class="go" href="project-mazallat-al-tamayyuz.html">شاهد المشروع ←</a></article>
     <article class="wc hl c5" role="group" aria-roledescription="بطاقة" aria-label="7 من 7"><span class="ix b" aria-hidden="true">10<i>♠︎</i></span><img class="wlogo" src="assets/img/card-logo-zaheed.webp" width="464" height="153" alt="" loading="lazy" decoding="async"><h3>زهيد</h3><p>منشور عروض العيد وفيديو يشرح تطبيق المقارنة والتوفير في ثلاث خطوات</p><ul><li>تصميم</li><li>فيديو</li></ul><a class="go" href="project-zaheed.html">شاهد المشروع ←</a></article>
   </div>
+</section>
+<section class="next2" id="next2" data-cur="card" lang="ar" dir="rtl">
+  <div class="nstage"><div class="bigcard" id="bigcard"></div>
+  <div class="lgl" id="lgl" aria-label="شركاؤنا"><div class="lgg" id="lgg"></div></div></div>
 </section>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -252,6 +255,19 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
   </div>
 </section>
 
+<section class="fq seo-in" id="intro" data-cur="card" lang="ar" dir="rtl" aria-label="نبذة عن أربعمية">
+  <div class="fq-in">
+    <div class="fq-t"><span class="fq-e eb">عن أربعمية</span><h2>شركة تسويق إبداعي في السعودية: محتوى وتصميم وإعلانات ونمو</h2></div>
+    <p class="seo-lead">أربعمية مكتب تسويق إبداعي في المملكة العربية السعودية، يجمع كتابة المحتوى التسويقي وتصميم الهوية البصرية وإدارة الحملات الإعلانية وتطوير المواقع في فريق واحد. نخدم الشركات الناشئة والمتاجر الإلكترونية والمشاريع الصغيرة والمتوسطة، ونبدأ بفهم علامتك وجمهورها قبل أن نكتب أو نصمم أو نطلق أي حملة.</p>
+    <div class="seo-g">
+      <article><h3>كتابة المحتوى والاستراتيجية التسويقية</h3><p>نكتب محتوى تسويقيا لحسابات التواصل الاجتماعي والمواقع والإعلانات، ونضع خطة تسويقية وأفكارا إبداعية للحملات تحول رسالتك إلى نتائج واضحة.</p></article>
+      <article><h3>تصميم الهوية البصرية والشعارات</h3><p>نصمم الهوية البصرية والشعار والملف التعريفي والتصاميم التسويقية، ونقدم التصوير والتعليق الصوتي ومقاطع الفيديو ليبقى صوت علامتك التجارية واحدا في كل مكان.</p></article>
+      <article><h3>الإعلانات الممولة والنمو وتطوير المواقع</h3><p>ندير الإعلانات الممولة على منصات التواصل الاجتماعي، ونطور مواقع المتاجر والشركات، ونتابع الأرقام لنحسن النتائج وننمي مبيعاتك شهرا بعد شهر.</p></article>
+    </div>
+    <a class="fq-all" href="services.html">تعرف على خدماتنا <i>♠︎</i></a>
+  </div>
+</section>
+
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="l-content" viewBox="0 0 48 48"><rect x="6" y="5" width="30" height="38" rx="5" fill="currentColor" stroke="none"/><path d="M12 15h18M12 23h18M12 31h10" fill="none" stroke="#fbf9f4" stroke-width="3" stroke-linecap="round"/><path d="M27 41l2.5-9 11-11 6.5 6.500-11 11z" fill="currentColor" stroke="#fbf9f4" stroke-width="2.600" stroke-linejoin="round"/></symbol>
   <symbol id="l-design" viewBox="0 0 48 48"><circle cx="18" cy="18" r="13" fill="currentColor" stroke="none"/><rect x="20" y="20" width="23" height="23" rx="4" fill="currentColor" stroke="#fbf9f4" stroke-width="2.600"/></symbol>
@@ -307,13 +323,12 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
       <div class="ft-col">
         <h3><i class="r">&#9830;&#xFE0E;</i>تواصل معنا</h3>
         <ul>
-          <li><a href="contact.html">أرسل طلبك</a></li>
           <li class="ft-ic"><a href="mailto:arbaamia.sa@gmail.com" aria-label="البريد الإلكتروني"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1.6 2L12 12.4 19.4 7zM4 8.6V17h16V8.6l-8 5.8z"/></svg></a><a href="https://api.whatsapp.com/message/U2EGUFBDX66ZE1?autoload=1&amp;app_absent=0" target="_blank" rel="noopener" aria-label="واتساب"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l4.97-1.3A10 10 0 1 0 12 2zm0 1.9a8.1 8.1 0 1 1-4.3 15l-.3-.2-3 .8.8-2.9-.2-.3A8.1 8.1 0 0 1 12 3.9zM8.6 7.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.1c-.2-.5-.4-.5-.6-.5z"/></svg></a><a href="https://x.com/arbaamia" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.2-8.3L2 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"/></svg></a><a href="https://www.instagram.com/arbaamia/" target="_blank" rel="noopener" aria-label="انستغرام"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 1.8A3.7 3.7 0 0 0 3.8 7.5v9a3.7 3.7 0 0 0 3.7 3.7h9a3.7 3.7 0 0 0 3.7-3.7v-9a3.7 3.7 0 0 0-3.7-3.7zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4zM17.3 5.6a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"/></svg></a></li>
         </ul>
       </div>
     </nav>
   </div>
-  <div class="ft-in ft-r"><span>© أربعمية · جميع الحقوق محفوظة</span><span class="ft-cr">السجل التجاري <bdi>7055307842</bdi></span><span class="ft-lg"><a href="privacy.html">سياسة الخصوصية</a><a href="terms.html">الشروط والأحكام</a></span><span class="ft-s" aria-hidden="true"><i>♠︎</i><i class="r">♥︎</i><i class="r">♦︎</i><i>♣︎</i></span></div>
+  <div class="ft-in ft-r"><span>© أربعمية · جميع الحقوق محفوظة</span><span class="ft-cr">السجل التجاري <bdi>7055307842</bdi></span><span class="ft-lg"><a href="privacy.html">سياسة الخصوصية</a><a href="terms.html">الشروط والأحكام</a><a href="links.html">روابطنا</a></span><span class="ft-s" aria-hidden="true"><i>♠︎</i><i class="r">♥︎</i><i class="r">♦︎</i><i>♣︎</i></span></div>
 </footer>
 </body>
 </html>

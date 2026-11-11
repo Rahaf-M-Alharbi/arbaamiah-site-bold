@@ -9,7 +9,9 @@
   bL.setAttribute('aria-label','تحريك الأوراق لليسار');bR.setAttribute('aria-label','تحريك الأوراق لليمين');
   /* the cards are written in index.html in project order (good for crawlers, screen readers and no-JS); the visual order runs the other way, so the first project is the rightmost card */
   cards=[].slice.call(deck.querySelectorAll('.wc')).reverse();n=cards.length;act=n-3;
-  cards.forEach(function(c){c.setAttribute('aria-hidden','true');c._h=true});
+  /* a card hidden from screen readers must not be reachable by keyboard either: its link leaves the tab order with it */
+  function hide(c,on){if(on)c.setAttribute('aria-hidden','true');else c.removeAttribute('aria-hidden');[].forEach.call(c.querySelectorAll('a'),function(a){if(on)a.setAttribute('tabindex','-1');else a.removeAttribute('tabindex')})}
+  cards.forEach(function(c){hide(c,true);c._h=true});
   deck.setAttribute('role','group');deck.setAttribute('aria-roledescription','عرض دوار');
   num.setAttribute('aria-live','polite');num.setAttribute('aria-atomic','true');
   function clamp(x,a,b){return Math.max(a,Math.min(b,x))}
@@ -47,7 +49,7 @@
       put(c,'z-index',String(p.z));
       var on=i-te>-.5&&i-te<win-.5;
       c.classList.toggle('top',on);
-      if(c._h===on){c._h=!on;if(on)c.removeAttribute('aria-hidden');else c.setAttribute('aria-hidden','true')}/* cards waiting in the piles are hidden from screen readers; only the visible ones are read */
+      if(c._h===on){c._h=!on;hide(c,!on)}/* cards waiting in the piles are hidden from screen readers; only the visible ones are read */
     });
   }
   function settle(){
