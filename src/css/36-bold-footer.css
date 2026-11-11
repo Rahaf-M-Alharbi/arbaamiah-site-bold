@@ -33,7 +33,7 @@
 @media (min-width:601px){
   .ft-top{grid-template-columns:minmax(0,1fr)}
   .ft-brand{direction:rtl;grid-template-columns:minmax(0,1.25fr) auto;grid-template-rows:1fr auto auto 1fr;column-gap:clamp(40px,7vw,110px);align-items:center}
-  .ft-brand .ft-pitch{grid-column:1;grid-row:1/5}
+  .ft-brand .ft-pitch{grid-column:1;grid-row:1/5;justify-self:stretch}
   .ft-brand .ft-logo{grid-column:2;grid-row:2;margin:0;justify-self:center;height:clamp(96px,10.5vw,116px)}
   .ft-brand .ft-cta{grid-column:2;grid-row:3;justify-self:center}
   .ft-cols{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
