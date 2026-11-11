@@ -42,7 +42,9 @@ const videos = (p) => !p.folder ? [] : readdirSync(join(root, "assets/projects",
 const num = (n) => String(n).padStart(2, "0");
 const base = (p) => `assets/projects/${p.folder}/`;
 const hasFile = (p, f) => existsSync(join(root, "assets/projects", p.folder, f));
+/* "cover_img" in projects.json: a hand-made 640x800 card image (assets/projects/covers/) used instead of the first slide or the Drive thumbnail */
 const cover = (p) => {
+  if (p.cover_img) return { src: p.cover_img, w: 640, h: 800 };
   const first = shown(p)[0], v = videos(p)[0];
   if (first && !(p.cover_video && v)) return { src: `${base(p)}${num(first.n)}-640.webp`, w: first.w, h: first.h };
   if (!p.folder) return null;
@@ -161,7 +163,7 @@ const slides = stars.length ? `<section class="pj-show" aria-roledescription="ca
 writeFileSync(join(root, "projects.html"), page("مشاريعنا | أربعمية", `<main class="pj pj-page" lang="ar" dir="rtl" aria-label="مشاريعنا">
   <div class="pj-hero pj-hero-1"><div class="pj-ht"><span class="eb pj-e">♦︎ مشاريعنا</span><h1>علامـات كبـرت معنـا</h1></div></div>
 ${slides}
-  <div class="pj-chips" role="group" aria-label="نوع العمل" hidden>${[["all", "الكل"], ...kinds].map(([k, t], j) => `<button type="button" data-k="${k}" aria-pressed="${j === 0}">${t}</button>`).join("")}</div>
+  <div class="pj-chips" role="group" aria-label="نوع العمل" hidden>${[["all", "الكل"], ...kinds.filter(([k]) => projects.some((p) => kindsOf(p).includes(k)))].map(([k, t], j) => `<button type="button" data-k="${k}" aria-pressed="${j === 0}">${t}</button>`).join("")}</div>
   <a class="pj-order" id="pjOrder" href="contact.html" hidden>اطلب خدمتك <i>←</i></a>
   <div class="pj-cards pj-all-cards">
 ${projects.map(cardOf).join("\n")}
