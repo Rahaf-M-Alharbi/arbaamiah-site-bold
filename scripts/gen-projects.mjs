@@ -58,8 +58,8 @@ const driveEmbed = (u) => (isFolder(u) ? `https://drive.google.com/embeddedfolde
 const facade = (u, title, w = 640, extra = "", attrs = "") => `<a class="pj-embed pj-facade${extra}"${attrs} href="${esc(u)}" data-embed="${driveEmbed(u)}" data-title="${esc(title)}" aria-label="تشغيل: ${esc(title)}"><img src="https://drive.google.com/thumbnail?id=${driveId(u)}&amp;sz=w${w}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()"><span class="pj-play" aria-hidden="true">▶</span></a>`;
 const card = (p, i) => {
   const c = cover(p);
-  if (!c) return `<a class="pj-card" href="project-${p.slug}.html"><span class="pj-img pj-ph"><b>♦︎</b><img src="https://drive.google.com/thumbnail?id=${driveId(p.drive || (p.embeds || [])[0] || p.media[0].items[0].url)}&amp;sz=w640" alt="${esc(p.name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()"></span><span class="pj-meta"><b>${esc(p.name)}</b><i>${esc(p.category)}</i></span></a>`;
-  return `<a class="pj-card" href="project-${p.slug}.html"><span class="pj-img"><img src="${c.src}" width="${c.w}" height="${c.h}" alt="${esc(p.name)}" loading="lazy" decoding="async"></span><span class="pj-meta"><b>${esc(p.name)}</b><i>${esc(p.category)}</i></span></a>`;
+  if (!c) return `<a class="pj-card" href="project-${p.slug}.html"><span class="pj-img pj-ph"><b>♦︎</b><img src="https://drive.google.com/thumbnail?id=${driveId(p.drive || (p.embeds || [])[0] || p.media[0].items[0].url)}&amp;sz=w640" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()"></span><span class="pj-meta"><b>${esc(p.name)}</b><i>${esc(p.category)}</i></span></a>`;
+  return `<a class="pj-card" href="project-${p.slug}.html"><span class="pj-img"><img src="${c.src}" width="${c.w}" height="${c.h}" alt="" loading="lazy" decoding="async"></span><span class="pj-meta"><b>${esc(p.name)}</b><i>${esc(p.category)}</i></span></a>`;
 };
 
 const page = (title, body, current = true) => `${heads.replace("@@TITLE@@", esc(title))}${css}
@@ -79,8 +79,10 @@ projects.forEach((p, i) => {
   const notes = [p.why && ["لماذا هذا المشروع", p.why], p.value && ["ما يضيفه", p.value]].filter(Boolean);
   const vhtml = vids.map((v) => `<figure class="pj-vid"><video controls muted playsinline preload="none" poster="${base(p)}${v.replace(".mp4", "-poster.webp")}" src="${base(p)}${v}"></video></figure>`).join("\n");
   const big = (it) => hasFile(p, `${num(it.n)}-1280.webp`) ? `${base(p)}${num(it.n)}-1280.webp` : `${base(p)}${num(it.n)}-640.webp`;
-  const thumbs = imgs.map((it, k) => `<a class="pj-fig" data-k="img" href="${big(it)}" data-w="${it.w}" data-h="${it.h}"><img src="${base(p)}${num(it.n)}-640.webp" width="${it.w}" height="${it.h}" alt="${esc(p.name)} ${k + 1}" loading="lazy" decoding="async"></a>`).join("");
-  const main = (it, k, hide) => `<a class="pj-main"${hide ? " hidden" : ""} href="${big(it)}"><img src="${big(it)}" width="${it.w}" height="${it.h}" alt="${esc(p.name)} ${k + 1}" ${k === 0 && !hide && !vids.length && !p.drive && !(p.embeds || []).length ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"></a>`;
+  /* alt text says what and where: the project, its kind of work, and which of the set this is (a book is read as pages, not as pictures) */
+  const altImg = (k) => p.layout === "book" ? `صفحة ${k + 1} من ${imgs.length} في ملف ${p.name}` : `${p.name} (${p.category}): صورة ${k + 1} من ${imgs.length}`;
+  const thumbs = imgs.map((it, k) => `<a class="pj-fig" data-k="img" href="${big(it)}" data-w="${it.w}" data-h="${it.h}"><img src="${base(p)}${num(it.n)}-640.webp" width="${it.w}" height="${it.h}" alt="${esc(altImg(k))}" loading="lazy" decoding="async"></a>`).join("");
+  const main = (it, k, hide) => `<a class="pj-main"${hide ? " hidden" : ""} href="${big(it)}"><img src="${big(it)}" width="${it.w}" height="${it.h}" alt="${esc(altImg(k))}" ${k === 0 && !hide && !vids.length && !p.drive && !(p.embeds || []).length ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"></a>`;
   const book = p.layout === "book";
   /* a project with both pictures and clips shows them in one gallery: the clips come first, then the pictures */
   const mixed = imgs.length > 0 && (vids.length > 0 || (p.embeds || []).length > 0) && !p.drive && !p.media;
@@ -88,10 +90,10 @@ projects.forEach((p, i) => {
     const poster = `${base(p)}${v.replace(".mp4", "-poster.webp")}`, { w, h } = webpSize(join(root, poster));
     return { poster, src: `${base(p)}${v}`, w, h, k };
   };
-  const vthumbs = mixed ? vids.map(vitem).map((v) => `<a class="pj-fig pj-vf" data-k="video" href="${v.src}" data-video="${v.src}" data-poster="${v.poster}" data-w="${v.w}" data-h="${v.h}"><img src="${v.poster}" width="${v.w}" height="${v.h}" alt="${esc(p.name)} فيديو ${v.k + 1}" loading="lazy" decoding="async"><i class="pj-vplay" aria-hidden="true">▶</i></a>`).join("") : "";
+  const vthumbs = mixed ? vids.map(vitem).map((v) => `<a class="pj-fig pj-vf" data-k="video" href="${v.src}" data-video="${v.src}" data-poster="${v.poster}" data-w="${v.w}" data-h="${v.h}"><img src="${v.poster}" width="${v.w}" height="${v.h}" alt="${esc(`${p.name}: فيديو ${v.k + 1} من ${vids.length}`)}" loading="lazy" decoding="async"><i class="pj-vplay" aria-hidden="true">▶</i></a>`).join("") : "";
   /* Drive clips join the same gallery: the thumbnail shows in the strip, the player loads when it is picked */
   const ratio = p.embed_ratio ? [9, 16] : [16, 9];
-  const ethumbs = mixed ? (p.embeds || []).map((u, k) => `<a class="pj-fig pj-vf" data-k="video" href="${esc(u)}" data-embed="${driveEmbed(u)}" data-title="${esc(p.name)} ${k + 1}" data-poster="https://drive.google.com/thumbnail?id=${driveId(u)}&amp;sz=w640" data-w="${ratio[0] * 40}" data-h="${ratio[1] * 40}"><img src="https://drive.google.com/thumbnail?id=${driveId(u)}&amp;sz=w360" width="${ratio[0] * 40}" height="${ratio[1] * 40}" alt="${esc(p.name)} فيديو ${vids.length + k + 1}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()"><i class="pj-vplay" aria-hidden="true">▶</i></a>`).join("") : "";
+  const ethumbs = mixed ? (p.embeds || []).map((u, k) => `<a class="pj-fig pj-vf" data-k="video" href="${esc(u)}" data-embed="${driveEmbed(u)}" data-title="${esc(p.name)} ${k + 1}" data-poster="https://drive.google.com/thumbnail?id=${driveId(u)}&amp;sz=w640" data-w="${ratio[0] * 40}" data-h="${ratio[1] * 40}"><img src="https://drive.google.com/thumbnail?id=${driveId(u)}&amp;sz=w360" width="${ratio[0] * 40}" height="${ratio[1] * 40}" alt="${esc(`${p.name}: فيديو ${vids.length + k + 1} من ${vids.length + (p.embeds || []).length}`)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()"><i class="pj-vplay" aria-hidden="true">▶</i></a>`).join("") : "";
   /* a project with several kinds of Drive media (texts, clips) gets one gallery too, filtered by kind */
   const gmix = !!p.media && p.media.length > 1 && !p.drive && !(p.embeds || []).length && !vids.length;
   const gratio = (g) => (g.tall ? [9, 16] : g.key === "write" ? [3, 4] : [16, 9]);
