@@ -41,9 +41,9 @@
   function more(i){return '<span class="svc-l">ماذا تحصل عليه</span><ul class="svc-get">'+G[i].map(function(t){return '<li>'+t+'</li>'}).join('')+'</ul><a class="svc-o" href="contact.html?svc='+K[i]+'&amp;n='+encodeURIComponent(P[i][0])+'">اطلب الخدمة<i>←</i></a>'}
   function num(i){return (i<9?'0':'')+(i+1)}
   /* pick a service on one side, its card on the other */
-  function card(i){var s=SU[i];return '<article class="card pk svc open'+((s==='h'||s==='d')?' red':'')+'">'+PlayingCard.corners(R[i],s)+'<div class="body"><h4 aria-level="3">'+P[i][0]+'</h4><span class="rule"></span><p>'+P[i][1]+'</p>'+more(i)+'</div></article>'}
+  function card(i){var s=SU[i];return '<article class="card pk svc open'+((s==='h'||s==='d')?' red':'')+'">'+PlayingCard.corners(R[i],s)+'<div class="body"><h4 aria-level="2">'+P[i][0]+'</h4><span class="rule"></span><p>'+P[i][1]+'</p>'+more(i)+'</div></article>'}
   stack.className+=' sv-split';
-  stack.innerHTML='<div class="sv-tabs" role="tablist">'+P.map(function(p,i){return '<button type="button" role="tab" data-i="'+i+'" aria-selected="'+(i===0)+'"><span class="sol-n">'+num(i)+'</span>'+p[0]+'</button>'}).join('')+'</div><div class="sv-view"></div>';
+  stack.innerHTML='<div class="sv-tabs">'+P.map(function(p,i){return '<button type="button" data-i="'+i+'" aria-controls="sv-view" aria-expanded="'+(i===0)+'"><span class="sol-n">'+num(i)+'</span>'+p[0]+'</button>'}).join('')+'</div><div class="sv-view" id="sv-view"></div>';
   var view=stack.querySelector('.sv-view');
   var phone=window.matchMedia('(max-width:860px)'),cur=0;
   function show(i,still){cur=i;
@@ -55,7 +55,7 @@
       window.scrollBy(0,tabs[i].getBoundingClientRect().top-top); /* the old card closed above this row: keep the row where the finger is */
       view.classList.remove('opening');void view.offsetWidth;view.classList.add('opening');
     }
-    [].forEach.call(stack.querySelectorAll('.sv-tabs button'),function(b){b.setAttribute('aria-selected',+b.dataset.i===i)});
+    [].forEach.call(stack.querySelectorAll('.sv-tabs button'),function(b){b.setAttribute('aria-expanded',+b.dataset.i===i)});
   }
   view.addEventListener('animationend',function(){view.classList.remove('opening')}); /* overflow:hidden is only for the unfold; it would clip the card's shadow */
   phone.addEventListener('change',function(){show(cur)});
