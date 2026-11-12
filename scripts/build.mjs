@@ -73,6 +73,12 @@ const describe = (page) => {
   return cut(about.includes(p.name) ? about : `${p.name}: ${about}`);  /* the name keeps near-identical project texts distinct */
 };
 const pages = ["index.html", "pricing.html", "faq.html", "contact.html", "budget.html", "about.html", "privacy.html", "terms.html", "links.html", "services.html", "projects.html", ...readdirSync(root).filter((f) => f.startsWith("project-") && f.endsWith(".html"))];
+/* internal links point at the clean URL (/services, not /services.html): the host would 308 the .html form, one wasted round trip per click. Sources keep .html so the files still open from disk. */
+const pageNames = pages.map((p) => p.replace(/\.html$/, "")).join("|");
+const cleanHref = (n) => (n === "index" ? "/" : n);
+const cleanLinks = (s) => s
+  .replace(new RegExp(`(href|action)="(?:\\./)?(${pageNames})\\.html(?=[?#"])`, "g"), (_, a, n) => `${a}="${cleanHref(n)}`)
+  .replace(new RegExp(`(["'/])(${pageNames})\\.html(?=[?#"'])`, "g"), (_, q, n) => (q === "/" ? `/${n}` : `${q}${cleanHref(n)}`));
 for (const page of pages) {
   const name = page.startsWith("pricing") ? "pricing" : "site";
   let html = read(page);
@@ -91,7 +97,7 @@ for (const page of pages) {
       const { code } = await transform(read(f), { loader: "js", minify: true, target });
       parts.push(`try{${code}}catch(e){console.error(${JSON.stringify(f)},e)}`);
     }
-    const jsText = relink(parts.join("\n"), "assets/");  /* logo paths written inside the JS */
+    const jsText = cleanLinks(relink(parts.join("\n"), "assets/"));  /* logo paths written inside the JS */
     const jsName = `${name}.${hash(jsText)}.js`;
     writeFileSync(join(dist, "assets/js", jsName), jsText);
     html = html.replace(js.whole, `<script src="assets/js/${jsName}" defer></script>`);
@@ -126,7 +132,7 @@ for (const page of pages) {
   html = html.replace("</title>", "</title>" + tags);
   /* the charset declaration must sit within the first 1024 bytes; Arabic title + description would push it past that */
   if (/<meta charset="utf-8">/i.test(html)) html = html.replace(/<meta charset="utf-8">\n?/i, "").replace(/<head>\n?/, "<head>\n<meta charset=\"utf-8\">\n");
-  writeFileSync(join(dist, page), relink(html, "assets/"));
+  writeFileSync(join(dist, page), cleanLinks(relink(html, "assets/")));
 }
 
 /* sitemap lastmod: date of the last commit touching the page, or today for pages not committed yet */

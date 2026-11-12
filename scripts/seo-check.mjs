@@ -21,7 +21,10 @@ for (const page of pages) {
   if (h1 !== 1) bad(page, `${h1} <h1> (want 1)`);
   if (!/<main[\s>]/.test(html)) bad(page, "no <main>");
   for (const img of html.match(/<img\b[^>]*>/g) || []) if (!/\balt=/.test(img)) bad(page, "img without alt: " + img.slice(0, 80));
-  for (const [, href] of html.matchAll(/<a\b[^>]*\shref="([^"#?]+\.html)(?:[?#][^"]*)?"/g)) if (!existsSync(join(dist, href))) bad(page, "broken link " + href);
+  for (const [, href] of html.matchAll(/<a\b[^>]*\shref="([^"#?:]+)(?:[?#][^"]*)?"/g)) {
+    if (/\.html$/.test(href)) bad(page, "link with .html (the host redirects it): " + href);
+    else if (!href.includes("/") && !href.includes(".") && !existsSync(join(dist, href + ".html"))) bad(page, "broken link " + href);
+  }
   if (noindex && sitemap.includes(`/${page.replace(/\.html$/, "")}<`)) bad(page, "noindex page is in sitemap.xml");
 }
 for (const [t, p] of titles) if (p.length > 1) bad(p.join(", "), `same title "${t}"`);

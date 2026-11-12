@@ -16,7 +16,8 @@ const TYPES = {
 createServer((req, res) => {
   let path = normalize(decodeURIComponent(new URL(req.url, "http://x").pathname));
   if (path.endsWith("/")) path += "index.html";
-  const file = join(root, path);
+  let file = join(root, path);
+  if (!extname(path) && existsSync(file + ".html")) file += ".html";  /* hosts serve /services from services.html */
   if (!file.startsWith(root) || !existsSync(file) || !statSync(file).isFile()) {
     const page = join(root, "404.html");  /* hosts serve /404.html for missing paths; so does the preview */
     res.writeHead(404, { "Content-Type": existsSync(page) ? TYPES[".html"] : "text/plain; charset=utf-8" });
