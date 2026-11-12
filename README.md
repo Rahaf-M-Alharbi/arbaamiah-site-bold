@@ -79,7 +79,7 @@ Open the page, set `window.TAG='before'` in the console, paste `scripts/compare/
 Upload `dist/`. On Netlify or Cloudflare Pages, `_headers` sets the caching automatically. On another host, set: `/assets/*` → `Cache-Control: public, max-age=31536000, immutable`; HTML → `no-cache`; turn on brotli or gzip (precompressed copies are already there).
 
 ## Notes
-- **No `<!doctype>` on purpose.** The design was built in quirks mode; adding one shifts some heights by a few pixels.
+- **Standards mode (`<!doctype html>`).** The design was first built in quirks mode. Switching changed one thing on every page measured: the contact form lost the 16px bottom margin that browsers give a `<form>` in quirks mode only, so `.ctf-f` sets it explicitly. Everything else was compared element by element, before and after, at 1280 px and 375 px.
 - Checked in Chromium only (the desktop app's browser). Safari, Firefox and real phones still to check.
 
 ## SEO: what is in place and how it works

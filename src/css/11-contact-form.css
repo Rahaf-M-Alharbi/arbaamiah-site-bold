@@ -7,6 +7,8 @@
 .ctf-t h1{margin:0;font:700 clamp(38px,5.4vw,84px)/1.15 var(--f-disp);text-wrap:balance}
 .ctf-t p{margin:0;max-width:30ch;font:500 clamp(15px,1.3vw,18px)/1.9 var(--f-body);opacity:.75}
 .ctf-f{display:grid;gap:clamp(28px,5vh,48px) clamp(20px,3vw,40px)}
+/* browsers give a <form> a 16px bottom margin in quirks mode only; kept so the footer sits where it always did */
+.ctf-f{margin-bottom:16px}
 .ctf-l{display:grid;gap:10px}
 .ctf-w,.ctf-c,.ctf-a{grid-column:1/-1}
 .ctf-l span,.ctf-c legend{font:700 13px/1.4 var(--f-body);opacity:.7}
