@@ -70,7 +70,7 @@ const describe = (page) => {
   const p = (Array.isArray(projects) ? projects : projects.projects).find((x) => `project-${x.slug}.html` === page);
   if (!p) return "";
   const about = p.about && p.about.length >= 30 ? p.about : `${p.category}، من أعمال أربعمية.`;
-  return cut(about.includes(p.name) ? about : `${p.name}: ${about}`);  /* the name keeps near-identical project texts distinct */
+  return cut(`${p.category} في السعودية. ${about.includes(p.name) ? about : `${p.name}: ${about}`}`, 160);  /* the name keeps near-identical project texts distinct */
 };
 const pages = ["index.html", "pricing.html", "faq.html", "contact.html", "budget.html", "about.html", "privacy.html", "terms.html", "links.html", "services.html", "projects.html", ...readdirSync(root).filter((f) => f.startsWith("project-") && f.endsWith(".html"))];
 /* internal links point at the clean URL (/services, not /services.html): the host would 308 the .html form, one wasted round trip per click. Sources keep .html so the files still open from disk. */
@@ -121,7 +121,7 @@ for (const page of pages) {
     const faq = page === "faq.html" ? [...html.matchAll(/<details[^>]*><summary>(.*?)<\/summary><div class="a"><div>(.*?)<\/div><\/div><\/details>/g)].map(([, q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a.replace(/<[^>]+>/g, "") } })) : [];
     const project = page.startsWith("project-") ? (Array.isArray(projects) ? projects : projects.projects).find((x) => `project-${x.slug}.html` === page) : null;
     const ld = page === "index.html"
-      ? { "@context": ctx, "@type": ["Organization", "ProfessionalService"], name: "أربعمية", alternateName: "Arbaamiah", url: siteUrl + "/", logo: `${siteUrl}/assets/${map["img/logo-symbol.svg"]}`, email: "arbaamia.sa@gmail.com", areaServed: { "@type": "Country", name: "المملكة العربية السعودية" }, availableLanguage: "ar", serviceType: ["كتابة المحتوى", "الاستراتيجيات التسويقية", "التصميم الإبداعي", "الهوية البصرية", "التصوير", "التعليق الصوتي", "الإعلانات", "تطوير المواقع"], sameAs: site.sameAs, ...(desc && { description: desc }) }
+      ? { "@context": ctx, "@type": ["Organization", "ProfessionalService"], name: "أربعمية", alternateName: "Arbaamiah", url: siteUrl + "/", logo: `${siteUrl}/assets/${map["img/logo-symbol.svg"]}`, email: "arbaamia.sa@gmail.com", areaServed: { "@type": "Country", name: "المملكة العربية السعودية" }, availableLanguage: "ar", serviceType: ["وكالة تسويق في السعودية", "كتابة محتوى تسويقي في السعودية", "استراتيجية تسويقية في السعودية", "تصميم هوية بصرية في السعودية", "تصميم إبداعي في السعودية", "تصوير منتجات في السعودية", "تعليق صوتي في السعودية", "إدارة حملات إعلانية في السعودية", "تطوير مواقع في السعودية"], knowsAbout: ["تسويق إبداعي", "كتابة المحتوى", "الهوية البصرية", "التعليق الصوتي", "الإعلانات الرقمية", "تطوير المواقع", "صناعة المحتوى"], sameAs: site.sameAs, ...(desc && { description: desc }) }
       : page.startsWith("project-") ? { "@context": ctx, "@graph": [
           crumbs([["الرئيسية", "/"], ["مشاريعنا", "/projects"], [title.replace(/ \| أربعمية$/, ""), cleanPath(page)]]),
           ...(project ? [{ "@type": "CreativeWork", name: project.name, genre: project.category, url: siteUrl + cleanPath(page), inLanguage: "ar", creator: { "@type": "Organization", name: "أربعمية", url: siteUrl + "/" }, ...(desc && { description: desc }) }] : [])] }

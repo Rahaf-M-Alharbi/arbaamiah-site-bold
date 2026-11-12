@@ -126,7 +126,7 @@ projects.forEach((p, i) => {
   const tags = p.tags || kinds.length === 1 ? `<ul class="pj-tags">${(p.tags || [...(mixed ? [vidLabel] : []), ...kinds.map(([, t]) => t)]).map((t, j) => mixed && !p.tags ? `<li><button type="button" data-f="${j === 0 ? "video" : "img"}" aria-pressed="false">${t}</button></li>` : `<li>${t}</li>`).join("")}</ul>` : "";
   const tagsG = gmix ? `<ul class="pj-tags">${p.media.map((g) => `<li><button type="button" data-f="${g.key}" aria-pressed="false">${g.label}</button></li>`).join("")}</ul>` : "";
   const stats = [...secs.filter((x) => x.count > 1).map((x) => [x.count, p.media ? x.label : tall && !p.vid_label ? "مقطع UGC" : "مقطع"]), imgs.length > 1 && [imgs.length, book ? "صفحة" : "تصميم"]].filter(Boolean);
-  writeFileSync(join(root, `project-${p.slug}.html`), page(`${p.name}: ${p.category} | أربعمية`, `<main class="pj pj-page" lang="ar" dir="rtl" aria-label="${esc(p.name)}">
+  writeFileSync(join(root, `project-${p.slug}.html`), page(`${p.name}: ${p.category} في السعودية | أربعمية`, `<main class="pj pj-page" lang="ar" dir="rtl" aria-label="${esc(p.name)}">
   <a class="pj-back" href="projects.html">→ كل الأعمال</a>
   <div class="pj-hero">
     <div class="pj-ht">
@@ -162,7 +162,7 @@ const slide = (p, k) => {
 };
 const stars = projects.filter((p) => p.top && p.folder);
 const slides = stars.length ? `<section class="pj-show" aria-roledescription="carousel" aria-label="أبرز أعمالنا"><div class="pj-slides">${stars.map(slide).join("")}</div><div class="pj-ctl" hidden><button class="pj-sl-n" type="button" dir="ltr" data-d="-1" aria-label="السابق">›</button><span class="pj-dots">${stars.map((p, k) => `<button type="button" aria-label="${esc(p.name)}"${k === 0 ? ' aria-current="true"' : ""}></button>`).join("")}</span><button class="pj-sl-n" type="button" dir="ltr" data-d="1" aria-label="التالي">‹</button></div></section>` : "";
-writeFileSync(join(root, "projects.html"), page("مشاريعنا | أربعمية", `<main class="pj pj-page" lang="ar" dir="rtl" aria-label="مشاريعنا">
+writeFileSync(join(root, "projects.html"), page("أعمال أربعمية في السعودية: هويات بصرية وتصميم ومحتوى | أربعمية", `<main class="pj pj-page" lang="ar" dir="rtl" aria-label="مشاريعنا">
   <div class="pj-hero pj-hero-1"><div class="pj-ht"><span class="eb pj-e">♦︎ مشاريعنا</span><h1>علامـات كبـرت معنـا</h1></div></div>
 ${slides}
   <div class="pj-chips" role="group" aria-label="نوع العمل" hidden>${[["all", "الكل"], ...kinds.filter(([k]) => projects.some((p) => kindsOf(p).includes(k)))].map(([k, t], j) => `<button type="button" data-k="${k}" aria-pressed="${j === 0}">${t}</button>`).join("")}</div>
