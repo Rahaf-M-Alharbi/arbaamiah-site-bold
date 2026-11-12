@@ -9,13 +9,12 @@
 document.documentElement.className+=' js';setTimeout(function(){var d=document.getElementById('wkDeck');if(!d||!/\bready\b/.test(d.className))document.documentElement.className=document.documentElement.className.replace(/\s?\bjs\b/,'')},5000);</script>
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="preload" href="assets/img/velvet.avif" as="image" type="image/avif">
-<!-- the five font files the page actually renders with; preloading starts them alongside the CSS instead of after it -->
+<link rel="preload" href="assets/img/velvet-m.avif" as="image" type="image/avif" media="(max-width:700px)" fetchpriority="low">
+<link rel="preload" href="assets/img/velvet.avif" as="image" type="image/avif" media="(min-width:701px)" fetchpriority="low">
+<!-- only the three faces the hero paints with (and the loader waits for); each is about 80 KB, and preloading more of them made the headline wait behind fonts it does not use -->
 <link rel="preload" href="assets/fonts/thmanyahserifdisplay-Bold.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/thmanyahsans-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/thmanyahsans-Medium.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/thmanyahsans-Bold.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/thmanyahserifdisplay-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <!-- css:start (order matters: later files override earlier ones; build concatenates them) -->
 <link rel="stylesheet" href="src/css/00-fonts.css">
 <link rel="stylesheet" href="src/css/01-hero-and-nav.css">

@@ -7,6 +7,8 @@
 }
 /* same velvet photo as AVIF (half the bytes); browsers without AVIF in image-set() keep the JPEG above */
 @supports (background-image:image-set(url(x.avif) type("image/avif"))){:root{--tex:image-set(url(../../assets/img/velvet.avif) type("image/avif"),url(../../assets/img/velvet.jpg) type("image/jpeg"))}}
+/* phones: a 750 px AVIF (44 KB instead of 125 KB); the wine wash over the velvet hides the difference. The page <head> preloads the matching file with the same media query. */
+@media (max-width:700px){@supports (background-image:image-set(url(x.avif) type("image/avif"))){:root{--tex:image-set(url(../../assets/img/velvet-m.avif) type("image/avif"),url(../../assets/img/velvet.jpg) type("image/jpeg"))}}}
 *{box-sizing:border-box}
 html,body{margin:0}
 body{color:var(--cream);font-family:var(--f-body);direction:rtl}

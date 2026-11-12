@@ -46,12 +46,12 @@
   stack.innerHTML='<div class="sv-tabs" role="tablist">'+P.map(function(p,i){return '<button type="button" role="tab" data-i="'+i+'" aria-selected="'+(i===0)+'"><span class="sol-n">'+num(i)+'</span>'+p[0]+'</button>'}).join('')+'</div><div class="sv-view"></div>';
   var view=stack.querySelector('.sv-view');
   var phone=window.matchMedia('(max-width:860px)'),cur=0;
-  function show(i){cur=i;
+  function show(i,still){cur=i;
     view.innerHTML=card(i);
     var tabs=stack.querySelectorAll('.sv-tabs button');
     var top=tabs[i].getBoundingClientRect().top;
     if(phone.matches)tabs[i].after(view);else stack.appendChild(view);
-    if(phone.matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
+    if(!still&&phone.matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
       window.scrollBy(0,tabs[i].getBoundingClientRect().top-top); /* the old card closed above this row: keep the row where the finger is */
       view.classList.remove('opening');void view.offsetWidth;view.classList.add('opening');
     }
@@ -60,5 +60,5 @@
   view.addEventListener('animationend',function(){view.classList.remove('opening')}); /* overflow:hidden is only for the unfold; it would clip the card's shadow */
   phone.addEventListener('change',function(){show(cur)});
   stack.querySelector('.sv-tabs').addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button');if(b)show(+b.dataset.i)});
-  show(0);
+  show(0,true); /* first draw has no unfold: the card is the page's largest content, and the 0.45 s fade-in from opacity 0 delayed it */
 })();
