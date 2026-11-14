@@ -1,0 +1,15 @@
+/* Soft motion for visitors who turned on "Reduce motion" in their phone or computer settings. Nothing here applies to anyone else.
+   Policy: keep the feeling, drop the movement. Things that slide, flip, rotate, bounce or drop change state at once instead of
+   travelling there; colour, shadow and opacity changes still ease, so the page still answers hover and taps and fades content in.
+   Loaded last, with !important, because the per-component reduce-motion rules were being overridden by later, more specific
+   transitions (found by switching them all on in the browser and listing what still moved). A new component that moves
+   belongs in the list below. Pages with keyframe animations already stop them in their own files. */
+@media (prefers-reduced-motion:reduce){
+  .flipbtn,.flipbtn::before,.flipbtn::after,.fb-in,                  /* brand buttons: no flip, colours still ease */
+  .links a,.links a::after,.mini,.mini nav a,.mini nav a::after,.mini-m,.mini-m i,.skip,   /* navigation and link underlines */
+  .slot,.stt-i,.wc .go,.cst-q,                                       /* hero cards, stats, work cards, client stories: fade, no fly-in */
+  .xp9-top,.xp9-stage,.xp9-deck,.xp9-out,                            /* "pull a card" deck */
+  .ctf-l input,.ctf-l textarea,                                      /* contact form fields */
+  .svc-o,.svc-o i,.pj-order i,.pj-play,.pj-img img,.cu-c i           /* service arrows, project media, cursor card */
+  {transition-property:opacity,color,background-color,border-color,box-shadow,visibility!important}
+}

@@ -1,6 +1,6 @@
 // Design-system guard: fails when new work bypasses the shared tokens and components instead of reusing them.
 // Runs as part of `npm run check` (and so in CI before every deploy). Usage: node scripts/design-check.mjs
-//  1. every page (except the stand-alone pricing.html) loads src/css/00-tokens.css first, and only stylesheets that exist
+//  1. every page (except the stand-alone pricing.html) loads src/css/00-tokens.css first and src/css/50-reduced-motion.css last, and only stylesheets that exist
 //  2. tokens are defined only in 00-tokens.css: no other file declares a custom property on :root
 //  3. no stylesheet writes a colour that already has a token (write var(--wine), not #6c171e)
 //  4. no stylesheet introduces a new raw colour: add it to 00-tokens.css, or, for a true one-off, to ONE_OFF below with a reason
@@ -48,6 +48,7 @@ for (const page of pages) {
   if (!block) { fail(page, "no <!-- css:start --> … <!-- css:end --> block; start new pages from faq.html"); continue; }
   const sheets = [...block[0].matchAll(/href="([^"]+\.css)"/g)].map((m) => m[1]);
   if (sheets[0] !== "src/css/00-tokens.css") fail(page, `first stylesheet must be src/css/00-tokens.css (found ${sheets[0] || "none"})`);
+  if (sheets.at(-1) !== "src/css/50-reduced-motion.css") fail(page, `last stylesheet must be src/css/50-reduced-motion.css, so "Reduce motion" visitors get soft motion (found ${sheets.at(-1) || "none"})`);
   for (const s of sheets) if (!existsSync(join(root, s))) fail(page, `links a stylesheet that does not exist: ${s}`);
 }
 

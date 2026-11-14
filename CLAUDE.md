@@ -27,8 +27,11 @@ General engineering rules are in @AGENTS.md. This file is the project's own rule
 
 Page sections are still page-specific (`.ab-*` on about, `.pj-*` on projects, …). For a new section, first copy the pattern of the closest existing one. When a section pattern is needed on a second page, move it into a shared component file instead of copying it again. `src/css/19-components.css` also defines `.sec` (grounds `--paper --beige --wine --red --velvet`) and `.tag`, which no page uses yet: check them visually against the bold look before adopting them.
 
+## Motion
+Keep the motion, but respect "Reduce motion" (phone/computer setting): those visitors get the same page with no sliding, flipping, rotating or bouncing; fades and colour changes stay. `src/css/50-reduced-motion.css` (loaded last on every page) holds the shared rule: **any new component that moves goes into its list.** Keyframe animations stop in their own file under `@media (prefers-reduced-motion:reduce)`; scripts check `matchMedia('(prefers-reduced-motion:reduce)')` before animating, as `15-pull-card.js` does.
+
 ## Adding a page
-1. Copy `faq.html` (head, preloads and the `css:start…css:end` list, which starts with `00-tokens.css`). Change title, description and body.
+1. Copy `faq.html` (head, preloads and the `css:start…css:end` list, which starts with `00-tokens.css` and ends with `50-reduced-motion.css`). Change title, description and body.
 2. Page-only styles go in one new numbered file at the end of the CSS list, using tokens and existing components.
 3. Add the page to the `pages` list in `scripts/build.mjs` and its description to `src/data/site.json`.
 4. Run `node scripts/sync-nav.mjs` (nav, footer, CTA) and `npm run check`.
