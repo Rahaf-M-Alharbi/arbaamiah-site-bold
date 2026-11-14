@@ -16,12 +16,29 @@
 .frame .tr{right:-10px;top:-10px}
 .frame .bl{left:-10px;bottom:-10px}
 .frame .br{right:-10px;bottom:-10px}
-.tag{display:inline-flex;align-items:center;gap:8px;margin-bottom:var(--cmp-mb);padding:8px 16px;border:1px solid currentColor;border-radius:99px;font:600 13px/1 var(--f-body);white-space:nowrap;color:inherit;background:transparent}
+.tag{display:inline-flex;align-items:center;gap:8px;margin-bottom:var(--cmp-mb);padding:8px 16px;border:1px solid currentColor;border-radius:var(--radius-pill);font:600 13px/1 var(--f-body);white-space:nowrap;color:inherit;background:transparent}
 .tag svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
 .wc .tag{margin-bottom:0}
 .mini .cta{box-shadow:none}
 /* skip link: off-screen until a keyboard user focuses it */
-.skip{position:fixed;top:-80px;inset-inline-start:12px;z-index:100000;padding:10px 18px;border-radius:10px;background:var(--cream);color:var(--wine);font:700 16px/1.4 var(--f-body,inherit);text-decoration:none;transition:top .2s}
+.skip{position:fixed;top:-80px;inset-inline-start:12px;z-index:100000;padding:10px 18px;border-radius:var(--radius-10);background:var(--cream);color:var(--wine);font:700 16px/1.4 var(--f-body,inherit);text-decoration:none;transition:top .2s}
 .skip:focus{top:12px;outline:3px solid var(--wine);outline-offset:2px}
 /* plain-HTML copy of the services: invisible once the script draws the cards, readable without it */
 .js .svc-fb{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* button: the bold press button. Thick ink outline and a hard offset shadow; on hover and keyboard focus it presses into its shadow.
+     <a class="btn btn--cream" href="…">…</a>   <button type="button" class="btn btn--wine">…</button>
+   colour (pick one): .btn--wine  wine, cream text      .btn--cream  cream, wine text      .btn--light  pale cream, ink text, flat (no shadow, no press)
+   size/shape (optional): .btn--lg  bigger shadow and press      .btn--pill  pill shape, thinner outline
+   Padding, font and layout belong to the place that uses the button; the look comes from here. To tune one use, set the variables
+   --btn-bg --btn-fg --btn-sh (resting shadow) --btn-hover (hover transform) --btn-sh-hover on it, as .lk on the links page does.
+   .flipbtn (23-…, 33-…) is the other button: the brand call to action with the flip animation. */
+.btn{--btn-sh:var(--shadow-5);--btn-hover:translate(3px,3px);--btn-sh-hover:var(--shadow-2);border:var(--border-4);border-radius:var(--radius-14);background:var(--btn-bg);color:var(--btn-fg);box-shadow:var(--btn-sh);text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover,.btn:focus-visible{transform:var(--btn-hover);box-shadow:var(--btn-sh-hover)}
+.btn--wine{--btn-bg:var(--wine);--btn-fg:var(--cream)}
+.btn--cream{--btn-bg:var(--cream);--btn-fg:var(--wine)}
+.btn--light{--btn-bg:var(--cream-10);--btn-fg:var(--ink-900);--btn-sh:none;--btn-hover:none;--btn-sh-hover:none}
+.btn--lg{--btn-sh:var(--shadow-7);--btn-hover:translate(4px,4px);--btn-sh-hover:var(--shadow-3)}
+.btn--pill{border:var(--border-3);border-radius:var(--radius-pill)}
+.btn:disabled{opacity:.45;cursor:not-allowed;--btn-hover:none;--btn-sh-hover:var(--btn-sh)}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}

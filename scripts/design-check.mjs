@@ -7,6 +7,7 @@
 //  5. fonts come from the tokens (var(--f-disp) / var(--f-body)); @font-face lives only in 00-fonts.css
 //  6. no colour hex in inline style="" attributes of pages or partials
 //  7. every page is in the build list (scripts/build.mjs), so it is deployed
+//  8. the bold look comes from tokens: an ink outline, hard ink shadow, border-radius or easing curve that has a token is written as var(--…)
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -25,6 +26,17 @@ const ONE_OFF = new Set(["#fff", "#000", "#154a3b", "#1a0605", "#1a0d0a", "#1d1a
 const tokensCss = read("src/css/00-tokens.css");
 const tokenByHex = {};
 for (const m of tokensCss.matchAll(/--([a-z0-9-]+)\s*:\s*(#[0-9a-fA-F]{3,8})\b/g)) tokenByHex[m[2].toLowerCase()] ??= m[1];
+
+/* the bold-look tokens (--border-*, --shadow-*, --radius-*, --ease*): literal value → name, so "border-radius:14px" can be pointed at var(--radius-14) */
+const lookToken = {};
+for (const m of tokensCss.matchAll(/--((?:border|shadow|radius|ease)[a-z0-9-]*)\s*:\s*([^;]+);/g)) lookToken[m[2].trim()] = m[1];
+const END = "(?=\\s*(?:[;},]|!important))";
+const LOOK = [
+  [new RegExp("(?<=[:,]\\s*)\\d+px \\d+px 0 var\\(--ink-900\\)" + END, "g"), "shadow"],
+  [new RegExp("(?<=\\bborder(?:-[a-z-]+)?:\\s*)\\d+px solid var\\(--ink-900\\)" + END, "g"), "outline"],
+  [new RegExp("(?<=\\bborder-radius:\\s*)\\d+(?:px|%)" + END, "g"), "radius"],
+  [/cubic-bezier\([^)]*\)/g, "easing"],
+];
 
 /* 1. pages */
 const pages = readdirSync(root).filter((f) => f.endsWith(".html") && f !== "pricing.html");
@@ -49,6 +61,7 @@ for (const f of cssFiles) {
     if (tokenByHex[hex]) fail(at, `${m[0]} is a token: write var(--${tokenByHex[hex]})`);
     else if (!ONE_OFF.has(hex) && /^#([0-9a-f]{3}|[0-9a-f]{6})$/.test(hex)) fail(at, `new raw colour ${m[0]}: add a token to src/css/00-tokens.css (or a reasoned entry in ONE_OFF in scripts/design-check.mjs)`);
   }
+  for (const [re, what] of LOOK) for (const m of css.matchAll(re)) if (lookToken[m[0]]) fail(`${file}:${lineOf(css, m.index)}`, `${what} ${m[0]} is a token: write var(--${lookToken[m[0]]})`);
   if (f !== "00-fonts.css") {
     if (/@font-face/.test(css)) fail(file, "@font-face belongs in src/css/00-fonts.css");
     for (const m of css.matchAll(/font(?:-family)?\s*:[^;}]*['"](Thmanyah[^'"]*|IBM Plex[^'"]*)['"]/g)) fail(`${file}:${lineOf(css, m.index)}`, `font named directly ('${m[1]}'): use var(--f-disp) or var(--f-body)`);

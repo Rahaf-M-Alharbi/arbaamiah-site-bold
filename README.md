@@ -15,6 +15,7 @@ Node 20 or newer.
 | `npm test` | budget calculator rules: the reference budgets from the brief plus every combination of answers, checked against the rules in `src/js/44-budget-engine.js` |
 | `node scripts/sync-nav.mjs` | writes the shared navigation bar (`src/partials/nav.html`), closing pull-a-card section (`src/partials/cta-pull.html`) and footer (`src/partials/footer.html`) into every page; run it after editing a partial |
 | `node scripts/sync-services.mjs` | writes the service texts (kept in `src/js/05-services-panels.js`) as plain HTML into services and home, so crawlers and no-JS visitors see them; run after editing those texts |
+| `node scripts/sync-faq.mjs` | writes the FAQ questions from `src/data/faq.json` into `faq.html` (all) and `index.html` (the short list); run after editing the JSON |
 | `node scripts/design-check.mjs` | design-system guard (also part of `npm run check` and CI): pages load `00-tokens.css` first, no raw brand colours or font names, tokens only in `00-tokens.css`, every page in the build list. Rules for new work: `CLAUDE.md` |
 | `node scripts/unused-css.mjs` | lists CSS that can never apply (`--fix` removes it) |
 | `node scripts/overridden-css.mjs` | lists declarations a later rule always replaces (`--fix` removes them) |

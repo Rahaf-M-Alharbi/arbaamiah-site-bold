@@ -28,21 +28,3 @@
 .pr{position:relative;background:var(--wine-950);color:var(--cream);padding:clamp(60px,11vh,120px) max(16px,env(safe-area-inset-left,0px)) clamp(60px,11vh,120px) max(16px,env(safe-area-inset-right,0px))}
 .pr-in{max-width:1180px;margin:0 auto;display:grid;gap:clamp(24px,4vh,44px)}
 .pr-h{margin:0;font:700 clamp(32px,5vw,64px)/1.15 var(--f-disp);text-wrap:balance}
-/* faq: cream accordion, one suit per row */
-.fq{position:relative;background:#efe6d6;color:#1f1814;padding:clamp(70px,12vh,130px) max(16px,env(safe-area-inset-left,0px)) clamp(70px,12vh,130px) max(16px,env(safe-area-inset-right,0px))}
-.fq-in{max-width:860px;margin:0 auto;display:grid;gap:clamp(24px,4vh,44px)}
-.fq-in h2,
-.fq-in h1{margin:0;font:700 clamp(36px,6vw,80px)/1.05 var(--f-disp);text-wrap:balance}
-.fq-l{border-top:1px solid #1f1814}
-.fq details{border-bottom:1px solid #1f1814}
-.fq summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:20px 0;font:700 clamp(17px,2vw,24px)/1.5 var(--f-body)}
-.fq summary::-webkit-details-marker{display:none}
-.fq summary i{font-style:normal;font-size:1.3em;width:1.2em;text-align:center;flex:none}
-.fq summary::after{content:"+";margin-inline-start:auto;font:400 28px/1 var(--f-disp);transition:transform .3s}
-.fq details[open] summary::after{transform:rotate(45deg)}
-.fq summary:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
-.fq .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
-.fq details[open] .a{grid-template-rows:1fr}
-.fq .a>div{overflow:hidden}
-.fq .a p{margin:0;padding:0 calc(1.2em*1.3 + 16px) 22px 0;font:500 clamp(14px,1.3vw,17px)/1.9 var(--f-body);opacity:.8}
-@media (prefers-reduced-motion:reduce){.fq .a,.fq summary::after{transition:none}}

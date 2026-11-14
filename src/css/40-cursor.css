@@ -9,7 +9,7 @@ html.cur[class] [data-cur] button:disabled{cursor:wait}
 /* the card: 34x48, at the pointer */
 .cu-c{width:34px;height:48px;margin:-6px 0 0 -6px;perspective:220px}
 .cu-c .t{position:absolute;inset:0;transform-origin:50% 0;transform-style:preserve-3d;transition:transform .12s linear}
-.cu-c i{position:absolute;inset:0;display:grid;place-items:center;border:3px solid var(--ink-900);border-radius:6px;box-shadow:3px 3px 0 var(--ink-900);font:normal 700 20px/1 var(--f-disp);backface-visibility:hidden;transition:transform .5s cubic-bezier(.3,1.25,.5,1)}
+.cu-c i{position:absolute;inset:0;display:grid;place-items:center;border:var(--border-3);border-radius:var(--radius-6);box-shadow:var(--shadow-3);font:normal 700 20px/1 var(--f-disp);backface-visibility:hidden;transition:transform .5s cubic-bezier(.3,1.25,.5,1)}
 .cu-c .b{background:var(--green);color:var(--cream)}
 .cu-c .f{background:var(--cream);color:var(--wine);transform:rotateY(180deg)}
 .cu-c.hot .b{transform:rotateY(-180deg)}

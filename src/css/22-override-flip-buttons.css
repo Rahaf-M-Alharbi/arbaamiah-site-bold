@@ -1,7 +1,7 @@
 /* flip button: one component, rectangular, icon first; .fb--line is the outlined nav variant */
-.flipbtn,.links a.cta.flipbtn,.mini a.cta.flipbtn{padding:0;border:0;background:none;box-shadow:none;border-radius:6px;perspective:800px;display:inline-block;justify-self:start;text-decoration:none}
+.flipbtn,.links a.cta.flipbtn,.mini a.cta.flipbtn{padding:0;border:0;background:none;box-shadow:none;border-radius:var(--radius-6);perspective:800px;display:inline-block;justify-self:start;text-decoration:none}
 .fb-in{display:grid;transform-style:preserve-3d;transition:transform .3s cubic-bezier(.4,.1,.25,1)}
-.fb-f,.fb-b{grid-area:1/1;display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:18px 40px;border-radius:6px;font:400 16px/1 var(--f-body);white-space:nowrap;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.fb-f,.fb-b{grid-area:1/1;display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:18px 40px;border-radius:var(--radius-6);font:400 16px/1 var(--f-body);white-space:nowrap;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .fb-f i,.fb-b i{font-style:normal;font-size:1.1em}
 .fb-f{background:var(--cream);color:#1a0605}
 .fb-b{background:var(--cream);color:var(--wine-950);transform:rotateX(180deg)}
@@ -19,7 +19,7 @@ button.flipbtn{font:inherit;cursor:pointer;color:inherit}
 .links .fb--line .fb-f,.mini .fb--line .fb-f{box-shadow:none}
 .links .fb--line .fb-b>*,.mini .fb--line .fb-b>*{color:inherit}
 .links a:not(.flipbtn),.mini nav a:not(.flipbtn){position:relative;padding-block:6px}
-.links a:not(.flipbtn)::after,.mini nav a:not(.flipbtn)::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left center;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.links a:not(.flipbtn)::after,.mini nav a:not(.flipbtn)::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left center;transition:transform .4s var(--ease-out)}
 .links a:not(.flipbtn):hover::after,.links a:not(.flipbtn):focus-visible::after,.mini nav a:not(.flipbtn):hover::after,.mini nav a:not(.flipbtn):focus-visible::after{transform:scaleX(1);transform-origin:right center}
 .links a:not(.flipbtn):hover{transform:none}
 @media (prefers-reduced-motion:reduce){.links a::after,.mini nav a::after{transition:none}}

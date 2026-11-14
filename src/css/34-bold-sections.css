@@ -1,21 +1,17 @@
 /* Bold look carried over to the rest of the page: the same thick ink border + hard offset shadow as the cards and the call-to-action buttons. Services panels, work cards, FAQ rows, contact form (panel, fields, chips) and the carousel arrows. */
-.deck .stack .pnl{border:4px solid var(--ink-900);border-radius:14px;box-shadow:10px 10px 0 var(--ink-900)}
-.wk-deck .wc{box-sizing:border-box;border:4px solid var(--ink-900);box-shadow:8px 8px 0 var(--ink-900)}
-.wk-deck .wc.top{box-shadow:8px 8px 0 var(--ink-900)}
-.wk-ctl button,.cst-ctl button{border:3px solid var(--ink-900);background:var(--cream);color:var(--wine);box-shadow:4px 4px 0 var(--ink-900);transition:transform .15s,box-shadow .15s,background .15s}
-.wk-ctl button:hover,.cst-ctl button:hover{background:var(--cream);color:var(--wine);transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink-900)}
-.fq .fq-l{display:grid;gap:clamp(18px,3vh,28px)}
-.fq .fq-l details,.fq .fq-l details:first-child{border:4px solid var(--ink-900);border-radius:14px;background:var(--cream);color:var(--ink-900);box-shadow:8px 8px 0 var(--ink-900);padding-inline:clamp(20px,3vw,40px)}
-.fq .fq-l summary{padding-block:clamp(22px,3.4vh,34px)}
-.fq .fq-l .a p{padding-bottom:clamp(22px,3.4vh,34px)}
-.ctf-f{box-sizing:border-box;padding:clamp(24px,3.4vw,44px);border:4px solid var(--ink-900);border-radius:14px;box-shadow:10px 10px 0 var(--ink-900)}
-.ctf-l input,.ctf-l textarea{box-sizing:border-box;border:3px solid var(--ink-900);border-radius:10px;padding:12px 16px;background:rgba(255,255,255,.4);transition:box-shadow .15s}
+.deck .stack .pnl{border:var(--border-4);border-radius:var(--radius-14);box-shadow:var(--shadow-10)}
+.wk-deck .wc{box-sizing:border-box;border:var(--border-4);box-shadow:var(--shadow-8)}
+.wk-deck .wc.top{box-shadow:var(--shadow-8)}
+.wk-ctl button,.cst-ctl button{border:var(--border-3);background:var(--cream);color:var(--wine);box-shadow:var(--shadow-4);transition:transform .15s,box-shadow .15s,background .15s}
+.wk-ctl button:hover,.cst-ctl button:hover{background:var(--cream);color:var(--wine);transform:translate(3px,3px);box-shadow:var(--shadow-1)}
+.ctf-f{box-sizing:border-box;padding:clamp(24px,3.4vw,44px);border:var(--border-4);border-radius:var(--radius-14);box-shadow:var(--shadow-10)}
+.ctf-l input,.ctf-l textarea{box-sizing:border-box;border:var(--border-3);border-radius:var(--radius-10);padding:12px 16px;background:rgba(255,255,255,.4);transition:box-shadow .15s}
 .ctf-f .ctf-l input,.ctf-f .ctf-l textarea,.ctf-f .ctf-l input[aria-invalid="true"]{border-color:var(--ink-900)}
-.ctf-l input:focus,.ctf-l textarea:focus,.ctf-f .ctf-l input:focus,.ctf-f .ctf-l textarea:focus{border-color:var(--ink-900);box-shadow:4px 4px 0 var(--ink-900)}
-.ctf-c span{border:3px solid var(--ink-900);box-shadow:4px 4px 0 var(--ink-900)}
+.ctf-l input:focus,.ctf-l textarea:focus,.ctf-f .ctf-l input:focus,.ctf-f .ctf-l textarea:focus{border-color:var(--ink-900);box-shadow:var(--shadow-4)}
+.ctf-c span{border:var(--border-3);box-shadow:var(--shadow-4)}
 .ctf-c input:checked+span{border-color:var(--ink-900);background:var(--wine);color:var(--cream)}
 .ctf-c input:checked+span i.r{color:var(--cream)}
-@media (max-width:640px){.deck .stack .pnl,.fq .fq-l details,.ctf-f{box-shadow:6px 6px 0 var(--ink-900)}.wk-deck .wc{box-shadow:5px 5px 0 var(--ink-900)}}
+@media (max-width:640px){.deck .stack .pnl,.ctf-f{box-shadow:var(--shadow-6)}.wk-deck .wc{box-shadow:var(--shadow-5)}}
 @media (prefers-reduced-motion:reduce){.wk-ctl button,.cst-ctl button,.ctf-l input,.ctf-l textarea{transition:none}}
 
 /* hero title: hard ink shadow instead of the soft wine ghost layer */
@@ -35,18 +31,18 @@
 .ctf-f .ctf-l span,.ctf-f .ctf-c legend{font:700 clamp(17px,1.4vw,21px)/1.4 var(--f-body);opacity:1;color:var(--wine-950)}
 .ctf-f .ctf-l span em{font-size:.78em;font-weight:500;opacity:.65}
 .ctf-f .ctf-c legend{margin-bottom:16px}
-.ctf-f .ctf-l input,.ctf-f .ctf-l textarea{padding:15px 18px;border-radius:12px;background:#fffaf2;font-size:clamp(17px,1.4vw,20px);box-shadow:4px 4px 0 rgba(23,18,15,.18);transition:box-shadow .15s,transform .15s}
+.ctf-f .ctf-l input,.ctf-f .ctf-l textarea{padding:15px 18px;border-radius:var(--radius-12);background:#fffaf2;font-size:clamp(17px,1.4vw,20px);box-shadow:4px 4px 0 rgba(23,18,15,.18);transition:box-shadow .15s,transform .15s}
 .ctf-f .ctf-l textarea{min-height:140px;line-height:1.7}
 .ctf-f .ctf-l input::placeholder,.ctf-f .ctf-l textarea::placeholder{color:rgba(43,10,16,.42);font-weight:500;opacity:1}
 .ctf-f .ctf-l input:hover,.ctf-f .ctf-l textarea:hover{box-shadow:4px 4px 0 rgba(23,18,15,.4)}
-.ctf-f .ctf-l input:focus,.ctf-f .ctf-l textarea:focus{box-shadow:5px 5px 0 var(--ink-900);transform:translate(-1px,-1px)}
+.ctf-f .ctf-l input:focus,.ctf-f .ctf-l textarea:focus{box-shadow:var(--shadow-5);transform:translate(-1px,-1px)}
 .ctf-f .ctf-l input[aria-invalid="true"]{border-color:var(--wine);box-shadow:4px 4px 0 var(--wine)}
 .ctf-f .ctf-err{font-size:15px;font-weight:700}
 .ctf-f .ctf-c span{font-size:clamp(16px,1.3vw,19px);padding:13px 22px}
 
 /* numbers: each stat is a small playing card (light cream, ink border, hard shadow, suit in the corner), all level and the same size */
 .stt-g{gap:clamp(16px,2.4vw,32px)}
-.stt-g .stt-i,.stt-g .stt-i:first-child,.stt-g .stt-i:nth-child(odd){position:relative;box-sizing:border-box;border:4px solid var(--ink-900);border-radius:14px;box-shadow:8px 8px 0 var(--ink-900);padding:clamp(40px,4.6vw,64px) clamp(16px,1.8vw,26px) clamp(18px,2vw,28px);background:var(--cream);color:var(--ink-900);gap:12px;justify-items:center;text-align:center;align-content:center;transition:transform .2s cubic-bezier(.3,1.3,.4,1)}
+.stt-g .stt-i,.stt-g .stt-i:first-child,.stt-g .stt-i:nth-child(odd){position:relative;box-sizing:border-box;border:var(--border-4);border-radius:var(--radius-14);box-shadow:var(--shadow-8);padding:clamp(40px,4.6vw,64px) clamp(16px,1.8vw,26px) clamp(18px,2vw,28px);background:var(--cream);color:var(--ink-900);gap:12px;justify-items:center;text-align:center;align-content:center;transition:transform .2s cubic-bezier(.3,1.3,.4,1)}
 .stt-g .stt-i:hover{transform:translateY(-8px)}
 .stt-g .stt-i::before{content:"♠\FE0E";position:absolute;top:12px;left:16px;font:700 clamp(18px,1.8vw,26px)/1 var(--f-body);color:inherit;opacity:.9}
 .stt-g .stt-i:nth-child(2)::before{content:"♥\FE0E"}
@@ -56,7 +52,7 @@
 .stt-g .stt-i .stt-ix{width:auto;justify-items:center}
 .stt-g .stt-i .stt-ix b{color:var(--wine);font-weight:700}
 .stt-g .stt-i>span{font-size:clamp(15px,1.4vw,19px);color:inherit}
-@media (max-width:640px){.stt-g .stt-i,.stt-g .stt-i:first-child,.stt-g .stt-i:nth-child(odd){box-shadow:5px 5px 0 var(--ink-900);border-width:3px;padding-top:42px}.stt-g{row-gap:24px}}
+@media (max-width:640px){.stt-g .stt-i,.stt-g .stt-i:first-child,.stt-g .stt-i:nth-child(odd){box-shadow:var(--shadow-5);border-width:3px;padding-top:42px}.stt-g{row-gap:24px}}
 @media (prefers-reduced-motion:reduce){.stt-g .stt-i{transition:none}}
 
 /* solutions intro on phones: the paragraph uses the full width of the screen instead of 60% of it */

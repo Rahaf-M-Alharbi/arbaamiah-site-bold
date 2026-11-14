@@ -43,7 +43,7 @@
     app.innerHTML='<section class="bg-card"><h2 class="bg-big">اعرف أين تنفق ميزانيتك التسويقية</h2>'+
       '<p class="bg-note-l">أجب عن ثمانية أسئلة قصيرة، لنحلل مشروعك ونوزع ميزانيتك كما يفعل مسوق محترف: نبدأ بما يحتاجه مشروعك فعلا، ونؤجل ما لا يخدمك الآن.</p>'+
       '<ul class="bg-axes"><li><span>١</span>التأسيس: الهوية والموقع عندما يحتاجهما مشروعك</li><li><span>٢</span>المحتوى وإدارة الحسابات على المنصات الأنسب لنشاطك</li><li><span>٣</span>الحملات الإعلانية: أتعاب الحملة والإنفاق الإعلاني</li></ul>'+
-      '<div class="bg-nav"><button type="button" class="bg-go" id="bgStart">ابدأ الآن</button></div></section>';
+      '<div class="bg-nav"><button type="button" class="bg-go btn btn--wine" id="bgStart">ابدأ الآن</button></div></section>';
     document.getElementById('bgStart').onclick=function(){idx=0;step()}
   }
   function later(fn){clearTimeout(autoTimer);autoTimer=setTimeout(fn,260)}
@@ -73,7 +73,7 @@
     app.innerHTML='<section class="bg-card bg-q-card"><div class="bg-prog"><span>السؤال '+ar(idx+1)+' من '+ar(Q.length)+'</span></div>'+
       '<div class="bg-bar" role="progressbar" aria-valuemin="0" aria-valuemax="'+total+'" aria-valuenow="'+(idx+1)+'" aria-label="التقدم"><i style="width:'+((idx+1)/total*100)+'%"></i></div>'+
       qBlock(q)+'<small class="bg-me" id="bgErr" role="alert"></small>'+
-      '<div class="bg-nav"><button type="button" class="bg-btn" id="bgBack">رجوع</button><button type="button" class="bg-go" id="bgNext">'+(idx===Q.length-1&&unlocked?'شاهد النتيجة':'التالي')+'</button></div></section>';
+      '<div class="bg-nav"><button type="button" class="bg-btn btn btn--light" id="bgBack">رجوع</button><button type="button" class="bg-go btn btn--wine" id="bgNext">'+(idx===Q.length-1&&unlocked?'شاهد النتيجة':'التالي')+'</button></div></section>';
     document.getElementById('bgBack').onclick=function(){clearTimeout(autoTimer);if(idx===0){idx=-1;intro()}else{idx--;step()}};
     document.getElementById('bgNext').onclick=function(){
       clearTimeout(autoTimer);
@@ -105,7 +105,7 @@
     app.innerHTML='<section class="bg-card"><div class="bg-prog"><span>آخر خطوة</span></div><div class="bg-bar"><i style="width:100%"></i></div><h2 class="bg-big">آخر خطوة قبل خطتك</h2><p class="bg-hint">اكتب اسمك وبريدك الإلكتروني لنعرض لك الخطة. سنحتفظ بإجاباتك لنراجعها ونتواصل معك.</p>'+
       '<form class="bg-gate" id="bgGate" novalidate><label for="bgName"><span>اسمك</span></label><input type="text" id="bgName" name="name" autocomplete="name" placeholder="الاسم الكامل" required><label for="bgEmail"><span>بريدك الإلكتروني</span></label><input type="email" id="bgEmail" name="email" autocomplete="email" dir="ltr" placeholder="name@company.com">'+
       '<input type="text" name="website" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore data-bwignore aria-hidden="true" class="bg-hp"><small class="bg-me" id="bgErr" role="alert"></small><small>بإرسال بياناتك، توافق على أن نتواصل معك عليه.</small>'+
-      '<div class="bg-nav"><button type="button" class="bg-btn" id="bgBack">رجوع</button><button type="submit" class="bg-go" id="bgGo">شاهد خطتي</button></div></form></section>';
+      '<div class="bg-nav"><button type="button" class="bg-btn btn btn--light" id="bgBack">رجوع</button><button type="submit" class="bg-go btn btn--wine" id="bgGo">شاهد خطتي</button></div></form></section>';
     document.getElementById('bgBack').onclick=function(){idx=Q.length-1;step()};
     document.getElementById('bgGate').onsubmit=send;
     top()
@@ -207,7 +207,7 @@
     else h+=summary(p)+readCard(p)+foundationCard(p)+contentCard(p)+mgmtCard(p)+campaignCard(p)+deferredCard(p)+stepsCard(p);
     h+='<section class="bg-card"><h3 class="bg-h">خطوتك القادمة</h3><p class="bg-fine">هذه التوصيات تقديرية، ويعتمد نطاق العمل والتكلفة النهائية بعد مراجعة تفاصيل المشروع. زيادة عدد الحملات أو المنصات لا تعني دائما أنها الخيار الأفضل، فالقرار يعتمد على الجمهور والنتائج والهدف. الأسعار المعروضة افتراضية لغرض التوضيح فقط، ولا يعتمد عليها عند طلب الخدمات أو التعاقد.</p>'+
       '<a class="flipbtn fb--cream bg-cta" href="contact.html"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♠︎</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♠︎</i></span></span></a></section>'+
-      '<div class="bg-actions"><button type="button" class="bg-go" id="bgCopy">نسخ ملخص الخطة</button><a class="bg-btn bg-x" id="bgX" target="_blank" rel="noopener" href="https://x.com/intent/post?text='+encodeURIComponent('جربت حاسبة التسويق من @arbaamia وعرفت وين أوزع ميزانيتي التسويقية 🧮 جربها مجانا: https://arbaamia.sa/budget.html')+'">شارك على إكس</a><button type="button" class="bg-btn" id="bgEdit">تعديل إجاباتي</button><button type="button" class="bg-btn" id="bgReset">ابدأ من جديد</button></div></div>';
+      '<div class="bg-actions"><button type="button" class="bg-go btn btn--wine" id="bgCopy">نسخ ملخص الخطة</button><a class="bg-btn bg-x btn btn--light" id="bgX" target="_blank" rel="noopener" href="https://x.com/intent/post?text='+encodeURIComponent('جربت حاسبة التسويق من @arbaamia وعرفت وين أوزع ميزانيتي التسويقية 🧮 جربها مجانا: https://arbaamia.sa/budget.html')+'">شارك على إكس</a><button type="button" class="bg-btn btn btn--light" id="bgEdit">تعديل إجاباتي</button><button type="button" class="bg-btn btn btn--light" id="bgReset">ابدأ من جديد</button></div></div>';
     var y=window.scrollY;app.innerHTML=h;
     document.getElementById('bgCopy').onclick=copySummary;
     document.getElementById('bgEdit').onclick=function(){idx=0;step()};
@@ -241,11 +241,11 @@
   function adminOpen(){
     if(adminEl)return;lastFocus=document.activeElement;
     adminEl=document.createElement('div');adminEl.className='bg-adm';adminEl.setAttribute('role','dialog');adminEl.setAttribute('aria-modal','true');adminEl.setAttribute('aria-labelledby','bgAdmT');
-    adminEl.innerHTML='<div class="bg-adm-in"><div class="bg-adm-h"><h2 id="bgAdmT">إعدادات الحاسبة</h2><button type="button" class="bg-btn" id="bgAdmX" aria-label="إغلاق">إغلاق</button></div>'+
+    adminEl.innerHTML='<div class="bg-adm-in"><div class="bg-adm-h"><h2 id="bgAdmT">إعدادات الحاسبة</h2><button type="button" class="bg-btn btn btn--light" id="bgAdmX" aria-label="إغلاق">إغلاق</button></div>'+
       '<p class="bg-fine">تحفظ التعديلات في هذا المتصفح فقط وتنعكس فورا على النتائج. لتثبيتها للجميع انسخ الإعدادات وضعها في DEFAULTS داخل 44-budget-engine.js.</p>'+
       FIELDS.map(function(g){return '<fieldset class="bg-adm-g"><legend>'+g[0]+'</legend>'+g[1].map(function(f){var id='bgf-'+f[0].replace(/\./g,'-'),sc=f[2]||1;return '<label for="'+id+'"><span>'+f[1]+'</span><input type="number" step="any" id="'+id+'" data-p="'+f[0]+'" data-sc="'+sc+'" value="'+Math.round(getPath(S,f[0])*sc*100)/100+'"></label>'}).join('')+'</fieldset>'}).join('')+
       '<fieldset class="bg-adm-g"><legend>أداء الإعلانات السابق</legend><label for="bgf-hist"><span>الافتراضي للحاسبة</span><select id="bgf-hist"><option value="none">لا توجد بيانات</option><option value="good">جيد</option><option value="weak">ضعيف</option></select></label></fieldset>'+
-      '<fieldset class="bg-adm-g"><legend>كل الإعدادات (JSON)</legend><textarea id="bgAdmJ" dir="ltr" rows="10" spellcheck="false" aria-label="الإعدادات بصيغة JSON"></textarea><small class="bg-me" id="bgAdmE" role="alert"></small><div class="bg-nav"><button type="button" class="bg-go" id="bgAdmApply">تطبيق</button><button type="button" class="bg-btn" id="bgAdmCopy">نسخ</button><button type="button" class="bg-btn" id="bgAdmReset">إعادة الضبط</button></div></fieldset></div>';
+      '<fieldset class="bg-adm-g"><legend>كل الإعدادات (JSON)</legend><textarea id="bgAdmJ" dir="ltr" rows="10" spellcheck="false" aria-label="الإعدادات بصيغة JSON"></textarea><small class="bg-me" id="bgAdmE" role="alert"></small><div class="bg-nav"><button type="button" class="bg-go btn btn--wine" id="bgAdmApply">تطبيق</button><button type="button" class="bg-btn btn btn--light" id="bgAdmCopy">نسخ</button><button type="button" class="bg-btn btn btn--light" id="bgAdmReset">إعادة الضبط</button></div></fieldset></div>';
     document.body.appendChild(adminEl);
     var hist=document.getElementById('bgf-hist'),ta=document.getElementById('bgAdmJ');hist.value=S.ads.history;
     function sync(){ta.value=JSON.stringify(S,null,2)}

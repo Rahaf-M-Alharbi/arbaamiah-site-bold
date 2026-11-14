@@ -6,16 +6,14 @@
 .lk-in h1{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}/* the logo already shows the name */
 .lk-bio{margin:0 0 10px;text-align:center;text-wrap:balance;max-width:30em;font:500 clamp(15px,3.6vw,17px)/1.8 var(--f-body);opacity:.92}
 .lk-list{list-style:none;margin:0;padding:0;width:100%;display:grid;gap:16px}
-.lk{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--cream);color:var(--wine-950);border:4px solid var(--ink-900);border-radius:14px;box-shadow:6px 6px 0 var(--ink-900);text-decoration:none;text-align:start;transition:transform .15s,box-shadow .15s}
+.lk{display:flex;align-items:center;gap:14px;padding:14px 18px;text-align:start;--btn-fg:var(--wine-950);--btn-sh:var(--shadow-6);--btn-hover:translate(-2px,-2px);--btn-sh-hover:var(--shadow-8)}   /* .btn .btn--cream that lifts on hover and presses on click */
 .lk svg{flex:none;width:28px;height:28px;color:var(--wine)}
 .lk-t{flex:1;min-width:0;display:grid;gap:2px}
 .lk-t b{font:700 clamp(16px,4vw,18px)/1.4 var(--f-body);color:#5a3a35}
 .lk-t bdi{text-align:right;font:500 14px/1.4 var(--f-body);opacity:.75;overflow-wrap:anywhere}
 .lk i{flex:none;align-self:center;display:grid;place-items:center;line-height:1;font-style:normal;color:var(--wine);opacity:.6}
-.lk:hover,.lk:focus-visible{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink-900)}
-.lk:active{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink-900)}
+.lk:active{transform:translate(4px,4px);box-shadow:var(--shadow-2)}
 .lk:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
 .lk-f{margin:18px 0 0;font:500 14px/1.6 var(--f-body);opacity:.8}
 .lk-f a{color:inherit;text-underline-offset:3px}
-@media (max-width:640px){.lk{box-shadow:4px 4px 0 var(--ink-900);border-width:3px}}
-@media (prefers-reduced-motion:reduce){.lk{transition:none}}
+@media (max-width:640px){.lk{--btn-sh:var(--shadow-4);border-width:3px}}

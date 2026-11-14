@@ -3,17 +3,17 @@
 .cst::before{display:none}
 .cst-h,.cst-f{border-color:rgba(244,218,191,.4)}
 .cst-h b{font-size:14px}
-.cst-q{box-sizing:border-box;width:min(1040px,86vw);padding:clamp(56px,7vw,96px) clamp(24px,5vw,80px) clamp(28px,4vw,48px);background:var(--cream);color:var(--ink-900);border:4px solid var(--ink-900);border-radius:14px;box-shadow:10px 10px 0 var(--ink-900)}
+.cst-q{box-sizing:border-box;width:min(1040px,86vw);padding:clamp(56px,7vw,96px) clamp(24px,5vw,80px) clamp(28px,4vw,48px);background:var(--cream);color:var(--ink-900);border:var(--border-4);border-radius:var(--radius-14);box-shadow:var(--shadow-10)}
 .cst-q .qm{color:var(--wine);line-height:.7}
 .cst-q .qm.o{top:clamp(24px,3vw,40px);right:clamp(20px,3vw,40px)}
 .cst-q .qm.c{bottom:clamp(8px,1.4vw,18px);left:clamp(20px,3vw,40px)}
-.cst-by{gap:14px;border-top:3px solid var(--ink-900)}
-.cst-by i{flex:none;width:clamp(48px,5vw,62px);height:clamp(48px,5vw,62px);border-radius:50%;border:3px solid var(--ink-900);background:var(--wine);color:var(--cream);box-shadow:3px 3px 0 var(--ink-900);display:grid;place-items:center;font:700 clamp(20px,2vw,27px)/1 var(--f-disp);font-style:normal}
+.cst-by{gap:14px;border-top:var(--border-3)}
+.cst-by i{flex:none;width:clamp(48px,5vw,62px);height:clamp(48px,5vw,62px);border-radius:var(--radius-round);border:var(--border-3);background:var(--wine);color:var(--cream);box-shadow:var(--shadow-3);display:grid;place-items:center;font:700 clamp(20px,2vw,27px)/1 var(--f-disp);font-style:normal}
 .cst-by b{font-size:clamp(16px,1.4vw,19px)}
 .cst-by span{font-size:clamp(12px,1.05vw,14px);opacity:.75}
 .cst-f>span:not(.cst-ctl){opacity:1}
-.cst-f #cstPg{padding:8px 16px;border:3px solid var(--ink-900);border-radius:99px;background:var(--cream);color:var(--wine);box-shadow:3px 3px 0 var(--ink-900);font:700 14px/1 var(--f-body);letter-spacing:.08em;direction:ltr}
-@media (max-width:640px){.cst-q{box-shadow:6px 6px 0 var(--ink-900);border-width:3px}}
+.cst-f #cstPg{padding:8px 16px;border:var(--border-3);border-radius:var(--radius-pill);background:var(--cream);color:var(--wine);box-shadow:var(--shadow-3);font:700 14px/1 var(--f-body);letter-spacing:.08em;direction:ltr}
+@media (max-width:640px){.cst-q{box-shadow:var(--shadow-6);border-width:3px}}
 /* keep the big quote marks clear of the text: the card's top and bottom padding are the mark's offset + its visible height (.7em at line-height .7) + a gap, so the quote starts below the opening mark and the name/role end above the closing one at every width */
 .cst-q{padding-top:calc(clamp(24px,3vw,40px) + var(--qm)*.7 + 14px);padding-bottom:calc(clamp(8px,1.4vw,18px) + var(--qm)*.7 + 14px)}
 .cst-q .qm{font-size:var(--qm)}

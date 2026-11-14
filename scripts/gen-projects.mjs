@@ -127,7 +127,7 @@ projects.forEach((p, i) => {
   const tagsG = gmix ? `<ul class="pj-tags">${p.media.map((g) => `<li><button type="button" data-f="${g.key}" aria-pressed="false">${g.label}</button></li>`).join("")}</ul>` : "";
   const stats = [...secs.filter((x) => x.count > 1).map((x) => [x.count, p.media ? x.label : tall && !p.vid_label ? "مقطع UGC" : "مقطع"]), imgs.length > 1 && [imgs.length, book ? "صفحة" : "تصميم"]].filter(Boolean);
   writeFileSync(join(root, `project-${p.slug}.html`), page(`${p.name}: ${p.category} في السعودية | أربعمية`, `<main class="pj pj-page" lang="ar" dir="rtl" aria-label="${esc(p.name)}">
-  <a class="pj-back" href="projects.html">→ كل الأعمال</a>
+  <a class="pj-back btn btn--cream btn--pill" href="projects.html">→ كل الأعمال</a>
   <div class="pj-hero">
     <div class="pj-ht">
       <span class="eb pj-e">♦︎ ${esc(p.category)}</span>
@@ -145,7 +145,7 @@ projects.forEach((p, i) => {
   ${vidSec}
   ${imgSec}
   <a class="pj-next" href="project-${next.slug}.html"><small>المشروع التالي</small><b>${esc(next.name)} ←</b></a>
-  <a class="pj-back" href="projects.html">→ العودة إلى كل الأعمال</a>
+  <a class="pj-back btn btn--cream btn--pill" href="projects.html">→ العودة إلى كل الأعمال</a>
 </main>`));
 });
 

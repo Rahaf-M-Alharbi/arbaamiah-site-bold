@@ -1,12 +1,12 @@
 /* navigation: hidden on the first screen, slides down from the top once half of the services screen is in; El Messiri, wide spacing */
 .story .nav,.story .nav-rule{visibility:hidden}
-.mini{opacity:1;transition:transform .8s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.mini{opacity:1;transition:transform .8s var(--ease-out);pointer-events:none}
 .mini.on{pointer-events:auto}
 .mini nav,.links{font-family:var(--f-body);font-weight:600;font-size:16px}
 .mini .cta{padding:9px 18px}
 @media (max-width:640px){.mini nav{gap:20px;font-size:13px}.mini b{font-size:20px}.mini .cta{padding:7px 12px}}
 @media (prefers-reduced-motion:reduce){.mini{transition:none}}
-.pnl{background:#efe8d9;border:1px solid var(--ink-900);border-radius:14px;box-shadow:none}
+.pnl{background:#efe8d9;border:1px solid var(--ink-900);border-radius:var(--radius-14);box-shadow:none}
 .pnl{--fr:var(--wine);--in:40px;--gap:26px}
 .deck .stack .pnl{padding:calc(var(--in) + 88px) calc(var(--in) + 80px)}
 /* corner-suit frame: one red line along the top and one down the right side, each stopping short of the suit that sits at their corner */
@@ -23,7 +23,7 @@
 
 body{background:var(--ground)}
 body::before,.deck::before,.work::before,.stt::before,.ft::before{display:none}
-.deck,.work,.stt,.pr,.ft,.fq,.next2,.nstage{background:var(--ground);background-image:none;color:var(--on)}
+.deck,.work,.stt,.pr,.ft,.next2,.nstage{background:var(--ground);background-image:none;color:var(--on)}
 .mini{mix-blend-mode:normal}
 /* cards on the ground keep dark ink */
 .pnl,.wc{color:var(--ink-900)}
@@ -31,7 +31,6 @@ body::before,.deck::before,.work::before,.stt::before,.ft::before{display:none}
 /* rules and borders that were dark ink on paper now follow the text colour */
 .wk-ctl button{border-color:var(--on);color:var(--on)}
 .wk-ctl button:hover{background:var(--on);color:var(--ground)}
-.fq-l,.fq details,.stt-t,.stt-i{border-color:currentColor}
-.fq details:nth-child(even) summary i{color:var(--cream)}
+.stt-t,.stt-i{border-color:currentColor}
 .stt-i b{color:var(--on)}
 .wk-head .e{color:var(--cream)}

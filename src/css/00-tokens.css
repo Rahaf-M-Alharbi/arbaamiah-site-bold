@@ -44,6 +44,34 @@
   --w:clamp(140px,19vw,260px);  /* hero service card width */
   --cmp-mb:50px;                /* space under a component block */
 
+  /* the bold look: thick ink outline, hard offset shadow (no blur), rounded corners */
+  --border-3:3px solid var(--ink-900);
+  --border-4:4px solid var(--ink-900);
+  --shadow-1:1px 1px 0 var(--ink-900);
+  --shadow-2:2px 2px 0 var(--ink-900);
+  --shadow-3:3px 3px 0 var(--ink-900);
+  --shadow-4:4px 4px 0 var(--ink-900);
+  --shadow-5:5px 5px 0 var(--ink-900);
+  --shadow-6:6px 6px 0 var(--ink-900);
+  --shadow-7:7px 7px 0 var(--ink-900);
+  --shadow-8:8px 8px 0 var(--ink-900);
+  --shadow-10:10px 10px 0 var(--ink-900);
+  --radius-6:6px;
+  --radius-8:8px;
+  --radius-10:10px;
+  --radius-12:12px;
+  --radius-14:14px;   /* buttons and cards */
+  --radius-16:16px;
+  --radius-pill:99px;
+  --radius-round:50%;
+
+  /* motion */
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --ease-out:cubic-bezier(.2,.8,.2,1);
+  --ease-pop:cubic-bezier(.2,1.2,.4,1);      /* slight overshoot */
+  --ease-spring:cubic-bezier(.3,1.1,.4,1);
+  --ease-in-out:cubic-bezier(.65,0,.2,1);
+
   /* textures */
   --tex:url(../../assets/img/velvet.jpg);
   --paper:url(../../assets/img/paper.jpg);
