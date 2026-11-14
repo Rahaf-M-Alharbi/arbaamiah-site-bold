@@ -26,7 +26,7 @@
   var LABELS={};Q.forEach(function(q){if(q.opts){LABELS[q.id]={};q.opts.forEach(function(o){LABELS[q.id][o[0]]=o[1]})}});
 
   /* ============ state ============ */
-  var A={goals:[],platforms:[]},idx=-1,PL=null,unlocked=false,sending=false,autoTimer=null,S=loadSettings();
+  var A={goals:[],platforms:[]},idx=-1,PL=null,unlocked=false,sending=false,sheetSent='',autoTimer=null,S=loadSettings();
   var DG='٠١٢٣٤٥٦٧٨٩';
   function ar(n){return String(n).replace(/\d/g,function(d){return DG[d]})}
   function fmt(n){return ar(Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,','))}
@@ -89,7 +89,8 @@
       if(!q.multi&&!q.budget)later(advance)}});
     var cu=document.getElementById('bgCustom');
     if(cu)cu.oninput=function(){
-      var digits=cu.value.replace(/[٠-٩]/g,function(d){return DG.indexOf(d)}).replace(/\D/g,''),n=digits?Number(digits):NaN;
+      /* halalas are dropped: everything after a decimal point ("." or Arabic "٫") is ignored, so 5000.50 reads as 5000, not 500050 */
+      var digits=cu.value.replace(/[٠-٩]/g,function(d){return DG.indexOf(d)}).split(/[.٫]/)[0].replace(/\D/g,''),n=digits?Number(digits):NaN;
       A.budget=isFinite(n)&&n>=MIN_BUDGET&&n<=MAX_BUDGET?n:undefined;
       [].forEach.call(app.querySelectorAll('.bg-chip'),function(c){var on=Number(c.dataset.v)===A.budget;c.classList.toggle('on',on);c.setAttribute('aria-checked',on)});
       document.getElementById('bgBudgetNote').textContent=A.budget?'ميزانيتك: '+money(A.budget):(digits?'اكتب مبلغا بين '+money(MIN_BUDGET)+' و'+money(MAX_BUDGET)+'.':'')};
@@ -121,7 +122,9 @@
     d.append('التأسيس',money(PL.foundationCost));d.append('المحتوى',money(PL.contentCost));d.append('الإنفاق الإعلاني',money(PL.adSpend));
     d.append('_subject','طلب خطة ميزانية من موقع أربعمية');d.append('_template','table');d.append('_captcha','false');
     var local=!SEND_ENABLED||/^(localhost|127\.0\.0\.1)$/.test(location.hostname);sending=true;go.disabled=true;
-    if(!local)toSheet(d);
+    /* the Sheet gets one row per distinct request: pressing "try again" after the email failed does not add the same row again */
+    var sheetKey=JSON.stringify([nm.value.trim(),em.value.trim(),A]);
+    if(!local&&sheetKey!==sheetSent){toSheet(d);sheetSent=sheetKey}
     (local?Promise.resolve():fetch(ENDPOINT,{method:'POST',body:d,headers:{Accept:'application/json'}}).then(function(x){return x.json().then(function(j){if(!x.ok||j.success==='false'||j.success===false)throw 0})}))
       .then(function(){sending=false;unlocked=true;showResult()})
       .catch(function(){sending=false;go.disabled=false;err.textContent='تعذر الإرسال. حاول مرة أخرى.'})
