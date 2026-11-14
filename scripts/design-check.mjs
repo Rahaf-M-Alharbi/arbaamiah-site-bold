@@ -7,7 +7,7 @@
 //  5. fonts come from the tokens (var(--f-disp) / var(--f-body)); @font-face lives only in 00-fonts.css
 //  6. no colour hex in inline style="" attributes of pages or partials
 //  7. every page is in the build list (scripts/build.mjs), so it is deployed
-//  8. the bold look comes from tokens: an ink outline, hard ink shadow, border-radius or easing curve that has a token is written as var(--…)
+//  8. the bold look, type sizes, gaps and see-through brand colours come from tokens: an ink outline, hard ink shadow, border-radius or easing curve that has a token is written as var(--…)
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -37,6 +37,11 @@ const LOOK = [
   [new RegExp("(?<=\\bborder-radius:\\s*)\\d+(?:px|%)" + END, "g"), "radius"],
   [/cubic-bezier\([^)]*\)/g, "easing"],
 ];
+/* type, spacing and see-through brand colours: a literal value that has a token is written as var(--…) */
+const fsToken = {}, spaceToken = {}, rgbToken = {};
+for (const m of tokensCss.matchAll(/--fs-([\d_]+)\s*:\s*([\d.]+px)/g)) fsToken[m[2]] = "fs-" + m[1];
+for (const m of tokensCss.matchAll(/--space-(\d+)\s*:\s*(\d+px)/g)) spaceToken[m[2]] = "space-" + m[1];
+for (const m of tokensCss.matchAll(/--([a-z0-9-]+-rgb)\s*:\s*([\d,]+);/g)) rgbToken[m[2]] = m[1];
 
 /* 1. pages */
 const pages = readdirSync(root).filter((f) => f.endsWith(".html") && f !== "pricing.html");
@@ -63,6 +68,9 @@ for (const f of cssFiles) {
     else if (!ONE_OFF.has(hex) && /^#([0-9a-f]{3}|[0-9a-f]{6})$/.test(hex)) fail(at, `new raw colour ${m[0]}: add a token to src/css/00-tokens.css (or a reasoned entry in ONE_OFF in scripts/design-check.mjs)`);
   }
   for (const [re, what] of LOOK) for (const m of css.matchAll(re)) if (lookToken[m[0]]) fail(`${file}:${lineOf(css, m.index)}`, `${what} ${m[0]} is a token: write var(--${lookToken[m[0]]})`);
+  for (const m of css.matchAll(/(?<=\bfont:\d{3} |\bfont-size:)([\d.]+px)(?=[\/\s;}!])/g)) if (fsToken[m[1]]) fail(`${file}:${lineOf(css, m.index)}`, `text size ${m[1]} is a token: write var(--${fsToken[m[1]]})`);
+  for (const m of css.matchAll(/(?<=\bgap:)(\d+px)(?=\s*[;}!])/g)) if (spaceToken[m[1]]) fail(`${file}:${lineOf(css, m.index)}`, `gap ${m[1]} is a token: write var(--${spaceToken[m[1]]})`);
+  for (const m of css.matchAll(/rgba?\(\s*(\d+\s*,\s*\d+\s*,\s*\d+)\s*,/g)) { const ch = m[1].replace(/\s/g, ""); if (rgbToken[ch]) fail(`${file}:${lineOf(css, m.index)}`, `rgba(${ch},…) is a brand colour: write rgba(var(--${rgbToken[ch]}),…)`); }
   if (f !== "00-fonts.css") {
     if (/@font-face/.test(css)) fail(file, "@font-face belongs in src/css/00-fonts.css");
     for (const m of css.matchAll(/font(?:-family)?\s*:[^;}]*['"](Thmanyah[^'"]*|IBM Plex[^'"]*)['"]/g)) fail(`${file}:${lineOf(css, m.index)}`, `font named directly ('${m[1]}'): use var(--f-disp) or var(--f-body)`);

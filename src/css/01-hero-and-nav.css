@@ -7,20 +7,20 @@ body{color:var(--cream);font-family:var(--f-body);direction:rtl}
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 /* nav: card-index links, a card-shaped contact button, and a double rule with a diamond under it */
 .nav,.nav-rule{--suit:var(--rose)}
-.nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:18px 14px;position:relative;z-index:3}
-.brand{display:grid;gap:4px}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:var(--space-16);padding-block:18px 14px;position:relative;z-index:3}
+.brand{display:grid;gap:var(--space-4)}
 .brand b{font:700 28px/1 var(--f-disp)}
-.brand small{font:600 12px/1 var(--f-body);opacity:.72}
-.links{display:flex;align-items:center;gap:26px;font:700 15px/1 var(--f-body)}
+.brand small{font:600 var(--fs-12)/1 var(--f-body);opacity:.72}
+.links{display:flex;align-items:center;gap:26px;font:700 var(--fs-15)/1 var(--f-body)}
 .links a{color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:transform .25s var(--ease-out)}
 .links a i{font-style:normal;font-size:1.05em}
 .links a:nth-child(2) i{color:var(--suit)}
 .links .cta{padding:9px 16px;border:1px solid currentColor;border-radius:7px}
 .links .cta i{color:inherit}
-.nav-rule{display:flex;align-items:center;gap:12px;position:relative;z-index:3;margin-bottom:4px}
+.nav-rule{display:flex;align-items:center;gap:var(--space-12);position:relative;z-index:3;margin-bottom:4px}
 .nav-rule span{flex:1}
 .nav-rule i{font-style:normal;color:var(--suit)}
-@media (max-width:640px){.links{gap:12px;font-size:13px}.brand b{font-size:22px}.brand small{font-size:11px}.links .cta{padding:7px 11px}}
+@media (max-width:640px){.links{gap:var(--space-12);font-size:var(--fs-13)}.brand b{font-size:var(--fs-22)}.brand small{font-size:var(--fs-11)}.links .cta{padding:7px 11px}}
 
 .wm{position:relative;margin:clamp(24px,5vh,70px) 0 0;padding-top:.23em;text-align:center;font:700 clamp(64px,min(16vw,25.6vh),232px)/.95 var(--f-disp);white-space:nowrap;z-index:2}
 .wm .k{position:relative;display:block}

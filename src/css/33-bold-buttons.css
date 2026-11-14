@@ -25,11 +25,11 @@
 .hero-cta .flipbtn.fb--line:hover::after,.hero-cta .flipbtn.fb--line:focus-visible::after,.xp9-btns .flipbtn.fb--line:hover::after,.xp9-btns .flipbtn.fb--line:focus-visible::after{transition:transform .26s var(--ease-pop) .38s,opacity 0s linear .38s}
 
 /* hero button sizes: both buttons share one size */
-.hero-cta .flipbtn .fb-f,.hero-cta .flipbtn .fb-b{box-sizing:border-box;min-width:210px;padding:14px 36px;font-size:18px}
-@media (max-width:640px){.hero-cta .flipbtn .fb-f,.hero-cta .flipbtn .fb-b{min-width:180px;padding:12px 28px;font-size:16px}}
+.hero-cta .flipbtn .fb-f,.hero-cta .flipbtn .fb-b{box-sizing:border-box;min-width:210px;padding:14px 36px;font-size:var(--fs-18)}
+@media (max-width:640px){.hero-cta .flipbtn .fb-f,.hero-cta .flipbtn .fb-b{min-width:180px;padding:12px 28px;font-size:var(--fs-16)}}
 
 /* the two buttons of the draw-a-card section share the hero button size */
-.xp9-btns .flipbtn .fb-f,.xp9-btns .flipbtn .fb-b{box-sizing:border-box;min-width:240px;padding:14px 36px;font-size:18px}
-@media (max-width:640px){.xp9-btns .flipbtn .fb-f,.xp9-btns .flipbtn .fb-b{min-width:170px;padding:12px 26px;font-size:16px}}
+.xp9-btns .flipbtn .fb-f,.xp9-btns .flipbtn .fb-b{box-sizing:border-box;min-width:240px;padding:14px 36px;font-size:var(--fs-18)}
+@media (max-width:640px){.xp9-btns .flipbtn .fb-f,.xp9-btns .flipbtn .fb-b{min-width:170px;padding:12px 26px;font-size:var(--fs-16)}}
 
 .xp9-btns [hidden]{display:none!important}

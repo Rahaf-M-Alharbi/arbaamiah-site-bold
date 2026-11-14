@@ -1,12 +1,12 @@
 /* how we work: four stages on one thin line, each marked with a mini playing card */
 .pr .hw{--g:clamp(20px,3vw,48px);list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(36px,5vh,56px) var(--g)}
 .pr .hw-s{position:relative;padding-top:74px;min-width:0}
-.pr .hw-s::before{content:"";position:absolute;top:17px;left:calc(var(--g) / -2);right:calc(var(--g) / -2);height:1px;background:rgba(244,218,191,.28)}
+.pr .hw-s::before{content:"";position:absolute;top:17px;left:calc(var(--g) / -2);right:calc(var(--g) / -2);height:1px;background:rgba(var(--cream-rgb),.28)}
 .pr .hw-s:first-child::before{right:0}
 .pr .hw-s:last-child::before{left:0}
-.pr .hw-m{position:absolute;top:2px;right:0;width:22px;height:31px;display:grid;place-items:center;border:0;border-radius:4px;background:var(--ground);font:400 14px/1 serif;font-style:normal;color:var(--on)}
+.pr .hw-m{position:absolute;top:2px;right:0;width:22px;height:31px;display:grid;place-items:center;border:0;border-radius:4px;background:var(--ground);font:400 var(--fs-14)/1 serif;font-style:normal;color:var(--on)}
 .pr .hw-m.r{color:var(--cream)}
-.pr .hw-k{display:block;font:700 13px/1 var(--f-body);opacity:.85}
+.pr .hw-k{display:block;font:700 var(--fs-13)/1 var(--f-body);opacity:.85}
 .pr .hw-s h3{margin:14px 0 0;font:700 clamp(26px,2.6vw,36px)/1.25 var(--f-disp)}
 .pr .hw-s p{margin:14px 0 0;font:500 clamp(14px,1.15vw,16px)/1.95 var(--f-body);opacity:.78;max-width:30ch}
 @media (max-width:900px){

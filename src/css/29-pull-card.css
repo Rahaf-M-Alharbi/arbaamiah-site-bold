@@ -17,7 +17,7 @@
 .xp9-k,.xp9-top,.xp9-card .f,.xp9-card .b{border:var(--border-4);border-radius:6%;box-sizing:border-box;box-shadow:var(--shadow-10)}
 .xp9-k{position:absolute;inset:0;background:var(--cream);transform:translate(calc(var(--n)*-7px),calc(var(--n)*7px));box-shadow:none}
 .xp9-k:nth-child(odd){background:#d9b88f}
-.xp9-top{all:unset;box-sizing:border-box;position:absolute;inset:0;border-radius:6%;cursor:grab;touch-action:none;display:block;border:var(--border-4);background:radial-gradient(circle at 50% 50%,transparent 0 22%,rgba(244,218,191,.2) 22.5% 24%,transparent 24.5%) 0 0/30px 30px,var(--ink-900);box-shadow:inset 0 0 0 7px var(--ink-900),inset 0 0 0 10px var(--cream),var(--shadow-10)}
+.xp9-top{all:unset;box-sizing:border-box;position:absolute;inset:0;border-radius:6%;cursor:grab;touch-action:none;display:block;border:var(--border-4);background:radial-gradient(circle at 50% 50%,transparent 0 22%,rgba(var(--cream-rgb),.2) 22.5% 24%,transparent 24.5%) 0 0/30px 30px,var(--ink-900);box-shadow:inset 0 0 0 7px var(--ink-900),inset 0 0 0 10px var(--cream),var(--shadow-10)}
 .xp9-top:not(.drag){transition:transform .2s}
 .xp9-top:hover:not(.drag){transform:translateY(-8px)}
 .xp9-top:focus-visible{outline:3px solid var(--cream);outline-offset:6px}
@@ -44,7 +44,7 @@
 .xp9-out{position:absolute;left:5%;top:50%;width:min(52%,760px);transform:translateY(-50%);text-align:start;display:grid;gap:clamp(12px,2vh,22px);justify-items:start;visibility:hidden;opacity:0;translate:36px 0;transition:translate .6s var(--ease-spring),opacity .5s,visibility 0s .6s}
 .xp9 .xp9-h{margin:0;font:700 clamp(36px,4.6vw,76px)/1.12 var(--f-disp);color:var(--cream);text-shadow:.04em .04em 0 var(--ink-900)}
 .xp9 .xp9-p{margin:0;font:600 clamp(18px,1.9vw,28px)/1.6 var(--f-body);opacity:.92;max-width:22em}
-.xp9-btns{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:clamp(4px,1.4vh,14px)}
+.xp9-btns{display:flex;flex-wrap:wrap;gap:var(--space-14);align-items:center;margin-top:clamp(4px,1.4vh,14px)}
 .xp9-stage.drawn .xp9-deck,.xp9-card.on{left:calc(100% - 8% - var(--cw)/2)}
 .xp9-card.on{visibility:visible}
 .xp9-stage.drawn .xp9-top{visibility:hidden}
@@ -80,7 +80,7 @@
   .xp9-stage.drawn .xp9-out{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:100%;box-sizing:border-box;padding-inline:max(20px,6vw);gap:clamp(12px,1.8vh,18px)}
   .xp9 .xp9-h{font-size:clamp(30px,8.6vw,44px);line-height:1.2;overflow-wrap:anywhere;text-wrap:balance}
   .xp9 .xp9-p{font-size:clamp(16px,4.6vw,20px);max-width:none;text-wrap:balance}
-  .xp9-btns{width:100%;flex-direction:column;row-gap:16px;gap:16px;margin-top:8px}
+  .xp9-btns{width:100%;flex-direction:column;row-gap:var(--space-16);gap:var(--space-16);margin-top:8px}
   .xp9-btns .flipbtn .fb-f,.xp9-btns .flipbtn .fb-b{min-width:min(260px,76vw)}
 }
 /* the fan behind a button tilts down onto the next one: earlier buttons stack above later ones */

@@ -40,7 +40,7 @@
 
   /* ============ screens ============ */
   function intro(){
-    app.innerHTML='<section class="bg-card"><h2 class="bg-big">اعرف أين تنفق ميزانيتك التسويقية</h2>'+
+    app.innerHTML='<section class="bg-card panel"><h2 class="bg-big">اعرف أين تنفق ميزانيتك التسويقية</h2>'+
       '<p class="bg-note-l">أجب عن ثمانية أسئلة قصيرة، لنحلل مشروعك ونوزع ميزانيتك كما يفعل مسوق محترف: نبدأ بما يحتاجه مشروعك فعلا، ونؤجل ما لا يخدمك الآن.</p>'+
       '<ul class="bg-axes"><li><span>١</span>التأسيس: الهوية والموقع عندما يحتاجهما مشروعك</li><li><span>٢</span>المحتوى وإدارة الحسابات على المنصات الأنسب لنشاطك</li><li><span>٣</span>الحملات الإعلانية: أتعاب الحملة والإنفاق الإعلاني</li></ul>'+
       '<div class="bg-nav"><button type="button" class="bg-go btn btn--wine" id="bgStart">ابدأ الآن</button></div></section>';
@@ -70,7 +70,7 @@
   /* one question per screen. A single-choice answer moves on by itself; multi-choice and budget use the next button. */
   function step(keepScroll){
     var q=Q[idx],y=window.scrollY,total=Q.length+1;
-    app.innerHTML='<section class="bg-card bg-q-card"><div class="bg-prog"><span>السؤال '+ar(idx+1)+' من '+ar(Q.length)+'</span></div>'+
+    app.innerHTML='<section class="bg-card panel bg-q-card"><div class="bg-prog"><span>السؤال '+ar(idx+1)+' من '+ar(Q.length)+'</span></div>'+
       '<div class="bg-bar" role="progressbar" aria-valuemin="0" aria-valuemax="'+total+'" aria-valuenow="'+(idx+1)+'" aria-label="التقدم"><i style="width:'+((idx+1)/total*100)+'%"></i></div>'+
       qBlock(q)+'<small class="bg-me" id="bgErr" role="alert"></small>'+
       '<div class="bg-nav"><button type="button" class="bg-btn btn btn--light" id="bgBack">رجوع</button><button type="button" class="bg-go btn btn--wine" id="bgNext">'+(idx===Q.length-1&&unlocked?'شاهد النتيجة':'التالي')+'</button></div></section>';
@@ -102,7 +102,7 @@
     else{idx=Q.length;gate()}
   }
   function gate(){
-    app.innerHTML='<section class="bg-card"><div class="bg-prog"><span>آخر خطوة</span></div><div class="bg-bar"><i style="width:100%"></i></div><h2 class="bg-big">آخر خطوة قبل خطتك</h2><p class="bg-hint">اكتب اسمك وبريدك الإلكتروني لنعرض لك الخطة. سنحتفظ بإجاباتك لنراجعها ونتواصل معك.</p>'+
+    app.innerHTML='<section class="bg-card panel"><div class="bg-prog"><span>آخر خطوة</span></div><div class="bg-bar"><i style="width:100%"></i></div><h2 class="bg-big">آخر خطوة قبل خطتك</h2><p class="bg-hint">اكتب اسمك وبريدك الإلكتروني لنعرض لك الخطة. سنحتفظ بإجاباتك لنراجعها ونتواصل معك.</p>'+
       '<form class="bg-gate" id="bgGate" novalidate><label for="bgName"><span>اسمك</span></label><input type="text" id="bgName" name="name" autocomplete="name" placeholder="الاسم الكامل" required><label for="bgEmail"><span>بريدك الإلكتروني</span></label><input type="email" id="bgEmail" name="email" autocomplete="email" dir="ltr" placeholder="name@company.com">'+
       '<input type="text" name="website" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore data-bwignore aria-hidden="true" class="bg-hp"><small class="bg-me" id="bgErr" role="alert"></small><small>بإرسال بياناتك، توافق على أن نتواصل معك عليه.</small>'+
       '<div class="bg-nav"><button type="button" class="bg-btn btn btn--light" id="bgBack">رجوع</button><button type="submit" class="bg-go btn btn--wine" id="bgGo">شاهد خطتي</button></div></form></section>';
@@ -119,7 +119,10 @@
     em.removeAttribute('aria-invalid');PL=E.plan(A,S);
     var d=new FormData();d.append('الاسم',nm.value.trim());d.append('email',em.value.trim());
     Q.forEach(function(q){var v=A[q.id];d.append(q.title,q.budget?money(v):q.multi?(v||[]).map(function(x){return LABELS[q.id][x]}).join('، '):LABELS[q.id][v])});
-    d.append('التأسيس',money(PL.foundationCost));d.append('المحتوى',money(PL.contentCost));d.append('الإنفاق الإعلاني',money(PL.adSpend));
+    /* the figures sent to us always use the real prices: a visitor who changed them in the hidden settings (#admin) only changes what their own screen shows */
+    var REAL=E.plan(A,E.DEFAULTS);
+    d.append('التأسيس',money(REAL.foundationCost));d.append('المحتوى',money(REAL.contentCost));d.append('الإنفاق الإعلاني',money(REAL.adSpend));
+    if(JSON.stringify(S)!==JSON.stringify(E.DEFAULTS))d.append('ملاحظة','عدل الزائر إعدادات الحاسبة في متصفحه؛ الأرقام أعلاه بالأسعار الأصلية');
     d.append('_subject','طلب خطة ميزانية من موقع أربعمية');d.append('_template','table');d.append('_captcha','false');
     var local=!SEND_ENABLED||/^(localhost|127\.0\.0\.1)$/.test(location.hostname);sending=true;go.disabled=true;
     /* the Sheet gets one row per distinct request: pressing "try again" after the email failed does not add the same row again */
@@ -142,23 +145,23 @@
   function pct(n,t){return t?ar(Math.round(n/t*100))+'٪':'٠٪'}
   function summary(p){
     var v=segValues(p);
-    return '<section class="bg-card bg-sum"><h3 class="bg-h">ملخص الميزانية</h3><div class="bg-sumrow">'+donut(p)+'<div class="bg-leg">'+
+    return '<section class="bg-card panel bg-sum"><h3 class="bg-h">ملخص الميزانية</h3><div class="bg-sumrow">'+donut(p)+'<div class="bg-leg">'+
       SEG.map(function(s,i){return '<div class="bg-lg'+(v[s[0]]?'':' z')+'"><i class="'+s[2]+'"></i><span>'+s[1]+'</span><b>'+(v[s[0]]?fmt(v[s[0]]):'٠')+'</b><em>'+pct(v[s[0]],p.budget)+'</em></div>'}).join('')+
       '<div class="bg-lg bg-tot"><span>الميزانية الإجمالية</span><b>'+money(p.budget)+'</b></div></div></div>'+
       '<div class="bg-stack" role="img" aria-label="شريط توزيع الميزانية">'+SEG.map(function(s,i){return v[s[0]]>0?'<i class="'+s[2]+'" style="flex:'+v[s[0]]+'"></i>':''}).join('')+'</div></section>'
   }
   function foundationCard(p){
     var rows=p.foundation.map(function(f){return '<li class="ok">'+f.label+'</li>'}).concat(p.foundationDeferred.map(function(f){return '<li class="wait">'+f.label+'<small>مؤجل إلى المرحلة الثانية</small></li>'}));
-    return '<section class="bg-card"><h3 class="bg-h">التأسيس</h3>'+(rows.length?'<ul class="bg-list">'+rows.join('')+'</ul>':'<p class="bg-note-l">لا يحتاج مشروعك إلى تأسيس الآن، فهويتك '+(A.site==='notNeeded'?'جاهزة ولا تحتاج إلى موقع حاليا.':'وموقعك جاهزان.')+'</p>')+'</section>'
+    return '<section class="bg-card panel"><h3 class="bg-h">التأسيس</h3>'+(rows.length?'<ul class="bg-list">'+rows.join('')+'</ul>':'<p class="bg-note-l">لا يحتاج مشروعك إلى تأسيس الآن، فهويتك '+(A.site==='notNeeded'?'جاهزة ولا تحتاج إلى موقع حاليا.':'وموقعك جاهزان.')+'</p>')+'</section>'
   }
   function contentCard(p){
     var c=p.content,where=p.managed.concat(p.republish,p.selfPublish);
-    if(!c)return '<section class="bg-card"><h3 class="bg-h">خطة المحتوى</h3><p class="bg-note-l">لا توجد ميزانية للمحتوى في هذه المرحلة.</p></section>';
-    return '<section class="bg-card"><h3 class="bg-h">خطة المحتوى</h3><div class="bg-stats"><div><b>'+ar(c.v)+'</b><span>مقطع فيديو</span></div><div><b>'+ar(c.p)+'</b><span>بوست</span></div><div><b>'+ar(c.s)+'</b><span>ستوري</span></div></div>'+
+    if(!c)return '<section class="bg-card panel"><h3 class="bg-h">خطة المحتوى</h3><p class="bg-note-l">لا توجد ميزانية للمحتوى في هذه المرحلة.</p></section>';
+    return '<section class="bg-card panel"><h3 class="bg-h">خطة المحتوى</h3><div class="bg-stats"><div><b>'+ar(c.v)+'</b><span>مقطع فيديو</span></div><div><b>'+ar(c.p)+'</b><span>بوست</span></div><div><b>'+ar(c.s)+'</b><span>ستوري</span></div></div>'+
       kv('المنصات المستهدفة',where.length?names(where):'تحدد لاحقا')+(p.campaigns?'<p class="bg-fine">يكفي هذا المحتوى لتغذية الحملة الإعلانية إلى جانب النشر المنتظم.</p>':'')+'</section>'
   }
   function mgmtCard(p){
-    var h='<section class="bg-card"><h3 class="bg-h">إدارة الحسابات</h3>';
+    var h='<section class="bg-card panel"><h3 class="bg-h">إدارة الحسابات</h3>';
     if(A.accounts==='own')h+='<p class="bg-note-l">تدير حساباتك بنفسك، فلا نحتسب رسوم إدارة. نسلمك المحتوى جاهزا للنشر.</p>'+kv('تنشر عليها',names(p.selfPublish));
     else{
       h+=p.managed.length?kv('منصات تحت الإدارة',chips(p.managed)):'<p class="bg-note-l">لا إدارة مستقلة في هذه المرحلة، ونسلمك المحتوى جاهزا لتنشره على حساباتك'+(A.accounts==='none'?' بعد أن تنشئها.':A.accounts==='inactive'?' بعد أن تعيد تشغيلها.':'.')+'</p>';
@@ -172,7 +175,7 @@
   function chips(l){return '<span class="bg-pills">'+l.map(function(k){return '<span class="bg-pill">'+pn(k)+'</span>'}).join('')+'</span>'}
   function kv(k,v){return '<div class="bg-kv"><span>'+k+'</span><span>'+v+'</span></div>'}
   function campaignCard(p){
-    var h='<section class="bg-card"><h3 class="bg-h">الحملات الإعلانية</h3>';
+    var h='<section class="bg-card panel"><h3 class="bg-h">الحملات الإعلانية</h3>';
     if(p.campaigns){
       h+='<div class="bg-stats"><div><b>'+ar(p.campaigns)+'</b><span>'+(p.campaigns===1?'حملة':'حملتان')+'</span></div><div><b>'+fmt(p.campaignFee)+'</b><span>أتعاب الإعداد والإدارة</span></div><div><b>'+fmt(p.adSpend)+'</b><span>الإنفاق الإعلاني</span></div></div>'+
         p.adPlatforms.map(function(x){return kv(pn(x.id),money(x.amount))}).join('')+'<p class="bg-fine">الإنفاق الإعلاني يدفع للمنصة مباشرة، ومنفصل عن أتعاب الإعداد والإدارة.</p>'}
@@ -186,26 +189,26 @@
     L.push(['إنتاج المحتوى',p.content?ar(p.content.v)+' فيديو و'+ar(p.content.p)+' بوست'+(p.content.s?' و'+ar(p.content.s)+' ستوري':''):'عند اكتمال التأسيس','']);
     L.push(['بدء النشر',p.managed.length?'جدول نشر منتظم على '+names(p.managed):A.accounts==='own'?'تنشر المحتوى الجاهز على حساباتك':'نشر المحتوى على المنصات المختارة','']);
     L.push(['إطلاق الحملة',p.campaigns?'عند جاهزية التأسيس والمحتوى الإعلاني':'مؤجلة'+(A.ads==='none'?': لا ترغب بالإعلانات حاليا':''),p.campaigns?'':'off']);
-    var h='<section class="bg-card"><h3 class="bg-h">الخطوات القادمة</h3><ol class="bg-tl">'+L.map(function(x){return '<li class="'+x[2]+'"><div><b>'+x[0]+'</b><small>'+x[1]+'</small></div></li>'}).join('')+'</ol>';
+    var h='<section class="bg-card panel"><h3 class="bg-h">الخطوات القادمة</h3><ol class="bg-tl">'+L.map(function(x){return '<li class="'+x[2]+'"><div><b>'+x[0]+'</b><small>'+x[1]+'</small></div></li>'}).join('')+'</ol>';
     if(!p.campaigns&&A.ads!=='none')h+='<p class="bg-fine">سبب تأجيل الحملة: '+ar(p.adReason)+'</p>';
     return h+'</section>'
   }
   function readCard(p){
     var L=p.insights.slice();
-    return L.length?'<section class="bg-card"><h3 class="bg-h">قراءة المسوق لحالتك</h3><ul class="bg-skip">'+L.map(function(x){return '<li>'+ar(x)+'</li>'}).join('')+'</ul></section>':''
+    return L.length?'<section class="bg-card panel"><h3 class="bg-h">قراءة المسوق لحالتك</h3><ul class="bg-skip">'+L.map(function(x){return '<li>'+ar(x)+'</li>'}).join('')+'</ul></section>':''
   }
   function deferredCard(p){
     var d=p.deferred.filter(function(x){return x.title!=='الحملة الإعلانية'});
-    return d.length?'<section class="bg-card"><h3 class="bg-h">خدمات نقترح تأجيلها</h3><ul class="bg-list">'+d.map(function(x){return '<li class="wait">'+ar(x.title)+'<small>'+ar(x.reason)+'</small></li>'}).join('')+'</ul></section>':''
+    return d.length?'<section class="bg-card panel"><h3 class="bg-h">خدمات نقترح تأجيلها</h3><ul class="bg-list">'+d.map(function(x){return '<li class="wait">'+ar(x.title)+'<small>'+ar(x.reason)+'</small></li>'}).join('')+'</ul></section>':''
   }
   function showResult(){PL=E.plan(A,S);result()}
   function result(){
     var p=PL,alerts=p.alerts.map(function(t){return '<div class="bg-note bad">'+ar(t)+'</div>'}).join('');
-    var h='<div class="bg-rep"><section class="bg-card bg-head"><span class="bg-eb">خطتك التسويقية</span><h2 class="bg-big">خطتك التسويقية المقترحة</h2><p class="bg-note-l">بناء على إجاباتك، حللنا مشروعك ووزعنا ميزانيتك على ما يحتاجه فعلا. الأرقام تقديرية وقابلة للتعديل بعد مراجعة تفاصيل مشروعك.</p></section>'+
+    var h='<div class="bg-rep"><section class="bg-card panel bg-head"><span class="bg-eb">خطتك التسويقية</span><h2 class="bg-big">خطتك التسويقية المقترحة</h2><p class="bg-note-l">بناء على إجاباتك، حللنا مشروعك ووزعنا ميزانيتك على ما يحتاجه فعلا. الأرقام تقديرية وقابلة للتعديل بعد مراجعة تفاصيل مشروعك.</p></section>'+
       (alerts?'<div class="bg-notes">'+alerts+'</div>':'');
     if(p.foundationBlocked)h+=readCard(p)+deferredCard(p);
     else h+=summary(p)+readCard(p)+foundationCard(p)+contentCard(p)+mgmtCard(p)+campaignCard(p)+deferredCard(p)+stepsCard(p);
-    h+='<section class="bg-card"><h3 class="bg-h">خطوتك القادمة</h3><p class="bg-fine">هذه التوصيات تقديرية، ويعتمد نطاق العمل والتكلفة النهائية بعد مراجعة تفاصيل المشروع. زيادة عدد الحملات أو المنصات لا تعني دائما أنها الخيار الأفضل، فالقرار يعتمد على الجمهور والنتائج والهدف. الأسعار المعروضة افتراضية لغرض التوضيح فقط، ولا يعتمد عليها عند طلب الخدمات أو التعاقد.</p>'+
+    h+='<section class="bg-card panel"><h3 class="bg-h">خطوتك القادمة</h3><p class="bg-fine">هذه التوصيات تقديرية، ويعتمد نطاق العمل والتكلفة النهائية بعد مراجعة تفاصيل المشروع. زيادة عدد الحملات أو المنصات لا تعني دائما أنها الخيار الأفضل، فالقرار يعتمد على الجمهور والنتائج والهدف. الأسعار المعروضة افتراضية لغرض التوضيح فقط، ولا يعتمد عليها عند طلب الخدمات أو التعاقد.</p>'+
       '<a class="flipbtn fb--cream bg-cta" href="contact.html"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♠︎</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♠︎</i></span></span></a></section>'+
       '<div class="bg-actions"><button type="button" class="bg-go btn btn--wine" id="bgCopy">نسخ ملخص الخطة</button><a class="bg-btn bg-x btn btn--light" id="bgX" target="_blank" rel="noopener" href="https://x.com/intent/post?text='+encodeURIComponent('جربت حاسبة التسويق من @arbaamia وعرفت وين أوزع ميزانيتي التسويقية 🧮 جربها مجانا: https://arbaamia.sa/budget.html')+'">شارك على إكس</a><button type="button" class="bg-btn btn btn--light" id="bgEdit">تعديل إجاباتي</button><button type="button" class="bg-btn btn btn--light" id="bgReset">ابدأ من جديد</button></div></div>';
     var y=window.scrollY;app.innerHTML=h;

@@ -37,7 +37,7 @@ dist/                      build output (not in git)
 ```
 
 ### How the CSS is organised
-The design was built in layers: a base for each section (`01`–`19`), then passes that refine the whole page (`20`–`24` "override", `25`–`30`), then the bold card look (`31`–`39`) and the cursor (`40`). **The number order is the cascade order**, so a file can only be moved if the comparison below shows nothing changed.
+The CSS is split by component and loaded in number order; **the number order is the cascade order**, so a file can only be moved if the comparison below shows nothing changed. `00-tokens` and `00-fonts` come first, then the base of each section (`01`–`19`, with the shared components in `19-components.css`), the flip button (`22`) and scroll-in animations (`23`), section text (`27`), the bold card look (`25`–`39`, with nav in `35`, sections and the contact form in `34`), page-specific files (`40`–`49`), and `50-reduced-motion.css` last. The former "override" layer (`20`–`24`) was folded into these component files.
 
 **Design tokens live in one file: `src/css/00-tokens.css`**, loaded first on every page (except the stand-alone `pricing.html`, which keeps its own in `src/css/pricing/pricing.css`). It holds the brand colours (`--wine`, `--green`, `--cream`), the wine, cream/paper and ink/grey scales, the fonts (`--f-disp`, `--f-body`), the shared sizes and the velvet/paper textures. Other stylesheets use `var(--name)` and never write a raw brand hex; to change a colour site-wide, change it there. Older names (`--vermilion`, `--blush`, `--rose`, `--deep`, `--ground`, `--on`, `--beige`, `--paper2`) are kept as aliases of the main ones. Translucent brand colours (`rgba(108,23,30,…)`) and one-off illustration colours are still written inline.
 

@@ -36,9 +36,40 @@
   --gray-200:#d8d5d0;
   --gray-100:#edebe3;
 
+  /* the same brand colours as r,g,b channels, for see-through versions: rgba(var(--cream-rgb),.3) */
+  --wine-rgb:108,23,30;
+  --wine-950-rgb:43,10,16;
+  --cream-rgb:244,218,191;
+  --ink-900-rgb:23,18,15;
+
   /* fonts */
   --f-disp:'Thmanyah Serif Display',serif;
   --f-body:'Thmanyah Sans',system-ui,sans-serif;
+
+  /* type scale: fixed text sizes (fluid clamp() sizes stay where they are used) */
+  --fs-11:11px;
+  --fs-12:12px;
+  --fs-12_5:12.5px;
+  --fs-13:13px;
+  --fs-14:14px;
+  --fs-14_5:14.5px;
+  --fs-15:15px;
+  --fs-16:16px;
+  --fs-18:18px;
+  --fs-20:20px;
+  --fs-22:22px;
+  --fs-24:24px;
+
+  /* spacing scale: gaps between items */
+  --space-2:2px;
+  --space-4:4px;
+  --space-6:6px;
+  --space-8:8px;
+  --space-10:10px;
+  --space-12:12px;
+  --space-14:14px;
+  --space-16:16px;
+  --space-28:28px;
 
   /* shared sizes */
   --w:clamp(140px,19vw,260px);  /* hero service card width */

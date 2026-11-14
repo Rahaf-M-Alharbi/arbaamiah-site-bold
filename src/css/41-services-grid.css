@@ -3,7 +3,7 @@
 .deck .stack .svc{position:relative;width:100%;height:auto;aspect-ratio:5/7;margin:0;transform:none;cursor:default}
 .deck .stack .svc .body h4{font-size:clamp(15px,1.7vw,24px);line-height:1.25}
 .deck .stack .svc .body p{font-size:clamp(11px,1vw,14px);line-height:1.55}
-@media (max-width:760px){.deck .stack{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.deck .stack .svc .body h4{font-size:15px}.deck .stack .svc .body p{font-size:11px}}
+@media (max-width:760px){.deck .stack{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-12)}.deck .stack .svc .body h4{font-size:var(--fs-15)}.deck .stack .svc .body p{font-size:var(--fs-11)}}
 
 
 
@@ -18,7 +18,7 @@
 .deck .stack[data-full] .svc .body h4{font-size:clamp(20px,2.2vw,32px)}
 .deck .stack[data-full] .svc .body p{font-size:clamp(14px,1.3vw,18px);line-height:1.7}
 .svc-l{display:block;margin-top:clamp(14px,1.6vw,22px);font:700 clamp(12px,1vw,14px)/1.4 var(--f-body);color:var(--wine)}
-.svc-get{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}
+.svc-get{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:var(--space-6)}
 .svc-get li{position:relative;padding-inline-start:1.3em;font:500 clamp(13px,1.15vw,16px)/1.6 var(--f-body)}
 .svc-get li::before{content:"♠︎";position:absolute;inset-inline-start:0;color:var(--wine);font-size:.8em;top:.25em}
 @media (max-width:760px){.deck .stack[data-full]{grid-template-columns:minmax(0,1fr)}}
@@ -31,19 +31,19 @@
 
 /* home solutions: a numbered list with rules between the rows, no cards */
 .deck .stack.sol{width:100%;box-sizing:border-box;max-width:1100px;margin:0 auto;direction:rtl}
-.sol-r{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1.1fr);align-items:baseline;gap:clamp(14px,3vw,48px);padding:clamp(22px,3.4vw,40px) 0;border-bottom:3px solid rgba(244,218,191,.4);color:var(--cream);transition:padding-inline .3s var(--ease-out)}
+.sol-r{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1.1fr);align-items:baseline;gap:clamp(14px,3vw,48px);padding:clamp(22px,3.4vw,40px) 0;border-bottom:3px solid rgba(var(--cream-rgb),.4);color:var(--cream);transition:padding-inline .3s var(--ease-out)}
 .sol-r:hover{padding-inline:clamp(10px,1.6vw,22px)}
 .sol-n{font:700 clamp(15px,1.4vw,18px)/1 var(--f-body);opacity:.65;font-variant-numeric:tabular-nums}
 .sol-r h4{margin:0;font:700 clamp(24px,3.2vw,44px)/1.25 var(--f-disp)}
 .sol-r p{margin:0;font:500 clamp(15px,1.4vw,19px)/1.8 var(--f-body);opacity:.85}
-@media (max-width:640px){.sol-r{grid-template-columns:auto minmax(0,1fr);row-gap:8px}.sol-r p{grid-column:1/-1}}
+@media (max-width:640px){.sol-r{grid-template-columns:auto minmax(0,1fr);row-gap:var(--space-8)}.sol-r p{grid-column:1/-1}}
 @media (prefers-reduced-motion:reduce){.sol-r{transition:none}}
 /* services page cards: tidier "what you get" block. Title and intro stay centred; the list is right-aligned with hanging bullets and thin rules, the label sits between two lines */
 .deck .stack[data-full] .svc .body{padding-inline:11cqw;gap:0}
-.deck .stack[data-full] .svc-l{display:flex;align-items:center;gap:12px;margin:clamp(18px,2.2vw,28px) 0 6px;text-align:center;justify-content:center}
-.deck .stack[data-full] .svc-l::before,.deck .stack[data-full] .svc-l::after{content:"";flex:1;height:2px;background:rgba(108,23,30,.35)}
+.deck .stack[data-full] .svc-l{display:flex;align-items:center;gap:var(--space-12);margin:clamp(18px,2.2vw,28px) 0 6px;text-align:center;justify-content:center}
+.deck .stack[data-full] .svc-l::before,.deck .stack[data-full] .svc-l::after{content:"";flex:1;height:2px;background:rgba(var(--wine-rgb),.35)}
 .deck .stack[data-full] .svc-get{gap:0;margin:0;width:100%}
-.deck .stack[data-full] .svc-get li{text-align:start;padding-block:clamp(9px,1vw,13px);padding-inline-start:1.7em;line-height:1.6;border-bottom:1px dashed rgba(108,23,30,.3)}
+.deck .stack[data-full] .svc-get li{text-align:start;padding-block:clamp(9px,1vw,13px);padding-inline-start:1.7em;line-height:1.6;border-bottom:1px dashed rgba(var(--wine-rgb),.3)}
 .deck .stack[data-full] .svc-get li:last-child{border-bottom:0}
 .deck .stack[data-full] .svc-get li::before{top:calc(clamp(9px,1vw,13px) + .35em)}
 /* services page cards: title and intro share one centred column, with room between them */
@@ -52,7 +52,7 @@
 .deck .stack[data-full] .svc .body .rule{display:none}
 
 /* services page: order button at the foot of each card */
-.deck .stack[data-full] .svc-o{display:inline-flex;align-items:center;justify-content:center;gap:10px;align-self:center;margin-top:clamp(18px,2.4vw,28px);padding:13px 26px;border:var(--border-3);border-radius:var(--radius-pill);background:var(--wine);color:var(--cream);box-shadow:var(--shadow-4);font:700 clamp(15px,1.4vw,18px)/1 var(--f-body);text-decoration:none;transition:transform .2s,box-shadow .2s}
+.deck .stack[data-full] .svc-o{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-10);align-self:center;margin-top:clamp(18px,2.4vw,28px);padding:13px 26px;border:var(--border-3);border-radius:var(--radius-pill);background:var(--wine);color:var(--cream);box-shadow:var(--shadow-4);font:700 clamp(15px,1.4vw,18px)/1 var(--f-body);text-decoration:none;transition:transform .2s,box-shadow .2s}
 .deck .stack[data-full] .svc-o i{font-style:normal;transition:transform .2s}
 .deck .stack[data-full] .svc-o:hover,.deck .stack[data-full] .svc-o:focus-visible{transform:translate(-2px,-2px);box-shadow:var(--shadow-6)}
 .deck .stack[data-full] .svc-o:hover i{transform:translateX(-4px)}
@@ -73,7 +73,7 @@
 /* services page: pick a service on one side, its card on the other */
 .deck .stack[data-full].sv-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;column-gap:clamp(32px,6vw,96px);max-width:1180px}
 .sv-tabs{display:grid;color:var(--cream)}
-.sv-tabs button{display:flex;align-items:baseline;gap:clamp(14px,2vw,24px);padding:clamp(14px,1.7vw,22px) 0;border:0;border-bottom:2px solid rgba(244,218,191,.25);background:none;color:inherit;font:700 clamp(22px,2.6vw,36px)/1.3 var(--f-disp);text-align:start;cursor:pointer;opacity:.5;transition:opacity .25s,padding .3s var(--ease-out)}
+.sv-tabs button{display:flex;align-items:baseline;gap:clamp(14px,2vw,24px);padding:clamp(14px,1.7vw,22px) 0;border:0;border-bottom:2px solid rgba(var(--cream-rgb),.25);background:none;color:inherit;font:700 clamp(22px,2.6vw,36px)/1.3 var(--f-disp);text-align:start;cursor:pointer;opacity:.5;transition:opacity .25s,padding .3s var(--ease-out)}
 .sv-tabs button:hover{opacity:.85}
 .sv-tabs button[aria-expanded=true]{opacity:1;padding-inline-start:clamp(10px,1.4vw,20px)}
 .sv-tabs .sol-n{font-family:var(--f-body)}
@@ -85,7 +85,7 @@
 .deck .stack.sol{border-top:0;row-gap:clamp(8px,1.6vw,20px)}
 .deck .stack.sol .sol-n{display:none}
 /* middle ground: two columns, big names, suit mark, one hairline per row */
-.deck .stack.sol .sol-r{border-bottom:1px solid rgba(244,218,191,.18);grid-template-columns:auto minmax(0,1fr);align-items:center;gap:14px;padding-block:clamp(16px,2.2vw,28px)}
+.deck .stack.sol .sol-r{border-bottom:1px solid rgba(var(--cream-rgb),.18);grid-template-columns:auto minmax(0,1fr);align-items:center;gap:var(--space-14);padding-block:clamp(16px,2.2vw,28px)}
 .deck .stack.sol .sol-r::before{content:"♠︎";grid-column:1;grid-row:1;color:var(--cream);opacity:.5;font-size:.9em}
 .deck .stack.sol .sol-r:nth-child(4n+2)::before,.deck .stack.sol .sol-r:nth-child(4n+3)::before{content:"♥︎"}
 .deck .stack.sol .sol-r h4{grid-column:2;font-size:clamp(20px,2.6vw,36px);font-weight:700}

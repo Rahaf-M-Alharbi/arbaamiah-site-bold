@@ -1,0 +1,27 @@
+/* ===== section text: support-text size and measure, eyebrow tag, kashida lines (moved here from the 21/23 override files) ===== */
+/* section support text ~3x, links regular weight, big numbers regular weight */
+.sec2 p,.dk-head p,.wk-head p,.ctf-t p,.ft p{font-size:clamp(26px,3.4vw,54px);line-height:1.5;font-weight:400}
+.stt-i .stt-ix b{font-weight:400}
+.wk-head .t{max-width:none;flex:1 1 640px}
+/* spacing re-tuned for the larger support text */
+.sec2{gap:clamp(30px,4vw,60px)}
+.dk-head{gap:clamp(36px,4.4vw,68px);margin-bottom:clamp(140px,28vh,300px)}
+.wk-head .t{gap:clamp(36px,4.4vw,68px)}
+.wk-head{row-gap:clamp(56px,7vw,100px)}
+.ctf-t{gap:clamp(40px,5vw,72px)}
+.ft-in{gap:clamp(44px,8vh,80px)}
+/* one shared eyebrow tag: regular weight, same size everywhere */
+.eb.eb.eb{display:block;font:400 var(--fs-14)/1 var(--f-body);letter-spacing:0;opacity:.8}
+/* support text: fixed measure, every line the same width (filled with kashida) */
+.sec2 p,.dk-head p,.wk-head p,.ctf-t p,.ft p{max-width:20em;width:100%}
+.dk-head p{width:60%;max-width:none}
+.ft p{margin-inline:auto}
+.kj-l{display:block;white-space:nowrap;text-align:justify;text-align-last:justify}
+.kj-l.kj-e{text-align:start;text-align-last:start}
+.kj-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Line-filled paragraphs (14-kashida-justify.js) are built from fixed-width nowrap lines.
+   In an auto-sized grid track those lines set the track's minimum width, so after the window got narrower the
+   paragraph (and the title above it) stayed at the old width, spilled over the cards and was never re-measured.
+   Capping the track at the container width lets the paragraph follow its box, which makes the script re-fit it. */
+.sec2,.dk-head,.wk-head .t,.ctf-t,.ft-in{grid-template-columns:minmax(0,1fr)}

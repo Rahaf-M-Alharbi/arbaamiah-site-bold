@@ -11,16 +11,20 @@ General engineering rules are in @AGENTS.md. This file is the project's own rule
 - Colours: `--wine` `--green` `--cream`; scales `--wine-950…100`, `--cream-50/30/10`, `--paper-50`, `--ground-light`, `--black` `--ink-900` `--ink` `--ink2`, `--gray-900…100`.
 - Fonts: `var(--f-disp)` for headings (Thmanyah Serif Display), `var(--f-body)` for text (Thmanyah Sans). Font files: `src/css/00-fonts.css`.
 - The bold look: outlines `var(--border-4)` / `var(--border-3)` (ink), hard shadows `var(--shadow-1 … -10)` (number = offset in px), corners `var(--radius-6 … -16)`, `var(--radius-pill)`, `var(--radius-round)`.
+- See-through brand colours: `rgba(var(--wine-rgb),.4)`, also `--cream-rgb`, `--ink-900-rgb`, `--wine-950-rgb` (never the raw numbers).
+- Type scale: `var(--fs-11 … --fs-24)` for fixed text sizes (`--fs-12_5`, `--fs-14_5` for the half sizes); fluid `clamp()` sizes stay inline. Spacing scale: `var(--space-2 … --space-28)` for gaps.
 - Motion: `var(--ease)`, `--ease-out`, `--ease-pop` (overshoot), `--ease-spring`, `--ease-in-out`.
 - Space below a component: `var(--cmp-mb)`. Textures: `var(--tex)` (velvet), `var(--paper)`.
 - Never write a brand hex (`#6c171e`), a font name, or a new `:root{--…}` elsewhere. A new colour or value that will be reused becomes a token in `00-tokens.css`.
 - Use the main names; `--vermilion --blush --rose --deep --ground --on --beige --paper2` are old aliases.
 
 ## Components in use on the pages
-- **Brand button** (call to action, flips on hover; 84 uses): `<a class="flipbtn fb--cream" href="…"><span class="fb-in"><span class="fb-f">Label<i>♠︎</i></span><span class="fb-b" aria-hidden="true">Label<i>♠︎</i></span></span></a>`. Variants `fb--cream` (filled), `fb--line` (outline). Styles: `src/css/23-override-brand-buttons-and-entrances.css`, `33-bold-buttons.css`.
+- **Brand button** (call to action, flips on hover; 84 uses): `<a class="flipbtn fb--cream" href="…"><span class="fb-in"><span class="fb-f">Label<i>♠︎</i></span><span class="fb-b" aria-hidden="true">Label<i>♠︎</i></span></span></a>`. Variants `fb--cream` (filled), `fb--line` (outline). Styles: `src/css/22-flip-buttons.css` (the component), `33-bold-buttons.css` (bold outline and press).
 - **Press button** (UI actions and secondary links; presses into its shadow): `class="btn btn--wine"`, `btn--cream` or `btn--light` (flat), plus optional `btn--lg`, `btn--pill`. Used by the calculator (`bg-go`, `bg-btn`), footer CTA (`ft-cta`), project back link (`pj-back`) and links page (`lk`). The look is in `src/css/19-components.css`; the place using it only sets padding, font and layout. Tune one use with `--btn-bg --btn-fg --btn-sh --btn-hover --btn-sh-hover`, never by re-declaring border, shadow or colours.
+- **Panel** (the bold cream card): `class="panel"`. Used by the FAQ cards, legal sections (`lg-s`), calculator cards (`bg-card`) and the footer pitch (`ft-pitch`). The place using it sets padding and may change text colour or corners; never re-declare its outline, background or shadow.
+- **Visually hidden** text for screen readers: `class="vh"` (e.g. the card-draw result, announced with `aria-live`).
 - **FAQ / Q&A**: `.fq` section with `.fq-l` cards, on the home page and `faq.html`. All styles in `src/css/47-faq.css`. Questions live in `src/data/faq.json` (`home` = the shorter answer shown on the home page); edit there, then run `node scripts/sync-faq.mjs`. Never edit the questions in the HTML directly: `npm run check` fails when they differ.
-- **Eyebrow** above a heading (25 pages): `<div class="e eb">♥︎ من نحن</div>`. Styles: `src/css/21-override-services-and-text.css`.
+- **Eyebrow** above a heading (25 pages): `<div class="e eb">♥︎ من نحن</div>`. Styles: `src/css/27-text.css`.
 - **Frame** (thin lines + suit corners): `.frame` inside a `.has-frame` parent. Markup in the header of `src/css/19-components.css`.
 - **Nav** (`.mini`), **footer** (`.ft`), **closing "pull a card" CTA** (`.xp9`), skip link: shared partials in `src/partials/`. Never copy them into a page by hand: run `node scripts/sync-nav.mjs`.
 - Suits ♠︎ ♥︎ ♦︎ ♣︎ (with U+FE0E) are the icon set; no icon fonts or icon libraries.

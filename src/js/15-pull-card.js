@@ -25,28 +25,32 @@
           WIN=[['استشارة مجانية','احجز استشارتك المجانية وتكلم معنا عن علامتك'],['تحليل حساباتك بالسوشل ميديا','نراجع حساباتك ونعطيك ملاحظات واضحة تبني عليها'],['ودك بخصم؟ واجهنا في صكة بلوت','اربح الصكة معنا واحصل على خصم على خدماتنا']],
           MISS=['جرب حاسبة ميزانية التسويق','وزع ميزانيتك التسويقية في دقائق مع حاسبتنا المجانية.'],
           WA='https://api.whatsapp.com/message/U2EGUFBDX66ZE1?autoload=1&app_absent=0',
-          btns=document.querySelectorAll('#xp9o .xp9-btns a'),
+          btns=document.querySelectorAll('#xp9o .xp9-btns a'),sr=document.getElementById('xp9a'),
           SU=['♠︎','♥︎','♦︎','♣︎'],drawn=false,d=null,from=null,KEY='arb-card';
       /* one card per visitor: the first draw is saved in this browser (localStorage and a one-year cookie, so clearing one still keeps the other) and every later visit, refresh, new tab or new window shows that same card, already face up */
       function load(){
         var raw=null;try{raw=localStorage.getItem(KEY)}catch(e){}
         if(!raw){var m=document.cookie.match(new RegExp('(?:^|; )'+KEY+'=([^;]*)'));raw=m&&decodeURIComponent(m[1])}
-        try{var v=JSON.parse(raw);if(v&&v.s>=0&&v.s<4&&v.w>=-1&&v.w<WIN.length){save(v);return v}}catch(e){}return null}
+        try{var v=JSON.parse(raw);if(v&&v.s>=0&&v.s<4&&v.w>=-1&&v.w<WIN.length){if(v.w>=0&&!/^[A-Z2-9]{5}$/.test(v.c||''))v.c=code();save(v);return v}}catch(e){}return null}
+      /* a win carries a short claim code (saved with the draw) that the visitor quotes when they message us, so the team knows which offer it is */
+      function code(){var A='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',s='';for(var i=0;i<5;i++)s+=A.charAt(Math.random()*A.length|0);return s}
       function save(v){var j=JSON.stringify(v);
         try{localStorage.setItem(KEY,j)}catch(e){}
         document.cookie=KEY+'='+encodeURIComponent(j)+'; max-age=31536000; path=/; SameSite=Lax'}
       function T(x,y,s,r){return'translate('+x+'px,'+y+'px) rotate('+r+'deg) scale('+s+')'}
       function draw(kept){
         if(drawn)return;drawn=true;
-        var saved=kept||load();if(!saved){saved={w:Math.random()<WIN_CHANCE?Math.random()*WIN.length|0:-1,s:Math.random()*4|0};save(saved)}
+        var saved=kept||load();if(!saved){saved={w:Math.random()<WIN_CHANCE?Math.random()*WIN.length|0:-1,s:Math.random()*4|0};if(saved.w>=0)saved.c=code();save(saved)}
         var fr=top.getBoundingClientRect(),win=saved.w>=0,w=win?WIN[saved.w]:null,su=SU[saved.s],red=su==='♥︎'||su==='♦︎';
         face.className='f'+(red?' r':'');
         face.innerHTML='<b>A<i>'+su+'</i></b><span class="p">'+su+'</span>';
         /* a win: the contact button opens WhatsApp and the calculator button is hidden. A miss keeps both. */
-        if(win){h.textContent=w[0];p.textContent=w[1]+'. تواصل معنا متى ما تحب ونفعل عرضك.';btns[0].href=WA;btns[0].target='_blank';btns[0].rel='noopener';btns[1].style.display='none'}
+        if(win){h.textContent=w[0];p.textContent=w[1]+'. تواصل معنا متى ما تحب ونفعل عرضك، واذكر رمز العرض: '+saved.c;btns[0].href=WA;btns[0].target='_blank';btns[0].rel='noopener';btns[1].style.display='none'}
         else{h.textContent=MISS[0];p.textContent=MISS[1]}
         top.style.transform='';st.classList.add('drawn');st.parentNode.classList.add('xp9-done');card.classList.add('on');
         if(kept){card.removeAttribute('aria-hidden');return}
+        /* screen readers hear the result of a fresh draw (not a card already drawn on an earlier visit) */
+        if(sr)sr.textContent='سحبت '+(win?'ورقة رابحة: ':'ورقة: ')+h.textContent+'. '+p.textContent;
         var to=card.getBoundingClientRect(),dx=fr.left+fr.width/2-(to.left+to.width/2),dy=fr.top+fr.height/2-(to.top+to.height/2),s=fr.width/to.width;
         from=[dx,dy,s];
         if(!RM){

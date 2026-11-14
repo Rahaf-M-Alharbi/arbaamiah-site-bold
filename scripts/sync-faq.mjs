@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const check = process.argv.includes("--check");
 const { items } = JSON.parse(readFileSync(join(root, "src/data/faq.json"), "utf8"));
-const row = (q, a) => `      <details open><summary>${q}</summary><div class="a"><div><p>${a}</p></div></div></details>`;
+const row = (q, a) => `      <details class="panel" open><summary>${q}</summary><div class="a"><div><p>${a}</p></div></div></details>`;
 const lists = {
   "faq.html": items.map((x) => row(x.q, x.a)),
   "index.html": items.filter((x) => x.home).map((x) => row(x.q, x.home)),

@@ -3,6 +3,6 @@
 
 /* the cards are plain HTML. Until the script has laid them out they stay invisible (no flash of a stacked pile); if the script never starts, the head script drops the "js" class and the cards show as a simple wrapped list */
 .js .wk-deck:not(.ready) .wc{opacity:0}
-html:not(.js) .wk-deck:not(.ready){height:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:28px;padding:0 16px 40px;touch-action:auto;cursor:auto}
+html:not(.js) .wk-deck:not(.ready){height:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-28);padding:0 16px 40px;touch-action:auto;cursor:auto}
 html:not(.js) .wk-deck:not(.ready) .wc{position:relative;left:auto;top:auto;transform:none;opacity:1;max-width:100%}
 html:not(.js) .work>.wk-ctl{display:none}

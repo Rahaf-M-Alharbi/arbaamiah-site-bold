@@ -1,27 +1,24 @@
 /* ===== components =====
    frame   <div class="frame"><s class="ln l"></s><s class="ln r"></s><i class="tl">♠︎</i><i class="tr">♥︎</i><i class="bl">♣︎</i><i class="br">♦︎</i></div>
            first child of any position:relative + isolation:isolate parent (.has-frame does both). --fi inset from the edges, --fc colour, --fg gap before the suits; .frame--ink for paper grounds
-   tag     <span class="tag">01 · فلسفتنا</span>   variants: .tag--accent (warm, with a spark icon), .tag--solid (filled), .tag--flush (no space below)
-   spacing every component ends with margin-bottom: var(--cmp-mb) = 50px (tag, section top row, section title)
-   section <section class="sec sec--paper"><div class="sec__in"><div class="sec__top"><span class="tag">…</span><span class="sec__rule"></span><span class="tag tag--accent">…</span></div><h2 class="sec__title">…</h2>…</div></section>
-           grounds: .sec--paper .sec--beige .sec--wine .sec--red .sec--velvet */
-/* every component leaves the same space below it: one token, --cmp-mb (50px). Change it once and all components follow; .tag--flush drops it for inline use */
+   tag     <span class="tag">…</span>   pill label (used on the work-deck cards); ends with margin-bottom: var(--cmp-mb), except inside a card
+   panel, btn, vh: below */
 
 .frame{--fi:50px;--fc:#8a7a72;--fg:14px;position:absolute;inset:var(--fi);z-index:-1;pointer-events:none}
 .frame .ln{position:absolute;top:var(--fg);bottom:var(--fg);width:0;border-left:1px solid var(--fc);text-decoration:none}
 .frame .ln.l{left:0}
 .frame .ln.r{right:0}
-.frame i{position:absolute;width:20px;height:20px;display:grid;place-items:center;font:400 16px/1 serif;font-style:normal;color:var(--fc)}
+.frame i{position:absolute;width:20px;height:20px;display:grid;place-items:center;font:400 var(--fs-16)/1 serif;font-style:normal;color:var(--fc)}
 .frame .tl{left:-10px;top:-10px}
 .frame .tr{right:-10px;top:-10px}
 .frame .bl{left:-10px;bottom:-10px}
 .frame .br{right:-10px;bottom:-10px}
-.tag{display:inline-flex;align-items:center;gap:8px;margin-bottom:var(--cmp-mb);padding:8px 16px;border:1px solid currentColor;border-radius:var(--radius-pill);font:600 13px/1 var(--f-body);white-space:nowrap;color:inherit;background:transparent}
+.tag{display:inline-flex;align-items:center;gap:var(--space-8);margin-bottom:var(--cmp-mb);padding:8px 16px;border:1px solid currentColor;border-radius:var(--radius-pill);font:600 var(--fs-13)/1 var(--f-body);white-space:nowrap;color:inherit;background:transparent}
 .tag svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
 .wc .tag{margin-bottom:0}
 .mini .cta{box-shadow:none}
 /* skip link: off-screen until a keyboard user focuses it */
-.skip{position:fixed;top:-80px;inset-inline-start:12px;z-index:100000;padding:10px 18px;border-radius:var(--radius-10);background:var(--cream);color:var(--wine);font:700 16px/1.4 var(--f-body,inherit);text-decoration:none;transition:top .2s}
+.skip{position:fixed;top:-80px;inset-inline-start:12px;z-index:100000;padding:10px 18px;border-radius:var(--radius-10);background:var(--cream);color:var(--wine);font:700 var(--fs-16)/1.4 var(--f-body,inherit);text-decoration:none;transition:top .2s}
 .skip:focus{top:12px;outline:3px solid var(--wine);outline-offset:2px}
 /* plain-HTML copy of the services: invisible once the script draws the cards, readable without it */
 .js .svc-fb{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -32,7 +29,7 @@
    size/shape (optional): .btn--lg  bigger shadow and press      .btn--pill  pill shape, thinner outline
    Padding, font and layout belong to the place that uses the button; the look comes from here. To tune one use, set the variables
    --btn-bg --btn-fg --btn-sh (resting shadow) --btn-hover (hover transform) --btn-sh-hover on it, as .lk on the links page does.
-   .flipbtn (23-…, 33-…) is the other button: the brand call to action with the flip animation. */
+   .flipbtn (22-flip-buttons.css, 33-bold-buttons.css) is the other button: the brand call to action with the flip animation. */
 .btn{--btn-sh:var(--shadow-5);--btn-hover:translate(3px,3px);--btn-sh-hover:var(--shadow-2);border:var(--border-4);border-radius:var(--radius-14);background:var(--btn-bg);color:var(--btn-fg);box-shadow:var(--btn-sh);text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .15s}
 .btn:hover,.btn:focus-visible{transform:var(--btn-hover);box-shadow:var(--btn-sh-hover)}
 .btn--wine{--btn-bg:var(--wine);--btn-fg:var(--cream)}
@@ -42,3 +39,11 @@
 .btn--pill{border:var(--border-3);border-radius:var(--radius-pill)}
 .btn:disabled{opacity:.45;cursor:not-allowed;--btn-hover:none;--btn-sh-hover:var(--btn-sh)}
 @media (prefers-reduced-motion:reduce){.btn{transition:none}}
+
+/* panel: the bold cream card. Thick ink outline, 14px corners, cream ground, ink text, 8px hard shadow.
+     <div class="panel">…</div>   used by the FAQ cards (.fq details), legal sections (.lg-s), calculator cards (.bg-card), footer pitch (.ft-pitch)
+   The place using it sets padding and layout, and may change the text colour or corners; on phones each use shrinks its own shadow. */
+.panel{border:var(--border-4);border-radius:var(--radius-14);background:var(--cream);color:var(--ink-900);box-shadow:var(--shadow-8)}
+
+/* visually hidden: read by screen readers, not shown (e.g. the live result of the card draw) */
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
