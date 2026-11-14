@@ -163,7 +163,7 @@ const slide = (p, k) => {
 };
 const stars = projects.filter((p) => p.top && p.folder);
 const slides = stars.length ? `<section class="pj-show" aria-roledescription="carousel" aria-label="أبرز أعمالنا"><div class="pj-slides">${stars.map(slide).join("")}</div><div class="pj-ctl" hidden><button class="pj-sl-n" type="button" dir="ltr" data-d="-1" aria-label="السابق">›</button><span class="pj-dots">${stars.map((p, k) => `<button type="button" aria-label="${esc(p.name)}"${k === 0 ? ' aria-current="true"' : ""}></button>`).join("")}</span><button class="pj-sl-n" type="button" dir="ltr" data-d="1" aria-label="التالي">‹</button></div></section>` : "";
-writeFileSync(join(root, "projects.html"), page("أعمال أربعمية في السعودية: هويات بصرية وتصميم ومحتوى | أربعمية", `<main class="pj pj-page" lang="ar" dir="rtl" aria-label="مشاريعنا">
+writeFileSync(join(root, "projects.html"), page("أعمال أربعمية: تصميم شعارات وهويات بصرية وكولاج ومحتوى في السعودية", `<main class="pj pj-page" lang="ar" dir="rtl" aria-label="مشاريعنا">
   <div class="pj-hero pj-hero-1"><div class="pj-ht"><span class="eb pj-e">♦︎ مشاريعنا</span><h1>علامـات كبـرت معنـا</h1></div></div>
 ${slides}
   <div class="pj-chips" role="group" aria-label="نوع العمل" hidden>${[["all", "الكل"], ...kinds.filter(([k]) => projects.some((p) => kindsOf(p).includes(k)))].map(([k, t], j) => `<button type="button" data-k="${k}" aria-pressed="${j === 0}">${t}</button>`).join("")}</div>
