@@ -1,0 +1,65 @@
+/* Design tokens: the one place the site's colours, fonts, textures and shared sizes are defined. Loaded first on every page.
+   Every other stylesheet uses var(--name): change a value here and it changes everywhere. Do not write raw hex colours in
+   other files; add a token here instead. (pricing.html is a separate stand-alone page with its own tokens in pricing/pricing.css.) */
+:root{
+  /* brand */
+  --wine:#6c171e;
+  --green:#0d3d3a;
+  --cream:#f4dabf;
+
+  /* wine scale (darkest to lightest) */
+  --wine-950:#2b0a10;  /* dark wine text on cream */
+  --wine-900:#2a080b;
+  --wine-800:#3d0d12;  /* page ground behind the velvet */
+  --wine-700:#4f1117;
+  --wine-600:var(--wine);
+  --wine-400:#a63a43;
+  --wine-200:#d9a0a4;
+  --wine-100:#f0d4d6;
+
+  /* cream and paper (darkest to lightest) */
+  --ground-light:#e6decd;
+  --cream-50:#fbeedd;
+  --cream-30:#fdf5eb;  /* form fields */
+  --cream-10:#fff8ee;  /* budget planner fields */
+  --paper-50:#fbf9f4;
+
+  /* ink and greys (darkest to lightest) */
+  --black:#0a0807;
+  --ink-900:#17120f;  /* main text and card outlines */
+  --ink:#1b1b19;
+  --ink2:#2a211b;
+  --gray-900:#2b2826;
+  --gray-700:#4a4642;
+  --gray-500:#7a746d;
+  --gray-300:#b4b1ab;
+  --gray-200:#d8d5d0;
+  --gray-100:#edebe3;
+
+  /* fonts */
+  --f-disp:'Thmanyah Serif Display',serif;
+  --f-body:'Thmanyah Sans',system-ui,sans-serif;
+
+  /* shared sizes */
+  --w:clamp(140px,19vw,260px);  /* hero service card width */
+  --cmp-mb:50px;                /* space under a component block */
+
+  /* textures */
+  --tex:url(../../assets/img/velvet.jpg);
+  --paper:url(../../assets/img/paper.jpg);
+  --paper:image-set(url(../../assets/img/paper.webp) type("image/webp"),url(../../assets/img/paper.jpg) type("image/jpeg"));
+
+  /* older names for the same colours, kept so existing rules keep working; use the names above in new code */
+  --vermilion:var(--wine);
+  --beige:var(--wine);
+  --blush:var(--cream);
+  --rose:var(--cream);
+  --on:var(--cream);
+  --deep:var(--wine-800);
+  --ground:var(--wine-800);
+  --paper2:var(--gray-100);
+}
+/* same velvet photo as AVIF (half the bytes); browsers without AVIF in image-set() keep the JPEG above */
+@supports (background-image:image-set(url(x.avif) type("image/avif"))){:root{--tex:image-set(url(../../assets/img/velvet.avif) type("image/avif"),url(../../assets/img/velvet.jpg) type("image/jpeg"))}}
+/* phones: a 750 px AVIF (44 KB instead of 125 KB); the wine wash over the velvet hides the difference. The page <head> preloads the matching file with the same media query. */
+@media (max-width:700px){@supports (background-image:image-set(url(x.avif) type("image/avif"))){:root{--tex:image-set(url(../../assets/img/velvet-m.avif) type("image/avif"),url(../../assets/img/velvet.jpg) type("image/jpeg"))}}}

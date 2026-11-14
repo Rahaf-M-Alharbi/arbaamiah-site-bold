@@ -6,32 +6,32 @@
 .mini .cta{padding:9px 18px}
 @media (max-width:640px){.mini nav{gap:20px;font-size:13px}.mini b{font-size:20px}.mini .cta{padding:7px 12px}}
 @media (prefers-reduced-motion:reduce){.mini{transition:none}}
-.pnl{background:#efe8d9;border:1px solid #17120f;border-radius:14px;box-shadow:none}
-.pnl{--fr:#6c171e;--in:40px;--gap:26px}
+.pnl{background:#efe8d9;border:1px solid var(--ink-900);border-radius:14px;box-shadow:none}
+.pnl{--fr:var(--wine);--in:40px;--gap:26px}
 .deck .stack .pnl{padding:calc(var(--in) + 88px) calc(var(--in) + 80px)}
 /* corner-suit frame: one red line along the top and one down the right side, each stopping short of the suit that sits at their corner */
 .pnl::before,.pnl::after{content:"";position:absolute;background:var(--fr);border:0;border-radius:0;pointer-events:none}
 .pnl::before{top:var(--in);left:var(--in);right:calc(var(--in) + var(--gap));height:1px;inset-block-end:auto}
 .pnl::after{top:calc(var(--in) + var(--gap));right:var(--in);bottom:var(--in);width:1px}
 .pnl .top .st{display:none}
-.pnl .sx{position:absolute;z-index:1;top:calc(var(--in) - 18px);right:calc(var(--in) - 18px);width:36px;height:36px;display:grid;place-items:center;font-size:28px;line-height:1;color:#17120f;pointer-events:none}
+.pnl .sx{position:absolute;z-index:1;top:calc(var(--in) - 18px);right:calc(var(--in) - 18px);width:36px;height:36px;display:grid;place-items:center;font-size:28px;line-height:1;color:var(--ink-900);pointer-events:none}
 .pnl .sx.red{color:var(--fr)}
 .pnl .sx.b{display:none}
 @media (max-width:640px){.pnl{--in:20px;--gap:22px}.pnl .sx{font-size:22px}.deck .stack .pnl{padding:calc(var(--in) + 52px) calc(var(--in) + 34px)}}
 
 /* one ground: every section sits on the same burgundy; light text on it, cards keep their own paper */
-:root{--ground:#3d0d12;--on:#f4dabf;--beige:#6c171e}
+
 body{background:var(--ground)}
 body::before,.deck::before,.work::before,.stt::before,.ft::before{display:none}
 .deck,.work,.stt,.pr,.ft,.fq,.next2,.nstage{background:var(--ground);background-image:none;color:var(--on)}
 .mini{mix-blend-mode:normal}
 /* cards on the ground keep dark ink */
-.pnl,.wc{color:#17120f}
+.pnl,.wc{color:var(--ink-900)}
 .wc{color:var(--fg)}
 /* rules and borders that were dark ink on paper now follow the text colour */
 .wk-ctl button{border-color:var(--on);color:var(--on)}
 .wk-ctl button:hover{background:var(--on);color:var(--ground)}
 .fq-l,.fq details,.stt-t,.stt-i{border-color:currentColor}
-.fq details:nth-child(even) summary i{color:#f4dabf}
+.fq details:nth-child(even) summary i{color:var(--cream)}
 .stt-i b{color:var(--on)}
-.wk-head .e{color:#f4dabf}
+.wk-head .e{color:var(--cream)}

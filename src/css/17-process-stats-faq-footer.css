@@ -1,14 +1,14 @@
 /* footer: deep wine close, giant numeral, one CTA */
-.ft{position:relative;background:#3d0d12;color:#f4dabf;overflow:hidden}
+.ft{position:relative;background:var(--wine-800);color:var(--cream);overflow:hidden}
 .ft::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 50% 38%,rgba(108,23,30,.28),transparent 70%);pointer-events:none}
 .ft-in{position:relative;max-width:1100px;margin:0 auto;display:grid;justify-items:center}
 .ft h2{margin:0;font:700 clamp(30px,5vw,64px)/1.2 var(--f-disp);text-wrap:balance}
 .ft p{margin:0;font:500 clamp(14px,1.4vw,18px)/1.8 var(--f-body);opacity:.75;max-width:46ch}
 .ft-r{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:clamp(60px,10vh,110px);padding-top:18px;border-top:1px solid rgba(244,218,191,.25);font:500 13px/1.6 var(--f-body);opacity:.7}
 .ft-s{display:flex;gap:10px;font-size:20px;letter-spacing:.3em}
-.ft-s i{font-style:normal}.ft-s .r{color:#f4dabf}
+.ft-s i{font-style:normal}.ft-s .r{color:var(--cream)}
 /* stats: flat vermilion band, four counters */
-.stt{position:relative;background:#3d0d12;color:#1a0d0a;padding:clamp(60px,11vh,120px) max(16px,env(safe-area-inset-left,0px)) clamp(60px,11vh,120px) max(16px,env(safe-area-inset-right,0px));overflow:hidden}
+.stt{position:relative;background:var(--wine-800);color:#1a0d0a;padding:clamp(60px,11vh,120px) max(16px,env(safe-area-inset-left,0px)) clamp(60px,11vh,120px) max(16px,env(safe-area-inset-right,0px));overflow:hidden}
 .stt::before{content:"";position:absolute;inset:0;background:radial-gradient(rgba(0,0,0,.14) 1px,transparent 1.3px) 0 0/6px 6px;pointer-events:none}
 .stt-in{position:relative;max-width:1100px;margin:0 auto;display:grid;gap:clamp(28px,5vh,52px)}
 .stt-t{margin:0;font:600 13px/1 var(--f-body);letter-spacing:.1em;display:flex;justify-content:space-between;border-bottom:1px solid #1a0d0a;padding-bottom:14px}
@@ -16,16 +16,16 @@
 .stt-i{padding:0 clamp(10px,2vw,28px);border-inline-start:1px solid #1a0d0a;display:grid;gap:8px;align-content:start}
 .stt-i:first-child{border-inline-start:0;padding-inline-start:0}
 /* numbers borrow the playing-card corner index: bold serif rank with its suit stacked underneath, centred on the rank */
-.stt-i .stt-ix{display:grid;justify-items:center;width:fit-content;gap:.25em;direction:ltr;color:#f4dabf}
+.stt-i .stt-ix{display:grid;justify-items:center;width:fit-content;gap:.25em;direction:ltr;color:var(--cream)}
 .stt-g{container-type:inline-size}
-.stt-i .stt-ix b{font:700 min(7.6cqw,132px)/1 var(--f-disp);font-variant-numeric:lining-nums tabular-nums;color:#f4dabf;white-space:nowrap}
+.stt-i .stt-ix b{font:700 min(7.6cqw,132px)/1 var(--f-disp);font-variant-numeric:lining-nums tabular-nums;color:var(--cream);white-space:nowrap}
 .stt-i .stt-ix b::after{content:attr(data-s);font-size:.5em;vertical-align:.55em;margin-inline-start:.08em}
-.stt-i .stt-ix i{font-style:normal;font:400 min(3.6cqw,66px)/1 var(--f-disp);color:#b4b1ab}
-.stt-i .stt-ix i.r{color:#b4b1ab}
+.stt-i .stt-ix i{font-style:normal;font:400 min(3.6cqw,66px)/1 var(--f-disp);color:var(--gray-300)}
+.stt-i .stt-ix i.r{color:var(--gray-300)}
 .stt-i span{font:700 clamp(13px,1.3vw,17px)/1.5 var(--f-body)}
 @media (max-width:640px){.stt-g{grid-template-columns:repeat(2,minmax(0,1fr))}.stt-i .stt-ix b{font-size:min(15cqw,100px)}.stt-i .stt-ix i{font-size:min(8cqw,50px)}.stt-i:nth-child(odd){border-inline-start:0;padding-inline-start:0}}
 /* principles: four cream cards on a dark wine panel, index in the corner and a faded suit behind the text */
-.pr{position:relative;background:#2b0a10;color:#f4dabf;padding:clamp(60px,11vh,120px) max(16px,env(safe-area-inset-left,0px)) clamp(60px,11vh,120px) max(16px,env(safe-area-inset-right,0px))}
+.pr{position:relative;background:var(--wine-950);color:var(--cream);padding:clamp(60px,11vh,120px) max(16px,env(safe-area-inset-left,0px)) clamp(60px,11vh,120px) max(16px,env(safe-area-inset-right,0px))}
 .pr-in{max-width:1180px;margin:0 auto;display:grid;gap:clamp(24px,4vh,44px)}
 .pr-h{margin:0;font:700 clamp(32px,5vw,64px)/1.15 var(--f-disp);text-wrap:balance}
 /* faq: cream accordion, one suit per row */
@@ -40,7 +40,7 @@
 .fq summary i{font-style:normal;font-size:1.3em;width:1.2em;text-align:center;flex:none}
 .fq summary::after{content:"+";margin-inline-start:auto;font:400 28px/1 var(--f-disp);transition:transform .3s}
 .fq details[open] summary::after{transform:rotate(45deg)}
-.fq summary:focus-visible{outline:2px solid #6c171e;outline-offset:2px}
+.fq summary:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
 .fq .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
 .fq details[open] .a{grid-template-rows:1fr}
 .fq .a>div{overflow:hidden}

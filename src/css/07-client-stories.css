@@ -16,5 +16,5 @@
 .cst-f{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:clamp(14px,2vw,22px);border-top:1px solid rgba(23,18,15,.28);font:600 11px/1.7 var(--f-body);letter-spacing:.12em}
 .cst-ctl{display:flex;gap:10px;direction:ltr}
 .cst-ctl button{width:34px;height:34px;border-radius:50%;border:1px solid rgba(23,18,15,.5);background:transparent;color:inherit;font:700 14px/1 var(--f-disp);cursor:pointer}
-.cst-ctl button:hover{background:#17120f;color:#d3cdc1}
+.cst-ctl button:hover{background:var(--ink-900);color:#d3cdc1}
 @media (max-width:640px){.cst-f{flex-direction:column;align-items:flex-start}}

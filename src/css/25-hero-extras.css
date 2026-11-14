@@ -14,8 +14,8 @@
 /* buttons: top band, so the card fan can never cover them */
 .hero-cta.sub{position:absolute;top:clamp(14px,3vh,28px);left:0;right:0;z-index:4;margin:0;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding-inline:60px;animation:hm-in .8s .3s cubic-bezier(.2,.8,.2,1) backwards}
 .hero-cta .fb-f,.hero-cta .fb-b{padding:11px 26px;font-size:15px}
-.hero-cta .fb--line .fb-f{background:transparent;color:#f4dabf;box-shadow:inset 0 0 0 1px #f4dabf}
-.hero-cta .fb--line .fb-b{background:#f4dabf;color:#2b0a10}
+.hero-cta .fb--line .fb-f{background:transparent;color:var(--cream);box-shadow:inset 0 0 0 1px var(--cream)}
+.hero-cta .fb--line .fb-b{background:var(--cream);color:var(--wine-950)}
 @media (max-width:640px){.hero-cta.sub{padding-inline:44px;gap:8px}.hm-proof li+li::before{margin-inline:8px}}
 
 @keyframes hm-in{from{opacity:0;transform:translateY(14px)}}

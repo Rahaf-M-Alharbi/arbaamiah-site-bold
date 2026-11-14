@@ -1,4 +1,4 @@
 /* Bold card style (from the pull-a-card section): thick ink border, hard offset shadow, slightly rounder corners. Applies to every playing card, front and back. */
-.card:not(.xp-btn),.slot::after{box-sizing:border-box;border:4px solid #17120f;border-radius:6%;box-shadow:8px 8px 0 #17120f}
-.card:hover,.card:focus-visible{box-shadow:8px 8px 0 #17120f}
-@media (max-width:640px){.card:not(.xp-btn),.slot::after{border-width:3px;box-shadow:5px 5px 0 #17120f}}
+.card:not(.xp-btn),.slot::after{box-sizing:border-box;border:4px solid var(--ink-900);border-radius:6%;box-shadow:8px 8px 0 var(--ink-900)}
+.card:hover,.card:focus-visible{box-shadow:8px 8px 0 var(--ink-900)}
+@media (max-width:640px){.card:not(.xp-btn),.slot::after{border-width:3px;box-shadow:5px 5px 0 var(--ink-900)}}

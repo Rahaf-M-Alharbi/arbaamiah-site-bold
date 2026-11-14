@@ -1,41 +1,41 @@
 /* dark flip buttons; red backgrounds turned green */
 .fb-f,.fb--cream .fb-f,.links .fb--line .fb-f,.mini .fb--line .fb-f{box-shadow:none}
 /* buttons: brand colours only */
-.fb-f,.fb--cream .fb-f,.links .fb--line .fb-f,.mini .fb--line .fb-f{background:#3d0d12;color:#f4dabf}
+.fb-f,.fb--cream .fb-f,.links .fb--line .fb-f,.mini .fb--line .fb-f{background:var(--wine-800);color:var(--cream)}
 .fb-f,.fb-b{box-shadow:inset 0 0 0 1px rgba(244,218,191,.35)}
 .fb-b{box-shadow:none}
 /* button contrast: green face on light ground, cream face on green ground */
-.fb-b,.fb--cream .fb-b,.links .fb--line .fb-b,.mini .fb--line .fb-b{background:#6c171e;color:#f4dabf}
-.ctf .fb-f,.links .fb--line .fb-f,.mini .fb--line .fb-f,.fb--cream .fb-f{background:#f4dabf;color:#6c171e;box-shadow:none}
-.ctf .fb-b,.links .fb--line .fb-b,.mini .fb--line .fb-b,.fb--cream .fb-b{background:#6c171e;color:#f4dabf}
-.wm .g{color:#6c171e}
+.fb-b,.fb--cream .fb-b,.links .fb--line .fb-b,.mini .fb--line .fb-b{background:var(--wine);color:var(--cream)}
+.ctf .fb-f,.links .fb--line .fb-f,.mini .fb--line .fb-f,.fb--cream .fb-f{background:var(--cream);color:var(--wine);box-shadow:none}
+.ctf .fb-b,.links .fb--line .fb-b,.mini .fb--line .fb-b,.fb--cream .fb-b{background:var(--wine);color:var(--cream)}
+.wm .g{color:var(--wine)}
 /* final tweaks: flat solid button faces, wine card, darker nav button */
 .fb-f,.fb-b,.fb--line .fb-f,.fb--line .fb-b{box-shadow:none;background-image:none}
-.links .fb--line .fb-f,.mini .fb--line .fb-f{background:#6c171e;color:#f4dabf}
-.links .fb--line .fb-b,.mini .fb--line .fb-b{background:#f4dabf;color:#6c171e}
+.links .fb--line .fb-f,.mini .fb--line .fb-f{background:var(--wine);color:var(--cream)}
+.links .fb--line .fb-b,.mini .fb--line .fb-b{background:var(--cream);color:var(--wine)}
 /* hero: original red velvet; nav gets a solid bar so it stays readable */
-.h{background-color:#6c171e;background-blend-mode:normal}
+.h{background-color:var(--wine);background-blend-mode:normal}
 /* hero: calmer velvet, a flat wine wash softens the pile so only a faint texture shows */
 .h{background-image:radial-gradient(ellipse 85% 75% at 50% 40%,transparent 55%,rgba(15,0,4,.35)),linear-gradient(rgba(108,23,30,.62),rgba(108,23,30,.62)),var(--tex);background-size:auto,auto,cover}
 .mini{-webkit-backdrop-filter:blur(16px) saturate(1.2);border-bottom:0}
-.mini .fb--line .fb-f{background:#6c171e;color:#f4dabf}
-.mini .fb--line .fb-b{background:#17120f;color:#f4dabf}
+.mini .fb--line .fb-f{background:var(--wine);color:var(--cream)}
+.mini .fb--line .fb-b{background:var(--ink-900);color:var(--cream)}
 /* solutions intro: one full screen with generous padding */
 .deck .dk-head{box-sizing:border-box;margin-bottom:0;align-content:center;padding-block:clamp(28px,4vh,48px)}
 /* numbers: one full screen, content centred */
 .stt{box-sizing:border-box;display:flex;flex-direction:column}
 .stt .stt-in{width:100%}
-.mini b,.mini nav a:not(.flipbtn){color:#6c171e}
+.mini b,.mini nav a:not(.flipbtn){color:var(--wine)}
 /* sliding nav flips between light and dark treatment depending on the section behind it */
 .mini b,.mini nav a:not(.flipbtn){transition:color .35s}
-.mini.on-dark b,.mini.on-dark nav a:not(.flipbtn){color:#f4dabf}
-.mini.on-dark .fb--line .fb-f{background:#f4dabf;color:#6c171e}
-.mini.on-dark .fb--line .fb-b{background:#6c171e;color:#f4dabf}
+.mini.on-dark b,.mini.on-dark nav a:not(.flipbtn){color:var(--cream)}
+.mini.on-dark .fb--line .fb-f{background:var(--cream);color:var(--wine)}
+.mini.on-dark .fb--line .fb-b{background:var(--wine);color:var(--cream)}
 /* rounder flip buttons */
 .flipbtn,.links a.cta.flipbtn,.mini a.cta.flipbtn,.fb-f,.fb-b{border-radius:14px}
 /* flip button: two cards peek out from behind on hover */
-.flipbtn{position:relative;isolation:isolate;--c1:#0d3d3a;--c2:#fbeedd;--cb:rgba(23,18,15,.18)}
-.ctf .flipbtn,.links .flipbtn,.mini.on-dark .flipbtn{--c1:#0d3d3a;--c2:#fbeedd;--cb:rgba(244,218,191,.3)}
+.flipbtn{position:relative;isolation:isolate;--c1:var(--green);--c2:var(--cream-50);--cb:rgba(23,18,15,.18)}
+.ctf .flipbtn,.links .flipbtn,.mini.on-dark .flipbtn{--c1:var(--green);--c2:var(--cream-50);--cb:rgba(244,218,191,.3)}
 .flipbtn::before,.flipbtn::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:14px;border:1px solid var(--cb);pointer-events:none;opacity:0;transition:transform .22s ease,opacity .08s linear;transform:translate(0,0) rotate(0) scale(.96)}
 .flipbtn::before{background:var(--c1)}
 .flipbtn::after{background:var(--c2)}
@@ -47,8 +47,8 @@
 .flipbtn:hover::after,.flipbtn:focus-visible::after{opacity:1;transition:transform .26s cubic-bezier(.2,1.2,.4,1) .25s,opacity 0s linear .25s}
 @media (prefers-reduced-motion:reduce){.flipbtn::before,.flipbtn::after{transition:none}}
 /* flipped face stays wine red; the card behind it is green */
-.fb-b,.fb--cream .fb-b,.links .fb--line .fb-b,.mini .fb--line .fb-b,.mini.on-dark .fb--line .fb-b,.ctf .fb-b{background:#6c171e;color:#f4dabf}
-.flipbtn,.ctf .flipbtn,.links .flipbtn,.mini.on-dark .flipbtn{--c1:#0d3d3a}
+.fb-b,.fb--cream .fb-b,.links .fb--line .fb-b,.mini .fb--line .fb-b,.mini.on-dark .fb--line .fb-b,.ctf .fb-b{background:var(--wine);color:var(--cream)}
+.flipbtn,.ctf .flipbtn,.links .flipbtn,.mini.on-dark .flipbtn{--c1:var(--green)}
 .links .fb--line .fb-f,.links .fb--line .fb-b,.mini .fb--line .fb-f,.mini .fb--line .fb-b{padding:15px 28px;font-size:17px;gap:10px}
 /* how we work: one full screen, content centred */
 .pr{min-height:100vh;min-height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center}

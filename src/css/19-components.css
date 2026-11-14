@@ -6,7 +6,7 @@
    section <section class="sec sec--paper"><div class="sec__in"><div class="sec__top"><span class="tag">…</span><span class="sec__rule"></span><span class="tag tag--accent">…</span></div><h2 class="sec__title">…</h2>…</div></section>
            grounds: .sec--paper .sec--beige .sec--wine .sec--red .sec--velvet */
 /* every component leaves the same space below it: one token, --cmp-mb (50px). Change it once and all components follow; .tag--flush drops it for inline use */
-:root{--cmp-mb:50px}
+
 .frame{--fi:50px;--fc:#8a7a72;--fg:14px;position:absolute;inset:var(--fi);z-index:-1;pointer-events:none}
 .frame .ln{position:absolute;top:var(--fg);bottom:var(--fg);width:0;border-left:1px solid var(--fc);text-decoration:none}
 .frame .ln.l{left:0}

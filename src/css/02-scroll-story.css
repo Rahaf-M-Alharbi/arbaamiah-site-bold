@@ -23,7 +23,7 @@
 }
 
 /* beige linen sits behind the velvet stage */
-:root{--ink2:#2a211b}
+
 body{position:relative}
 body::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;mix-blend-mode:multiply}
 .story{z-index:1}

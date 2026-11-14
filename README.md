@@ -15,6 +15,7 @@ Node 20 or newer.
 | `npm test` | budget calculator rules: the reference budgets from the brief plus every combination of answers, checked against the rules in `src/js/44-budget-engine.js` |
 | `node scripts/sync-nav.mjs` | writes the shared navigation bar (`src/partials/nav.html`), closing pull-a-card section (`src/partials/cta-pull.html`) and footer (`src/partials/footer.html`) into every page; run it after editing a partial |
 | `node scripts/sync-services.mjs` | writes the service texts (kept in `src/js/05-services-panels.js`) as plain HTML into services and home, so crawlers and no-JS visitors see them; run after editing those texts |
+| `node scripts/design-check.mjs` | design-system guard (also part of `npm run check` and CI): pages load `00-tokens.css` first, no raw brand colours or font names, tokens only in `00-tokens.css`, every page in the build list. Rules for new work: `CLAUDE.md` |
 | `node scripts/unused-css.mjs` | lists CSS that can never apply (`--fix` removes it) |
 | `node scripts/overridden-css.mjs` | lists declarations a later rule always replaces (`--fix` removes them) |
 
@@ -35,7 +36,9 @@ dist/                      build output (not in git)
 ```
 
 ### How the CSS is organised
-The design was built in layers: a base for each section (`01`–`19`), then passes that refine the whole page (`20`–`24` "override", `25`–`30`), then the bold card look (`31`–`39`) and the cursor (`40`). **The number order is the cascade order**, so a file can only be moved if the comparison below shows nothing changed. Brand colours and fonts are custom properties: `--wine`, `--cream`, `--deep`, `--ink`, `--f-disp`, `--f-body` in `01-hero-and-nav.css`; section grounds `--ground`, `--on`, `--beige` in `20-override-nav-frame-ground.css`; the full wine/cream scale in `24-override-card-backs-forms-phones.css`.
+The design was built in layers: a base for each section (`01`–`19`), then passes that refine the whole page (`20`–`24` "override", `25`–`30`), then the bold card look (`31`–`39`) and the cursor (`40`). **The number order is the cascade order**, so a file can only be moved if the comparison below shows nothing changed.
+
+**Design tokens live in one file: `src/css/00-tokens.css`**, loaded first on every page (except the stand-alone `pricing.html`, which keeps its own in `src/css/pricing/pricing.css`). It holds the brand colours (`--wine`, `--green`, `--cream`), the wine, cream/paper and ink/grey scales, the fonts (`--f-disp`, `--f-body`), the shared sizes and the velvet/paper textures. Other stylesheets use `var(--name)` and never write a raw brand hex; to change a colour site-wide, change it there. Older names (`--vermilion`, `--blush`, `--rose`, `--deep`, `--ground`, `--on`, `--beige`, `--paper2`) are kept as aliases of the main ones. Translucent brand colours (`rgba(108,23,30,…)`) and one-off illustration colours are still written inline.
 
 To change something, find the rule with the browser's inspector (it shows the file and line in `src/css` when running `npm run dev`) and edit it there.
 
