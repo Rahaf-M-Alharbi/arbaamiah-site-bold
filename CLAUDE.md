@@ -4,7 +4,7 @@ General engineering rules are in @AGENTS.md. This file is the project's own rule
 
 ## Before writing any CSS or markup
 1. Look for an existing component below, or in `src/css/` (search the class name), and reuse it as is.
-2. If it needs to look a little different, add a **variant** to that component (`.tag--x`, `.sec--x`, `.fb--x`) in its own file, built only from tokens.
+2. If it needs to look a little different, add a **variant** to that component (`.btn--x`, `.fb--x`, `.tag--x`) in its own file, built only from tokens.
 3. Only if nothing fits, write a new component, using tokens only.
 
 ## Tokens: `src/css/00-tokens.css` (the only place values are defined)
@@ -29,7 +29,7 @@ General engineering rules are in @AGENTS.md. This file is the project's own rule
 - **Nav** (`.mini`), **footer** (`.ft`), **closing "pull a card" CTA** (`.xp9`), skip link: shared partials in `src/partials/`. Never copy them into a page by hand: run `node scripts/sync-nav.mjs`.
 - Suits ♠︎ ♥︎ ♦︎ ♣︎ (with U+FE0E) are the icon set; no icon fonts or icon libraries.
 
-Page sections are still page-specific (`.ab-*` on about, `.pj-*` on projects, …). For a new section, first copy the pattern of the closest existing one. When a section pattern is needed on a second page, move it into a shared component file instead of copying it again. `src/css/19-components.css` also defines `.sec` (grounds `--paper --beige --wine --red --velvet`) and `.tag`, which no page uses yet: check them visually against the bold look before adopting them.
+Page sections are still page-specific (`.ab-*` on about, `.pj-*` on projects, …). For a new section, first copy the pattern of the closest existing one. When a section pattern is needed on a second page, move it into a shared component file instead of copying it again. `.tag` (pill label in `19-components.css`) is used on the work-deck cards.
 
 ## Motion
 Keep the motion, but respect "Reduce motion" (phone/computer setting): those visitors get the same page with no sliding, flipping, rotating or bouncing; fades and colour changes stay. `src/css/50-reduced-motion.css` (loaded last on every page) holds the shared rule: **any new component that moves goes into its list.** Keyframe animations stop in their own file under `@media (prefers-reduced-motion:reduce)`; scripts check `matchMedia('(prefers-reduced-motion:reduce)')` before animating, as `15-pull-card.js` does.
