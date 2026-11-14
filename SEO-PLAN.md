@@ -2,11 +2,41 @@
 
 Goal: rank for Arabic searches like "شركة تسويق إبداعي السعودية", "كتابة محتوى تسويقي", "تصميم هوية بصرية", plus the brand name.
 
+## Target keywords (owner list, added 2026-11-14)
+- تسويق
+- وكالة تسويق
+- صناعة محتوى
+- تصميم
+- تصاميم جرافيك
+- استراتيجية
+- كولاج
+
+Coverage check (2026-11-14): تسويق, تصميم, استراتيجية, كولاج are already used in titles/pages. "صناعة محتوى" and "تصاميم جرافيك" appear nowhere on the site yet; "وكالة تسويق" is only in the home and contact titles.
+
+### Google autocomplete findings (Saudi Arabia, Arabic, 2026-11-14)
+Suggestions only, not search volume. Check volume in Keyword Planner / Search Console.
+- وكالة تسويق: + الرياض, جدة, الدمام, بريدة, رقمي, الكتروني, سعودية. Best buyer intent: add city names to titles/descriptions.
+- تسويق: تسويق رقمي, تسويق الكتروني, تسويق عقاري.
+- صناعة محتوى: السوشيال ميديا, فيديو, رقمي (AI/Canva queries are learners, not buyers).
+- تصميم: تصميم شعار, تصميم جرافيك, تصميم صور.
+- تصاميم جرافيك: searchers want free/ready-made. Use singular "تصميم جرافيك" instead.
+- استراتيجية: mostly school/teaching results. Pair it: "استراتيجية تسويق".
+- كولاج: Google reads it as كولاجين (collagen). Pair it: "كولاج تصميم".
+
+### Google Trends, Saudi Arabia, past 12 months (2026-11-14)
+Relative interest only (100 = peak of the strongest term). Keyword Planner skipped (Google Ads forces a campaign setup).
+- تصميم شعار: average ~48. By far the biggest. Steady all year.
+- تصميم جرافيك: average ~14. Second.
+- وكالة تسويق, كتابة محتوى, صناعة محتوى: near zero, mostly flat. Too small for Trends to rank; "صناعة محتوى" is the weakest.
+- Takeaway: logo/brand design is the highest-demand service. Put "تصميم شعار" and "هوية بصرية" in titles, headings and a dedicated service page. Keep "وكالة تسويق" + city for buyer intent despite low volume.
+
+More autocomplete (Saudi, Arabic): شركة تسويق الكتروني / عقاري / جدة; تصميم شعار وكالة; تعليق صوتي سعودي; شركة ادارة حسابات سوشيال ميديا; شركات / وكالة تسويق مؤثرين; استراتيجية تسويق بالمحتوى / الخدمات; تصميم كولاج رقمي. Many "تصميم شعار / هوية / تعليق صوتي" searches are free or AI-tool seekers, so add words like "شركة" or "سعودي".
+
 ## Already in the code (verified 2026-11-11, `npm run check`: 32 pages, 0 problems)
 - Unique title + meta description per page, one `h1`, `<main>`, skip link, `lang="ar"`.
 - Canonical, Open Graph, Twitter card (1200x630 `og-share.png`), theme color.
 - JSON-LD: Organization/ProfessionalService (home), FAQPage + breadcrumbs (faq), CreativeWork + breadcrumbs (projects).
-- `sitemap.xml` (31 URLs), `robots.txt` with Sitemap line, `pricing.html` noindex.
+- `sitemap.xml` (29 URLs; Search Console read all 29 on 2026-11-13), `robots.txt` with Sitemap line, `pricing.html` noindex.
 - Speed: preloaded fonts, AVIF/WebP, minified CSS/JS, brotli/gzip, long cache on assets, security headers.
 
 ## Baseline (2026-11-11, Lighthouse 12 on the live site, Brave headless; PageSpeed API quota was exhausted)
