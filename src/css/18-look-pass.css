@@ -1,17 +1,32 @@
 /* look pass: flat colour grounds with a fine grain, one hairline weight, no hard offset shadows */
 body::before{background-image:url(../../assets/img/texture-4.svg)!important;background-size:200px 200px!important;opacity:.28!important}
 .deck::before,.work::before{display:none}
-.deck{background:#e6decd}
+.deck{background:var(--ground-light)}
 .h{isolation:isolate}
 .nav-rule span{height:0;border-block:0;border-top:1px solid currentColor;opacity:.4}
-.nav-rule i{font-size:12px}
+.nav-rule i{font-size:var(--fs-12)}
 .links .cta{box-shadow:none}
 .stt-i b{text-shadow:none}
 /* paper texture on the service cards, no shadow for now */
-:root{--paper:url(../../assets/img/paper.jpg);--paper:image-set(url(../../assets/img/paper.webp) type("image/webp"),url(../../assets/img/paper.jpg) type("image/jpeg"))}
-.card,.bigcard.on{background-color:#fbf9f4;background-image:linear-gradient(rgba(255,255,255,.4),rgba(255,255,255,.4)),var(--paper);background-size:auto,cover;background-position:center;box-shadow:none}
+
+.card,.bigcard.on{background-color:var(--paper-50);background-image:linear-gradient(rgba(255,255,255,.4),rgba(255,255,255,.4)),var(--paper);background-size:auto,cover;background-position:center;box-shadow:none}
 .card{border:1px solid rgba(70,35,28,.38)}
 .card .med{display:none}
 .card .body{top:36%}
 /* index sits 8.5% in from the card's own left edge, like the small cards; if the screen crops the card, it keeps 24px clear of the cropped part */
 @media (min-width:760px){.sec2{right:max(96px,8vw);top:clamp(110px,16vh,160px);bottom:auto;align-content:start}}
+
+/* ===== page ground: every section sits on the same burgundy, light text on it; cards keep dark ink ===== */
+/* one ground: every section sits on the same burgundy; light text on it, cards keep their own paper */
+body{background:var(--ground)}
+body::before,.deck::before,.work::before,.stt::before,.ft::before{display:none}
+.deck,.work,.stt,.pr,.ft,.next2,.nstage{background:var(--ground);background-image:none;color:var(--on)}
+/* cards on the ground keep dark ink */
+.pnl,.wc{color:var(--ink-900)}
+.wc{color:var(--fg)}
+/* rules and borders that were dark ink on paper now follow the text colour */
+.wk-ctl button{border-color:var(--on);color:var(--on)}
+.wk-ctl button:hover{background:var(--on);color:var(--ground)}
+.stt-t,.stt-i{border-color:currentColor}
+.stt-i b{color:var(--on)}
+.wk-head .e{color:var(--cream)}

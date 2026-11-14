@@ -16,6 +16,7 @@
 <link rel="preload" href="assets/fonts/thmanyahsans-Bold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/thmanyahserifdisplay-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <!-- css:start (order matters: later files override earlier ones; build concatenates them) -->
+<link rel="stylesheet" href="src/css/00-tokens.css">
 <link rel="stylesheet" href="src/css/00-fonts.css">
 <link rel="stylesheet" href="src/css/01-hero-and-nav.css">
 <link rel="stylesheet" href="src/css/02-scroll-story.css">
@@ -32,13 +33,10 @@
 <link rel="stylesheet" href="src/css/17-process-stats-faq-footer.css">
 <link rel="stylesheet" href="src/css/18-look-pass.css">
 <link rel="stylesheet" href="src/css/19-components.css">
-<link rel="stylesheet" href="src/css/20-override-nav-frame-ground.css">
-<link rel="stylesheet" href="src/css/21-override-services-and-text.css">
-<link rel="stylesheet" href="src/css/22-override-flip-buttons.css">
-<link rel="stylesheet" href="src/css/23-override-brand-buttons-and-entrances.css">
-<link rel="stylesheet" href="src/css/24-override-card-backs-forms-phones.css">
+<link rel="stylesheet" href="src/css/22-flip-buttons.css">
+<link rel="stylesheet" href="src/css/23-entrances.css">
 <link rel="stylesheet" href="src/css/25-hero-extras.css">
-<link rel="stylesheet" href="src/css/27-text-width-fix.css">
+<link rel="stylesheet" href="src/css/27-text.css">
 <link rel="stylesheet" href="src/css/28-work-snatch.css">
 <link rel="stylesheet" href="src/css/29-pull-card.css">
 <link rel="stylesheet" href="src/css/30-loader.css">
@@ -52,8 +50,10 @@
 <link rel="stylesheet" href="src/css/39-bold-logo-cards.css">
 <link rel="stylesheet" href="src/css/40-cursor.css">
 <link rel="stylesheet" href="src/css/41-services-grid.css">
+<link rel="stylesheet" href="src/css/47-faq.css">
 <link rel="stylesheet" href="src/css/49-mail-link.css">
 <link rel="stylesheet" href="src/css/42-projects.css">
+<link rel="stylesheet" href="src/css/50-reduced-motion.css">
 <!-- css:end -->
 <!-- js:start (run in this order; build concatenates them) -->
 <script src="src/js/15-pull-card.js" defer></script>
@@ -67,7 +67,7 @@
 <a class="skip" href="#main">انتقل إلى المحتوى</a>
 <header class="mini on pg" id="mini" lang="ar" dir="rtl"><a class="mini-b" href="index.html" aria-label="أربعمية"><img src="assets/img/logo-symbol.svg" alt="أربعمية" width="46" height="46"></a><nav aria-label="التنقل الرئيسي"><div class="mini-l" id="miniMenu"><a href="services.html">خدماتنا</a><a href="projects.html" aria-current="page">أعمالنا</a><a href="about.html">من نحن</a></div><a class="cta flipbtn fb--line" href="contact.html"><span class="fb-in"><span class="fb-f">عرفنا على مشروعك<i>♣︎</i></span><span class="fb-b" aria-hidden="true">عرفنا على مشروعك<i>♣︎</i></span></span></a><button class="mini-m" type="button" aria-label="القائمة" aria-expanded="false" aria-controls="miniMenu"><i></i><i></i><i></i></button></nav></header>
 <main id="main" class="pj pj-page" lang="ar" dir="rtl" aria-label="محتوى نسق">
-  <a class="pj-back" href="projects.html">→ كل الأعمال</a>
+  <a class="pj-back btn btn--cream btn--pill" href="projects.html">→ كل الأعمال</a>
   <div class="pj-hero">
     <div class="pj-ht">
       <span class="eb pj-e">♦︎ كتابة محتوى</span>
@@ -85,7 +85,7 @@
   <section class="pj-sec" data-kind="video"><div class="pj-clips pj-phone" data-n="6"><div class="pj-stage"><button class="pj-sn pj-cn pj-sp" dir="ltr" type="button" data-d="-1" aria-label="السابق">›</button><div class="pj-clip"><a class="pj-embed pj-facade" href="https://drive.google.com/file/d/1zhIxEDrkl8XjNO1tGALYdcWpUgBuj6BO/view?usp=drivesdk" data-embed="https://drive.google.com/file/d/1zhIxEDrkl8XjNO1tGALYdcWpUgBuj6BO/preview" data-title="محتوى نسق 1" aria-label="تشغيل: محتوى نسق 1"><img src="https://drive.google.com/thumbnail?id=1zhIxEDrkl8XjNO1tGALYdcWpUgBuj6BO&amp;sz=w640" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()"><span class="pj-play" aria-hidden="true">▶</span></a></div><button class="pj-sn pj-cn pj-sx" dir="ltr" type="button" data-d="1" aria-label="التالي">‹</button></div><p class="pj-cnt" dir="ltr">1 / 6</p><div class="pj-strip pj-cstrip"><a class="pj-embed pj-facade pj-th" aria-current="true" href="https://drive.google.com/file/d/1zhIxEDrkl8XjNO1tGALYdcWpUgBuj6BO/view?usp=drivesdk" data-embed="https://drive.google.com/file/d/1zhIxEDrkl8XjNO1tGALYdcWpUgBuj6BO/preview" data-title="محتوى نسق 1" aria-label="تشغيل: محتوى نسق 1"><img src="https://drive.google.com/thumbnail?id=1zhIxEDrkl8XjNO1tGALYdcWpUgBuj6BO&amp;sz=w360" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()"><span class="pj-play" aria-hidden="true">▶</span></a><a class="pj-embed pj-facade pj-th" href="https://drive.google.com/file/d/1C_pBz7p2NncscXKCikGoUgP-XQFWB8jB/view?usp=drivesdk" data-embed="https://drive.google.com/file/d/1C_pBz7p2NncscXKCikGoUgP-XQFWB8jB/preview" data-title="محتوى نسق 2" aria-label="تشغيل: محتوى نسق 2"><img src="https://drive.google.com/thumbnail?id=1C_pBz7p2NncscXKCikGoUgP-XQFWB8jB&amp;sz=w360" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()"><span class="pj-play" aria-hidden="true">▶</span></a><a class="pj-embed pj-facade pj-th" href="https://drive.google.com/file/d/1FR6G7lIB5kCfzIJzWc6X4uokkvYIQhrA/view?usp=drivesdk" data-embed="https://drive.google.com/file/d/1FR6G7lIB5kCfzIJzWc6X4uokkvYIQhrA/preview" data-title="محتوى نسق 3" aria-label="تشغيل: محتوى نسق 3"><img src="https://drive.google.com/thumbnail?id=1FR6G7lIB5kCfzIJzWc6X4uokkvYIQhrA&amp;sz=w360" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()"><span class="pj-play" aria-hidden="true">▶</span></a><a class="pj-embed pj-facade pj-th" href="https://drive.google.com/file/d/1f7QDnZ7f2GIJm8mmGqt6gb20tRjnKL6F/view?usp=drivesdk" data-embed="https://drive.google.com/file/d/1f7QDnZ7f2GIJm8mmGqt6gb20tRjnKL6F/preview" data-title="محتوى نسق 4" aria-label="تشغيل: محتوى نسق 4"><img src="https://drive.google.com/thumbnail?id=1f7QDnZ7f2GIJm8mmGqt6gb20tRjnKL6F&amp;sz=w360" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()"><span class="pj-play" aria-hidden="true">▶</span></a><a class="pj-embed pj-facade pj-th" href="https://drive.google.com/file/d/1uJVcvHQ9ea28P4e-uDGNxXccyuRgMeg4/view?usp=drivesdk" data-embed="https://drive.google.com/file/d/1uJVcvHQ9ea28P4e-uDGNxXccyuRgMeg4/preview" data-title="محتوى نسق 5" aria-label="تشغيل: محتوى نسق 5"><img src="https://drive.google.com/thumbnail?id=1uJVcvHQ9ea28P4e-uDGNxXccyuRgMeg4&amp;sz=w360" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()"><span class="pj-play" aria-hidden="true">▶</span></a><a class="pj-embed pj-facade pj-th" href="https://drive.google.com/file/d/15HOTc0LzwFVZBdhcfcoooAVS6A5aARsz/view?usp=drivesdk" data-embed="https://drive.google.com/file/d/15HOTc0LzwFVZBdhcfcoooAVS6A5aARsz/preview" data-title="محتوى نسق 6" aria-label="تشغيل: محتوى نسق 6"><img src="https://drive.google.com/thumbnail?id=15HOTc0LzwFVZBdhcfcoooAVS6A5aARsz&amp;sz=w360" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()"><span class="pj-play" aria-hidden="true">▶</span></a></div></div></section>
   
   <a class="pj-next" href="project-dxn-scripts.html"><small>المشروع التالي</small><b>نصوص فيديو DXN ←</b></a>
-  <a class="pj-back" href="projects.html">→ العودة إلى كل الأعمال</a>
+  <a class="pj-back btn btn--cream btn--pill" href="projects.html">→ العودة إلى كل الأعمال</a>
 </main>
 <section class="xp xp9" id="pull" data-cur="card" lang="ar" dir="rtl" aria-label="اسحب ورقتك">
   <h2>اسـحب <em>ورقـتك</em></h2>
@@ -98,7 +98,7 @@
     <div class="xp9-card" id="xp9c" aria-hidden="true"><div class="in"><div class="f"></div><div class="b"></div></div></div>
     <div class="xp9-out" id="xp9o">
       <h3 class="xp9-h" id="xp9h"></h3><p class="xp9-p" id="xp9p"></p>
-      <div class="xp9-btns"><a class="flipbtn fb--cream" href="contact.html"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♠&#xFE0E;</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♠&#xFE0E;</i></span></span></a><a class="flipbtn fb--line" href="budget.html"><span class="fb-in"><span class="fb-f">حاسبة التسويق<i>♦︎</i></span><span class="fb-b" aria-hidden="true">حاسبة التسويق<i>♦︎</i></span></span></a></div>
+      <p class="vh" id="xp9a" aria-live="polite"></p><div class="xp9-btns"><a class="flipbtn fb--cream" href="contact.html"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♠&#xFE0E;</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♠&#xFE0E;</i></span></span></a><a class="flipbtn fb--line" href="budget.html"><span class="fb-in"><span class="fb-f">حاسبة التسويق<i>♦︎</i></span><span class="fb-b" aria-hidden="true">حاسبة التسويق<i>♦︎</i></span></span></a></div>
     </div>
   </div>
 </section>
@@ -106,11 +106,11 @@
   <div class="ft-top">
     <div class="ft-brand">
       <img class="ft-logo" src="assets/img/logo-wine.svg" alt="أربعمية" width="170" height="150">
-      <div class="ft-pitch">
+      <div class="ft-pitch panel">
         <span class="ft-pe">&#9824;&#xFE0E; عندك مشكلة؟</span>
         <p><strong>محتواك ما يحقق التفاعل المطلوب؟ إعلاناتك ما تجيب نتائج؟ أو ما تعرف من وين تبدأ تسويق مشروعك؟</strong> في أربعمية، نفهم تحدياتك ونساعدك بالحل التسويقي المناسب. <strong>شاركنا مشكلتك، ونرتب الحل معك.</strong></p>
       </div>
-      <a class="ft-cta" href="contact.html">تواصل معنا <i>♠&#xFE0E;</i></a>
+      <a class="ft-cta btn btn--cream btn--lg" href="contact.html">تواصل معنا <i>♠&#xFE0E;</i></a>
     </div>
     <!-- Footer links: each .ft-col is one column and the grid adds more on its own. To add a column or a link, copy a block below. Links that point to pages or profiles that do not exist yet (social, legal, contact details) go in the last column or a new one. -->
     <nav class="ft-cols" aria-label="روابط التذييل">

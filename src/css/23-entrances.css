@@ -1,0 +1,42 @@
+/* entrance animations: headings, kashida lines, client stories and "how we work" ease in as their section scrolls into view (.dkr + .on set by script) */
+/* entrance animations: deck heading, works head, client stories, how we work */
+.dkr .dk-head h2,.dkr .dk-head .kj-l,.dkr .wk-head .e,.dkr .wk-head h2,.dkr .wk-head .kj-l,.dkr .wk-head .wk-ctl, how we work */
+.dkr .dk-head h1{opacity:0;transform:translateY(28px);filter:blur(6px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease);transition-delay:var(--d,0s)}
+.dkr .dk-head.on h2,.dkr .dk-head.on .kj-l,.dkr .wk-head.on .e,.dkr .wk-head.on h2,.dkr .wk-head.on .kj-l,.dkr .wk-head.on .wk-ctl,
+.dkr .dk-head.on h1{opacity:1;transform:none;filter:none}
+.dkr .wk-head .e{--d:0s}
+.dkr .wk-head h2{--d:.12s}
+.dkr .wk-head .wk-ctl{--d:.9s}
+.dk-head .kj-l:nth-of-type(2),.wk-head .kj-l:nth-of-type(2){--d:.35s}
+.dk-head .kj-l:nth-of-type(3),.wk-head .kj-l:nth-of-type(3){--d:.5s}
+.dk-head .kj-l:nth-of-type(4),.wk-head .kj-l:nth-of-type(4){--d:.65s}
+.dk-head .kj-l:nth-of-type(5),.wk-head .kj-l:nth-of-type(5){--d:.8s}
+.wk-head .kj-l:nth-of-type(6){--d:.95s}
+.wk-head .kj-l:nth-of-type(7){--d:1.1s}
+.wk-head .kj-l:nth-of-type(8){--d:1.25s}
+.wk-head .kj-l:nth-of-type(n+9){--d:1.4s}
+/* client stories: header, quote marks, quote, byline */
+.dkr .cst-h,.dkr .cst-f,.dkr .cst-q .qm,.dkr .cst-q p,.dkr .cst-by{opacity:0}
+.dkr .cst.on .cst-h,.dkr .cst.on .cst-f{animation:rvUp .9s var(--ease) both}
+.dkr .cst.on .cst-q .qm{animation:rvPop 1s var(--ease) .15s both}
+.dkr .cst.on .cst-q p{animation:rvUp 1.1s var(--ease) .3s both}
+.dkr .cst.on .cst-by{animation:rvUp .9s var(--ease) .75s both}
+.dkr .cst.on .cst-f{animation-delay:.95s}
+@keyframes rvUp{from{opacity:0;transform:translateY(28px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+@keyframes rvPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+/* how we work: title wipes in, a path draws stage by stage, suit cards flip onto it */
+.dkr .pr-h{clip-path:inset(0 0 0 100%);transform:translateX(24px);transition:clip-path 1s var(--ease-in-out),transform 1s var(--ease-in-out)}
+.dkr .pr.on .pr-h{clip-path:inset(-10% -4% -10% -4%);transform:none}
+.dkr .pr .hw-s::before{transform:scaleX(0);transform-origin:right center;transition:transform .6s var(--ease-in-out)}
+.dkr .pr .hw-m{opacity:0;transform:perspective(300px) rotateY(180deg) scale(.5);transition:opacity .2s,transform .8s cubic-bezier(.3,1.5,.5,1)}
+.dkr .pr .hw-k,.dkr .pr .hw-s h3,.dkr .pr .hw-s p{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.dkr .pr.on .hw-s::before{transform:none;transition-delay:calc(var(--i) * .6s + .5s)}
+.dkr .pr.on .hw-m{opacity:1;transform:none;transition-delay:calc(var(--i) * .6s + .8s)}
+.dkr .pr.on .hw-k{opacity:.85;transform:none;transition-delay:calc(var(--i) * .6s + 1s)}
+.dkr .pr.on .hw-s h3{opacity:1;transform:none;transition-delay:calc(var(--i) * .6s + 1.1s)}
+.dkr .pr.on .hw-s p{opacity:.78;transform:none;transition-delay:calc(var(--i) * .6s + 1.25s)}
+.pr .hw-s:nth-child(1){--i:0}
+.pr .hw-s:nth-child(2){--i:1}
+.pr .hw-s:nth-child(3){--i:2}
+.pr .hw-s:nth-child(4){--i:3}
+@media (prefers-reduced-motion:reduce){.dkr .dk-head h2,.dkr .dk-head .kj-l,.dkr .wk-head .e,.dkr .wk-head h2,.dkr .wk-head .kj-l,.dkr .wk-head .wk-ctl,.dkr .pr-h,.dkr .pr .hw-s::before,.dkr .pr .hw-m,.dkr .pr .hw-k,.dkr .pr .hw-s h3,.dkr .pr .hw-s p,.dkr .dk-head h1{opacity:1;transform:none;filter:none;clip-path:none;transition:none}.dkr .pr .hw-k{opacity:.85}.dkr .pr .hw-s p{opacity:.78}.dkr .cst-h,.dkr .cst-f,.dkr .cst-q .qm,.dkr .cst-q p,.dkr .cst-by{opacity:1;animation:none!important}}

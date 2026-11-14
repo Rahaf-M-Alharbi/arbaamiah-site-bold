@@ -1,8 +1,8 @@
 /* Page loader: wine curtain with the four suits in cream (ink offset shadow, as on the bold cards) lighting up and lifting in turn; fades out once the page has loaded. */
-.ldr{position:fixed;top:0;right:0;bottom:0;left:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;background:var(--deep);color:var(--cream);transition:opacity .6s ease,visibility 0s linear .6s;touch-action:none}
+.ldr{position:fixed;top:0;right:0;bottom:0;left:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-28);background:var(--deep);color:var(--cream);transition:opacity .6s ease,visibility 0s linear .6s;touch-action:none}
 .ldr.done{opacity:0;visibility:hidden;pointer-events:none}
 .ldr-s{display:flex;gap:clamp(18px,3.5vw,28px);direction:ltr}
-.ldr-s i{font:normal 700 clamp(24px,4vw,32px)/1 var(--f-body);text-shadow:.08em .08em 0 #17120f;animation:ldrTile 1.6s ease-in-out infinite}
+.ldr-s i{font:normal 700 clamp(24px,4vw,32px)/1 var(--f-body);text-shadow:.08em .08em 0 var(--ink-900);animation:ldrTile 1.6s ease-in-out infinite}
 .ldr-s i:nth-child(2){animation-delay:.2s}
 .ldr-s i:nth-child(3){animation-delay:.4s}
 .ldr-s i:nth-child(4){animation-delay:.6s}

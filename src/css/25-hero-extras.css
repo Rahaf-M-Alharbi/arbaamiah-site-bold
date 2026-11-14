@@ -1,3 +1,28 @@
+/* ===== hero velvet, frame and card backs (moved here from the 23/24 override files) ===== */
+.wm .g{color:var(--wine)}
+/* hero: original red velvet; nav gets a solid bar so it stays readable */
+.h{background-color:var(--wine);background-blend-mode:normal}
+/* hero: calmer velvet, a flat wine wash softens the pile so only a faint texture shows */
+.h{background-image:radial-gradient(ellipse 85% 75% at 50% 40%,transparent 55%,rgba(15,0,4,.35)),linear-gradient(rgba(var(--wine-rgb),.62),rgba(var(--wine-rgb),.62)),var(--tex);background-size:auto,auto,cover}
+/* brand colour tokens */
+/* card backs: logo centred between two hairlines, the four suits underneath */
+.slot::after{background:url("../../assets/img/logo-top.svg") 50% 48%/60% auto no-repeat,url(../../assets/img/texture-6.svg) center/100% 100% no-repeat,var(--green)}
+/* hero frame: the bottom-right diamond is drawn by the right line itself, so it always sits exactly at the line's end */
+.h .frame .br{display:none}
+.h .frame .ln.r::after{content:"♦︎";position:absolute;left:-9.5px;bottom:-24px;width:20px;height:20px;display:grid;place-items:center;font:400 var(--fs-16)/1 serif;color:var(--fc)}
+/* phones: lift text that scales down too small, bigger tap targets */
+@media (max-width:640px){
+.card p{font-size:max(calc(var(--w)*.052),10px)}
+.card h4{font-size:max(calc(var(--w)*.14),17px)}
+.wc .tag,.wc li{font-size:max(3.6cqw,10px)}
+.wc p{font-size:max(4.6cqw,12px)}
+.cst-ctl button{width:44px;height:44px}
+}
+/* phone: keep the second-section text inside the two frame lines */
+@media (max-width:760px){.h .frame{--fi:24px}.sec2{left:46px;right:46px}.sec2 h2{font-size:clamp(22px,6.4vw,32px)}.sec2 p{font-size:clamp(16px,4.6vw,20px)}}
+/* card backs: the thin rounded border is drawn in texture-6.svg (rect rx), so its corner radius is independent of the card's */
+.slot::after{box-shadow:none}
+
 /* hero extras: a one-line description and a proof row under the wordmark, and two buttons in the top band.
    Both wrappers carry .sub, so the scroll story fades them out together with the wordmark. */
 
@@ -5,18 +30,18 @@
 .story .wm{margin-top:clamp(0px,1vh,10px)}
 
 .hero-meta{display:grid;justify-items:center;gap:clamp(10px,2vh,20px);margin-top:clamp(30px,5vh,52px);padding-inline:16px}
-.hero-meta>*{animation:hm-in .8s cubic-bezier(.2,.8,.2,1) backwards}
+.hero-meta>*{animation:hm-in .8s var(--ease-out) backwards}
 .hm-line{margin:clamp(22px,4vh,44px) 0 0;max-width:34em;text-wrap:balance;font:600 clamp(15px,1.7vw,22px)/1.6 var(--f-body);animation-delay:.15s}
-.hm-proof{list-style:none;margin:0;padding:0;display:none;flex-wrap:wrap;justify-content:center;gap:6px 0;font:600 13px/1.4 var(--f-body);opacity:.8;animation-delay:.6s}
+.hm-proof{list-style:none;margin:0;padding:0;display:none;flex-wrap:wrap;justify-content:center;gap:6px 0;font:600 var(--fs-13)/1.4 var(--f-body);opacity:.8;animation-delay:.6s}
 .hm-proof li+li::before{content:"\2666\FE0E";margin-inline:12px;font-size:.8em;opacity:.7}
 @media (min-height:960px){.hm-proof{display:flex}}
 
 /* buttons: top band, so the card fan can never cover them */
-.hero-cta.sub{position:absolute;top:clamp(14px,3vh,28px);left:0;right:0;z-index:4;margin:0;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding-inline:60px;animation:hm-in .8s .3s cubic-bezier(.2,.8,.2,1) backwards}
-.hero-cta .fb-f,.hero-cta .fb-b{padding:11px 26px;font-size:15px}
-.hero-cta .fb--line .fb-f{background:transparent;color:#f4dabf;box-shadow:inset 0 0 0 1px #f4dabf}
-.hero-cta .fb--line .fb-b{background:#f4dabf;color:#2b0a10}
-@media (max-width:640px){.hero-cta.sub{padding-inline:44px;gap:8px}.hm-proof li+li::before{margin-inline:8px}}
+.hero-cta.sub{position:absolute;top:clamp(14px,3vh,28px);left:0;right:0;z-index:4;margin:0;display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-12);padding-inline:60px;animation:hm-in .8s .3s var(--ease-out) backwards}
+.hero-cta .fb-f,.hero-cta .fb-b{padding:11px 26px;font-size:var(--fs-15)}
+.hero-cta .fb--line .fb-f{background:transparent;color:var(--cream);box-shadow:inset 0 0 0 1px var(--cream)}
+.hero-cta .fb--line .fb-b{background:var(--cream);color:var(--wine-950)}
+@media (max-width:640px){.hero-cta.sub{padding-inline:44px;gap:var(--space-8)}.hm-proof li+li::before{margin-inline:8px}}
 
 @keyframes hm-in{from{opacity:0;transform:translateY(14px)}}
 @media (prefers-reduced-motion:reduce){.hero-meta>*,.hero-cta.sub{animation:none}}

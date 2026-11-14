@@ -8,7 +8,7 @@
 .slot:hover,.slot:focus-within{z-index:5}
 .slot .card{pointer-events:auto;width:100%;height:100%;margin:0}
 .sec2{position:absolute;right:max(16px,env(safe-area-inset-right,0px));left:max(16px,env(safe-area-inset-left,0px));top:clamp(104px,15vh,150px);z-index:3;opacity:0;pointer-events:none;display:grid;justify-items:start}
-.sec2 .e{font:700 14px/1 var(--f-body);opacity:.8}
+.sec2 .e{font:700 var(--fs-14)/1 var(--f-body);opacity:.8}
 .sec2 h2{margin:0;font:700 clamp(28px,4.6vw,64px)/1.2 var(--f-disp);text-wrap:balance}
 .sec2 p{margin:0;font:600 clamp(14px,1.5vw,18px)/1.7 var(--f-body);opacity:.8;max-width:36em}
 
@@ -23,14 +23,14 @@
 }
 
 /* beige linen sits behind the velvet stage */
-:root{--ink2:#2a211b}
+
 body{position:relative}
 body::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;mix-blend-mode:multiply}
 .story{z-index:1}
 .stage{transform-origin:50% 50%;will-change:transform}
-.mini{position:fixed;z-index:20;display:flex;justify-content:space-between;align-items:center;gap:16px;direction:rtl}
-.mini b{font:700 24px/1 var(--f-disp)}
-.mini nav{display:flex;align-items:center;font:700 14px/1 var(--f-body)}
+.mini{position:fixed;z-index:20;display:flex;justify-content:space-between;align-items:center;gap:var(--space-16);direction:rtl}
+.mini b{font:700 var(--fs-24)/1 var(--f-disp)}
+.mini nav{display:flex;align-items:center;font:700 var(--fs-14)/1 var(--f-body)}
 .mini a{color:inherit;text-decoration:none}
 .mini .cta{border:1px solid currentColor;border-radius:7px}
 @media (max-width:760px){.mini nav a:not(.cta){display:none}}

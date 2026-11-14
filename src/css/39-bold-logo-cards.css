@@ -1,13 +1,13 @@
 /* Partner-logo cards in the same style as the hero cards (38-bold-hero-cards.css) and the bold card frame (31-bold-cards.css): brand cream face instead of the grey paper, thick ink border with offset shadow, thin inner frame, wine ink instead of grey. */
-.lgc.pk{box-sizing:border-box;background:var(--cream);background-image:none;border:4px solid #17120f;border-radius:6%;box-shadow:8px 8px 0 #17120f}
-.lgc.pk::before{content:"";position:absolute;inset:3.4cqw;border:3px solid #17120f;border-radius:4%;pointer-events:none}
+.lgc.pk{box-sizing:border-box;background:var(--cream);background-image:none;border:var(--border-4);border-radius:6%;box-shadow:var(--shadow-8)}
+.lgc.pk::before{content:"";position:absolute;inset:3.4cqw;border:var(--border-3);border-radius:4%;pointer-events:none}
 .lgc .pk-ix{color:var(--wine);font-weight:700}
 .lgc .pk-slot{border-color:var(--wine);color:var(--wine);position:relative}
 .lgc .pk-logo{filter:none;position:relative}
-@media (max-width:640px){.lgc.pk{border-width:3px;box-shadow:5px 5px 0 #17120f}.lgc.pk::before{border-width:2px}}
+@media (max-width:640px){.lgc.pk{border-width:3px;box-shadow:var(--shadow-5)}.lgc.pk::before{border-width:2px}}
 
 /* real logos: wide marks get more room; light-background logos blend into the cream face, dark ones sit as small rounded tiles */
-.lgc .pk-logo{width:72%;max-height:44%;border-radius:6px}
+.lgc .pk-logo{width:72%;max-height:44%;border-radius:var(--radius-6)}
 .lgc .pk-logo.lt{mix-blend-mode:multiply;border-radius:0}
 /* white-on-dark logo (no background of its own): a green plate, like the logos that come on a dark background */
-.lgc .pk-logo.dk{box-sizing:border-box;background:#154a3b;padding:5%;border-radius:6px}
+.lgc .pk-logo.dk{box-sizing:border-box;background:#154a3b;padding:5%;border-radius:var(--radius-6)}

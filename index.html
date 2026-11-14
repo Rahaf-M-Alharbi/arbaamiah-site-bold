@@ -16,6 +16,7 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
 <link rel="preload" href="assets/fonts/thmanyahsans-Medium.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/thmanyahsans-Bold.woff2" as="font" type="font/woff2" crossorigin>
 <!-- css:start (order matters: later files override earlier ones; build concatenates them) -->
+<link rel="stylesheet" href="src/css/00-tokens.css">
 <link rel="stylesheet" href="src/css/00-fonts.css">
 <link rel="stylesheet" href="src/css/01-hero-and-nav.css">
 <link rel="stylesheet" href="src/css/02-scroll-story.css">
@@ -32,13 +33,10 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
 <link rel="stylesheet" href="src/css/17-process-stats-faq-footer.css">
 <link rel="stylesheet" href="src/css/18-look-pass.css">
 <link rel="stylesheet" href="src/css/19-components.css">
-<link rel="stylesheet" href="src/css/20-override-nav-frame-ground.css">
-<link rel="stylesheet" href="src/css/21-override-services-and-text.css">
-<link rel="stylesheet" href="src/css/22-override-flip-buttons.css">
-<link rel="stylesheet" href="src/css/23-override-brand-buttons-and-entrances.css">
-<link rel="stylesheet" href="src/css/24-override-card-backs-forms-phones.css">
+<link rel="stylesheet" href="src/css/22-flip-buttons.css">
+<link rel="stylesheet" href="src/css/23-entrances.css">
 <link rel="stylesheet" href="src/css/25-hero-extras.css">
-<link rel="stylesheet" href="src/css/27-text-width-fix.css">
+<link rel="stylesheet" href="src/css/27-text.css">
 <link rel="stylesheet" href="src/css/28-work-snatch.css">
 <link rel="stylesheet" href="src/css/29-pull-card.css">
 <link rel="stylesheet" href="src/css/30-loader.css">
@@ -53,7 +51,9 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
 <link rel="stylesheet" href="src/css/40-cursor.css">
 <link rel="stylesheet" href="src/css/41-services-grid.css">
 <link rel="stylesheet" href="src/css/42-projects.css">
+<link rel="stylesheet" href="src/css/47-faq.css">
 <link rel="stylesheet" href="src/css/49-mail-link.css">
+<link rel="stylesheet" href="src/css/50-reduced-motion.css">
 <!-- css:end -->
 <!-- js:start (run in this order; build concatenates them) -->
 <script src="src/js/01-reveal-observers.js" defer></script>
@@ -244,10 +244,10 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
   <div class="fq-in">
     <div class="fq-t"><span class="fq-e eb">08 — الأسئلة الشائعة</span><h2>أسئـلة قبل أن نبـدأ</h2></div>
     <div class="fq-l">
-      <details open><summary>كم تستغرق مدة تنفيذ المشاريع؟</summary><div class="a"><div><p>تختلف المدة بحسب طبيعة المشروع وحجمه، لكن نحدد معا جدولا زمنيا واضحا قبل بداية التنفيذ.</p></div></div></details>
-      <details open><summary>هل يمكن طلب خدمة واحدة دون الحاجة لباقة متكاملة؟</summary><div class="a"><div><p>نعم، تقدر تستفيد من أي خدمة بشكل مستقل، أو تختار باقة متكاملة حسب احتياجك.</p></div></div></details>
-      <details open><summary>كيف أطلب عرض سعر؟</summary><div class="a"><div><p>شاركنا تفاصيل مشروعك واحتياجاتك من خلال نموذج الطلب، وفريقنا سيتواصل معك لمناقشة التفاصيل وتقديم العرض المناسب.</p></div></div></details>
-      <details open><summary>ما طبيعة التعاقد مع أربعمية؟</summary><div class="a"><div><p>نرى أن المشاريع تحتاج فرصة للنمو، ولأن نتائج التسويق تراكمية، تبدأ مدة التعاقد من 3 أشهر وتمتد إلى 6 أشهر أو سنة.</p></div></div></details>
+      <details class="panel" open><summary>كم تستغرق مدة تنفيذ المشاريع؟</summary><div class="a"><div><p>تختلف المدة بحسب طبيعة المشروع وحجمه، لكن نحدد معا جدولا زمنيا واضحا قبل بداية التنفيذ.</p></div></div></details>
+      <details class="panel" open><summary>هل يمكن طلب خدمة واحدة دون الحاجة لباقة متكاملة؟</summary><div class="a"><div><p>نعم، تقدر تستفيد من أي خدمة بشكل مستقل، أو تختار باقة متكاملة حسب احتياجك.</p></div></div></details>
+      <details class="panel" open><summary>كيف أطلب عرض سعر؟</summary><div class="a"><div><p>شاركنا تفاصيل مشروعك واحتياجاتك من خلال نموذج الطلب، وفريقنا سيتواصل معك لمناقشة التفاصيل وتقديم العرض المناسب.</p></div></div></details>
+      <details class="panel" open><summary>ما طبيعة التعاقد مع أربعمية؟</summary><div class="a"><div><p>نرى أن المشاريع تحتاج فرصة للنمو، ولأن نتائج التسويق تراكمية، تبدأ مدة التعاقد من 3 أشهر وتمتد إلى 6 أشهر أو سنة.</p></div></div></details>
     </div>
     <a class="fq-all" href="faq.html">كل الأسئلة الشائعة <i>♠︎</i></a>
   </div>
@@ -271,7 +271,7 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
     <div class="xp9-card" id="xp9c" aria-hidden="true"><div class="in"><div class="f"></div><div class="b"></div></div></div>
     <div class="xp9-out" id="xp9o">
       <h3 class="xp9-h" id="xp9h"></h3><p class="xp9-p" id="xp9p"></p>
-      <div class="xp9-btns"><a class="flipbtn fb--cream" href="contact.html"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♠&#xFE0E;</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♠&#xFE0E;</i></span></span></a><a class="flipbtn fb--line" href="budget.html"><span class="fb-in"><span class="fb-f">حاسبة التسويق<i>♦︎</i></span><span class="fb-b" aria-hidden="true">حاسبة التسويق<i>♦︎</i></span></span></a></div>
+      <p class="vh" id="xp9a" aria-live="polite"></p><div class="xp9-btns"><a class="flipbtn fb--cream" href="contact.html"><span class="fb-in"><span class="fb-f">تواصل معنا<i>♠&#xFE0E;</i></span><span class="fb-b" aria-hidden="true">تواصل معنا<i>♠&#xFE0E;</i></span></span></a><a class="flipbtn fb--line" href="budget.html"><span class="fb-in"><span class="fb-f">حاسبة التسويق<i>♦︎</i></span><span class="fb-b" aria-hidden="true">حاسبة التسويق<i>♦︎</i></span></span></a></div>
     </div>
   </div>
 </section>
@@ -280,11 +280,11 @@ document.documentElement.className+=' js';setTimeout(function(){var d=document.g
   <div class="ft-top">
     <div class="ft-brand">
       <img class="ft-logo" src="assets/img/logo-wine.svg" alt="أربعمية" width="170" height="150">
-      <div class="ft-pitch">
+      <div class="ft-pitch panel">
         <span class="ft-pe">&#9824;&#xFE0E; عندك مشكلة؟</span>
         <p><strong>محتواك ما يحقق التفاعل المطلوب؟ إعلاناتك ما تجيب نتائج؟ أو ما تعرف من وين تبدأ تسويق مشروعك؟</strong> في أربعمية، نفهم تحدياتك ونساعدك بالحل التسويقي المناسب. <strong>شاركنا مشكلتك، ونرتب الحل معك.</strong></p>
       </div>
-      <a class="ft-cta" href="contact.html">تواصل معنا <i>♠&#xFE0E;</i></a>
+      <a class="ft-cta btn btn--cream btn--lg" href="contact.html">تواصل معنا <i>♠&#xFE0E;</i></a>
     </div>
     <!-- Footer links: each .ft-col is one column and the grid adds more on its own. To add a column or a link, copy a block below. Links that point to pages or profiles that do not exist yet (social, legal, contact details) go in the last column or a new one. -->
     <nav class="ft-cols" aria-label="روابط التذييل">

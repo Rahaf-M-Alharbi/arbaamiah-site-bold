@@ -1,39 +1,39 @@
 /* work: a held hand of case-study cards on beige linen; the centre card lifts, the others fan away; drag, arrows or scroll */
-.work{position:relative;z-index:1;background:var(--beige);color:#2a211b;direction:rtl;padding:12vh 0 14vh;overflow:hidden}
+.work{position:relative;z-index:1;background:var(--beige);color:var(--ink2);direction:rtl;padding:12vh 0 14vh;overflow:hidden}
 .work::before{content:"";position:absolute;inset:0;background-image:var(--linen);background-size:480px 752px;mix-blend-mode:multiply;opacity:.5;pointer-events:none}
 .wk-head{position:relative;max-width:1220px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
 .wk-head .t{display:grid}
-.wk-head .e{font:700 14px/1 var(--f-body)}
+.wk-head .e{font:700 var(--fs-14)/1 var(--f-body)}
 .wk-head h2{margin:0;font:700 clamp(34px,5vw,68px)/1.2 var(--f-disp);text-wrap:balance}
 .wk-head p{margin:0;font:600 clamp(14px,1.3vw,17px)/1.8 var(--f-body);opacity:.75}
-.wk-ctl{display:flex;align-items:center;gap:12px;direction:ltr}
-.wk-ctl .n{font:700 15px/1 var(--f-disp);text-align:center}
-.wk-ctl button{width:46px;height:46px;border-radius:50%;border:1px solid #2a211b;background:transparent;font:700 20px/1 var(--f-body);cursor:pointer;transition:background .2s,color .2s}
-.wk-ctl button:focus-visible{outline:3px solid #6c171e;outline-offset:2px}
+.wk-ctl{display:flex;align-items:center;gap:var(--space-12);direction:ltr}
+.wk-ctl .n{font:700 var(--fs-15)/1 var(--f-disp);text-align:center}
+.wk-ctl button{width:46px;height:46px;border-radius:var(--radius-round);border:1px solid var(--ink2);background:transparent;font:700 var(--fs-20)/1 var(--f-body);cursor:pointer;transition:background .2s,color .2s}
+.wk-ctl button:focus-visible{outline:3px solid var(--wine);outline-offset:2px}
 .wc{--bg:#efe6d4;--fg:#4a1a1d;--ac:#b3382a;position:relative;flex:none;width:var(--cw);aspect-ratio:5/7;scroll-snap-align:center;border-radius:7%;background:var(--bg);container-type:inline-size;
   box-shadow:none;transform:translateY(var(--y,0px)) rotate(var(--r,0deg)) scale(var(--s,1));transition:box-shadow .3s;direction:rtl;outline:none}
 .wc:focus-visible{box-shadow:0 0 0 3px #b3382a}
 .wc.c2{--bg:#7a1d1d;--fg:#f3e8d8;--ac:#e8b4a0}
 .wc.c3{--bg:#1d1a17;--fg:#f3e8d8;--ac:#d1a84b}
 .wc.c4{--bg:#154a3b;--fg:#f3e8d8;--ac:#d1a84b}
-.wc.c5{--bg:#d9c8a6;--fg:#2a211b;--ac:#8a1c14}
+.wc.c5{--bg:#d9c8a6;--fg:var(--ink2);--ac:#8a1c14}
 .wc .ix{position:absolute;top:5%;left:9%;font:700 11cqw/1 var(--f-disp);text-align:center;direction:ltr;color:var(--ac)}
 .wc .ix i{display:block;font-style:normal;font-size:.8em}
 .wc .ix.b{top:auto;left:auto;bottom:5%;right:9%;transform:rotate(180deg)}
-.wc .tag{position:absolute;top:6%;right:9%;font:700 3.6cqw/1 var(--f-body);color:var(--ac);border:1px solid currentColor;border-radius:99px;padding:1.4cqw 3.2cqw}
+.wc .tag{position:absolute;top:6%;right:9%;font:700 3.6cqw/1 var(--f-body);color:var(--ac);border:1px solid currentColor;border-radius:var(--radius-pill);padding:1.4cqw 3.2cqw}
 .wc h3{position:absolute;left:9%;right:9%;top:25%;margin:0;font:700 13.5cqw/1.2 var(--f-disp);text-wrap:balance}
 .wc p{position:absolute;left:9%;right:9%;margin:0;font:600 4.6cqw/1.8 var(--f-body);opacity:.85}
 .wc ul{position:absolute;left:9%;right:22%;bottom:6%;margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:2cqw;direction:rtl}
-.wc li{font:700 3.6cqw/1 var(--f-body);padding:1.6cqw 3.2cqw;border-radius:99px;box-shadow:inset 0 0 0 1px currentColor;opacity:.9}
+.wc li{font:700 3.6cqw/1 var(--f-body);padding:1.6cqw 3.2cqw;border-radius:var(--radius-pill);box-shadow:inset 0 0 0 1px currentColor;opacity:.9}
 @media (prefers-reduced-motion:reduce){.wk-ctl button{transition:none}}
 
 /* work as a deck: the cards sit on top of each other; a horizontal drag, swipe, wheel, arrow or click sends the top card off and to the back of the pile */
 .wk-deck{position:relative;height:calc(var(--cw)*1.4 + 110px);margin:2vh auto 0;touch-action:pan-y;user-select:none;cursor:grab;outline:none;z-index:1}
 .wk-deck.drag{cursor:grabbing}
-.wk-deck:focus-visible{box-shadow:inset 0 0 0 2px rgba(108,23,30,.5);border-radius:18px}
+.wk-deck:focus-visible{box-shadow:inset 0 0 0 2px rgba(var(--wine-rgb),.5);border-radius:18px}
 .wk-deck .wc{position:absolute;left:50%;top:50%;margin:0;scroll-snap-align:none;
   transform:translate(-50%,-50%) translate(var(--x,0px),var(--y,0px)) perspective(1400px) rotateY(var(--ry,0deg)) rotate(var(--r,0deg)) scale(var(--s,1));
-  opacity:var(--o,1);transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .35s,box-shadow .3s;transition-delay:var(--d,0ms);will-change:transform}
+  opacity:var(--o,1);transition:transform .5s var(--ease-out),opacity .35s,box-shadow .3s;transition-delay:var(--d,0ms);will-change:transform}
 .wk-deck .wc.nt{transition:none}
 @media (prefers-reduced-motion:reduce){.wk-deck .wc{transition:none}}
 .wk-deck{width:min(1320px,100%);--cw:300px}
