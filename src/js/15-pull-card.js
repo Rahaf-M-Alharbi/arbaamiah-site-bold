@@ -24,7 +24,8 @@
           WIN_CHANCE=1/3,
           WIN=[['استشارة مجانية','احجز استشارتك المجانية وتكلم معنا عن علامتك'],['تحليل حساباتك بالسوشل ميديا','نراجع حساباتك ونعطيك ملاحظات واضحة تبني عليها'],['ودك بخصم؟ واجهنا في صكة بلوت','اربح الصكة معنا واحصل على خصم على خدماتنا']],
           MISS=['جرب حاسبة ميزانية التسويق','وزع ميزانيتك التسويقية في دقائق مع حاسبتنا المجانية.'],
-          WA='https://api.whatsapp.com/message/U2EGUFBDX66ZE1?autoload=1&app_absent=0',
+          /* winners open a WhatsApp chat with the prize and claim code already typed (the business number behind the site's WhatsApp link) */
+          WA_NUM='966506032382',
           btns=document.querySelectorAll('#xp9o .xp9-btns a'),sr=document.getElementById('xp9a'),
           SU=['♠︎','♥︎','♦︎','♣︎'],drawn=false,d=null,from=null,KEY='arb-card';
       /* one card per visitor: the first draw is saved in this browser (localStorage and a one-year cookie, so clearing one still keeps the other) and every later visit, refresh, new tab or new window shows that same card, already face up */
@@ -45,7 +46,7 @@
         face.className='f'+(red?' r':'');
         face.innerHTML='<b>A<i>'+su+'</i></b><span class="p">'+su+'</span>';
         /* a win: the contact button opens WhatsApp and the calculator button is hidden. A miss keeps both. */
-        if(win){h.textContent=w[0];p.textContent=w[1]+'. تواصل معنا متى ما تحب ونفعل عرضك، واذكر رمز العرض: '+saved.c;btns[0].href=WA;btns[0].target='_blank';btns[0].rel='noopener';btns[1].style.display='none'}
+        if(win){h.textContent=w[0];p.textContent=w[1]+'. تواصل معنا متى ما تحب ونفعل عرضك، واذكر رمز العرض: '+saved.c;btns[0].href='https://wa.me/'+WA_NUM+'?text='+encodeURIComponent('مرحبا أربعمية، سحبت ورقة رابحة في موقعكم: '+w[0]+'. رمز العرض: '+saved.c);btns[0].target='_blank';btns[0].rel='noopener';btns[1].style.display='none'}
         else{h.textContent=MISS[0];p.textContent=MISS[1]}
         top.style.transform='';st.classList.add('drawn');st.parentNode.classList.add('xp9-done');card.classList.add('on');
         if(kept){card.removeAttribute('aria-hidden');return}
