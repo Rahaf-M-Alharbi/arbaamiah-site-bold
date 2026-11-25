@@ -32,6 +32,20 @@ Relative interest only (100 = peak of the strongest term). Keyword Planner skipp
 
 More autocomplete (Saudi, Arabic): شركة تسويق الكتروني / عقاري / جدة; تصميم شعار وكالة; تعليق صوتي سعودي; شركة ادارة حسابات سوشيال ميديا; شركات / وكالة تسويق مؤثرين; استراتيجية تسويق بالمحتوى / الخدمات; تصميم كولاج رقمي. Many "تصميم شعار / هوية / تعليق صوتي" searches are free or AI-tool seekers, so add words like "شركة" or "سعودي".
 
+## Update 2026-11-25
+- `npm run check`: 30 pages, 0 problems. `www` now 301s to the apex (verified with `curl -sI`).
+- Added BreadcrumbList JSON-LD to services, contact, about, projects (`crumbNames` in `scripts/build.mjs`). JSON validated in built output. Takes effect on the live site after the next deploy.
+- Internal links in built HTML are already extensionless (no 308 hop); source files keep `.html`, `cleanLinks` rewrites them at build.
+- Lighthouse mobile on the live site (Brave headless, before this deploy):
+
+| Page | Perf | A11y | Best practices | SEO | LCP | CLS | TBT |
+|---|---|---|---|---|---|---|---|
+| Home | 92 | 100 | 100 | 100 | 2.9 s | 0 | 0 ms |
+| Services | 95 | 100 | 100 | 100 | 2.8 s | 0 | 0 ms |
+| Project (bunar) | 87 | 100 | 100 | 100 | 4.0 s | 0 | 0 ms |
+
+Mobile LCP improved from 4.5-5.0 s but is still over 2.5 s everywhere; the project page is the worst (4.0 s). Next: read its LCP element and phases.
+
 ## Already in the code (verified 2026-11-11, `npm run check`: 32 pages, 0 problems)
 - Unique title + meta description per page, one `h1`, `<main>`, skip link, `lang="ar"`.
 - Canonical, Open Graph, Twitter card (1200x630 `og-share.png`), theme color.

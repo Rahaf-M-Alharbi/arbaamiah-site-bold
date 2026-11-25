@@ -59,6 +59,8 @@ const siteUrl = (process.env.SITE_URL || site.url || "").replace(/\/$/, "");
 /* Cloudflare Pages (and Netlify) serve /services.html as /services (308), so canonical, social and sitemap URLs use the extensionless form. */
 const cleanPath = (p) => (p === "index.html" ? "/" : "/" + p.replace(/\.html$/, ""));
 
+/* inner pages that get a BreadcrumbList (home > page); project and FAQ pages build their own */
+const crumbNames = { "services.html": "خدماتنا", "contact.html": "تواصل معنا", "about.html": "من نحن", "projects.html": "مشاريعنا" };
 const sizes = [];
 const shareImg = siteUrl && `${siteUrl}/assets/${map["img/og-share.png"]}`;
 const hex = (n) => ({ wine: "#6C171E", cream: "#f4dabf" })[n];
@@ -126,6 +128,7 @@ for (const page of pages) {
           crumbs([["الرئيسية", "/"], ["مشاريعنا", "/projects"], [title.replace(/ \| أربعمية$/, ""), cleanPath(page)]]),
           ...(project ? [{ "@type": "CreativeWork", name: project.name, genre: project.category, url: siteUrl + cleanPath(page), inLanguage: "ar", creator: { "@type": "Organization", name: "أربعمية", url: siteUrl + "/" }, ...(desc && { description: desc }) }] : [])] }
       : faq.length ? { "@context": ctx, "@graph": [crumbs([["الرئيسية", "/"], ["الأسئلة الشائعة", "/faq"]]), { "@type": "FAQPage", inLanguage: "ar", mainEntity: faq }] }
+      : crumbNames[page] ? { "@context": ctx, "@graph": [crumbs([["الرئيسية", "/"], [crumbNames[page], cleanPath(page)]])] }
       : null;
     if (ld) tags += `\n<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, "\\u003c")}</script>`;
   }

@@ -22,7 +22,9 @@ const css = cssBlock.replace('<link rel="stylesheet" href="src/css/50-reduced-mo
 const footer = read("src/partials/footer.html").trim();
 /* the closing call to action ("اسحب ورقتك") sits above the footer on every page */
 const cta = read("src/partials/cta-pull.html").trim();
-const heads = faq.split("<!-- css:start")[0].replace(/<title>.*<\/title>/, "<title>@@TITLE@@</title>");
+const heads = faq.split("<!-- css:start")[0].replace(/<title>.*<\/title>/, "<title>@@TITLE@@</title>")
+  /* project pages paint the heading (serif Bold) and the about text (sans Medium) first; the other three preloads only compete with the CSS on slow mobile */
+  .replace(/<link rel="preload" href="assets\/fonts\/(?:thmanyahsans-Regular|thmanyahsans-Bold|thmanyahserifdisplay-Regular)\.woff2"[^>]*>\n?/g, "");
 
 const shown = (p) => {
   const skipFrom = p.skip_from ? new RegExp(p.skip_from) : null;
