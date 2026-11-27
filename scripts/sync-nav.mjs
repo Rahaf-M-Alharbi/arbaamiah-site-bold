@@ -10,7 +10,7 @@ const tpl = readFileSync(join(root, "src/partials/nav.html"), "utf8").trim();
 const footer = readFileSync(join(root, "src/partials/footer.html"), "utf8").trim();
 const cta = readFileSync(join(root, "src/partials/cta-pull.html"), "utf8").trim();
 const pages = readdirSync(root).filter((f) => f.endsWith(".html") && f !== "pricing.html");
-const section = (f) => (f.startsWith("project-") ? "projects.html" : f);
+const section = (f) => (f.startsWith("project-") ? "projects.html" : f.startsWith("service-") ? "services.html" : f);
 
 for (const f of pages) {
   const cls = f === "index.html" ? "" : f === "services.html" ? " on" : " on pg";

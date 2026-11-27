@@ -32,6 +32,20 @@ Relative interest only (100 = peak of the strongest term). Keyword Planner skipp
 
 More autocomplete (Saudi, Arabic): شركة تسويق الكتروني / عقاري / جدة; تصميم شعار وكالة; تعليق صوتي سعودي; شركة ادارة حسابات سوشيال ميديا; شركات / وكالة تسويق مؤثرين; استراتيجية تسويق بالمحتوى / الخدمات; تصميم كولاج رقمي. Many "تصميم شعار / هوية / تعليق صوتي" searches are free or AI-tool seekers, so add words like "شركة" or "سعودي".
 
+## Update 2026-11-27: search phrases on service pages
+- Rewrote the intro line on all 10 service pages around Saudi autocomplete phrases (suggestions, not search volume); changed one section heading on design, websites, ads, account management and content writing.
+- Owner confirmed (2026-11-27) the voice artists are Saudi: "تعليق صوتي سعودي" is in the voiceover title, description and intro, and "معلق صوتي سعودي" is in one card.
+- Left out pending confirmation: سلة, زد, إعلانات المشاهير, "شركة" wording.
+- Checked on 2026-11-27: the 4 new URLs tested on arbaamia.sa returned 404 (not deployed yet). Publish before anything else.
+
+## Update 2026-11-26: service pages and articles
+- Added Service + FAQPage JSON-LD to the 10 service pages; `datePublished`/`dateModified` and `article:published_time` on the 3 articles (dates in `published` in `src/data/site.json`; add one per new article, and set it to the real publish day).
+- Retitled 6 service pages and `articles.html` around the researched searches (تصميم شعار, تعليق صوتي سعودي, استراتيجية تسويق); descriptions for all 10 services now name the service and Saudi Arabia.
+- Footer and article body links now go to the matching service pages.
+- `npm run check`: 44 built pages, 0 problems. Local Lighthouse mobile (built dist, not live): service design, cost article, articles list: SEO 100, a11y 100, best practices 100, performance 90-91, LCP 3.5-3.6 s, CLS 0.
+- Still open: LCP over 2.5 s; no links from service pages to related articles (needs a new on-page block); dedicated share image and cover images for articles; request indexing in Search Console after deploy.
+- Week 3 below (service pages) and the first articles are done.
+
 ## Update 2026-11-25
 - `npm run check`: 30 pages, 0 problems. `www` now 301s to the apex (verified with `curl -sI`).
 - Added BreadcrumbList JSON-LD to services, contact, about, projects (`crumbNames` in `scripts/build.mjs`). JSON validated in built output. Takes effect on the live site after the next deploy.

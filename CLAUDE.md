@@ -10,6 +10,7 @@ General engineering rules are in @AGENTS.md. This file is the project's own rule
 ## Tokens: `src/css/00-tokens.css` (the only place values are defined)
 - Colours: `--wine` `--green` `--cream`; scales `--wine-950…100`, `--cream-50/30/10`, `--paper-50`, `--ground-light`, `--black` `--ink-900` `--ink` `--ink2`, `--gray-900…100`.
 - Fonts: `var(--f-disp)` for headings (Thmanyah Serif Display), `var(--f-body)` for text (Thmanyah Sans). Font files: `src/css/00-fonts.css`.
+- Swash letters (the long tail on a word-final ي ف ق ن س …): token `var(--f-swash)`. All `h1` and `h2` have it already (`src/css/27-text.css`); add `class="swash"` to other display-font text that should have it.
 - The bold look: outlines `var(--border-4)` / `var(--border-3)` (ink), hard shadows `var(--shadow-1 … -10)` (number = offset in px), corners `var(--radius-6 … -16)`, `var(--radius-pill)`, `var(--radius-round)`.
 - See-through brand colours: `rgba(var(--wine-rgb),.4)`, also `--cream-rgb`, `--ink-900-rgb`, `--wine-950-rgb` (never the raw numbers).
 - Type scale: `var(--fs-11 … --fs-24)` for fixed text sizes (`--fs-12_5`, `--fs-14_5` for the half sizes); fluid `clamp()` sizes stay inline. Spacing scale: `var(--space-2 … --space-28)` for gaps.

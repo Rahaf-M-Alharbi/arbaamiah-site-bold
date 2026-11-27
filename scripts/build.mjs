@@ -60,7 +60,7 @@ const siteUrl = (process.env.SITE_URL || site.url || "").replace(/\/$/, "");
 const cleanPath = (p) => (p === "index.html" ? "/" : "/" + p.replace(/\.html$/, ""));
 
 /* inner pages that get a BreadcrumbList (home > page); project and FAQ pages build their own */
-const crumbNames = { "services.html": "خدماتنا", "contact.html": "تواصل معنا", "about.html": "من نحن", "projects.html": "مشاريعنا" };
+const crumbNames = { "services.html": "خدماتنا", "contact.html": "تواصل معنا", "about.html": "من نحن", "projects.html": "مشاريعنا", "articles.html": "المقالات" };
 const sizes = [];
 const shareImg = siteUrl && `${siteUrl}/assets/${map["img/og-share.png"]}`;
 const hex = (n) => ({ wine: "#6C171E", cream: "#f4dabf" })[n];
@@ -74,7 +74,7 @@ const describe = (page) => {
   const about = p.about && p.about.length >= 30 ? p.about : `${p.category}، من أعمال أربعمية.`;
   return cut(`${p.category} في السعودية. ${about.includes(p.name) ? about : `${p.name}: ${about}`}`, 160);  /* the name keeps near-identical project texts distinct */
 };
-const pages = ["index.html", "pricing.html", "faq.html", "contact.html", "budget.html", "about.html", "privacy.html", "terms.html", "links.html", "services.html", "projects.html", ...readdirSync(root).filter((f) => f.startsWith("project-") && f.endsWith(".html"))];
+const pages = ["index.html", "pricing.html", "faq.html", "contact.html", "budget.html", "about.html", "privacy.html", "terms.html", "links.html", "services.html", "projects.html", "articles.html", "service-content-writing.html", "service-design-production.html", "service-websites.html", "service-account-management.html", "service-content-plans.html", "service-marketing-strategy.html", "service-ad-campaigns.html", "service-influencer-marketing.html", "service-branding.html", "service-voiceover.html", ...readdirSync(root).filter((f) => /^(project|article)-.*\.html$/.test(f))];
 /* internal links point at the clean URL (/services, not /services.html): the host would 308 the .html form, one wasted round trip per click. Sources keep .html so the files still open from disk. */
 const pageNames = pages.map((p) => p.replace(/\.html$/, "")).join("|");
 const cleanHref = (n) => (n === "index" ? "/" : n);
@@ -113,21 +113,30 @@ for (const page of pages) {
   const noindex = (site.noindex || []).includes(page);
   let tags = `\n<meta name="theme-color" content="${hex("wine")}">`;
   if (desc) tags += `\n<meta name="description" content="${attr(desc)}">`;
+  if (site.published?.[page]) tags += `\n<meta property="article:published_time" content="${site.published[page]}">`;
   if (noindex) tags += `\n<meta name="robots" content="noindex">`;
   if (siteUrl && !noindex) {
     const url = siteUrl + cleanPath(page);
-    tags += `\n<link rel="canonical" href="${url}">\n<meta property="og:type" content="website">\n<meta property="og:locale" content="ar_SA">\n<meta property="og:site_name" content="أربعمية">\n<meta property="og:title" content="${title}">\n<meta property="og:url" content="${url}">\n<meta property="og:image" content="${shareImg}">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta property="og:image:alt" content="أربعمية: مكتب إبداعي للمحتوى والتصميم والإعلانات والنمو">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:image" content="${shareImg}">`;
+    tags += `\n<link rel="canonical" href="${url}">\n<meta property="og:type" content="${page.startsWith("article-") ? "article" : "website"}">\n<meta property="og:locale" content="ar_SA">\n<meta property="og:site_name" content="أربعمية">\n<meta property="og:title" content="${title}">\n<meta property="og:url" content="${url}">\n<meta property="og:image" content="${shareImg}">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta property="og:image:alt" content="أربعمية: مكتب إبداعي للمحتوى والتصميم والإعلانات والنمو">\n<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:image" content="${shareImg}">`;
     if (desc) tags += `\n<meta property="og:description" content="${attr(desc)}">`;
     const ctx = "https://schema.org";
     const crumbs = (items) => ({ "@type": "BreadcrumbList", itemListElement: items.map(([name, path], i) => ({ "@type": "ListItem", position: i + 1, name, item: siteUrl + path })) });
-    const faq = page === "faq.html" ? [...html.matchAll(/<details[^>]*><summary>(.*?)<\/summary><div class="a"><div>(.*?)<\/div><\/div><\/details>/g)].map(([, q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a.replace(/<[^>]+>/g, "") } })) : [];
+    const faq = page === "faq.html" || page.startsWith("service-") ? [...html.matchAll(/<details[^>]*><summary>(.*?)<\/summary><div class="a"><div>(.*?)<\/div><\/div><\/details>/g)].map(([, q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a.replace(/<[^>]+>/g, "") } })) : [];
     const project = page.startsWith("project-") ? (Array.isArray(projects) ? projects : projects.projects).find((x) => `project-${x.slug}.html` === page) : null;
+    const heading = (html.match(/<h1[^>]*>(.*?)<\/h1>/) || [])[1];
     const ld = page === "index.html"
       ? { "@context": ctx, "@type": ["Organization", "ProfessionalService"], name: "أربعمية", alternateName: "Arbaamiah", url: siteUrl + "/", logo: `${siteUrl}/assets/${map["img/logo-symbol.svg"]}`, email: "arbaamia.sa@gmail.com", areaServed: [{ "@type": "Country", name: "المملكة العربية السعودية" }, { "@type": "City", name: "الرياض" }, { "@type": "City", name: "جدة" }], availableLanguage: "ar", serviceType: ["وكالة تسويق في السعودية", "كتابة محتوى تسويقي في السعودية", "استراتيجية تسويقية في السعودية", "تصميم هوية بصرية في السعودية", "تصميم إبداعي في السعودية", "تصوير منتجات في السعودية", "تعليق صوتي في السعودية", "إدارة حملات إعلانية في السعودية", "تطوير مواقع في السعودية"], knowsAbout: ["تسويق إبداعي", "كتابة المحتوى", "الهوية البصرية", "التعليق الصوتي", "الإعلانات الرقمية", "تطوير المواقع", "صناعة المحتوى"], sameAs: site.sameAs, ...(desc && { description: desc }) }
       : page.startsWith("project-") ? { "@context": ctx, "@graph": [
           crumbs([["الرئيسية", "/"], ["مشاريعنا", "/projects"], [title.replace(/ \| أربعمية$/, ""), cleanPath(page)]]),
           ...(project ? [{ "@type": "CreativeWork", name: project.name, genre: project.category, url: siteUrl + cleanPath(page), inLanguage: "ar", creator: { "@type": "Organization", name: "أربعمية", url: siteUrl + "/" }, ...(desc && { description: desc }) }] : [])] }
-      : faq.length ? { "@context": ctx, "@graph": [crumbs([["الرئيسية", "/"], ["الأسئلة الشائعة", "/faq"]]), { "@type": "FAQPage", inLanguage: "ar", mainEntity: faq }] }
+      : page.startsWith("article-") ? { "@context": ctx, "@graph": [
+          crumbs([["الرئيسية", "/"], ["المقالات", "/articles"], [heading, cleanPath(page)]]),
+          { "@type": "Article", headline: heading, datePublished: site.published?.[page], dateModified: site.published?.[page], description: desc, inLanguage: "ar", image: shareImg, mainEntityOfPage: siteUrl + cleanPath(page), author: { "@type": "Organization", name: "أربعمية", url: siteUrl + "/" }, publisher: { "@type": "Organization", name: "أربعمية", url: siteUrl + "/", logo: { "@type": "ImageObject", url: `${siteUrl}/assets/${map["img/logo-symbol.svg"]}` } } }] }
+      : page === "faq.html" && faq.length ? { "@context": ctx, "@graph": [crumbs([["الرئيسية", "/"], ["الأسئلة الشائعة", "/faq"]]), { "@type": "FAQPage", inLanguage: "ar", mainEntity: faq }] }
+      : page.startsWith("service-") ? { "@context": ctx, "@graph": [
+          crumbs([["الرئيسية", "/"], ["خدماتنا", "/services"], [title.replace(/ \| أربعمية$/, "").replace(/ في السعودية$/, ""), cleanPath(page)]]),
+          { "@type": "Service", name: title.replace(/ \| أربعمية$/, "").replace(/ في السعودية$/, ""), url: siteUrl + cleanPath(page), areaServed: { "@type": "Country", name: "المملكة العربية السعودية" }, provider: { "@type": "Organization", name: "أربعمية", url: siteUrl + "/" }, ...(desc && { description: desc }) },
+          ...(faq.length ? [{ "@type": "FAQPage", inLanguage: "ar", mainEntity: faq }] : [])] }
       : crumbNames[page] ? { "@context": ctx, "@graph": [crumbs([["الرئيسية", "/"], [crumbNames[page], cleanPath(page)]])] }
       : null;
     if (ld) tags += `\n<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, "\\u003c")}</script>`;

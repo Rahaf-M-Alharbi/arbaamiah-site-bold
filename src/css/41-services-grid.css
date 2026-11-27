@@ -31,13 +31,11 @@
 
 /* home solutions: a numbered list with rules between the rows, no cards */
 .deck .stack.sol{width:100%;box-sizing:border-box;max-width:1100px;margin:0 auto;direction:rtl}
-.sol-r{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1.1fr);align-items:baseline;gap:clamp(14px,3vw,48px);padding:clamp(22px,3.4vw,40px) 0;border-bottom:3px solid rgba(var(--cream-rgb),.4);color:var(--cream);transition:padding-inline .3s var(--ease-out)}
-.sol-r:hover{padding-inline:clamp(10px,1.6vw,22px)}
+.sol-r{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1.1fr);align-items:baseline;gap:clamp(14px,3vw,48px);padding:clamp(22px,3.4vw,40px) 0;border-bottom:3px solid rgba(var(--cream-rgb),.4);color:var(--cream)}
 .sol-n{font:700 clamp(15px,1.4vw,18px)/1 var(--f-body);opacity:.65;font-variant-numeric:tabular-nums}
 .sol-r h4{margin:0;font:700 clamp(24px,3.2vw,44px)/1.25 var(--f-disp)}
 .sol-r p{margin:0;font:500 clamp(15px,1.4vw,19px)/1.8 var(--f-body);opacity:.85}
 @media (max-width:640px){.sol-r{grid-template-columns:auto minmax(0,1fr);row-gap:var(--space-8)}.sol-r p{grid-column:1/-1}}
-@media (prefers-reduced-motion:reduce){.sol-r{transition:none}}
 /* services page cards: tidier "what you get" block. Title and intro stay centred; the list is right-aligned with hanging bullets and thin rules, the label sits between two lines */
 .deck .stack[data-full] .svc .body{padding-inline:11cqw;gap:0}
 .deck .stack[data-full] .svc-l{display:flex;align-items:center;gap:var(--space-12);margin:clamp(18px,2.2vw,28px) 0 6px;text-align:center;justify-content:center}
@@ -90,9 +88,29 @@
 .deck .stack.sol .sol-r:nth-child(4n+2)::before,.deck .stack.sol .sol-r:nth-child(4n+3)::before{content:"♥︎"}
 .deck .stack.sol .sol-r h4{grid-column:2;font-size:clamp(20px,2.6vw,36px);font-weight:700}
 .deck .stack.sol .sol-r:hover h4{color:#fff}
+/* hover: the mark and name slide with transform (no re-layout, so it glides) while the name fades to white; the row and its line stay put */
+.sol-r::before,.sol-r h4{transition:transform .3s var(--ease-out),color .3s var(--ease-out)}
+.sol-r:hover::before,.sol-r:hover h4{transform:translateX(calc(-1 * clamp(10px,1.6vw,22px)))}
+@media (prefers-reduced-motion:reduce){.sol-r::before,.sol-r h4{transition:color .3s}}
 /* services page intro: smaller beige text under the title */
 .deck .dk-head h1~p{font-size:clamp(16px,1.6vw,22px);line-height:1.8;max-width:36em}
 @media (max-width:760px){.deck .dk-head h1~p{font-size:clamp(15px,4.2vw,18px);line-height:1.8}}
 /* phone: the card unfolds instead of popping in */
 @keyframes svOpen{from{grid-template-rows:0fr;opacity:0}to{grid-template-rows:1fr;opacity:1}}
 @media (max-width:860px){.sv-view.opening{display:grid;animation:svOpen .45s var(--ease-out)}.sv-view.opening>.svc{min-height:0;overflow:hidden}}
+/* .sol.sol-links: the same rows as links to the service pages (services page and the bottom of every service page) */
+.sol.sol-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,5vw,72px);row-gap:clamp(8px,1.6vw,20px);margin-top:clamp(8px,2vw,24px)}
+.sol-links .sol-r{text-decoration:none;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:var(--space-14);padding-block:clamp(16px,2.2vw,28px);border-bottom:1px solid rgba(var(--cream-rgb),.18)}
+.sol-links .sol-r::before{content:"♠︎";grid-column:1;grid-row:1;color:var(--cream);opacity:.5;font-size:.9em}
+.sol-links .sol-r:nth-child(4n+2)::before,.sol-links .sol-r:nth-child(4n+3)::before{content:"♥︎"}
+.sol-links .sol-r h4{grid-column:2;margin:0;font:700 clamp(20px,2.6vw,36px)/1.25 var(--f-disp)}
+.sol-links .sol-r:hover h4,.sol-links .sol-r:focus-visible h4{color:#fff}
+.sol-links .sol-r[aria-current]{background:var(--cream);color:var(--wine);padding-inline:clamp(10px,1.6vw,22px);border-radius:var(--radius-10,10px)}
+.sol-links .sol-r[aria-current]::before{color:var(--wine);opacity:.7}
+.sol-links .sol-r[aria-current] h4,.sol-links .sol-r[aria-current]:hover h4{color:var(--wine)}
+@media (max-width:760px){.sol.sol-links{grid-template-columns:minmax(0,1fr)}}
+/* services page: link from a service card to its own page */
+.deck .stack[data-full] .svc-d{align-self:center;margin-top:var(--space-12);color:var(--wine);font:700 var(--fs-15)/1.6 var(--f-body);text-underline-offset:6px}
+/* services page: the list of every service page, under the cards */
+.dk-pages{max-width:1100px;margin:clamp(56px,8vw,112px) auto 0;padding:0 max(20px,5vw)}
+.dk-pages h2{margin:0 0 clamp(16px,2.4vw,32px);font:700 clamp(30px,4vw,56px)/1.3 var(--f-disp)}

@@ -10,6 +10,7 @@
   .slot,.stt-i,.wc .go,.cst-q,                                       /* hero cards, stats, work cards, client stories: fade, no fly-in */
   .xp9-top,.xp9-stage,.xp9-deck,.xp9-out,                            /* "pull a card" deck */
   .ctf-l input,.ctf-l textarea,                                      /* contact form fields */
+  .lp-it,.lp-it .pk-ix,.lp-rl .lp-wcs li,.lp-rl .lp-wc,.lp-rl .wc-go,.lp-rl .wc-art,.lp-elev-mk,.sol-r,   /* service pages: cards, works, step marker, services list */
   .svc-o,.svc-o i,.pj-order i,.pj-play,.pj-img img,.cu-c i           /* service arrows, project media, cursor card */
   {transition-property:opacity,color,background-color,border-color,box-shadow,visibility!important}
 }

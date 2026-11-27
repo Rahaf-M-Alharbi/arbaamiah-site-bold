@@ -48,7 +48,7 @@ const pages = readdirSync(root).filter((f) => f.endsWith(".html") && f !== "pric
 const buildList = read("scripts/build.mjs");
 for (const page of pages) {
   const html = read(page);
-  if (!page.startsWith("project-") && !buildList.includes(`"${page}"`)) fail(page, "not in the pages list of scripts/build.mjs, so it would not be deployed");
+  if (!/^(project|article)-/.test(page) && !buildList.includes(`"${page}"`)) fail(page, "not in the pages list of scripts/build.mjs, so it would not be deployed");
   const block = html.match(/<!-- css:start[\s\S]*?<!-- css:end -->/);
   if (!block) { fail(page, "no <!-- css:start --> … <!-- css:end --> block; start new pages from faq.html"); continue; }
   const sheets = [...block[0].matchAll(/href="([^"]+\.css)"/g)].map((m) => m[1]);

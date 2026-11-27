@@ -26,6 +26,8 @@
     ['تقارير أداء دورية واضحة','قياس الوصول والتفاعل والتحويل','قراءة النتائج وتحديد ما ينجح','توصيات وخطط تطوير للمرحلة التالية'],
     ['تصميم واجهات وتجربة استخدام مدروسة','مواقع تعريفية وصفحات هبوط ومتاجر إلكترونية','موقع متجاوب مع الجوال وسريع التحميل','تهيئة لمحركات البحث وربط أدوات التحليل']
   ];
+  /* each service's own page, same order as P; empty where there is none yet */
+  var U=['service-content-writing.html','service-marketing-strategy.html','','service-design-production.html','','service-voiceover.html','service-ad-campaigns.html','','service-websites.html'];
   var stack=document.getElementById('stack');
   stack.innerHTML=''; /* drop the plain-HTML copy (scripts/sync-services.mjs) before drawing the cards */
   var full=stack.hasAttribute('data-full');
@@ -38,7 +40,7 @@
     return;
   }
   var K=['content','growth','content','design','design','content','ads','growth','web'];/* which box on the contact form each service ticks */
-  function more(i){return '<span class="svc-l">ماذا تحصل عليه</span><ul class="svc-get">'+G[i].map(function(t){return '<li>'+t+'</li>'}).join('')+'</ul><a class="svc-o" href="contact.html?svc='+K[i]+'&amp;n='+encodeURIComponent(P[i][0])+'">اطلب الخدمة<i>←</i></a>'}
+  function more(i){return '<span class="svc-l">ماذا تحصل عليه</span><ul class="svc-get">'+G[i].map(function(t){return '<li>'+t+'</li>'}).join('')+'</ul><a class="svc-o" href="contact.html?svc='+K[i]+'&amp;n='+encodeURIComponent(P[i][0])+'">اطلب الخدمة<i>←</i></a>'+(U[i]?'<a class="svc-d" href="'+U[i]+'">تفاصيل الخدمة</a>':'')}
   function num(i){return (i<9?'0':'')+(i+1)}
   /* pick a service on one side, its card on the other */
   function card(i){var s=SU[i];return '<article class="card pk svc open'+((s==='h'||s==='d')?' red':'')+'">'+PlayingCard.corners(R[i],s)+'<div class="body"><h4 aria-level="2">'+P[i][0]+'</h4><span class="rule"></span><p>'+P[i][1]+'</p>'+more(i)+'</div></article>'}

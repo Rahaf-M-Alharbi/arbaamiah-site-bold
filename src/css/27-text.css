@@ -25,3 +25,8 @@
    paragraph (and the title above it) stayed at the old width, spilled over the cards and was never re-measured.
    Capping the track at the container width lets the paragraph follow its box, which makes the script re-fit it. */
 .sec2,.dk-head,.wk-head .t,.ctf-t,.ft-in{grid-template-columns:minmax(0,1fr)}
+
+/* Swash letters: every main and section title (h1, h2) uses the display font's long-tail alternates.
+   Add class="swash" to any other display-font text that should do the same (a subtitle, a big number line). */
+/* !important on purpose: any later \`font:\` shorthand (there are many, in every section file) resets font-feature-settings to normal, and this is the only place that sets them. */
+h1,h2,.swash{font-feature-settings:var(--f-swash) !important}

@@ -9,10 +9,10 @@ import vm from "node:vm";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const src = readFileSync(join(root, "src/js/05-services-panels.js"), "utf8");
 const grab = (n) => src.match(new RegExp(`var ${n}=(\\[[\\s\\S]*?\\]);`))[1];
-const { P, F, G } = vm.runInNewContext(`({P:${grab("P")},F:${grab("F")},G:${grab("G")}})`);
+const { P, F, G, U } = vm.runInNewContext(`({P:${grab("P")},F:${grab("F")},G:${grab("G")},U:${grab("U")}})`);
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 
-const full = `<div class="svc-fb">${P.map((p, i) => `<article><h4 aria-level="2">${esc(p[0])}</h4><p>${esc(F[i])}</p><ul>${G[i].map((t) => `<li>${esc(t)}</li>`).join("")}</ul></article>`).join("")}</div>`;
+const full = `<div class="svc-fb">${P.map((p, i) => `<article><h4 aria-level="2">${esc(p[0])}</h4><p>${esc(F[i])}</p><ul>${G[i].map((t) => `<li>${esc(t)}</li>`).join("")}</ul>${U[i] ? `<a href="${U[i]}">تفاصيل خدمة ${esc(p[0])}</a>` : ""}</article>`).join("")}</div>`;
 const names = `<ul class="svc-fb">${P.map((p) => `<li>${esc(p[0])}</li>`).join("")}</ul>`;
 
 for (const [file, open, html] of [["services.html", '<div class="stack" id="stack" data-full>', full], ["index.html", '<div class="stack" id="stack">', names]]) {

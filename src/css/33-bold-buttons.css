@@ -33,3 +33,6 @@
 @media (max-width:640px){.xp9-btns .flipbtn .fb-f,.xp9-btns .flipbtn .fb-b{min-width:170px;padding:12px 26px;font-size:var(--fs-16)}}
 
 .xp9-btns [hidden]{display:none!important}
+/* .fb--wine (with .fb--cream): the nav button's colours on a cream surface. Wine face, flips to cream. */
+.flipbtn.fb--cream.fb--wine .fb-f{background:var(--wine);color:var(--cream)}
+.flipbtn.fb--cream.fb--wine .fb-b{background:var(--cream);color:var(--wine)}

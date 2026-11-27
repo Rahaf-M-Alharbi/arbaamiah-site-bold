@@ -3,7 +3,7 @@
   if(!matchMedia('(pointer:fine)').matches||!matchMedia('(hover:hover)').matches) return;
   var still=matchMedia('(prefers-reduced-motion:reduce)').matches,
       BTN='button:not(:disabled),.flipbtn,.cta,.ft-cta,.pg-cta,.fq-all,summary,[role=button],.tab,.xp9-top',
-      CARD='.pk,.pnl,.slot,.hcard,.pcard,.slot3.f,.cc,.wc,.k4-c,.k4-v,.prv-g li,.cst-q,.pj-main,.pj-mainvid,.pj-mainemb,.pj-card,.pj-fig,.fq-l details,.xp9-card,.sol-r,.ft-pitch',
+      CARD='.pk,.pnl,.slot,.hcard,.pcard,.slot3.f,.cc,.wc,.k4-c,.k4-v,.prv-g li,.cst-q,.pj-main,.pj-mainvid,.pj-mainemb,.pj-card,.pj-fig,.fq-l details,.xp9-card,.stack.sol,.ft-pitch',
       TXT='input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]),textarea,select,[contenteditable]';
   function mk(cls,html){var d=document.createElement('div');d.className='cu '+cls;d.setAttribute('aria-hidden','true');d.innerHTML=html;document.body.appendChild(d);return d}
   var card={el:mk('cu-c','<span class="t"><i class="b">♦&#xFE0E;</i><i class="f">♠&#xFE0E;</i></span>'),x:-100,y:-100,k:still?1:.38},
